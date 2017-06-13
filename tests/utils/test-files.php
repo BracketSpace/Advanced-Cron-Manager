@@ -5,7 +5,7 @@
  * @package Advanced_Cron_Manager
  */
 
-namespace underDEV\AdvancedCronManager;
+namespace underDEV\AdvancedCronManager\Utils;
 
 /**
  * Files test case.

@@ -21,7 +21,7 @@ class Internationalization {
 	 * Class constructor
 	 * @param Files $files underDEV\AdvancedCronManager\Files instance
 	 */
-	public function __construct( Files $files ) {
+	public function __construct( Utils\Files $files ) {
 
 		$this->files = $files;
 

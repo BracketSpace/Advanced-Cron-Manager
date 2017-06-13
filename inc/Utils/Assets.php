@@ -4,7 +4,7 @@
  * Loads plugin assets
  */
 
-namespace underDEV\AdvancedCronManager;
+namespace underDEV\AdvancedCronManager\Utils;
 
 class Assets {
 

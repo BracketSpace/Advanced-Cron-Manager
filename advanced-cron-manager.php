@@ -47,12 +47,3 @@ $container->setVar( 'plugin_version', '2.0' );
 
 // Registers all classes and their dependencies
 $container->register( 'underDEV\AdvancedCronManager\RuntimeProvider' );
-
-// Load textdomain
-add_action( 'plugins_loaded', $container->callback( 'underDEV\AdvancedCronManager\Internationalization', 'load_textdomain' ) );
-
-// Add plugin's screen in the admin
-add_action( 'admin_menu', $container->callback( 'underDEV\AdvancedCronManager\AdminScreen', 'register_screen' ) );
-
-// Enqueue assets
-add_action( 'admin_enqueue_scripts', $container->callback( 'underDEV\AdvancedCronManager\Assets', 'enqueue_admin' ), 10, 1 );

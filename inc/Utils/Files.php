@@ -4,7 +4,7 @@
  * Locates plugin's files
  */
 
-namespace underDEV\AdvancedCronManager;
+namespace underDEV\AdvancedCronManager\Utils;
 
 class Files {
 

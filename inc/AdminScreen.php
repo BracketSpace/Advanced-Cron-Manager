@@ -15,6 +15,22 @@ class AdminScreen {
 	public $page_hook;
 
 	/**
+	 * View class
+	 * @var instance of underDEV\AdvancedCronManage\View
+	 */
+	public $view;
+
+	/**
+	 * Contructor
+	 * @param View $view View class
+	 */
+	public function __construct( Utils\View $view ) {
+
+		$this->view = $view;
+
+	}
+
+	/**
 	 * Registers the plugin page under Tools in WP Admin
 	 * @return void
 	 */
