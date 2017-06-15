@@ -22,16 +22,16 @@ class Assets {
 	public $files;
 
 	/**
-	 * Files class
-	 * @var instance of underDEV\AdvancedCronManager\AdminScreen
+	 * Screen hook handle
+	 * @var string
 	 */
-	public $screen;
+	public $screen_hook;
 
-	public function __construct( $version, Files $files, AdminScreen $screen ) {
+	public function __construct( $version, Files $files, $screen_hook ) {
 
 		$this->plugin_version = $version;
 		$this->files          = $files;
-		$this->screen         = $screen;
+		$this->screen_hook    = $screen_hook;
 
 	}
 
@@ -41,7 +41,7 @@ class Assets {
 	 */
 	public function enqueue_admin( $current_page_hook ) {
 
-		if ( $current_page_hook != $this->screen->page_hook ) {
+		if ( $current_page_hook != $this->screen_hook ) {
 			return;
 		}
 

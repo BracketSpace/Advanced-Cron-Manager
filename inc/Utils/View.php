@@ -41,15 +41,16 @@ class View {
 	 * Sets var
 	 * @param  string $var_name  var slug
 	 * @param  mixed  $var_value var value
+	 * @param  bool   $override  override var if it already exists
 	 * @return this
 	 */
-	public function set_var( $var_name = null, $var_value = null ) {
+	public function set_var( $var_name = null, $var_value = null, $override = false ) {
 
 		if ( $var_name === null ) {
 			return $this;
 		}
 
-		if ( $this->get_var( $var_name ) !== null ) {
+		if ( ! $override && $this->get_var( $var_name ) !== null ) {
 			trigger_error( 'Variable ' . $var_name . ' already exists, skipping', E_USER_NOTICE );
 			return $this;
 		}
@@ -60,6 +61,11 @@ class View {
 
 	}
 
+	/**
+	 * Sets many vars at once
+	 * @param array $vars array of vars in format: var name => var value
+	 * @return $this
+	 */
 	public function set_vars( $vars ) {
 
 		if ( ! is_array( $vars ) ) {
@@ -83,6 +89,21 @@ class View {
 	public function get_var( $var_name ) {
 
 		return isset( $this->vars[ $var_name ] ) ? $this->vars[ $var_name ] : null;
+
+	}
+
+	/**
+	 * Removes var
+	 * @param  string $var_name var name
+	 * @return this
+	 */
+	public function remove_var( $var_name ) {
+
+		if ( isset( $this->vars[ $var_name ] ) ) {
+			unset( $this->vars[ $var_name ] );
+		}
+
+		return $this;
 
 	}
 

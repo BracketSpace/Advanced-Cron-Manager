@@ -1,18 +1,13 @@
 <?php
 /**
  * AdminScreen class
- * Registers and displays admin screen
+ * Displays admin screen
  */
 
 namespace underDEV\AdvancedCronManager;
+use underDEV\AdvancedCronManager\Cron;
 
 class AdminScreen {
-
-	/**
-	 * Admin page hook
-	 * @var string
-	 */
-	public $page_hook;
 
 	/**
 	 * View class
@@ -21,28 +16,20 @@ class AdminScreen {
 	public $view;
 
 	/**
-	 * Contructor
-	 * @param View $view View class
+	 * Schedules class
+	 * @var instance of underDEV\AdvancedCronManage\Cron\Schedules
 	 */
-	public function __construct( Utils\View $view ) {
-
-		$this->view = $view;
-
-	}
+	public $schedules;
 
 	/**
-	 * Registers the plugin page under Tools in WP Admin
-	 * @return void
+	 * Contructor
+	 * @param View      $view      View class
+	 * @param Schedules $schedules Schedules class
 	 */
-	public function register_screen() {
+	public function __construct( Utils\View $view, Cron\Schedules $schedules ) {
 
-		$this->page_hook = add_management_page(
-			__( 'Advanced Cron Manager', 'advanced-cron-manager' ),
-			__( 'Cron Manager', 'advanced-cron-manager' ),
-			'manage_options',
-			'advanced-cron-manager',
-			array( $this, 'load_page_wrapper' )
-		);
+		$this->view      = $view;
+		$this->schedules = $schedules;
 
 	}
 
@@ -66,25 +53,25 @@ class AdminScreen {
 	}
 
 	/**
-	 * Loads tasks table
+	 * Loads events table
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 * @param  object $view instance of parent view
 	 * @return void
 	 */
-	public function load_tasks_table_part( $view ) {
+	public function load_events_table_part( $view ) {
 		echo '<pre>tasks table<br>';
 		echo '</pre>';
 	}
 
 	/**
-	 * Loads task adder form
+	 * Loads event adder form
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 * @param  object $view instance of parent view
 	 * @return void
 	 */
-	public function load_task_adder_part( $view ) {
+	public function load_event_adder_part( $view ) {
 
 	}
 
@@ -96,7 +83,11 @@ class AdminScreen {
 	 * @return void
 	 */
 	public function load_schedules_table_part( $view ) {
-		$this->view->get_view( 'parts/schedules-table' );
+
+		$this->view->set_var( 'schedules', $this->schedules->get_schedules() );
+
+		$this->view->get_view( 'parts/schedules/section' );
+
 	}
 
 	/**

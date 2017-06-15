@@ -1,9 +1,75 @@
 #schedules {
 
-	.schedules-tile {
-		background-color: #fff;
-	    border: 1px solid #ddd;
-	    padding: 10px 15px;
+	.schedules {
+
+		.single-schedule {
+			display: flex;
+			margin: 10px 0;
+
+			&:hover {
+				background: #f7f7f7;
+			}
+
+			&.header {
+				font-weight: bold;
+
+				&:hover {
+					background: transparent;
+				}
+
+				.column {
+					overflow: hidden;
+				}
+
+			}
+
+			.column {
+				padding: 2px;
+
+				&.label {
+					flex-grow: 100;
+				}
+
+				&.slug {
+					width: 30%;
+				}
+
+				&.interval {
+					width: 15%;
+				}
+
+				&.actions {
+					width: 15%;
+					text-align: right;
+
+					.dashicons {
+
+						&.dashicons-trash {
+							color: #a00;
+
+							&:hover {
+								color: red;
+							}
+
+							&.disabled,
+							&.disabled:hover {
+								color: #ccc;
+							}
+
+						}
+
+						span {
+							display: none;
+						}
+
+					}
+
+				}
+
+			}
+
+		}
+
 	}
 
 	.page-title-action {

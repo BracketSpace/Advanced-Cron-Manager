@@ -13,7 +13,7 @@ do_action( 'advanced-cron-manager/screen/wrap/before', $this ); ?>
 <div class="wrap">
 
 	<h1 class="wp-heading-inline"><?php _e( 'Cron Manager' ); ?></h1>
-	<?php $this->get_view( 'elements/add-task-button' ); ?>
+	<?php $this->get_view( 'elements/add-event-button' ); ?>
 	<?php $this->get_view( 'elements/add-schedule-button' ); ?>
 
 	<hr class="wp-header-end">

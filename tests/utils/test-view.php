@@ -42,6 +42,15 @@ class ViewTest extends \PHPUnit_Framework_TestCase  {
 
 	}
 
+	public function test_set_var_override() {
+
+		$this->view->set_var( 'var', 'value' );
+		$this->view->set_var( 'var', 'new', true );
+
+		$this->assertEquals( 'new', $this->view->get_var( 'var' ) );
+
+	}
+
 	public function test_set_var_get_var() {
 
 		$this->view->set_var( 'var', 'value' );
@@ -73,6 +82,15 @@ class ViewTest extends \PHPUnit_Framework_TestCase  {
 	}
 
 	public function test_get_var_null() {
+
+		$this->assertNull( $this->view->get_var( 'var' ) );
+
+	}
+
+	public function test_remove_var() {
+
+		$this->view->set_var( 'var', 'value' );
+		$this->view->remove_var( 'var' );
 
 		$this->assertNull( $this->view->get_var( 'var' ) );
 
