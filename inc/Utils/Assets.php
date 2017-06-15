@@ -5,6 +5,7 @@
  */
 
 namespace underDEV\AdvancedCronManager\Utils;
+use underDEV\AdvancedCronManager\AdminScreen;
 
 class Assets {
 
@@ -16,14 +17,21 @@ class Assets {
 
 	/**
 	 * Files class
-	 * @var instance of underDEV\AdvancedCronManager\Files
+	 * @var instance of underDEV\AdvancedCronManager\Utils\Files
 	 */
 	public $files;
 
-	public function __construct( $version, Files $files ) {
+	/**
+	 * Files class
+	 * @var instance of underDEV\AdvancedCronManager\AdminScreen
+	 */
+	public $screen;
+
+	public function __construct( $version, Files $files, AdminScreen $screen ) {
 
 		$this->plugin_version = $version;
 		$this->files          = $files;
+		$this->screen         = $screen;
 
 	}
 
@@ -31,9 +39,13 @@ class Assets {
 	 * Enqueue admin scripts
 	 * @return void
 	 */
-	public function enqueue_admin() {
+	public function enqueue_admin( $current_page_hook ) {
 
+		if ( $current_page_hook != $this->screen->page_hook ) {
+			return;
+		}
 
+		wp_enqueue_style( 'advanced-cron-manager', $this->files->asset_url( 'css', 'style.css' ), array(), $this->plugin_version );
 
 	}
 
