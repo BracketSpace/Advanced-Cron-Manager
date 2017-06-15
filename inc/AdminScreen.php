@@ -96,8 +96,7 @@ class AdminScreen {
 	 * @return void
 	 */
 	public function load_schedules_table_part( $view ) {
-		echo '<pre>schedules table<br>';
-		echo '</pre>';
+		$this->view->get_view( 'parts/schedules-table' );
 	}
 
 	/**

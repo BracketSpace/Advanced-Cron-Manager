@@ -1,4 +1,14 @@
 /**
+ * Variables
+ */
+@import 'variables';
+
+/**
+ * Vendors
+ */
+@import 'vendor/include-media';
+
+/**
  * Components
  */
 @import 'components/wrapper';
@@ -7,3 +17,4 @@
  * Parts
  */
 @import 'parts/searchbox';
+@import 'parts/schedules';
