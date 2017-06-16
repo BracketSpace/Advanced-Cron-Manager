@@ -129,4 +129,20 @@ class Files {
 		return $this->file_url( $assets_dirs );
 	}
 
+	/**
+	 * Gets url to a vendor asset file
+	 * @param  string $vendor asset vendor name (name of the vendor dir)
+	 * @param  string $file   file name
+	 * @return string         asset file url
+	 */
+	public function vendor_asset_url( $vendor = '', $file = '' ) {
+		$assets_dirs   = array(
+			'assets',
+			'vendor',
+			$vendor,
+			$file
+		);
+		return $this->file_url( $assets_dirs );
+	}
+
 }

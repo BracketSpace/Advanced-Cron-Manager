@@ -1,5 +1,9 @@
 #schedules {
 
+	@include media( '<=850px' ) {
+		margin-top: 30px;
+	}
+
 	.schedules {
 
 		.single-schedule {
@@ -11,7 +15,7 @@
 			}
 
 			&.header {
-				font-weight: bold;
+				font-weight: 500;
 
 				&:hover {
 					background: transparent;

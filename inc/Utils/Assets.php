@@ -45,7 +45,17 @@ class Assets {
 			return;
 		}
 
+		wp_register_script( 'advanced-cron-manager/event-manager', $this->files->vendor_asset_url( 'event-manager', 'event-manager.min.js' ), array( 'jquery' ), $this->plugin_version, true );
+
 		wp_enqueue_style( 'advanced-cron-manager', $this->files->asset_url( 'css', 'style.css' ), array(), $this->plugin_version );
+		wp_enqueue_script( 'advanced-cron-manager', $this->files->asset_url( 'js', 'scripts.min.js' ), array( 'jquery', 'advanced-cron-manager/event-manager' ), $this->plugin_version, true );
+
+		wp_localize_script( 'advanced-cron-manager', 'advanced_cron_manager', array(
+			'i18n' => array(
+				/* translators: used for js to count number of vents in table, ie: 4 events */
+				'events' => __( 'events' )
+			)
+		) );
 
 	}
 

@@ -60,8 +60,7 @@ class AdminScreen {
 	 * @return void
 	 */
 	public function load_events_table_part( $view ) {
-		echo '<pre>tasks table<br>';
-		echo '</pre>';
+		$this->view->get_view( 'parts/events/section' );
 	}
 
 	/**
