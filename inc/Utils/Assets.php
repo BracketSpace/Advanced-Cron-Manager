@@ -47,11 +47,11 @@ class Assets {
 
 		wp_register_script( 'advanced-cron-manager/event-manager', $this->files->vendor_asset_url( 'event-manager', 'event-manager.min.js' ), array( 'jquery' ), $this->plugin_version, true );
 
-		wp_register_script( 'advanced-cron-manager/materialize', $this->files->vendor_asset_url( 'materialize', 'js/materialize.min.js' ), array( 'jquery' ), '0.98.2', true );
-		wp_register_style( 'advanced-cron-manager/materialize', $this->files->vendor_asset_url( 'materialize', 'css/materialize.min.css' ), array(), '0.98.2' );
+		wp_register_script( 'materialize', $this->files->vendor_asset_url( 'materialize', 'js/materialize.min.js' ), array( 'jquery' ), '0.98.2', true );
+		wp_register_style( 'materialize', $this->files->vendor_asset_url( 'materialize', 'css/materialize.min.css' ), array(), '0.98.2' );
 
 		wp_enqueue_style( 'advanced-cron-manager', $this->files->asset_url( 'css', 'style.css' ), array(), $this->plugin_version );
-		wp_enqueue_script( 'advanced-cron-manager', $this->files->asset_url( 'js', 'scripts.min.js' ), array( 'jquery', 'advanced-cron-manager/event-manager', 'advanced-cron-manager/materialize' ), $this->plugin_version, true );
+		wp_enqueue_script( 'advanced-cron-manager', $this->files->asset_url( 'js', 'scripts.min.js' ), array( 'jquery', 'advanced-cron-manager/event-manager', 'materialize' ), $this->plugin_version, true );
 
 		wp_localize_script( 'advanced-cron-manager', 'advanced_cron_manager', array(
 			'i18n' => array(
