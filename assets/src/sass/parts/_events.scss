@@ -222,7 +222,45 @@
 					}
 
 					&.active {
-						display: flex;
+						display: block;
+					}
+
+					&.logs {
+
+						p:first-child {
+							margin-top: 0;
+						}
+
+						ul {
+						    list-style: disc;
+					        padding-left: 20px;
+						}
+
+					}
+
+					&.arguments {
+
+						span {
+							margin: 0 4px 4px 0;
+							padding: 3px 5px;
+							background: #f5f5f5;
+							border-radius: 3px;
+							border: 1px solid #dbdbdb;
+							white-space: pre;
+							display: inline-block;
+						}
+
+					}
+
+					&.implementation {
+
+						code {
+							display: block;
+							padding: 15px;
+							background-color: #f7f7f7;
+							border: 1px solid #e8e8e8;
+						}
+
 					}
 
 				}

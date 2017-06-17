@@ -22,14 +22,33 @@ class AdminScreen {
 	public $schedules;
 
 	/**
+	 * Events class
+	 * @var instance of underDEV\AdvancedCronManage\Cron\Events
+	 */
+	public $events;
+
+	/**
+	 * Default tab names for events
+	 * @var array
+	 */
+	protected $default_event_details_tabs;
+
+	/**
 	 * Contructor
 	 * @param View      $view      View class
 	 * @param Schedules $schedules Schedules class
 	 */
-	public function __construct( Utils\View $view, Cron\Schedules $schedules ) {
+	public function __construct( Utils\View $view, Cron\Schedules $schedules, Cron\Events $events ) {
 
 		$this->view      = $view;
 		$this->schedules = $schedules;
+		$this->events    = $events;
+
+		$this->default_event_details_tabs = array(
+			'logs'           => __( 'Logs' ),
+			'arguments'      => __( 'Arguments' ),
+			'implementation' => __( 'Implementation' ),
+		);
 
 	}
 
@@ -60,7 +79,18 @@ class AdminScreen {
 	 * @return void
 	 */
 	public function load_events_table_part( $view ) {
+
+		$this->view->set_var( 'events', $this->events->get_events() );
+		$this->view->set_var( 'events_count', $this->events->count() );
+		$this->view->set_var( 'schedules', $this->schedules );
+
+		/**
+		 * It should be an array in format: tab_slug => Tab Name
+		 */
+		$this->view->set_var( 'details_tabs', apply_filters( 'advanced-cron-manager/screep/event/details/tabs', array() ) );
+
 		$this->view->get_view( 'parts/events/section' );
+
 	}
 
 	/**
@@ -98,6 +128,52 @@ class AdminScreen {
 	 */
 	public function load_schedule_adder_part( $view ) {
 
+	}
+
+	/**
+	 * Adds default event details tabs
+	 * It also registers the actions for the content
+	 * @param array $tabs filtered tabs
+	 */
+	public function add_default_event_details_tabs( $tabs ) {
+
+		foreach ( $this->default_event_details_tabs as $tab_slug => $tab_name ) {
+			$tabs[ $tab_slug ] = $tab_name;
+			add_action( 'advanced-cron-manager/screep/event/details/tab/' . $tab_slug, array( $this, 'load_event_tab_' . $tab_slug ), 10, 1 );
+		}
+
+		return $tabs;
+
+	}
+
+	/**
+	 * Loads Logs tab content for event details
+	 * Scope for $view is the same as in events/section view
+	 * @param  object $view local View instance
+	 * @return void
+	 */
+	public function load_event_tab_logs( $view ) {
+		$view->get_view( 'parts/events/tabs/logs' );
+	}
+
+	/**
+	 * Loads Arguments tab content for event details
+	 * Scope for $view is the same as in events/section view
+	 * @param  object $view local View instance
+	 * @return void
+	 */
+	public function load_event_tab_arguments( $view ) {
+		$view->get_view( 'parts/events/tabs/arguments' );
+	}
+
+	/**
+	 * Loads Implementation tab content for event details
+	 * Scope for $view is the same as in events/section view
+	 * @param  object $view local View instance
+	 * @return void
+	 */
+	public function load_event_tab_implementation( $view ) {
+		$view->get_view( 'parts/events/tabs/implementation' );
 	}
 
 }
