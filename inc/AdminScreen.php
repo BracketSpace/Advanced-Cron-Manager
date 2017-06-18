@@ -47,6 +47,7 @@ class AdminScreen {
 		$this->default_event_details_tabs = array(
 			'logs'           => __( 'Logs' ),
 			'arguments'      => __( 'Arguments' ),
+			'schedule'       => __( 'Schedule' ),
 			'implementation' => __( 'Implementation' ),
 		);
 
@@ -164,6 +165,16 @@ class AdminScreen {
 	 */
 	public function load_event_tab_arguments( $view ) {
 		$view->get_view( 'parts/events/tabs/arguments' );
+	}
+
+	/**
+	 * Loads Schedule tab content for event details
+	 * Scope for $view is the same as in events/section view
+	 * @param  object $view local View instance
+	 * @return void
+	 */
+	public function load_event_tab_schedule( $view ) {
+		$view->get_view( 'parts/events/tabs/schedule' );
 	}
 
 	/**
