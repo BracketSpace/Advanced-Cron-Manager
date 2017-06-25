@@ -1,9 +1,13 @@
 #events {
 
 	.tablenav.bottom {
+		overflow: auto;
+		margin-bottom: -15px;
+
 		@include media( '>medium' ) {
 			display: none;
 		}
+
 	}
 
 	.events {

@@ -15,15 +15,36 @@ class Schedules {
 	private $schedules = array();
 
 	/**
-	 * Protected schedules slugs
-	 * @var array
+	 * Schedules library
+	 * @var object
 	 */
-	private $protected_schedules = array();
+	private $library = array();
 
-	public function __construct() {
+	public function __construct( SchedulesLibrary $library ) {
 
-		// protected schedules registered by WordPress' core
-		$this->protected_schedules = array( 'hourly', 'twicedaily', 'daily' );
+		$this->library = $library;
+
+	}
+
+	/**
+	 * Registers all schedules
+	 * @param  array $schedules Schedules already registered in WP
+	 * @return array            all Schedules
+	 */
+	public function register( $schedules ) {
+
+		$acm_schedules = $this->library->get_schedules();
+
+		foreach ( $acm_schedules as $schedule ) {
+
+			$schedules[ $schedule->slug ] = array(
+				'interval' => $schedule->interval,
+				'display'  => $schedule->label
+			);
+
+		}
+
+		return $schedules;
 
 	}
 
@@ -41,10 +62,10 @@ class Schedules {
 
 			foreach ( wp_get_schedules() as $slug => $params ) {
 
-				if ( in_array( $slug, $this->protected_schedules ) ) {
-					$protected = true;
-				} else {
+				if ( $this->library->has( $slug ) ) {
 					$protected = false;
+				} else {
+					$protected = true;
 				}
 
 				$this->schedules[ $slug ] = new Object\Schedule( $slug, $params['interval'], $params['display'], $protected );

@@ -11,9 +11,15 @@ class AdminScreen {
 
 	/**
 	 * View class
-	 * @var instance of underDEV\AdvancedCronManage\View
+	 * @var instance of underDEV\AdvancedCronManage\Utils\View
 	 */
 	public $view;
+
+	/**
+	 * Ajax class
+	 * @var instance of underDEV\AdvancedCronManage\Utils\Ajax
+	 */
+	public $ajax;
 
 	/**
 	 * Schedules class
@@ -38,9 +44,10 @@ class AdminScreen {
 	 * @param View      $view      View class
 	 * @param Schedules $schedules Schedules class
 	 */
-	public function __construct( Utils\View $view, Cron\Schedules $schedules, Cron\Events $events ) {
+	public function __construct( Utils\View $view, Utils\Ajax $ajax, Cron\Schedules $schedules, Cron\Events $events ) {
 
 		$this->view      = $view;
+		$this->ajax      = $ajax;
 		$this->schedules = $schedules;
 		$this->events    = $events;
 
@@ -50,6 +57,26 @@ class AdminScreen {
 			'schedule'       => __( 'Schedule' ),
 			'implementation' => __( 'Implementation' ),
 		);
+
+	}
+
+	public function __call( $method, $args ) {
+
+		if ( strpos( $method, 'ajax_rerender_' ) !== false ) {
+
+			/**
+			 * From: ajax_rerender_schedules_table
+			 * To:   load_schedules_table_part
+			 */
+			$method_to_call = str_replace( 'ajax_rerender_', 'load_', $method . '_part' );
+
+			ob_start();
+
+			call_user_method_array( $method_to_call, $this, $args );
+
+			$this->ajax->success( ob_get_clean() );
+
+		}
 
 	}
 
@@ -95,17 +122,6 @@ class AdminScreen {
 	}
 
 	/**
-	 * Loads event adder form
-	 * There are used $this->view instead of passed instance
-	 * because we want to separate scopes
-	 * @param  object $view instance of parent view
-	 * @return void
-	 */
-	public function load_event_adder_part( $view ) {
-
-	}
-
-	/**
 	 * Loads schedules table
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
@@ -121,14 +137,14 @@ class AdminScreen {
 	}
 
 	/**
-	 * Loads schedule adder form
+	 * Loads slidebar template
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 * @param  object $view instance of parent view
 	 * @return void
 	 */
-	public function load_schedule_adder_part( $view ) {
-
+	public function load_slidebar_part( $view ) {
+		$this->view->get_view( 'elements/slidebar' );
 	}
 
 	/**

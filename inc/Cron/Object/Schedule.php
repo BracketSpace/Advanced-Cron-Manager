@@ -67,50 +67,73 @@ class Schedule {
     }
 
     /**
-     * Gets interval in human readable format
-     * @return string
+     * Gets raw interval split by days, hours, minutes and seconds
+     * @return array
      */
-    public function get_human_interval() {
+    public function get_raw_human_interval() {
 
-    	$human_time = '';
+    	$interval = array();
 
     	$secondsInAMinute = 60;
 	    $secondsInAnHour  = 60 * $secondsInAMinute;
 	    $secondsInADay    = 24 * $secondsInAnHour;
 
 	    // extract days
-	    $days = floor( $this->interval / $secondsInADay );
+	    $interval['days'] = floor( $this->interval / $secondsInADay );
 
 	    // extract hours
 		$hourSeconds = $this->interval % $secondsInADay;
-		$hours       = floor( $hourSeconds / $secondsInAnHour );
+		$interval['hours'] = floor( $hourSeconds / $secondsInAnHour );
 
 	    // extract minutes
 		$minuteSeconds = $hourSeconds % $secondsInAnHour;
-		$minutes       = floor( $minuteSeconds / $secondsInAMinute );
+		$interval['minutes'] = floor( $minuteSeconds / $secondsInAMinute );
 
 	    // extract the remaining seconds
 		$remainingSeconds = $minuteSeconds % $secondsInAMinute;
-		$seconds          = ceil( $remainingSeconds );
+		$interval['seconds'] = ceil( $remainingSeconds );
 
-	    if ( $days > 0 ) {
-	    	$human_time .= $days . 'd ';
+		return $interval;
+
+    }
+
+    /**
+     * Gets interval in human readable format
+     * @return string
+     */
+    public function get_human_interval() {
+
+    	$interval = $this->get_raw_human_interval();
+
+    	$human_time = '';
+
+	    if ( $interval['days'] > 0 ) {
+	    	$human_time .= $interval['days'] . 'd ';
 	    }
 
-	    if ( $hours > 0 ) {
-	    	$human_time .= $hours . 'h ';
+	    if ( $interval['hours'] > 0 ) {
+	    	$human_time .= $interval['hours'] . 'h ';
 	    }
 
-	    if ( $minutes > 0 ) {
-	    	$human_time .= $minutes . 'm ';
+	    if ( $interval['minutes'] > 0 ) {
+	    	$human_time .= $interval['minutes'] . 'm ';
 	    }
 
-	    if ( $seconds > 0 ) {
-	    	$human_time .= $seconds . 's ';
+	    if ( $interval['seconds'] > 0 ) {
+	    	$human_time .= $interval['seconds'] . 's ';
 	    }
 
 	    return trim( $human_time );
 
+    }
+
+    /**
+     * Gets the nonce hash for schedule action
+     * @param  string $action action name
+     * @return string         nonce hash
+     */
+    public function nonce( $action = '' ) {
+    	return esc_attr( wp_create_nonce( 'acm/schedule/' . $action . '/' . $this->slug ) );
     }
 
 }

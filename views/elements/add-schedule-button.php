@@ -4,4 +4,4 @@
  */
 ?>
 
-<a href="#" class="page-title-action"><?php _e( 'Add new schedule' ); ?></a>
+<a href="#" class="add-schedule page-title-action" data-nonce="<?php echo wp_create_nonce( 'acm/schedule/add' ); ?>"><?php esc_html_e( 'Add new schedule' ); ?></a>

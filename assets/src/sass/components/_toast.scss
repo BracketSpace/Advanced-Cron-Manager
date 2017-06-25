@@ -1,7 +1,7 @@
 #toast-container {
 	display: block;
 	position: fixed;
-	z-index: 10000;
+	z-index: 999999;
 
 	@include media( '<=small' ) {
 		min-width: 100%;
@@ -36,7 +36,7 @@
 	line-height: 1.5em;
 	word-break: break-all;
 	background-color: #222;
-	padding: 10px 25px;
+	padding: 10px 25px 10px 15px;
 	font-size: 1.1rem;
 	font-weight: 300;
 	color: #fff;
@@ -48,6 +48,19 @@
 	.btn, .btn-flat {
 		margin: 0;
 		margin-left: 3rem;
+	}
+
+	.dashicons {
+		margin-right: 10px;
+
+		&.dashicons-yes {
+			color: #00b300;
+		}
+
+		&.dashicons-warning {
+			color: #ff2626;
+		}
+
 	}
 
 	@include media( '<=small' ) {

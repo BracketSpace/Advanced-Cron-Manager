@@ -17,9 +17,20 @@ $schedule = $this->get_var( 'schedule' );
 		</span>
 	</div>
 	<div class="column actions">
-		<a href="#" class="dashicons dashicons-edit" title="<?php _e( 'Edit' ); ?>"><span><?php _e( 'Edit' ); ?></span></a>
-		<a href="#" class="dashicons dashicons-trash <?php echo $schedule->protected ? 'disabled' : ''; ?>" title="<?php echo $schedule->protected ? _e( 'This schedule is protected and you cannot remove it' ) : _e( 'Trash' ); ?>" <?php disabled( true, $schedule->protected ); ?>>
-			<span><?php _e( 'Trash' ); ?></span>
-		</a>
+		<?php if ( $schedule->protected ): ?>
+			<span class="dashicons dashicons-edit disabled" title="<?php esc_attr_e( 'This schedule is protected and you cannot edit it' ); ?>">
+				<span><?php _e( 'Edit' ); ?></span>
+			</span>
+			<span class="dashicons dashicons-trash disabled" title="<?php esc_attr_e( 'This schedule is protected and you cannot remove it' ); ?>">
+				<span><?php _e( 'Trash' ); ?></span>
+			</span>
+		<?php else: ?>
+			<a href="#" data-nonce="<?php echo $schedule->nonce( 'edit' ); ?>" data-schedule="<?php echo esc_attr( $schedule->slug ); ?>" class="edit-schedule dashicons dashicons-edit" title="<?php esc_attr_e( 'Edit' ); ?>">
+				<span><?php _e( 'Edit' ); ?></span>
+			</a>
+			<a href="#" data-nonce="<?php echo $schedule->nonce( 'remove' ); ?>" data-schedule="<?php echo esc_attr( $schedule->slug ); ?>" class="remove-schedule dashicons dashicons-trash" title="<?php esc_attr_e( 'Remove' ); ?>">
+				<span><?php _e( 'Remove' ); ?></span>
+			</a>
+		<?php endif ?>
 	</div>
 </div>

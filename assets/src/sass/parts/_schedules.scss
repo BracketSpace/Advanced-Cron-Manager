@@ -4,6 +4,10 @@
 		margin-top: 30px;
 	}
 
+	&.loading {
+		opacity: 0.7;
+	}
+
 	.schedules {
 
 		.single-schedule {
@@ -17,14 +21,11 @@
 					background: transparent;
 				}
 
-				.column {
-					overflow: hidden;
-				}
-
 			}
 
 			.column {
 				padding: 2px;
+				overflow: hidden;
 
 				&.label {
 					flex-grow: 100;
@@ -51,11 +52,25 @@
 								color: red;
 							}
 
-							&.disabled,
-							&.disabled:hover {
-								color: #ccc;
+							&.working {
+								color: inherit;
+								animation-name: spin;
+								animation-duration: 4000ms;
+								animation-iteration-count: infinite;
+								animation-timing-function: linear;
+
+								&:before {
+									content: "\f111";
+								}
+
 							}
 
+						}
+
+						&.disabled,
+						&.disabled:hover {
+							cursor: not-allowed;
+							color: #ccc;
 						}
 
 						span {

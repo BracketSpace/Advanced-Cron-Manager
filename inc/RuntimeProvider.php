@@ -27,6 +27,10 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 			);
 		} );
 
+		$this->container->singleton( 'underDEV\AdvancedCronManager\Cron\SchedulesLibrary', function( $c ) {
+			return new Cron\SchedulesLibrary( $c->make( 'underDEV\AdvancedCronManager\Utils\Ajax' ) );
+		} );
+
 		$this->add_actions();
 
 	}
@@ -59,12 +63,7 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 		// Add general parts on the admin screen
 		add_action( 'advanced-cron-manager/screen/wrap/after', array(
 			$this->container->make( 'underDEV\AdvancedCronManager\AdminScreen' ),
-			'load_event_adder_part'
-		), 10, 1 );
-
-		add_action( 'advanced-cron-manager/screen/wrap/after', array(
-			$this->container->make( 'underDEV\AdvancedCronManager\AdminScreen' ),
-			'load_schedule_adder_part'
+			'load_slidebar_part'
 		), 10, 1 );
 
 		// Add tabs to event details
@@ -75,6 +74,40 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 
 		// Enqueue assets
 		add_action( 'admin_enqueue_scripts', $this->container->callback( 'underDEV\AdvancedCronManager\Utils\Assets', 'enqueue_admin' ), 10, 1 );
+
+		// Forms
+		add_action( 'wp_ajax_acm/schedule/add/form', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\FormProvider' ),
+			'add_schedule'
+		) );
+
+		add_action( 'wp_ajax_acm/schedule/edit/form', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\FormProvider' ),
+			'edit_schedule'
+		) );
+
+		// Schedules
+		add_filter( 'cron_schedules', $this->container->callback( 'underDEV\AdvancedCronManager\Cron\Schedules', 'register' ), 10, 1 );
+
+		add_action( 'wp_ajax_acm/rerender/schedules', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\AdminScreen' ),
+			'ajax_rerender_schedules_table'
+		) );
+
+		add_action( 'wp_ajax_acm/schedule/insert', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\SchedulesLibrary' ),
+			'ajax_insert'
+		) );
+
+		add_action( 'wp_ajax_acm/schedule/edit', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\SchedulesLibrary' ),
+			'ajax_edit'
+		) );
+
+		add_action( 'wp_ajax_acm/schedule/remove', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\SchedulesLibrary' ),
+			'ajax_remove'
+		) );
 
 	}
 
