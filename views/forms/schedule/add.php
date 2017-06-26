@@ -8,13 +8,13 @@
 
 <?php wp_nonce_field( 'acm/schedule/insert', 'nonce', false ); ?>
 
-<label for="schedule-name">Display name</label>
+<label for="schedule-name"><?php esc_html_e( 'Display name' ); ?></label>
 <input type="text" id="schedule-name" name="name" class="widefat">
 
-<label for="schedule-slug">Slug</label>
+<label for="schedule-slug"><?php esc_html_e( 'Slug' ); ?></label>
 <input type="text" id="schedule-slug" name="slug" class="widefat">
 
-<label>Interval</label>
+<label><?php esc_html_e( 'Interval' ); ?></label>
 <table>
 	<tr>
 		<td><?php _e( 'Days' ); ?>:</td>

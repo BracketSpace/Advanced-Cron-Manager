@@ -28,16 +28,24 @@ class FormProvider {
 	public $schedules_library;
 
 	/**
+	 * Schedules class
+	 * @var instance of underDEV\AdvancedCronManager\Cron\Schedules
+	 */
+	public $schedules;
+
+	/**
 	 * Contructor
 	 * @param View             $view              View class
 	 * @param Ajax             $ajax              Ajax class
 	 * @param SchedulesLibrary $schedules_library SchedulesLibrary class
+	 * @param Schedules        $schedules         Schedules class
 	 */
-	public function __construct( Utils\View $view, Utils\Ajax $ajax, Cron\SchedulesLibrary $schedules_library ) {
+	public function __construct( Utils\View $view, Utils\Ajax $ajax, Cron\SchedulesLibrary $schedules_library, Cron\Schedules $schedules ) {
 
 		$this->view              = $view;
 		$this->ajax              = $ajax;
 		$this->schedules_library = $schedules_library;
+		$this->schedules         = $schedules;
 
 	}
 
@@ -93,6 +101,20 @@ class FormProvider {
 		$this->view->set_var( 'schedule', $schedule );
 
 		$this->get_form( 'schedule/edit', sprintf( __( 'Edit "%s" schedule' ), $schedule->slug ), __( 'Edit schedule' ) );
+
+	}
+
+	/**
+	 * Add event form
+	 */
+	public function add_event() {
+
+		$this->ajax->verify_nonce( 'acm/event/add' );
+
+		$this->view->set_var( 'schedules', $this->schedules->get_schedules() );
+		$this->view->set_var( 'single_schedule', $this->schedules->get_single_event_schedule() );
+
+		$this->get_form( 'event/add', __( 'New event' ), __( 'Add event' ) );
 
 	}
 

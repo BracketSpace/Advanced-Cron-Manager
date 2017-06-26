@@ -19,7 +19,7 @@
 	} );
 
 	/////////////////////
-	// form processing //
+	// Form processing //
 	/////////////////////
 
 	$( '.slidebar' ).on( 'submit', '.schedule-add', function( event ) {
@@ -176,6 +176,10 @@
 
 	wp.hooks.addAction( 'advanced-cron-manager/schedule/added', schedules_table_rerender );
 	wp.hooks.addAction( 'advanced-cron-manager/schedule/edited', schedules_table_rerender );
+
+	/////////////
+	// Helpers //
+	/////////////
 
 	// add schedule form helpers
 	$( '.slidebar' ).on( 'blur', '#schedule-name', function() {

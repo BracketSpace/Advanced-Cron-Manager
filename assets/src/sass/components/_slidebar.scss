@@ -41,7 +41,8 @@
 				font-weight: 500;
 			}
 
-			input {
+			input,
+			select {
 				margin-top: 6px;
 				margin-bottom: 15px;
 
@@ -50,6 +51,10 @@
 					float: right;
 					width: 60px;
 					display: inline-block;
+				}
+
+				&.event-argument {
+					margin-bottom: 5px;
 				}
 
 			}

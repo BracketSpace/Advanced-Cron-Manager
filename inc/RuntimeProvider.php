@@ -86,6 +86,11 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 			'edit_schedule'
 		) );
 
+		add_action( 'wp_ajax_acm/event/add/form', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\FormProvider' ),
+			'add_event'
+		) );
+
 		// Schedules
 		add_filter( 'cron_schedules', $this->container->callback( 'underDEV\AdvancedCronManager\Cron\Schedules', 'register' ), 10, 1 );
 
