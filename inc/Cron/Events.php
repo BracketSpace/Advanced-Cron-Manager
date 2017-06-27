@@ -40,9 +40,7 @@ class Events {
 
 		if ( empty( $this->events ) || $force ) {
 
-			// wp_schedule_single_event( time() + 360, 'test_event2' );
-
-			$this->events = array();
+			$events_array = array();
 
 			foreach ( _get_cron_array() as $timestamp => $events ) {
 
@@ -57,8 +55,7 @@ class Events {
 					foreach ( $event_args as $event ) {
 
 						$interval = isset( $event['interval'] ) ? $event['interval'] : 0;
-
-						$this->events[] = new Object\Event( $event_hook, $event['schedule'], $interval, $event['args'], $timestamp, $protected );
+						$events_array[] = new Object\Event( $event_hook, $event['schedule'], $interval, $event['args'], $timestamp, $protected );
 
 					}
 
@@ -66,11 +63,28 @@ class Events {
 
 			}
 
-			usort( $this->events, array( $this, 'compare_event_next_calls' ) );
+			usort( $events_array, array( $this, 'compare_event_next_calls' ) );
+
+			// add event's hashes to the array
+			foreach ( $events_array as $event ) {
+				$this->events[ $event->hash ] = $event;
+			}
 
 		}
 
 		return $this->events;
+
+	}
+
+	/**
+	 * Gets event by it's hash
+	 * @param  string $hash hash
+	 * @return mixed        Event object or false
+	 */
+	public function get_event_by_hash( $hash ) {
+
+		$events = $this->get_events();
+		return isset( $events[ $hash ] ) ? $events[ $hash ] : false;
 
 	}
 

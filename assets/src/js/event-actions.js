@@ -22,6 +22,13 @@
 
 	} );
 
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .run-event', function( event ) {
+
+		event.preventDefault();
+		wp.hooks.doAction( 'advanced-cron-manager/event/run/process', $(this) );
+
+	} );
+
 	/////////////
 	// Actions //
 	/////////////
@@ -62,6 +69,33 @@
 	        } else {
 	        	advanced_cron_manager.slidebar.form_process_stop();
 	        }
+
+	    } );
+
+	} );
+
+	// run
+	wp.hooks.addAction( 'advanced-cron-manager/event/run/process', function( $button ) {
+
+		var $event_row = $button.parents( '.single-event.row' ).first();
+
+		$event_row.addClass( 'running' );
+
+		var data = {
+	        'action': 'acm/event/run',
+	        'nonce' : $button.data( 'nonce' ),
+	        'event' : $button.data( 'event' )
+	    };
+
+	    $.post( ajaxurl, data, function( response ) {
+
+	    	advanced_cron_manager.ajax_messages( response );
+
+	        if ( response.success == true ) {
+        		wp.hooks.doAction( 'advanced-cron-manager/event/executed', $button.data( 'event' ), $event_row );
+	        }
+
+	        $event_row.removeClass( 'running' );
 
 	    } );
 

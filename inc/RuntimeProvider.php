@@ -100,18 +100,18 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 		) );
 
 		add_action( 'wp_ajax_acm/schedule/insert', array(
-			$this->container->make( 'underDEV\AdvancedCronManager\Cron\SchedulesLibrary' ),
-			'ajax_insert'
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\SchedulesActions' ),
+			'insert'
 		) );
 
 		add_action( 'wp_ajax_acm/schedule/edit', array(
-			$this->container->make( 'underDEV\AdvancedCronManager\Cron\SchedulesLibrary' ),
-			'ajax_edit'
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\SchedulesActions' ),
+			'edit'
 		) );
 
 		add_action( 'wp_ajax_acm/schedule/remove', array(
-			$this->container->make( 'underDEV\AdvancedCronManager\Cron\SchedulesLibrary' ),
-			'ajax_remove'
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\SchedulesActions' ),
+			'remove'
 		) );
 
 		// Events
@@ -121,8 +121,13 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 		) );
 
 		add_action( 'wp_ajax_acm/event/insert', array(
-			$this->container->make( 'underDEV\AdvancedCronManager\Cron\EventsLibrary' ),
-			'ajax_insert'
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\EventsActions' ),
+			'insert'
+		) );
+
+		add_action( 'wp_ajax_acm/event/run', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\EventsActions' ),
+			'run'
 		) );
 
 	}

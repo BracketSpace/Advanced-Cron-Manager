@@ -56,6 +56,23 @@
 
 			}
 
+			&.running {
+				background-color: #e0fbe7;
+
+				.columns .column.cb {
+
+					input {
+						display: none;
+					}
+
+					.dashicons {
+						display: block;
+					}
+
+				}
+
+			}
+
 			.columns {
 				display: flex;
 				flex-direction: row;
@@ -70,6 +87,15 @@
 
 						input {
 							margin-right: 0;
+						}
+
+						.dashicons {
+							display: none;
+							animation-name: spin;
+							animation-duration: 4000ms;
+							animation-iteration-count: infinite;
+							animation-timing-function: linear;
+							color: green;
 						}
 
 					}

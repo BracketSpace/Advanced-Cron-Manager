@@ -61,6 +61,8 @@ class Event {
 		$this->next_call = $next_call;
 		$this->protected = $protected;
 
+		$this->hash = substr( md5( $this->hook . $this->schedule . $this->next_call . serialize( $this->args ) ), 0, 8 );
+
 	}
 
 	/**
@@ -70,14 +72,6 @@ class Event {
 	 */
 	public function __get( $property ) {
         return $this->$property;
-    }
-
-    /**
-     * Gets event's unique hash
-     * @return string
-     */
-    public function get_hash() {
-    	return substr( md5( $this->hook . $this->schedule . $this->interval . serialize( $this->args ) ), 0, 8 );
     }
 
     /**
@@ -92,7 +86,7 @@ class Event {
     	}
     	$arguments = empty( $arguments ) ? '' : ' ' . implode( ', ' , $arguments ) . ' ';
 
-    	$function_name = 'cron_' . $this->hook . '_' . $this->get_hash();
+    	$function_name = 'cron_' . $this->hook . '_' . $this->hash;
 
     	$imp = '';
 
@@ -104,6 +98,15 @@ class Event {
 
     	return $imp;
 
+    }
+
+    /**
+     * Gets the nonce hash for event action
+     * @param  string $action action name
+     * @return string         nonce hash
+     */
+    public function nonce( $action = '' ) {
+    	return esc_attr( wp_create_nonce( 'acm/event/' . $action . '/' . $this->hash ) );
     }
 
 }
