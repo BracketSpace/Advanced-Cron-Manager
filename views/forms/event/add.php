@@ -19,10 +19,11 @@ $single_schedule = $this->get_var( 'single_schedule' );
 <label for="event-execution"><?php esc_html_e( 'First execution' ); ?></label>
 <p class="description"><?php esc_html_e( 'When past date will be provided, event will be executed in the next queue' ); ?></p>
 <input type="datetime-local" id="event-execution" name="execution" class="widefat"></input>
+<input type="hidden" id="event-offset" name="execution_offset"></input>
 
 <label for="event-schedule"><?php esc_html_e( 'Schedule' ); ?></label>
 <p class="description"><?php esc_html_e( 'After first execution repeat:' ); ?></p>
-<select id="event-schedule" class="widefat">
+<select id="event-schedule" class="widefat" name="schedule">
 	<option value="<?php echo esc_attr( $single_schedule->slug ); ?>">
 		<?php echo esc_html( sprintf( __( 'Don\'t repeat (%s)' ), $single_schedule->label ) ); ?>
 	</option>

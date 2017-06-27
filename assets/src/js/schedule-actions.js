@@ -80,6 +80,8 @@
 
 	        if ( response.success == true ) {
 	        	wp.hooks.doAction( 'advanced-cron-manager/schedule/added', $form.find( '#schedule-slug' ).val() );
+	        } else {
+	        	advanced_cron_manager.slidebar.form_process_stop();
 	        }
 
 	    } );
@@ -125,6 +127,8 @@
 
 	        if ( response.success == true ) {
 	        	wp.hooks.doAction( 'advanced-cron-manager/schedule/edited', $form.find( '#schedule-slug' ).val() );
+	        } else {
+	        	advanced_cron_manager.slidebar.form_process_stop();
 	        }
 
 	    } );

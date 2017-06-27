@@ -1,5 +1,9 @@
 #events {
 
+	&.loading {
+		opacity: 0.7;
+	}
+
 	.tablenav.bottom {
 		overflow: auto;
 		margin-bottom: -15px;

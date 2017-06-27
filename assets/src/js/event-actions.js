@@ -15,10 +15,10 @@
 	// Form processing //
 	/////////////////////
 
-	$( '.slidebar' ).on( 'submit', '.schedule-add', function( event ) {
+	$( '.slidebar' ).on( 'submit', '.event-add', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/schedule/add/process', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager/event/add/process', $(this) );
 
 	} );
 
@@ -43,18 +43,40 @@
 
 	} );
 
-	wp.hooks.addAction( 'advanced-cron-manager/event/add/process', function( $button ) {
+	wp.hooks.addAction( 'advanced-cron-manager/event/add/process', function( $form ) {
 
-		advanced_cron_manager.slidebar.open();
-		advanced_cron_manager.slidebar.wait();
+		advanced_cron_manager.slidebar.form_process_start();
 
 		var data = {
-	        'action': 'acm/schedule/add/form',
-	        'nonce' : $button.data( 'nonce' )
+	        'action': 'acm/event/insert',
+	        'nonce' : $form.find( '#nonce' ).val(),
+	        'data'  : $form.serialize()
 	    };
 
 	    $.post( ajaxurl, data, function( response ) {
-	        advanced_cron_manager.slidebar.fulfill( response.data );
+
+	    	advanced_cron_manager.ajax_messages( response );
+
+	        if ( response.success == true ) {
+	        	wp.hooks.doAction( 'advanced-cron-manager/event/added', $form.find( '#event-hook' ).val() );
+	        } else {
+	        	advanced_cron_manager.slidebar.form_process_stop();
+	        }
+
+	    } );
+
+	} );
+
+	// refresh table and close slidebar
+
+	wp.hooks.addAction( 'advanced-cron-manager/event/added', function() {
+
+		$( '#events' ).addClass( 'loading' );
+
+	    $.post( ajaxurl, { 'action': 'acm/rerender/events' }, function( response ) {
+	    	$( '#events' ).replaceWith( response.data );
+	    	advanced_cron_manager.slidebar.form_process_stop();
+			advanced_cron_manager.slidebar.close();
 	    } );
 
 	} );
@@ -88,5 +110,10 @@
 		}
 
 	} );
+
+	// add user timezone offset
+	wp.hooks.addAction( 'advanced-cron-manager/event/add/process', function( $form ) {
+		$form.find( '#event-offset' ).val( new Date().getTimezoneOffset() / 60 );
+	}, 5 );
 
 } )( jQuery );
