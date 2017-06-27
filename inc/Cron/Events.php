@@ -63,6 +63,8 @@ class Events {
 
 			}
 
+			$events_array = apply_filters( 'advanced-cron-manager/events/array', $events_array );
+
 			usort( $events_array, array( $this, 'compare_event_next_calls' ) );
 
 			// add event's hashes to the array
@@ -96,6 +98,13 @@ class Events {
 		return count( $this->get_events() );
 	}
 
+	/**
+	 * Compares the event's next execution times
+	 * Used by usort function
+	 * @param  object $e1 Event 1
+	 * @param  object $e2 Event 2
+	 * @return int        -1 or 1 or 0, depends on the comparsion result
+	 */
 	public function compare_event_next_calls( $e1, $e2 ) {
 
 		if ( $e1->next_call == $e2->next_call ) {

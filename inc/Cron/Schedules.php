@@ -27,28 +27,6 @@ class Schedules {
 	}
 
 	/**
-	 * Registers all schedules
-	 * @param  array $schedules Schedules already registered in WP
-	 * @return array            all Schedules
-	 */
-	public function register( $schedules ) {
-
-		$acm_schedules = $this->library->get_schedules();
-
-		foreach ( $acm_schedules as $schedule ) {
-
-			$schedules[ $schedule->slug ] = array(
-				'interval' => $schedule->interval,
-				'display'  => $schedule->label
-			);
-
-		}
-
-		return $schedules;
-
-	}
-
-	/**
 	 * Gets all registered schedules
 	 * Supports lazy loading
 	 * @param  boolean $force if refresh stored schedules

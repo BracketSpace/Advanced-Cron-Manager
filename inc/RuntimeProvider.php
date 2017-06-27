@@ -92,7 +92,7 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 		) );
 
 		// Schedules
-		add_filter( 'cron_schedules', $this->container->callback( 'underDEV\AdvancedCronManager\Cron\Schedules', 'register' ), 10, 1 );
+		add_filter( 'cron_schedules', $this->container->callback( 'underDEV\AdvancedCronManager\Cron\SchedulesLibrary', 'register' ), 10, 1 );
 
 		add_action( 'wp_ajax_acm/rerender/schedules', array(
 			$this->container->make( 'underDEV\AdvancedCronManager\AdminScreen' ),

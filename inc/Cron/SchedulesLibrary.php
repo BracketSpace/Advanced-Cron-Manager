@@ -90,6 +90,28 @@ class SchedulesLibrary {
 	}
 
 	/**
+	 * Registers all schedules
+	 * @param  array $schedules Schedules already registered in WP
+	 * @return array            all Schedules
+	 */
+	public function register( $schedules ) {
+
+		$acm_schedules = $this->get_schedules();
+
+		foreach ( $acm_schedules as $schedule ) {
+
+			$schedules[ $schedule->slug ] = array(
+				'interval' => $schedule->interval,
+				'display'  => $schedule->label
+			);
+
+		}
+
+		return $schedules;
+
+	}
+
+	/**
 	 * Inserts new schedule in the database
 	 * It also refreshed the current schedules
 	 * @param  string $slug     Schedule slug
@@ -175,78 +197,6 @@ class SchedulesLibrary {
 		unset( $this->schedules[ $slug ] );
 
 		return true;
-
-	}
-
-	/**
-	 * Insert schedule
-	 * @return void
-	 */
-	public function ajax_insert() {
-
-		$this->ajax->verify_nonce( 'acm/schedule/insert' );
-
-		$data = wp_parse_args( $_REQUEST['data'], array() );
-
-		$result = $this->insert( $data['slug'], $data['name'], $data['interval'] );
-
-		if ( is_array( $result ) ) {
-			$errors = $result;
-		} else {
-			$errors = array();
-		}
-
-		$success = sprintf( __( 'Schedule "%s" has been added' ), $data['name'] );
-
-		$this->ajax->response( $success, $errors );
-
-	}
-
-	/**
-	 * Edit schedule
-	 * @return void
-	 */
-	public function ajax_edit() {
-
-		$this->ajax->verify_nonce( 'acm/schedule/edit' );
-
-		$data = wp_parse_args( $_REQUEST['data'], array() );
-
-		$result = $this->insert( $data['slug'], $data['name'], $data['interval'], true );
-
-		if ( is_array( $result ) ) {
-			$errors = $result;
-		} else {
-			$errors = array();
-		}
-
-		$success = sprintf( __( 'Schedule "%s" has been edited' ), $data['name'] );
-
-		$this->ajax->response( $success, $errors );
-
-	}
-
-	/**
-	 * Remove schedule
-	 * @return void
-	 */
-	public function ajax_remove() {
-
-		$schedule_slug = $_REQUEST['schedule'];
-
-		$this->ajax->verify_nonce( 'acm/schedule/remove/' . $schedule_slug );
-
-		$result = $this->remove( $schedule_slug );
-
-		if ( is_array( $result ) ) {
-			$errors = $result;
-		} else {
-			$errors = array();
-		}
-
-		$success = sprintf( __( 'Schedule "%s" has been removed' ), $schedule_slug );
-
-		$this->ajax->response( $success, $errors );
 
 	}
 
