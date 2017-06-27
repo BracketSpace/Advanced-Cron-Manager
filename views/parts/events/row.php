@@ -26,7 +26,7 @@ $time_format = get_option( 'time_format' );
 				<span class="details"><a href="#"><?php esc_html_e( 'Details' ); ?></a> | </span>
 				<span class="run"><a href="#" data-nonce="<?php echo $event->nonce( 'run' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="run-event"><?php esc_html_e( 'Execute now' ); ?></a> | </span>
 				<span class="pause"><a href="#"><?php esc_html_e( 'Pause' ); ?></a> | </span>
-				<span class="trash"><a href="#"><?php esc_html_e( 'Remove' ); ?></a></span>
+				<span class="trash"><a href="#" data-nonce="<?php echo $event->nonce( 'remove' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="remove-event"><?php esc_html_e( 'Remove' ); ?></a></span>
 			</div>
 		</div>
 		<div class="column schedule"><?php echo esc_html( $schedules->get_schedule( $event->schedule )->label ); ?></div>

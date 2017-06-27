@@ -67,6 +67,23 @@
 
 					.dashicons {
 						display: block;
+						color: green;
+					}
+
+				}
+
+			}
+
+			&.removing {
+
+				.columns .column.cb {
+
+					input {
+						display: none;
+					}
+
+					.dashicons {
+						display: block;
 					}
 
 				}
@@ -95,7 +112,6 @@
 							animation-duration: 4000ms;
 							animation-iteration-count: infinite;
 							animation-timing-function: linear;
-							color: green;
 						}
 
 					}

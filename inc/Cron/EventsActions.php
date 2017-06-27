@@ -103,4 +103,22 @@ class EventsActions {
 
 	}
 
+	/**
+	 * Remove event
+	 * @return void
+	 */
+	public function remove() {
+
+		$event = $this->events->get_event_by_hash( $_REQUEST['event'] );
+
+		$this->ajax->verify_nonce( 'acm/event/remove/' . $event->hash );
+
+		wp_unschedule_event( $event->next_call, $event->hook, $event->args );
+
+		$success = sprintf( __( 'Event "%s" has been removed' ), $event->hook );
+
+		$this->ajax->response( $success, array() );
+
+	}
+
 }

@@ -58,7 +58,8 @@ class Assets {
 		wp_localize_script( 'advanced-cron-manager', 'advanced_cron_manager', array(
 			'i18n' => array(
 				/* translators: used for js to count number of vents in table, ie: 4 events */
-				'events' => __( 'events' )
+				'events'   => __( 'events' ),
+				'removing' => __( 'Removing...' )
 			)
 		) );
 

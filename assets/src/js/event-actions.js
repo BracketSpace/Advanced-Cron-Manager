@@ -29,6 +29,13 @@
 
 	} );
 
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .remove-event', function( event ) {
+
+		event.preventDefault();
+		wp.hooks.doAction( 'advanced-cron-manager/event/remove/process', $(this) );
+
+	} );
+
 	/////////////
 	// Actions //
 	/////////////
@@ -77,9 +84,14 @@
 	// run
 	wp.hooks.addAction( 'advanced-cron-manager/event/run/process', function( $button ) {
 
+		if ( $button.hasClass( 'busy' ) ) {
+			return false;
+		}
+
 		var $event_row = $button.parents( '.single-event.row' ).first();
 
 		$event_row.addClass( 'running' );
+		$button.addClass( 'busy' );
 
 		var data = {
 	        'action': 'acm/event/run',
@@ -96,6 +108,38 @@
 	        }
 
 	        $event_row.removeClass( 'running' );
+	        $button.removeClass( 'busy' );
+
+	    } );
+
+	} );
+
+	// remove
+	wp.hooks.addAction( 'advanced-cron-manager/event/remove/process', function( $button ) {
+
+		var $event_row = $button.parents( '.single-event.row' ).first();
+		var event_hash = $button.data( 'event' );
+
+		$button.replaceWith( advanced_cron_manager.i18n.removing );
+
+		$event_row.addClass( 'removing' );
+
+		var data = {
+	        'action': 'acm/event/remove',
+	        'nonce' : $button.data( 'nonce' ),
+	        'event' : event_hash
+	    };
+
+	    $.post( ajaxurl, data, function( response ) {
+
+	    	advanced_cron_manager.ajax_messages( response );
+
+	        if ( response.success == true ) {
+	        	$event_row.slideUp();
+        		wp.hooks.doAction( 'advanced-cron-manager/event/removed', event_hash, $event_row );
+	        }
+
+	        $event_row.removeClass( 'removing' );
 
 	    } );
 

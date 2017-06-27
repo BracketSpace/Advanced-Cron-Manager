@@ -17,7 +17,7 @@ $single_schedule = $this->get_var( 'single_schedule' );
 <input type="text" id="event-hook" name="hook" class="widefat">
 
 <label for="event-execution"><?php esc_html_e( 'First execution' ); ?></label>
-<p class="description"><?php esc_html_e( 'When past date will be provided, event will be executed in the next queue' ); ?></p>
+<p class="description"><?php esc_html_e( 'When past date will be provided or left empty, event will be executed in the next queue' ); ?></p>
 <input type="datetime-local" id="event-execution" name="execution" class="widefat"></input>
 <input type="hidden" id="event-offset" name="execution_offset"></input>
 

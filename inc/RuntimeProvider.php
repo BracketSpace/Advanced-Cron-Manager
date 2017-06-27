@@ -130,6 +130,11 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 			'run'
 		) );
 
+		add_action( 'wp_ajax_acm/event/remove', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\EventsActions' ),
+			'remove'
+		) );
+
 	}
 
 }
