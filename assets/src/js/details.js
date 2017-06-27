@@ -15,7 +15,7 @@
 
 	};
 
-	$( '#events' ).on( 'click', '.columns .event .row-actions .details a', toggle_row_fold );
-	$( '#events' ).on( 'click', '.columns .event .event-name', toggle_row_fold );
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .columns .event .row-actions .details a', toggle_row_fold );
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .columns .event .event-name', toggle_row_fold );
 
 } )( jQuery );

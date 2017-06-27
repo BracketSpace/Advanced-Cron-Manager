@@ -1,6 +1,6 @@
 ( function( $ ) {
 
-	$( '#events' ).on( 'click', '.details .tabs a', function( event ) {
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .details .tabs a', function( event ) {
 
 		event.preventDefault();
 

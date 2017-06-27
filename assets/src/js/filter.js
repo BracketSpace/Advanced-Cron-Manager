@@ -1,6 +1,6 @@
 ( function( $ ) {
 
-	$( '#events .tablenav .schedules-filter' ).on( 'change', function() {
+	$( '.tools_page_advanced-cron-manager' ).on( 'change', '#events .tablenav .schedules-filter', function() {
 		wp.hooks.doAction( 'advanced-cron-manager/events/filter/schedule', $( this ).val() );
 	} );
 
