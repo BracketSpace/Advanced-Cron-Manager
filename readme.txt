@@ -1,0 +1,141 @@
+=== Advanced Cron Manager - debug & control ===
+Contributors: Kubitomakita
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=contact%40jmikita%2ecom&lc=US&item_name=Advanced%20Cron%20Manager&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
+Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
+Requires at least: 3.6
+Tested up to: 4.8
+Stable tag: 2.0.0
+License: GPLv2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+View, pause, remove, edit and add WP Cron events and schedules.
+
+== Description ==
+
+With Advanced Cron Manager you can manage WP Cron events:
+
+* view all registered events
+* *search* events
+* execute manually any event
+* add new events
+* *pause* events
+* delete (unschedule) events
+* ready-to-copy-paste PHP implementation for each event
+* bulk actions on events
+
+and schedules:
+
+* view all registered schedules
+* add new schedules
+* edit schedules
+* remove schedules
+
+Plugin use AJAX request so you'll need enabled Javascript in order to use it.
+
+**Advanced Cron Manager PRO**
+
+PRO version includes
+
+* Cron Logger - log cron's execution times easily
+* Error catcher - catch cron task's fatal errors and get them displayed in the log
+* Performance stats - see how much time and memory particular event took
+* Debug tool - log any useful informations from Cron callback
+
+[Buy now](https://www.wpart.co/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
+
+**Informations about WP Cron**
+
+Please remember - after deactivation of this plugin added Schedules will be not available. Added Events will still work.
+
+Important - WordPress Cron is depended on the User. WP Cron fires only on the page visit so it can be inaccurate.
+
+== Installation ==
+
+Download and install this plugin from Plugins -> Add New admin screen.
+
+Plugin's page sits under Tools menu item.
+
+== Frequently Asked Questions ==
+
+= Tasks and schedules will be still working after plugin deactivation/removal? =
+
+Tasks yes. Schedules no.
+
+= How does the pausing/unpausing work =
+
+When you pause an event it's really unscheduled and stored in the wp_option. If you unpause it, it will be rescheduled. All paused events are rescheduled on plugin uninstall.
+
+= What is the Event hook? =
+
+It's used for action. For example if your hook is hook_name you'll need to add in PHP:
+`add_action( 'hook_name', 'function_name' );`
+
+== Screenshots ==
+
+1. Plugin control panel
+2. Adding, editing and removing Schedule
+3. Adding Event
+4. Event actions
+5. Search and bulk actions
+
+== Changelog ==
+
+= 2.0.0 =
+* [Changed] Pretty much everything. There's new interface and code base.
+* [Added] Events search
+* [Added] Ability to pause/unpause events
+* [Added] Ability to edit schedules
+* [Added] Example PHP implementation for each event (action and callback function)
+* [Added] Bulk actions
+
+= 1.5 =
+* [Fixed] Manual execution of task which is giving an errors
+
+= 1.4.4 =
+* [Added] French translation thanks to Laurent Naudier
+* [Changed] Promo box from Popslide plugin to Notification
+
+= 1.4.3 =
+* Metabox promo update
+
+= 1.4.1 =
+* Fixed executing when args are provided
+
+= 1.4 =
+* Added hooks for PRO version
+* Removed PHP closing tags
+* Added settings widget
+
+= 1.3.2 =
+* Fixed arguments passed to the action on AJAX request
+
+= 1.3 =
+* Added promo metabox
+* WordPress 4.1 comatybility check
+* Updated translation
+* Added plugin icon
+
+= 1.2 =
+* Readme improvement
+* Added execution button
+* Removed debug alert
+
+= 1.1 =
+* Fixed Schedules list from other plugins
+
+= 1.0 =
+* Plugin relase
+
+== Upgrade Notice ==
+
+= 2.0.0 =
+Plugin has been rebuilt from a scratch. If you are using Advanced Cron Manager PRO please upgrade it too!
+
+= 1.2 =
+Removed debug alert and added execution button
+
+= 1.1 =
+Fixed Schedules list from other plugins
+
+= 1.0 =
+Plugin relase
