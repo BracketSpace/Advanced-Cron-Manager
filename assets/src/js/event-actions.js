@@ -36,6 +36,20 @@
 
 	} );
 
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .pause-event', function( event ) {
+
+		event.preventDefault();
+		wp.hooks.doAction( 'advanced-cron-manager/event/pause/process', $(this) );
+
+	} );
+
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .unpause-event', function( event ) {
+
+		event.preventDefault();
+		wp.hooks.doAction( 'advanced-cron-manager/event/unpause/process', $(this) );
+
+	} );
+
 	/////////////
 	// Actions //
 	/////////////
@@ -145,9 +159,68 @@
 
 	} );
 
-	// refresh table and close slidebar
+	// pause
+	wp.hooks.addAction( 'advanced-cron-manager/event/pause/process', function( $button ) {
 
-	wp.hooks.addAction( 'advanced-cron-manager/event/added', function() {
+		var $event_row = $button.parents( '.single-event.row' ).first();
+		var event_hash = $button.data( 'event' );
+
+		$button.replaceWith( advanced_cron_manager.i18n.pausing );
+
+		$event_row.addClass( 'removing' );
+
+		var data = {
+	        'action': 'acm/event/pause',
+	        'nonce' : $button.data( 'nonce' ),
+	        'event' : event_hash
+	    };
+
+	    $.post( ajaxurl, data, function( response ) {
+
+	    	advanced_cron_manager.ajax_messages( response );
+
+	        if ( response.success == true ) {
+        		wp.hooks.doAction( 'advanced-cron-manager/event/paused', event_hash, $event_row );
+	        }
+
+	        $event_row.removeClass( 'removing' );
+
+	    } );
+
+	} );
+
+	// unpause
+	wp.hooks.addAction( 'advanced-cron-manager/event/unpause/process', function( $button ) {
+
+		var $event_row = $button.parents( '.single-event.row' ).first();
+		var event_hash = $button.data( 'event' );
+
+		$button.replaceWith( advanced_cron_manager.i18n.pausing );
+
+		$event_row.addClass( 'removing' );
+
+		var data = {
+	        'action': 'acm/event/unpause',
+	        'nonce' : $button.data( 'nonce' ),
+	        'event' : event_hash
+	    };
+
+	    $.post( ajaxurl, data, function( response ) {
+
+	    	advanced_cron_manager.ajax_messages( response );
+
+	        if ( response.success == true ) {
+        		wp.hooks.doAction( 'advanced-cron-manager/event/unpaused', event_hash, $event_row );
+	        }
+
+	        $event_row.removeClass( 'removing' );
+
+	    } );
+
+	} );
+
+	// refresh table and close slidebar
+	var events_table_rerender = function() {
 
 		$( '#events' ).addClass( 'loading' );
 
@@ -157,7 +230,11 @@
 			advanced_cron_manager.slidebar.close();
 	    } );
 
-	} );
+	};
+
+	wp.hooks.addAction( 'advanced-cron-manager/event/added', events_table_rerender );
+	wp.hooks.addAction( 'advanced-cron-manager/event/paused', events_table_rerender );
+	wp.hooks.addAction( 'advanced-cron-manager/event/unpaused', events_table_rerender );
 
 	/////////////
 	// Helpers //

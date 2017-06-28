@@ -59,7 +59,8 @@ class Assets {
 			'i18n' => array(
 				/* translators: used for js to count number of vents in table, ie: 4 events */
 				'events'   => __( 'events' ),
-				'removing' => __( 'Removing...' )
+				'removing' => __( 'Removing...' ),
+				'pausing'  => __( 'Pausing...' )
 			)
 		) );
 

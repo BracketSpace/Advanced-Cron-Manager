@@ -12,16 +12,27 @@ $time_offset = get_option( 'gmt_offset' ) * 3600;
 $date_format = get_option( 'date_format' );
 $time_format = get_option( 'time_format' );
 
+$css_class = '';
+
+if ( $event->paused ) {
+	$css_class .= 'paused ';
+}
+
 ?>
 
-<div class="single-event row" data-schedule="<?php echo esc_attr( $event->schedule ? $event->schedule : $single_event_schedule->slug ); ?>">
+<div class="single-event row <?php echo esc_attr( $css_class ); ?>" data-schedule="<?php echo esc_attr( $event->schedule ? $event->schedule : $single_event_schedule->slug ); ?>">
 	<div class="columns">
 		<div class="column cb">
 			<input type="checkbox" name="bulk-actions" value="">
 			<span class="dashicons dashicons-admin-generic"></span>
 		</div>
 		<div class="column event">
-			<a href="#" class="event-name"><?php echo esc_html( $event->hook ); ?></a>
+			<a href="#" class="event-name">
+				<?php echo esc_html( $event->hook ); ?>
+				<?php if ( $event->paused ): ?>
+					<span class="dashicons dashicons-controls-pause"></span>
+				<?php endif ?>
+			</a>
 			<div class="row-actions">
 				<span class="details">
 					<a href="#"><?php esc_html_e( 'Details' ); ?></a> |
@@ -30,7 +41,11 @@ $time_format = get_option( 'time_format' );
 					<a href="#" data-nonce="<?php echo $event->nonce( 'run' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="run-event"><?php esc_html_e( 'Execute now' ); ?></a> |
 				</span>
 				<span class="pause">
-					<a href="#"><?php esc_html_e( 'Pause' ); ?></a> |
+					<?php if ( $event->paused ): ?>
+						<a href="#" data-nonce="<?php echo $event->nonce( 'unpause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="unpause-event"><?php esc_html_e( 'Unpause' ); ?></a> |
+					<?php else: ?>
+						<a href="#" data-nonce="<?php echo $event->nonce( 'pause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="pause-event"><?php esc_html_e( 'Pause' ); ?></a> |
+					<?php endif ?>
 				</span>
 				<span class="trash">
 					<?php if ( $event->protected ): ?>

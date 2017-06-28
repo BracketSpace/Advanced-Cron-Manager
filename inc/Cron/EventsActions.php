@@ -113,11 +113,64 @@ class EventsActions {
 
 		$this->ajax->verify_nonce( 'acm/event/remove/' . $event->hash );
 
-		wp_unschedule_event( $event->next_call, $event->hook, $event->args );
+		if ( $event->protected ) {
+			$errors = array( sprintf( __( 'Event "%s" is protected and you cannot remove it' ), $event->hook ) );
+		}
+
+		$this->library->unschedule( $event );
+		$this->library->remove_from_paused( $event );
 
 		$success = sprintf( __( 'Event "%s" has been removed' ), $event->hook );
 
-		$this->ajax->response( $success, array() );
+		$this->ajax->response( $success, $errors );
+
+	}
+
+	/**
+	 * Pause event
+	 * @return void
+	 */
+	public function pause() {
+
+		$event = $this->events->get_event_by_hash( $_REQUEST['event'] );
+
+		$this->ajax->verify_nonce( 'acm/event/pause/' . $event->hash );
+
+		$result = $this->library->pause( $event );
+
+		if ( is_array( $result ) ) {
+			$errors = $result;
+		} else {
+			$errors = array();
+		}
+
+		$success = sprintf( __( 'Event "%s" has been paused' ), $event->hook );
+
+		$this->ajax->response( $success, $errors );
+
+	}
+
+	/**
+	 * Unpause event
+	 * @return void
+	 */
+	public function unpause() {
+
+		$event = $this->events->get_event_by_hash( $_REQUEST['event'] );
+
+		$this->ajax->verify_nonce( 'acm/event/unpause/' . $event->hash );
+
+		$result = $this->library->unpause( $event );
+
+		if ( is_array( $result ) ) {
+			$errors = $result;
+		} else {
+			$errors = array();
+		}
+
+		$success = sprintf( __( 'Event "%s" has been unpaused' ), $event->hook );
+
+		$this->ajax->response( $success, $errors );
 
 	}
 

@@ -16,11 +16,43 @@ class EventsLibrary {
 	public $schedules;
 
 	/**
+	 * Events class
+	 * @var instance of underDEV\AdvancedCronManage\Cron\Events
+	 */
+	private $events;
+
+	/**
+	 * Option name
+	 * @var string
+	 */
+	private $paused_option_name;
+
+	/**
 	 * Constructor
 	 */
-	public function __construct( Schedules $schedules ) {
+	public function __construct( Schedules $schedules, Events $events ) {
 
 		$this->schedules = $schedules;
+		$this->events    = $events;
+
+		$this->paused_option_name = 'acm_paused_events';
+
+	}
+
+	/**
+	 * Registers paused events
+	 * @param  array $events array of registered events
+	 * @return array         array of both registered and paused events
+	 */
+	public function register_paused( $events ) {
+
+		$paused_events = get_option( $this->paused_option_name, array() );
+
+		foreach ( $paused_events as $paused_event ) {
+			$events[] = new Object\Event( $paused_event['hook'], $paused_event['schedule_slug'], 0, $paused_event['args'], $paused_event['execution_timestamp'], $this->events->is_protected( $paused_event['hook'] ), true );
+		}
+
+		return $events;
 
 	}
 
@@ -57,6 +89,133 @@ class EventsLibrary {
 		}
 
 		return true;
+
+	}
+
+	/**
+	 * Removes (unschedules) the event
+	 * @param  mixed $thing event hash or Event objecy
+	 * @return mixed        array with errors on error or true
+	 */
+	public function unschedule( $thing ) {
+
+		$errors = array();
+
+		if ( is_string( $thing ) ) {
+			$event = $this->events->get_event_by_hash( $thing );
+		} else {
+			$event = $thing;
+		}
+
+		if ( $event == false ) {
+			$errors[] = __( 'Event not found and cannot be unscheduled' );
+		}
+
+		wp_unschedule_event( $event->next_call, $event->hook, $event->args );
+
+		return true;
+
+	}
+
+	/**
+	 * Pauses the event
+	 * @param  mixed $thing event hash or Event objecy
+	 * @return mixed        array with errors on error or true
+	 */
+	public function pause( $thing ) {
+
+		$errors = array();
+
+		if ( is_string( $thing ) ) {
+			$event = $this->events->get_event_by_hash( $thing );
+		} else {
+			$event = $thing;
+		}
+
+		if ( $event == false ) {
+			$errors[] = __( 'Event not found and cannot be paused' );
+		}
+
+		if ( ! empty( $errors ) ) {
+			return $errors;
+		}
+
+		// add to paused option
+		$this->add_to_paused( $event );
+
+		// unschedule
+		$this->unschedule( $event );
+
+		return true;
+
+	}
+
+	/**
+	 * Unpauses the event
+	 * @param  mixed $thing event hash or Event objecy
+	 * @return mixed        array with errors on error or true
+	 */
+	public function unpause( $thing ) {
+
+		$errors = array();
+
+		if ( is_string( $thing ) ) {
+			$event = $this->events->get_event_by_hash( $thing );
+		} else {
+			$event = $thing;
+		}
+
+		if ( $event == false ) {
+			$errors[] = __( 'Event not found and cannot be unpaused' );
+		}
+
+		if ( ! empty( $errors ) ) {
+			return $errors;
+		}
+
+		// remove from paused option
+		$this->remove_from_paused( $event );
+
+		// schedule
+		$result = $this->insert( $event->hook, $event->next_call, $event->schedule, $event->args );
+
+		return $result;
+
+	}
+
+	/**
+	 * Adds an event to paused events option
+	 * @param object $event Event object
+	 */
+	public function add_to_paused( $event ) {
+
+		$paused_events = get_option( $this->paused_option_name, array() );
+
+		$paused_events[ $event->hash ] = array(
+			'hook'                => $event->hook,
+			'execution_timestamp' => $event->next_call,
+			'schedule_slug'       => $event->schedule,
+			'args'                => $event->args
+		);
+
+		update_option( $this->paused_option_name, $paused_events );
+
+	}
+
+	/**
+	 * Removes an event from paused events option
+	 * @param object $event Event object
+	 */
+	public function remove_from_paused( $event ) {
+
+		$paused_events = get_option( $this->paused_option_name, array() );
+
+		if ( isset( $paused_events[ $event->hash ] ) ) {
+
+			unset( $paused_events[ $event->hash ] );
+			update_option( $this->paused_option_name, $paused_events );
+
+		}
 
 	}
 

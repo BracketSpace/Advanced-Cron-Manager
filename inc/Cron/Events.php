@@ -9,6 +9,12 @@ namespace underDEV\AdvancedCronManager\Cron;
 class Events {
 
 	/**
+	 * Schedules class
+	 * @var instance of underDEV\AdvancedCronManage\Cron\Schedules
+	 */
+	private $schedules;
+
+	/**
 	 * Registered events
 	 * @var array
 	 */
@@ -20,7 +26,9 @@ class Events {
 	 */
 	private $protected_events = array();
 
-	public function __construct() {
+	public function __construct( Schedules $schedules ) {
+
+		$this->schedules = $schedules;
 
 		// protected events registered by WordPress' core
 		$this->protected_events = array(
@@ -46,7 +54,7 @@ class Events {
 
 				foreach ( $events as $event_hook => $event_args ) {
 
-					if ( in_array( $event_hook, $this->protected_events ) ) {
+					if ( $this->is_protected( $event_hook ) ) {
 						$protected = true;
 					} else {
 						$protected = false;
@@ -55,7 +63,8 @@ class Events {
 					foreach ( $event_args as $event ) {
 
 						$interval = isset( $event['interval'] ) ? $event['interval'] : 0;
-						$events_array[] = new Object\Event( $event_hook, $event['schedule'], $interval, $event['args'], $timestamp, $protected );
+						$schedule = empty( $event['schedule'] ) ? $this->schedules->get_single_event_schedule()->slug : $event['schedule'];
+						$events_array[] = new Object\Event( $event_hook, $schedule, $interval, $event['args'], $timestamp, $protected );
 
 					}
 
@@ -88,6 +97,15 @@ class Events {
 		$events = $this->get_events();
 		return isset( $events[ $hash ] ) ? $events[ $hash ] : false;
 
+	}
+
+	/**
+	 * Checks if event hook is default WP Hook, thus protected
+	 * @param  string  $event_hook hook slug
+	 * @return boolean             true if protected
+	 */
+	public function is_protected( $event_hook ) {
+		return in_array( $event_hook, $this->protected_events );
 	}
 
 	/**

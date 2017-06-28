@@ -115,6 +115,8 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 		) );
 
 		// Events
+		add_filter( 'advanced-cron-manager/events/array', $this->container->callback( 'underDEV\AdvancedCronManager\Cron\EventsLibrary', 'register_paused' ), 10, 1 );
+
 		add_action( 'wp_ajax_acm/rerender/events', array(
 			$this->container->make( 'underDEV\AdvancedCronManager\AdminScreen' ),
 			'ajax_rerender_events_table'
@@ -133,6 +135,16 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 		add_action( 'wp_ajax_acm/event/remove', array(
 			$this->container->make( 'underDEV\AdvancedCronManager\Cron\EventsActions' ),
 			'remove'
+		) );
+
+		add_action( 'wp_ajax_acm/event/pause', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\EventsActions' ),
+			'pause'
+		) );
+
+		add_action( 'wp_ajax_acm/event/unpause', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\Cron\EventsActions' ),
+			'unpause'
 		) );
 
 	}

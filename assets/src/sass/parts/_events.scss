@@ -29,6 +29,12 @@
 
 			}
 
+			@include media( '<=xlarge' ) {
+				.row-actions {
+					position: static;
+				}
+			}
+
 			&.header {
 				border-bottom: 1px solid #e1e1e1;
 			    font-weight: 500;
@@ -54,6 +60,10 @@
 					display: flex;
 				}
 
+			}
+
+			&.paused {
+				background-color: #fcfcfc;
 			}
 
 			&.running {
@@ -122,6 +132,11 @@
 						.event-name {
 							text-decoration: none;
 							color: inherit;
+
+							.dashicons {
+								color: #555;
+							}
+
 						}
 
 						.row-actions {

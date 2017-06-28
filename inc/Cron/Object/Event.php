@@ -45,10 +45,16 @@ class Event {
 	private $protected;
 
 	/**
+	 * Paused
+	 * @var bool
+	 */
+	private $paused;
+
+	/**
 	 * Instantine object
 	 * @param boolean $protected if Schedule is protected
 	 */
-	public function __construct( $hook = null, $schedule = '', $interval = 0, $args = array(), $next_call = 0, $protected = false ) {
+	public function __construct( $hook = null, $schedule = '', $interval = 0, $args = array(), $next_call = 0, $protected = false, $paused = false ) {
 
 		if ( empty( $hook ) ) {
 			trigger_error( 'Hook cannot be empty', E_USER_ERROR );
@@ -60,6 +66,7 @@ class Event {
 		$this->args      = $args;
 		$this->next_call = $next_call;
 		$this->protected = $protected;
+		$this->paused    = $paused;
 
 		$this->hash = substr( md5( $this->hook . $this->schedule . $this->next_call . serialize( $this->args ) ), 0, 8 );
 
