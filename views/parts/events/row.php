@@ -23,7 +23,7 @@ if ( $event->paused ) {
 <div class="single-event row <?php echo esc_attr( $css_class ); ?>" data-schedule="<?php echo esc_attr( $event->schedule ? $event->schedule : $single_event_schedule->slug ); ?>">
 	<div class="columns">
 		<div class="column cb">
-			<input type="checkbox" name="bulk-actions" value="">
+			<input type="checkbox" name="bulk-actions" value="<?php echo esc_attr( $event->hash ); ?>">
 			<span class="dashicons dashicons-admin-generic"></span>
 		</div>
 		<div class="column event">

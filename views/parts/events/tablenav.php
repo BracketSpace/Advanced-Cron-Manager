@@ -8,7 +8,14 @@
 	<select>
 		<option value="-1"><?php esc_html_e( 'Bulk Actions' ); ?></option>
 		<option value="run"><?php esc_html_e( 'Execute now' ); ?></option>
-		<option value="pause"><?php esc_html_e( 'Pause' ); ?></option>
+		<?php /**
+		 * @todo Pause and unpause bulk actions.
+		 * There's a problem with table rerender which clears all the checkboxes
+		 * Good to think about a queue of actions.
+		 *
+		 * <option value="pause"><?php esc_html_e( 'Pause' ); ?></option>
+		 * <option value="unpause"><?php esc_html_e( 'Unpause' ); ?></option>
+		 */ ?>
 		<option value="remove"><?php esc_html_e( 'Remove' ); ?></option>
 	</select>
 	<input type="submit" class="button action" value="Apply">

@@ -1,5 +1,45 @@
 ( function( $ ) {
 
+	////////////
+	// Action //
+	////////////
+
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '.tablenav .action', function( event ) {
+
+		event.preventDefault();
+
+		var $apply_button = $( this );
+		var $select_input = $( this ).prev( 'select' );
+		var action        = $select_input.val();
+
+		if ( action != '-1' ) {
+
+			$apply_button.attr( 'disabled', true );
+
+			get_all_checkboxes( true ).each( function() {
+
+				var $checkbox      = $( this );
+				var $action_button = $checkbox.parents( '.single-event.row' ).first().find( 'a.' + action + '-event' );
+
+				if ( $action_button ) {
+					$action_button.trigger( 'click' );
+				}
+
+				$checkbox.attr( 'checked', false );
+
+			} );
+
+			$apply_button.attr( 'disabled', false );
+			$select_input.val( '-1' );
+
+		}
+
+	} );
+
+	////////////////
+	// Checkboxes //
+	////////////////
+
 	var $cb_all    = $( '.single-event.header .select-all' ),
 		cb_checked = [];
 
