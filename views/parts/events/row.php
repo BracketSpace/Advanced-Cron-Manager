@@ -86,7 +86,7 @@ if ( $event->paused ) {
 		<?php $active = 'active'; ?>
 		<?php foreach ( $this->get_var( 'details_tabs' ) as $tab_slug => $tab_name ): ?>
 			<div class="content <?php echo esc_attr( $tab_slug ); ?> <?php echo $active; ?>">
-				<?php do_action( 'advanced-cron-manager/screep/event/details/tab/' . $tab_slug, $this ); ?>
+				<?php do_action( 'advanced-cron-manager/screen/event/details/tab/' . $tab_slug, $this ); ?>
 			</div>
 			<?php $active = ''; ?>
 		<?php endforeach ?>
