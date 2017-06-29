@@ -170,7 +170,9 @@ class AdminScreen {
 	 * @return void
 	 */
 	public function load_event_tab_logs( $view ) {
-		$view->get_view( 'parts/events/tabs/logs' );
+		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/logs/display', true ) ) {
+			$view->get_view( 'parts/events/tabs/logs' );
+		}
 	}
 
 	/**
@@ -180,7 +182,9 @@ class AdminScreen {
 	 * @return void
 	 */
 	public function load_event_tab_arguments( $view ) {
-		$view->get_view( 'parts/events/tabs/arguments' );
+		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/arguments/display', true ) ) {
+			$view->get_view( 'parts/events/tabs/arguments' );
+		}
 	}
 
 	/**
@@ -190,7 +194,9 @@ class AdminScreen {
 	 * @return void
 	 */
 	public function load_event_tab_schedule( $view ) {
-		$view->get_view( 'parts/events/tabs/schedule' );
+		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/schedule/display', true ) ) {
+			$view->get_view( 'parts/events/tabs/schedule' );
+		}
 	}
 
 	/**
@@ -200,7 +206,9 @@ class AdminScreen {
 	 * @return void
 	 */
 	public function load_event_tab_implementation( $view ) {
-		$view->get_view( 'parts/events/tabs/implementation' );
+		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/implementation/display', true ) ) {
+			$view->get_view( 'parts/events/tabs/implementation' );
+		}
 	}
 
 }
