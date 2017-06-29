@@ -67,7 +67,7 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 		), 10, 1 );
 
 		// Add tabs to event details
-		add_filter( 'advanced-cron-manager/screep/event/details/tabs', array(
+		add_filter( 'advanced-cron-manager/screen/event/details/tabs', array(
 			$this->container->make( 'underDEV\AdvancedCronManager\AdminScreen' ),
 			'add_default_event_details_tabs'
 		), 10, 1 );

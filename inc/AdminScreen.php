@@ -115,7 +115,7 @@ class AdminScreen {
 		/**
 		 * It should be an array in format: tab_slug => Tab Name
 		 */
-		$this->view->set_var( 'details_tabs', apply_filters( 'advanced-cron-manager/screep/event/details/tabs', array() ) );
+		$this->view->set_var( 'details_tabs', apply_filters( 'advanced-cron-manager/screen/event/details/tabs', array() ) );
 
 		$this->view->get_view( 'parts/events/section' );
 
@@ -156,7 +156,7 @@ class AdminScreen {
 
 		foreach ( $this->default_event_details_tabs as $tab_slug => $tab_name ) {
 			$tabs[ $tab_slug ] = $tab_name;
-			add_action( 'advanced-cron-manager/screep/event/details/tab/' . $tab_slug, array( $this, 'load_event_tab_' . $tab_slug ), 10, 1 );
+			add_action( 'advanced-cron-manager/screen/event/details/tab/' . $tab_slug, array( $this, 'load_event_tab_' . $tab_slug ), 10, 1 );
 		}
 
 		return $tabs;
