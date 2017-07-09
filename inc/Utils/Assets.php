@@ -64,6 +64,8 @@ class Assets {
 			)
 		) );
 
+		do_action( 'advanced-cron-manager/screen/enqueue', $current_page_hook );
+
 	}
 
 }
