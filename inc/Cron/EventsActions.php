@@ -91,9 +91,13 @@ class EventsActions {
 	 */
 	public function run() {
 
+		global $acm_current_event;
+
 		$event = $this->events->get_event_by_hash( $_REQUEST['event'] );
 
 		$this->ajax->verify_nonce( 'acm/event/run/' . $event->hash );
+
+		$acm_current_event = $event;
 
 		do_action_ref_array( $event->hook, $event->args );
 
