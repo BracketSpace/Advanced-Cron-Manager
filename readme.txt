@@ -129,7 +129,9 @@ It's used for action. For example if your hook is hook_name you'll need to add i
 == Upgrade Notice ==
 
 = 2.0.0 =
-Plugin has been rebuilt from a scratch. If you are using Advanced Cron Manager PRO please upgrade it too!
+* Plugin has been rebuilt from a scratch.
+* If you are using Advanced Cron Manager PRO please upgrade it too!
+* It's needed to reactivate the plugin!
 
 = 1.2 =
 Removed debug alert and added execution button
