@@ -13,4 +13,4 @@
 	<li><?php esc_html_e( 'Performance stats', 'advanced-cron-manager' ); ?></li>
 	<li><?php esc_html_e( 'Debugging tool', 'advanced-cron-manager' ); ?></li>
 </ul>
-<a href="#" class="button button-secondary"><?php esc_html_e( 'Get Advanced Cron Manager PRO now!', 'advanced-cron-manager' ); ?></a>
+<a href="https://www.wpart.co/downloads/advanced-cron-manager-pro/" class="button button-secondary"><?php esc_html_e( 'Get Advanced Cron Manager PRO now!', 'advanced-cron-manager' ); ?></a>
