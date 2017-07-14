@@ -45,9 +45,16 @@
 	align-items: center;
 	justify-content: space-between;
 
-	.btn, .btn-flat {
+	.btn {
 		margin: 0;
-		margin-left: 3rem;
+		margin-left: 2rem;
+		padding: 5px 10px;
+		border-radius: 5px;
+		background: #444;
+		color: white;
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 1rem;
 	}
 
 	.dashicons {
