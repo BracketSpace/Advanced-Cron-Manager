@@ -1,0 +1,27 @@
+{
+    "name": "underdev/advanced-cron-manager",
+    "description": "Advanced Cron Manager WordPress plugin",
+    "type": "wordpress-plugin",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Kuba Mikita",
+            "email": "jakub@underdev.it"
+        }
+    ],
+    "require": {
+        "overclokk/minimum-requirements": "*",
+        "lucatume/di52": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "underDEV\\AdvancedCronManager\\" : "inc"
+        },
+        "files": [
+            "vendor/overclokk/minimum-requirements/minimum-requirements.php"
+        ]
+    },
+    "require-dev": {
+        "10up/wp_mock": "dev-dev"
+    }
+}
