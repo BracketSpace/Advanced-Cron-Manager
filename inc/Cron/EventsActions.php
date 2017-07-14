@@ -101,7 +101,7 @@ class EventsActions {
 
 		do_action_ref_array( $event->hook, $event->args );
 
-		$success = sprintf( __( 'Event "%s" has been executed' ), $event->hook );
+		$success = sprintf( __( 'Event "%s" has been executed', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, array() );
 
@@ -118,13 +118,13 @@ class EventsActions {
 		$this->ajax->verify_nonce( 'acm/event/remove/' . $event->hash );
 
 		if ( $event->protected ) {
-			$errors = array( sprintf( __( 'Event "%s" is protected and you cannot remove it' ), $event->hook ) );
+			$errors = array( sprintf( __( 'Event "%s" is protected and you cannot remove it', 'advanced-cron-manager' ), $event->hook ) );
 		}
 
 		$this->library->unschedule( $event );
 		$this->library->remove_from_paused( $event );
 
-		$success = sprintf( __( 'Event "%s" has been removed' ), $event->hook );
+		$success = sprintf( __( 'Event "%s" has been removed', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, $errors );
 
@@ -148,7 +148,7 @@ class EventsActions {
 			$errors = array();
 		}
 
-		$success = sprintf( __( 'Event "%s" has been paused' ), $event->hook );
+		$success = sprintf( __( 'Event "%s" has been paused', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, $errors );
 
@@ -172,7 +172,7 @@ class EventsActions {
 			$errors = array();
 		}
 
-		$success = sprintf( __( 'Event "%s" has been unpaused' ), $event->hook );
+		$success = sprintf( __( 'Event "%s" has been unpaused', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, $errors );
 

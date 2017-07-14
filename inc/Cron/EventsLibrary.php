@@ -69,13 +69,13 @@ class EventsLibrary {
 		$errors = array();
 
 		if ( empty( $hook ) ) {
-			$errors[] = __( 'Please, provide a hook for your Event' );
+			$errors[] = __( 'Please, provide a hook for your Event', 'advanced-cron-manager' );
 		}
 
 		$schedule = $this->schedules->get_schedule( $schedule_slug );
 
 		if ( $schedule->slug != $schedule_slug ) {
-			$errors[] = sprintf( __( 'Schedule "%s" cannot be found' ), $schedule_slug );
+			$errors[] = sprintf( __( 'Schedule "%s" cannot be found', 'advanced-cron-manager' ), $schedule_slug );
 		}
 
 		if ( ! empty( $errors ) ) {
@@ -108,7 +108,7 @@ class EventsLibrary {
 		}
 
 		if ( $event == false ) {
-			$errors[] = __( 'Event not found and cannot be unscheduled' );
+			$errors[] = __( 'Event not found and cannot be unscheduled', 'advanced-cron-manager' );
 		}
 
 		wp_unschedule_event( $event->next_call, $event->hook, $event->args );
@@ -133,7 +133,7 @@ class EventsLibrary {
 		}
 
 		if ( $event == false ) {
-			$errors[] = __( 'Event not found and cannot be paused' );
+			$errors[] = __( 'Event not found and cannot be paused', 'advanced-cron-manager' );
 		}
 
 		if ( ! empty( $errors ) ) {
@@ -166,7 +166,7 @@ class EventsLibrary {
 		}
 
 		if ( $event == false ) {
-			$errors[] = __( 'Event not found and cannot be unpaused' );
+			$errors[] = __( 'Event not found and cannot be unpaused', 'advanced-cron-manager' );
 		}
 
 		if ( ! empty( $errors ) ) {

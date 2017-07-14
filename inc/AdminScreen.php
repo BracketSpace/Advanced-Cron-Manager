@@ -52,10 +52,10 @@ class AdminScreen {
 		$this->events    = $events;
 
 		$this->default_event_details_tabs = array(
-			'logs'           => __( 'Logs' ),
-			'arguments'      => __( 'Arguments' ),
-			'schedule'       => __( 'Schedule' ),
-			'implementation' => __( 'Implementation' ),
+			'logs'           => __( 'Logs', 'advanced-cron-manager' ),
+			'arguments'      => __( 'Arguments', 'advanced-cron-manager' ),
+			'schedule'       => __( 'Schedule', 'advanced-cron-manager' ),
+			'implementation' => __( 'Implementation', 'advanced-cron-manager' ),
 		);
 
 	}

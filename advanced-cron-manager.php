@@ -41,7 +41,7 @@ $acm_pro_version = @get_file_data( WP_PLUGIN_DIR . '/advanced-cron-manager-pro/a
 
 if ( ! empty( $acm_pro_version ) && version_compare( $acm_pro_version, '2', '<' ) ) {
 	add_action( 'admin_notices', function() {
-		echo '<div class="error"><p>' . __( 'Advanced Cron Manager in version 2 needs Advanced Cron Manager PRO also in version 2. Please upgrade.' ) . '</p></div>';
+		echo '<div class="error"><p>' . __( 'Advanced Cron Manager in version 2 needs Advanced Cron Manager PRO also in version 2. Please upgrade.', 'advanced-cron-manager' ) . '</p></div>';
 	} );
 }
 

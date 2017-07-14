@@ -8,7 +8,7 @@
 
 	<div class="schedules tile">
 
-		<h3 class="tile-header"><?php _e( 'Schedules' ); ?></h3>
+		<h3 class="tile-header"><?php _e( 'Schedules', 'advanced-cron-manager' ); ?></h3>
 
 		<div class="tile-content">
 
