@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 	            files: {
 	                src: [
 	                    'advanced-cron-manager.php',
-	                    './inc/**/*.php'
+	                    './inc/**/*.php',
 	                    './views/**/*.php'
 	                ]
 	            }

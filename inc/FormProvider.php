@@ -83,7 +83,7 @@ class FormProvider {
 
 		$this->ajax->verify_nonce( 'acm/schedule/add' );
 
-		$this->get_form( 'schedule/add', __( 'New schedule' ), __( 'Add schedule' ) );
+		$this->get_form( 'schedule/add', __( 'New schedule', 'advanced-cron-manager' ), __( 'Add schedule', 'advanced-cron-manager' ) );
 
 	}
 
@@ -100,7 +100,7 @@ class FormProvider {
 
 		$this->view->set_var( 'schedule', $schedule );
 
-		$this->get_form( 'schedule/edit', sprintf( __( 'Edit "%s" schedule' ), $schedule->slug ), __( 'Edit schedule' ) );
+		$this->get_form( 'schedule/edit', sprintf( __( 'Edit "%s" schedule', 'advanced-cron-manager' ), $schedule->slug ), __( 'Edit schedule', 'advanced-cron-manager' ) );
 
 	}
 
@@ -114,7 +114,7 @@ class FormProvider {
 		$this->view->set_var( 'schedules', $this->schedules->get_schedules() );
 		$this->view->set_var( 'single_schedule', $this->schedules->get_single_event_schedule() );
 
-		$this->get_form( 'event/add', __( 'New event' ), __( 'Add event' ) );
+		$this->get_form( 'event/add', __( 'New event', 'advanced-cron-manager' ), __( 'Add event', 'advanced-cron-manager' ) );
 
 	}
 

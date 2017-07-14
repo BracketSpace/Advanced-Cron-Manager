@@ -18,18 +18,18 @@ $schedule = $this->get_var( 'schedule' );
 	</div>
 	<div class="column actions">
 		<?php if ( $schedule->protected ): ?>
-			<span class="dashicons dashicons-edit disabled" title="<?php esc_attr_e( 'This schedule is protected and you cannot edit it' ); ?>">
-				<span><?php _e( 'Edit' ); ?></span>
+			<span class="dashicons dashicons-edit disabled" title="<?php esc_attr_e( 'This schedule is protected and you cannot edit it', 'advanced-cron-manager' ); ?>">
+				<span><?php _e( 'Edit', 'advanced-cron-manager' ); ?></span>
 			</span>
-			<span class="dashicons dashicons-trash disabled" title="<?php esc_attr_e( 'This schedule is protected and you cannot remove it' ); ?>">
-				<span><?php _e( 'Trash' ); ?></span>
+			<span class="dashicons dashicons-trash disabled" title="<?php esc_attr_e( 'This schedule is protected and you cannot remove it', 'advanced-cron-manager' ); ?>">
+				<span><?php _e( 'Trash', 'advanced-cron-manager' ); ?></span>
 			</span>
 		<?php else: ?>
-			<a href="#" data-nonce="<?php echo $schedule->nonce( 'edit' ); ?>" data-schedule="<?php echo esc_attr( $schedule->slug ); ?>" class="edit-schedule dashicons dashicons-edit" title="<?php esc_attr_e( 'Edit' ); ?>">
-				<span><?php _e( 'Edit' ); ?></span>
+			<a href="#" data-nonce="<?php echo $schedule->nonce( 'edit' ); ?>" data-schedule="<?php echo esc_attr( $schedule->slug ); ?>" class="edit-schedule dashicons dashicons-edit" title="<?php esc_attr_e( 'Edit', 'advanced-cron-manager' ); ?>">
+				<span><?php _e( 'Edit', 'advanced-cron-manager' ); ?></span>
 			</a>
-			<a href="#" data-nonce="<?php echo $schedule->nonce( 'remove' ); ?>" data-schedule="<?php echo esc_attr( $schedule->slug ); ?>" class="remove-schedule dashicons dashicons-trash" title="<?php esc_attr_e( 'Remove' ); ?>">
-				<span><?php _e( 'Remove' ); ?></span>
+			<a href="#" data-nonce="<?php echo $schedule->nonce( 'remove' ); ?>" data-schedule="<?php echo esc_attr( $schedule->slug ); ?>" class="remove-schedule dashicons dashicons-trash" title="<?php esc_attr_e( 'Remove', 'advanced-cron-manager' ); ?>">
+				<span><?php _e( 'Remove', 'advanced-cron-manager' ); ?></span>
 			</a>
 		<?php endif ?>
 	</div>

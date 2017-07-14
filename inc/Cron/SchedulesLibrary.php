@@ -125,29 +125,29 @@ class SchedulesLibrary {
 		$errors = array();
 
 		if ( empty( $name ) ) {
-			$errors[] = __( 'Please, provide a name for your Schedule' );
+			$errors[] = __( 'Please, provide a name for your Schedule', 'advanced-cron-manager' );
 		}
 
 		if ( empty( $slug ) ) {
-			$errors[] = __( 'Please, provide a slug for your Schedule' );
+			$errors[] = __( 'Please, provide a slug for your Schedule', 'advanced-cron-manager' );
 		}
 
 		if ( $interval < 1 ) {
-			$errors[] = __( 'Interval cannot be shorter than 1 second' );
+			$errors[] = __( 'Interval cannot be shorter than 1 second', 'advanced-cron-manager' );
 		}
 
 		if ( ! $edit && $this->has( $slug ) ) {
-			$errors[] = sprintf( __( 'Schedule with slug "%s" already exists' ), $slug );
+			$errors[] = sprintf( __( 'Schedule with slug "%s" already exists', 'advanced-cron-manager' ), $slug );
 		}
 
 		if ( $edit ) {
 
 			if ( ! $this->has( $slug ) ) {
-				$errors[] = sprintf( __( 'Schedule with slug "%s" doesn\'t exists' ), $slug );
+				$errors[] = sprintf( __( 'Schedule with slug "%s" doesn\'t exists', 'advanced-cron-manager' ), $slug );
 			}
 
 			if ( $this->get_schedule( $slug )->protected ) {
-				$errors[] = sprintf( __( 'Schedule "%s" is protected and you cannot edit it' ), $slug );
+				$errors[] = sprintf( __( 'Schedule "%s" is protected and you cannot edit it', 'advanced-cron-manager' ), $slug );
 			}
 
 		}
@@ -183,7 +183,7 @@ class SchedulesLibrary {
 		$errors = array();
 
 		if ( ! $this->has( $slug ) ) {
-			$errors[] = sprintf( __( 'Schedule with slug "%s" cannot be removed because it doesn\'t exists' ), $slug );
+			$errors[] = sprintf( __( 'Schedule with slug "%s" cannot be removed because it doesn\'t exists', 'advanced-cron-manager' ), $slug );
 		}
 
 		if ( ! empty( $errors ) ) {

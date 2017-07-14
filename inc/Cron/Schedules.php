@@ -84,7 +84,7 @@ class Schedules {
 	public function get_single_event_schedule() {
 
 		if ( ! isset( $this->single_event_schedule ) ) {
-			$this->single_event_schedule = new Object\Schedule( 'single_event', 1, __( 'Single event' ), true );
+			$this->single_event_schedule = new Object\Schedule( 'single_event', 1, __( 'Single event', 'advanced-cron-manager' ), true );
 		}
 
 		return $this->single_event_schedule;

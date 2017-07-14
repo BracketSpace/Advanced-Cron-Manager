@@ -21,7 +21,7 @@ class Ajax {
 		}
 
 		if ( check_ajax_referer( $action, $nonce, false ) == false ) {
-	        $this->error( array( __( 'Looks like you cannot perform this action (nonce doesn\'t match)' ) ) );
+	        $this->error( array( __( 'Looks like you cannot perform this action (nonce doesn\'t match)', 'advanced-cron-manager' ) ) );
 	    }
 
 	}

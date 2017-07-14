@@ -35,23 +35,23 @@ if ( $event->paused ) {
 			</a>
 			<div class="row-actions">
 				<span class="details">
-					<a href="#"><?php esc_html_e( 'Details' ); ?></a> |
+					<a href="#"><?php esc_html_e( 'Details', 'advanced-cron-manager' ); ?></a> |
 				</span>
 				<span class="run">
-					<a href="#" data-nonce="<?php echo $event->nonce( 'run' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="run-event"><?php esc_html_e( 'Execute now' ); ?></a> |
+					<a href="#" data-nonce="<?php echo $event->nonce( 'run' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="run-event"><?php esc_html_e( 'Execute now', 'advanced-cron-manager' ); ?></a> |
 				</span>
 				<span class="pause">
 					<?php if ( $event->paused ): ?>
-						<a href="#" data-nonce="<?php echo $event->nonce( 'unpause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="unpause-event"><?php esc_html_e( 'Unpause' ); ?></a> |
+						<a href="#" data-nonce="<?php echo $event->nonce( 'unpause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="unpause-event"><?php esc_html_e( 'Unpause', 'advanced-cron-manager' ); ?></a> |
 					<?php else: ?>
-						<a href="#" data-nonce="<?php echo $event->nonce( 'pause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="pause-event"><?php esc_html_e( 'Pause' ); ?></a> |
+						<a href="#" data-nonce="<?php echo $event->nonce( 'pause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="pause-event"><?php esc_html_e( 'Pause', 'advanced-cron-manager' ); ?></a> |
 					<?php endif ?>
 				</span>
 				<span class="trash">
 					<?php if ( $event->protected ): ?>
-						<?php esc_html_e( 'Protected' ); ?>
+						<?php esc_html_e( 'Protected', 'advanced-cron-manager' ); ?>
 					<?php else: ?>
-						<a href="#" data-nonce="<?php echo $event->nonce( 'remove' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="remove-event"><?php esc_html_e( 'Remove' ); ?></a>
+						<a href="#" data-nonce="<?php echo $event->nonce( 'remove' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="remove-event"><?php esc_html_e( 'Remove', 'advanced-cron-manager' ); ?></a>
 					<?php endif ?>
 				</span>
 			</div>
@@ -64,9 +64,9 @@ if ( $event->paused ) {
 		</div>
 		<div class="column next-execution">
 			<?php if ( $event->next_call <= time() ): ?>
-				<?php esc_html_e( 'In queue' ); ?>
+				<?php esc_html_e( 'In queue', 'advanced-cron-manager' ); ?>
 			<?php else: ?>
-				<?php echo esc_html( sprintf( __( 'In %s' ), human_time_diff( time(), $event->next_call ) ) ); ?><br>
+				<?php echo esc_html( sprintf( __( 'In %s', 'advanced-cron-manager' ), human_time_diff( time(), $event->next_call ) ) ); ?><br>
 				<span title="<?php echo esc_attr( 'UTC: ' . date( $date_format . ' ' . $time_format, $event->next_call ) ); ?>">
 					<?php echo date( $date_format . ' ' . $time_format, $event->next_call + $time_offset ); ?>
 				</span>

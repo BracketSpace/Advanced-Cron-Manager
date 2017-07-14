@@ -57,10 +57,10 @@ class Assets {
 
 		wp_localize_script( 'advanced-cron-manager', 'advanced_cron_manager', array(
 			'i18n' => array(
-				'executed_with_errors' => __( 'Event has been executed with errors' ),
-				'events'               => __( 'events' ),
-				'removing'             => __( 'Removing...' ),
-				'pausing'              => __( 'Pausing...' )
+				'executed_with_errors' => __( 'Event has been executed with errors', 'advanced-cron-manager' ),
+				'events'               => __( 'events', 'advanced-cron-manager' ),
+				'removing'             => __( 'Removing...', 'advanced-cron-manager' ),
+				'pausing'              => __( 'Pausing...', 'advanced-cron-manager' )
 			)
 		) );
 
