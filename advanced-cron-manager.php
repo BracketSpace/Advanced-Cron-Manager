@@ -37,7 +37,7 @@ if ( ! $requirements->is_compatible_version() ) {
 	return;
 }
 
-$acm_pro_version = @get_file_data( WP_PLUGIN_DIR . '/advanced-cron-manager-pro/advanced-cron-manager-pro.php', array( 'Version' ) )[0];
+$acm_pro_version = @get_file_data( WP_PLUGIN_DIR . '/advanced-cron-manager-pro/acm-pro.php', array( 'Version' ) )[0];
 
 if ( ! empty( $acm_pro_version ) && version_compare( $acm_pro_version, '2', '<' ) ) {
 	add_action( 'admin_notices', function() {
