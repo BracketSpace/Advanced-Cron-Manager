@@ -5,6 +5,7 @@
  */
 
 namespace underDEV\AdvancedCronManager;
+use underDEV\Utils;
 use underDEV\AdvancedCronManager\Cron;
 
 class AdminScreen {
@@ -72,7 +73,7 @@ class AdminScreen {
 
 			ob_start();
 
-			call_user_method_array( $method_to_call, $this, $args );
+			call_user_func( array( $this, $method_to_call ), $this );
 
 			$this->ajax->success( ob_get_clean() );
 

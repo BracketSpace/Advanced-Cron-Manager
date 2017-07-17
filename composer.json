@@ -10,16 +10,13 @@
         }
     ],
     "require": {
-        "overclokk/minimum-requirements": "*",
+        "underdev/utils": "*",
         "lucatume/di52": "*"
     },
     "autoload": {
         "psr-4": {
             "underDEV\\AdvancedCronManager\\" : "inc"
-        },
-        "files": [
-            "vendor/overclokk/minimum-requirements/minimum-requirements.php"
-        ]
+        }
     },
     "require-dev": {
         "10up/wp_mock": "dev-dev"

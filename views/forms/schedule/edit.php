@@ -13,14 +13,14 @@ $interval_raw = $schedule->get_raw_human_interval();
 
 <?php wp_nonce_field( 'acm/schedule/edit', 'nonce', false ); ?>
 
-<label for="schedule-name">Display name</label>
+<label for="schedule-name"><?php esc_html_e( 'Display name', 'advanced-cron-manager' ); ?></label>
 <input type="text" id="schedule-name" name="name" class="widefat" value="<?php echo esc_attr( $schedule->label ); ?>">
 
-<label for="schedule-slug">Slug</label>
+<label for="schedule-slug"><?php esc_html_e( 'Slug', 'advanced-cron-manager' ); ?></label>
 <input type="text" id="schedule-slug" class="widefat" disabled="disabled" value="<?php echo esc_attr( $schedule->slug ); ?>">
 <input type="hidden" name="slug" value="<?php echo esc_attr( $schedule->slug ); ?>">
 
-<label>Interval</label>
+<label><?php esc_html_e( 'Interval', 'advanced-cron-manager' ); ?></label>
 <table>
 	<tr>
 		<td><?php _e( 'Days', 'advanced-cron-manager' ); ?>:</td>

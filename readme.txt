@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=conta
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,15 @@ It's used for action. For example if your hook is hook_name you'll need to add i
 5. Search and bulk actions
 
 == Changelog ==
+
+= 2.1.0 =
+* [Changed] Utilities classes has been moved to separate composer libraries
+* [Changed] Requirements checks
+* [Changed] date() function to date_i18n()
+* [Fixed] Deprecated function has been updated
+* [Fixed] Translations. There was few missing gettext functions
+* [Added] Schedules dropdown in add new event form now includes schedule's slug
+* [Added] Sanitization of Schedule and Event slugs in Add forms
 
 = 2.0.0 =
 * [Changed] Pretty much everything. There's new interface and code base.

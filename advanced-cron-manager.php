@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
- * Version: 2.0.0
+ * Version: 2.1.0
  * Author: underDEV
  * Author URI: https://underdev.it
  * License: GPL3
@@ -15,34 +15,26 @@
 require_once( 'vendor/autoload.php' );
 
 /**
- * Check minimum requirements of the plugin
- * @param string $php_ver The minimum PHP version.
- * @param string $wp_ver  The minimum WP version.
- * @param string $name    The name of the theme/plugin to check.
- * @param array  $plugins Required plugins format plugin_path/plugin_name.
+ * Check requirements
  */
-$requirements = new Minimum_Requirements( '5.3.9', '3.6', __( 'Advanced Cron Manager', 'advanced-cron-manager' ), array() );
+require_once( 'inc/Requirements.php' );
 
-/**
- * Check compatibility on activation
- */
-register_activation_hook( __FILE__, array( $requirements, 'check_compatibility_on_install' ) );
+$requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advanced-cron-manager' ), array(
+	'php'         => '5.3.9',
+	'wp'          => '3.6',
+	'old_plugins' => array(
+		'advanced-cron-manager-pro/acm-pro.php' => array(
+			'name' => 'Advanced Cron Manager PRO',
+			'version' => '2.0'
+		),
+	)
+) );
 
-/**
- * If it is already installed and activated check if example new version is compatible,
- * if is not don't load plugin code and print admin_notice
- */
-if ( ! $requirements->is_compatible_version() ) {
-	add_action( 'admin_notices', array( $requirements, 'load_plugin_admin_notices' ) );
+if ( ! $requirements->satisfied() ) {
+
+	add_action( 'admin_notices', array( $requirements, 'notice' ) );
 	return;
-}
 
-$acm_pro_version = @get_file_data( WP_PLUGIN_DIR . '/advanced-cron-manager-pro/acm-pro.php', array( 'Version' ) )[0];
-
-if ( ! empty( $acm_pro_version ) && version_compare( $acm_pro_version, '2', '<' ) ) {
-	add_action( 'admin_notices', function() {
-		echo '<div class="error"><p>' . __( 'Advanced Cron Manager in version 2 needs Advanced Cron Manager PRO also in version 2. Please upgrade.', 'advanced-cron-manager' ) . '</p></div>';
-	} );
 }
 
 /**
@@ -51,7 +43,7 @@ if ( ! empty( $acm_pro_version ) && version_compare( $acm_pro_version, '2', '<' 
 $container = new tad_DI52_Container();
 
 $container->setVar( 'plugin_file', __FILE__ );
-$container->setVar( 'plugin_version', '2.0' );
+$container->setVar( 'plugin_version', '2.1.0' );
 
 // Registers all classes and their dependencies
 $container->register( 'underDEV\AdvancedCronManager\RuntimeProvider' );

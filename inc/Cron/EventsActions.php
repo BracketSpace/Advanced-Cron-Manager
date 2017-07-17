@@ -5,7 +5,7 @@
  */
 
 namespace underDEV\AdvancedCronManager\Cron;
-use underDEV\AdvancedCronManager\Utils;
+use underDEV\Utils;
 
 class EventsActions {
 
@@ -64,7 +64,10 @@ class EventsActions {
 			}
 		}
 
-		$result = $this->library->insert( $data['hook'], $execution, $data['schedule'], $args );
+		$hook = sanitize_title_with_dashes( $data['hook'], null, 'save' );
+		$hook = str_replace( '-', '_', $hook );
+
+		$result = $this->library->insert( $hook, $execution, $data['schedule'], $args );
 
 		if ( is_array( $result ) ) {
 			$errors = $result;
@@ -78,7 +81,7 @@ class EventsActions {
 
 		$success = sprintf(
 			esc_html( _n( 'Event "%s" with %d argument has been scheduled (%s)', 'Event "%s" with %d arguments has been scheduled (%s)', $arg_num, 'advanced-cron-manager'  ) ),
-			$data['hook'], $arg_num, $schedule->label
+			$hook, $arg_num, $schedule->label
 		);
 
 		$this->ajax->response( $success, $errors );

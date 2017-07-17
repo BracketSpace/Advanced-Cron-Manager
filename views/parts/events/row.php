@@ -67,8 +67,8 @@ if ( $event->paused ) {
 				<?php esc_html_e( 'In queue', 'advanced-cron-manager' ); ?>
 			<?php else: ?>
 				<?php echo esc_html( sprintf( __( 'In %s', 'advanced-cron-manager' ), human_time_diff( time(), $event->next_call ) ) ); ?><br>
-				<span title="<?php echo esc_attr( 'UTC: ' . date( $date_format . ' ' . $time_format, $event->next_call ) ); ?>">
-					<?php echo date( $date_format . ' ' . $time_format, $event->next_call + $time_offset ); ?>
+				<span title="<?php echo esc_attr( 'UTC: ' . date_i18n( $date_format . ' ' . $time_format, $event->next_call ) ); ?>">
+					<?php echo date_i18n( $date_format . ' ' . $time_format, $event->next_call + $time_offset ); ?>
 				</span>
 			<?php endif ?>
 		</div>

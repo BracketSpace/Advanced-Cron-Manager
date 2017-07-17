@@ -5,7 +5,7 @@
  */
 
 namespace underDEV\AdvancedCronManager\Cron;
-use underDEV\AdvancedCronManager\Utils;
+use underDEV\Utils;
 
 class SchedulesActions {
 
@@ -41,7 +41,10 @@ class SchedulesActions {
 
 		$data = wp_parse_args( $_REQUEST['data'], array() );
 
-		$result = $this->library->insert( $data['slug'], $data['name'], $data['interval'] );
+		$slug = sanitize_title_with_dashes( $data['slug'], null, 'save' );
+		$slug = str_replace( '-', '_', $slug );
+
+		$result = $this->library->insert( $slug, $data['name'], $data['interval'] );
 
 		if ( is_array( $result ) ) {
 			$errors = $result;
