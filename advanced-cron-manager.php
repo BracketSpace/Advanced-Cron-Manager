@@ -15,6 +15,29 @@
 require_once( 'vendor/autoload.php' );
 
 /**
+ * Check requirements
+ */
+require_once( 'inc/Requirements.php' );
+
+$requirements = new underDEV_Requirements( __( 'Advanced Cron Manager' ), array(
+	'php'         => '5.3.9',
+	'wp'          => '3.6',
+	'old_plugins' => array(
+		'advanced-cron-manager-pro/acm-pro.php' => array(
+			'name' => 'Advanced Cron Manager PRO',
+			'version' => '2.0'
+		),
+	)
+) );
+
+if ( ! $requirements->satisfied() ) {
+
+	add_action( 'admin_notices', array( $requirements, 'notice' ) );
+	return;
+
+}
+
+/**
  * Fire up dependency injection container
  */
 $container = new tad_DI52_Container();
