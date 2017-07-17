@@ -32,7 +32,7 @@ $single_schedule = $this->get_var( 'single_schedule' );
 	<?php endforeach ?>
 </select>
 
-<label>Arguments</label>
+<label><?php esc_html_e( 'Arguments', 'advanced-cron-manager' ); ?></label>
 <p class="description"><?php esc_html_e( 'New inputs will be added automatically when you type', 'advanced-cron-manager' ); ?></p>
 <div class="event-arguments">
 	<input type="text" name="arguments[]" class="event-argument widefat">
