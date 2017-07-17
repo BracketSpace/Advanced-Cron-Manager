@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=conta
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,7 +80,7 @@ It's used for action. For example if your hook is hook_name you'll need to add i
 
 == Changelog ==
 
-= Next release =
+= 2.1.0 =
 * [Changed] Utilities classes has been moved to separate composer libraries
 * [Changed] Requirements checks
 * [Changed] date() function to date_i18n()

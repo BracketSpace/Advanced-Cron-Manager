@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
- * Version: 2.0.0
+ * Version: 2.1.0
  * Author: underDEV
  * Author URI: https://underdev.it
  * License: GPL3
@@ -19,7 +19,7 @@ require_once( 'vendor/autoload.php' );
  */
 require_once( 'inc/Requirements.php' );
 
-$requirements = new underDEV_Requirements( __( 'Advanced Cron Manager' ), array(
+$requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advanced-cron-manager' ), array(
 	'php'         => '5.3.9',
 	'wp'          => '3.6',
 	'old_plugins' => array(
@@ -43,7 +43,7 @@ if ( ! $requirements->satisfied() ) {
 $container = new tad_DI52_Container();
 
 $container->setVar( 'plugin_file', __FILE__ );
-$container->setVar( 'plugin_version', '2.0' );
+$container->setVar( 'plugin_version', '2.1.0' );
 
 // Registers all classes and their dependencies
 $container->register( 'underDEV\AdvancedCronManager\RuntimeProvider' );
