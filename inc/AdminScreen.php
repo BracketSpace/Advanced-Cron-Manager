@@ -73,7 +73,7 @@ class AdminScreen {
 
 			ob_start();
 
-			call_user_method_array( $method_to_call, $this, $args );
+			call_user_func_array( $method_to_call, $this, $args );
 
 			$this->ajax->success( ob_get_clean() );
 
