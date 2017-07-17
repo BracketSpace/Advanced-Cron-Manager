@@ -85,6 +85,7 @@ It's used for action. For example if your hook is hook_name you'll need to add i
 * [Changed] Requirements checks
 * [Fixed] Deprecated function has been updated
 * [Fixed] Translations. There was few missing gettext functions
+* [Added] Schedules dropdown in add new event form now includes schedule's slug
 
 = 2.0.0 =
 * [Changed] Pretty much everything. There's new interface and code base.

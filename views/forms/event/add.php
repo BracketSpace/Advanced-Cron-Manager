@@ -28,7 +28,7 @@ $single_schedule = $this->get_var( 'single_schedule' );
 		<?php echo esc_html( sprintf( __( 'Don\'t repeat (%s)', 'advanced-cron-manager' ), $single_schedule->label ) ); ?>
 	</option>
 	<?php foreach ( $schedules as $schedule ): ?>
-		<option value="<?php echo esc_attr( $schedule->slug ); ?>"><?php echo esc_html( $schedule->label ); ?></option>
+		<option value="<?php echo esc_attr( $schedule->slug ); ?>"><?php echo esc_html( $schedule->label ); ?> (<?php echo esc_html( $schedule->slug ); ?>)</option>
 	<?php endforeach ?>
 </select>
 
