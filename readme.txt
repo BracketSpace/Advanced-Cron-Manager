@@ -83,6 +83,7 @@ It's used for action. For example if your hook is hook_name you'll need to add i
 = Next release =
 * [Changed] Utilities classes has been moved to separate composer libraries
 * [Changed] Requirements checks
+* [Changed] date() function to date_i18n()
 * [Fixed] Deprecated function has been updated
 * [Fixed] Translations. There was few missing gettext functions
 * [Added] Schedules dropdown in add new event form now includes schedule's slug
