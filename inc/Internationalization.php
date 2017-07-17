@@ -8,6 +8,7 @@
  */
 
 namespace underDEV\AdvancedCronManager;
+use underDEV\Utils;
 
 class Internationalization {
 

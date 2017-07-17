@@ -10,25 +10,25 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 
 	public function register() {
 
-		$this->container->singleton( 'underDEV\AdvancedCronManager\Utils\Files', function( $c ) {
-			return new Utils\Files( $c->getVar( 'plugin_file' ) );
+		$this->container->singleton( 'underDEV\Utils\Files', function( $c ) {
+			return new \underDEV\Utils\Files( $c->getVar( 'plugin_file' ) );
 		} );
 
 		$this->container->singleton( 'underDEV\AdvancedCronManager\ScreenRegisterer', function( $c ) {
 			return new ScreenRegisterer( $c->make( 'underDEV\AdvancedCronManager\AdminScreen' ) );
 		} );
 
-		$this->container->singleton( 'underDEV\AdvancedCronManager\Utils\Assets', function( $c ) {
+		$this->container->singleton( 'underDEV\AdvancedCronManager\Assets', function( $c ) {
 			$screen_registerer = $c->make( 'underDEV\AdvancedCronManager\ScreenRegisterer' );
-			return new Utils\Assets(
+			return new Assets(
 				$c->getVar( 'plugin_version' ),
-				$c->make( 'underDEV\AdvancedCronManager\Utils\Files' ),
+				$c->make( 'underDEV\Utils\Files' ),
 				$screen_registerer->get_page_hook()
 			);
 		} );
 
 		$this->container->singleton( 'underDEV\AdvancedCronManager\Cron\SchedulesLibrary', function( $c ) {
-			return new Cron\SchedulesLibrary( $c->make( 'underDEV\AdvancedCronManager\Utils\Ajax' ) );
+			return new Cron\SchedulesLibrary( $c->make( 'underDEV\Utils\Ajax' ) );
 		} );
 
 		$this->add_actions();
@@ -73,7 +73,7 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 		), 10, 1 );
 
 		// Enqueue assets
-		add_action( 'admin_enqueue_scripts', $this->container->callback( 'underDEV\AdvancedCronManager\Utils\Assets', 'enqueue_admin' ), 10, 1 );
+		add_action( 'admin_enqueue_scripts', $this->container->callback( 'underDEV\AdvancedCronManager\Assets', 'enqueue_admin' ), 10, 1 );
 
 		// Forms
 		add_action( 'wp_ajax_acm/schedule/add/form', array(

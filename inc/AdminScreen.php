@@ -5,6 +5,7 @@
  */
 
 namespace underDEV\AdvancedCronManager;
+use underDEV\Utils;
 use underDEV\AdvancedCronManager\Cron;
 
 class AdminScreen {

@@ -5,7 +5,7 @@
  */
 
 namespace underDEV\AdvancedCronManager\Cron;
-use underDEV\AdvancedCronManager\Utils;
+use underDEV\Utils;
 
 class SchedulesActions {
 

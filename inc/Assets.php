@@ -4,8 +4,8 @@
  * Loads plugin assets
  */
 
-namespace underDEV\AdvancedCronManager\Utils;
-use underDEV\AdvancedCronManager\AdminScreen;
+namespace underDEV\AdvancedCronManager;
+use underDEV\Utils;
 
 class Assets {
 
@@ -17,7 +17,7 @@ class Assets {
 
 	/**
 	 * Files class
-	 * @var instance of underDEV\AdvancedCronManager\Utils\Files
+	 * @var object
 	 */
 	public $files;
 
@@ -27,7 +27,7 @@ class Assets {
 	 */
 	public $screen_hook;
 
-	public function __construct( $version, Files $files, $screen_hook ) {
+	public function __construct( $version, Utils\Files $files, $screen_hook ) {
 
 		$this->plugin_version = $version;
 		$this->files          = $files;
