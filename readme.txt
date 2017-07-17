@@ -80,6 +80,9 @@ It's used for action. For example if your hook is hook_name you'll need to add i
 
 == Changelog ==
 
+= Next release =
+* [Changed] Utilities classes has been moved to separate composer libraries
+
 = 2.0.0 =
 * [Changed] Pretty much everything. There's new interface and code base.
 * [Added] Events search
