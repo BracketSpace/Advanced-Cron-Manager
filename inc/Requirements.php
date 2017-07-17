@@ -97,7 +97,7 @@ class underDEV_Requirements {
 
 		if ( ! empty( $missing_extensions ) ) {
 			$this->errors[] = sprintf(
-				_n( 'PHP extension: %s', 'PHP extensions: %s', count( $missing_extensions ) ),
+				_n( 'PHP extension: %s', 'PHP extensions: %s', count( $missing_extensions ), 'advanced-cron-manager' ),
 				implode( ', ', $missing_extensions )
 			);
 		}

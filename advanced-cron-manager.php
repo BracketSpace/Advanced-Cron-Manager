@@ -19,7 +19,7 @@ require_once( 'vendor/autoload.php' );
  */
 require_once( 'inc/Requirements.php' );
 
-$requirements = new underDEV_Requirements( __( 'Advanced Cron Manager' ), array(
+$requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advanced-cron-manager' ), array(
 	'php'         => '5.3.9',
 	'wp'          => '3.6',
 	'old_plugins' => array(
