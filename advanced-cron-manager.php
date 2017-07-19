@@ -45,7 +45,9 @@ function acm_check_old_plugins( $plugins, $r ) {
 
 }
 
-$requirements->add_check( 'old_plugins', 'acm_check_old_plugins' );
+if ( method_exists( $requirements, 'add_check' ) ) {
+	$requirements->add_check( 'old_plugins', 'acm_check_old_plugins' );
+}
 
 if ( ! $requirements->satisfied() ) {
 
