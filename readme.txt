@@ -80,6 +80,9 @@ It's used for action. For example if your hook is hook_name you'll need to add i
 
 == Changelog ==
 
+= 2.1.1 =
+* [Changed] Requirements lib has been moved to Composer
+
 = 2.1.0 =
 * [Changed] Utilities classes has been moved to separate composer libraries
 * [Changed] Requirements checks

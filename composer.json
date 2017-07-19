@@ -11,6 +11,7 @@
     ],
     "require": {
         "underdev/utils": "*",
+        "underdev/requirements": "*",
         "lucatume/di52": "*"
     },
     "autoload": {

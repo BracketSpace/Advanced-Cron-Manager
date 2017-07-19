@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
- * Version: 2.1.0
+ * Version: 2.1.1
  * Author: underDEV
  * Author URI: https://underdev.it
  * License: GPL3
@@ -14,11 +14,6 @@
  */
 require_once( 'vendor/autoload.php' );
 
-/**
- * Check requirements
- */
-require_once( 'inc/Requirements.php' );
-
 $requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advanced-cron-manager' ), array(
 	'php'         => '5.3.9',
 	'wp'          => '3.6',
@@ -29,6 +24,28 @@ $requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advance
 		),
 	)
 ) );
+
+/**
+ * Check if old plugins are active
+ * @param  array $plugins array with plugins,
+ *                        where key is the plugin file and value is the version
+ * @return void
+ */
+function acm_check_old_plugins( $plugins, $r ) {
+
+	foreach ( $plugins as $plugin_file => $plugin_data ) {
+
+		$old_plugin_version = @get_file_data( WP_PLUGIN_DIR . '/' . $plugin_file , array( 'Version' ) )[0];
+
+		if ( ! empty( $old_plugin_version ) && version_compare( $old_plugin_version, $plugin_data['version'], '<' ) ) {
+			$r->add_error( sprintf( '%s plugin at least in version %s', $plugin_data['name'], $plugin_data['version'] ) );
+		}
+
+	}
+
+}
+
+$requirements->add_check( 'old_plugins', 'acm_check_old_plugins' );
 
 if ( ! $requirements->satisfied() ) {
 
@@ -43,7 +60,7 @@ if ( ! $requirements->satisfied() ) {
 $container = new tad_DI52_Container();
 
 $container->setVar( 'plugin_file', __FILE__ );
-$container->setVar( 'plugin_version', '2.1.0' );
+$container->setVar( 'plugin_version', '2.1.1' );
 
 // Registers all classes and their dependencies
 $container->register( 'underDEV\AdvancedCronManager\RuntimeProvider' );
