@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "85ac86357cf4a73aedc24122e1eed15f",
+    "content-hash": "9db4709471ddaa249743748070085bad",
     "packages": [
         {
             "name": "lucatume/di52",
-            "version": "2.0.7",
+            "version": "2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/di52.git",
-                "reference": "30fe79737615883d458bfc1b117d500a76e056da"
+                "reference": "e49ca534f180e683c8df599ec011833ebae7ec6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/di52/zipball/30fe79737615883d458bfc1b117d500a76e056da",
-                "reference": "30fe79737615883d458bfc1b117d500a76e056da",
+                "url": "https://api.github.com/repos/lucatume/di52/zipball/e49ca534f180e683c8df599ec011833ebae7ec6c",
+                "reference": "e49ca534f180e683c8df599ec011833ebae7ec6c",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,37 @@
                 }
             ],
             "description": "A PHP 5.2 compatible dependency injection container.",
-            "time": "2017-06-15T12:21:51+00:00"
+            "time": "2017-07-18T15:56:48+00:00"
+        },
+        {
+            "name": "underdev/requirements",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kubitomakita/Requirements.git",
+                "reference": "c47c93a48c8ea30040bcfee7afdb23701370f016"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kubitomakita/Requirements/zipball/c47c93a48c8ea30040bcfee7afdb23701370f016",
+                "reference": "c47c93a48c8ea30040bcfee7afdb23701370f016",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "underDEV_Requirements.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Kuba Mikita",
+                    "email": "jakub@underdev.it"
+                }
+            ],
+            "description": "WordPress drop-in to check requirements",
+            "time": "2017-07-18T20:52:22+00:00"
         },
         {
             "name": "underdev/utils",
@@ -121,12 +151,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/10up/wp_mock.git",
-                "reference": "01458ea2173ace24291e4be42f7c3c3a3ebfe48a"
+                "reference": "1baea0dbd1a23251fe7f08d9044fb7c1dc2106b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/10up/wp_mock/zipball/01458ea2173ace24291e4be42f7c3c3a3ebfe48a",
-                "reference": "01458ea2173ace24291e4be42f7c3c3a3ebfe48a",
+                "url": "https://api.github.com/repos/10up/wp_mock/zipball/1baea0dbd1a23251fe7f08d9044fb7c1dc2106b3",
+                "reference": "1baea0dbd1a23251fe7f08d9044fb7c1dc2106b3",
                 "shasum": ""
             },
             "require": {
@@ -142,11 +172,6 @@
                 "behat/behat": "^3.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-dev": "1.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "WP_Mock\\": "./php/WP_Mock"
@@ -160,7 +185,7 @@
                 "GPL-2.0+"
             ],
             "description": "A mocking library to take the pain out of unit testing for WordPress",
-            "time": "2017-06-01 16:49:53"
+            "time": "2017-07-19T03:16:31+00:00"
         },
         {
             "name": "antecedent/patchwork",
@@ -1519,7 +1544,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.3.4",
+            "version": "v3.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
