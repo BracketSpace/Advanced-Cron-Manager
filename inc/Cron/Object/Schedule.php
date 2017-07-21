@@ -38,14 +38,6 @@ class Schedule {
 	 */
 	public function __construct( $slug = null, $interval = 0, $label = null, $protected = false ) {
 
-		if ( empty( $slug ) ) {
-			trigger_error( 'Slug cannot be empty', E_USER_ERROR );
-		}
-
-		if ( $interval <= 0 ) {
-			trigger_error( 'Interval must be greater than 0', E_USER_ERROR );
-		}
-
 		if ( empty( $label ) ) {
 			$label = $slug;
 		}
@@ -121,6 +113,10 @@ class Schedule {
 
 	    if ( $interval['seconds'] > 0 ) {
 	    	$human_time .= $interval['seconds'] . 's ';
+	    }
+
+	    if ( empty( $human_time ) ) {
+	    	$human_time = '0s';
 	    }
 
 	    return trim( $human_time );

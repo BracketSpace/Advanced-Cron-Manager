@@ -40,6 +40,10 @@ class Schedules {
 
 			foreach ( wp_get_schedules() as $slug => $params ) {
 
+				if ( empty( $slug ) ) {
+					continue;
+				}
+
 				if ( $this->library->has( $slug ) ) {
 					$protected = false;
 				} else {
