@@ -68,7 +68,11 @@ When you pause an event it's really unscheduled and stored in the wp_option. If 
 = What is the Event hook? =
 
 It's used for action. For example if your hook is hook_name you'll need to add in PHP:
-`add_action( 'hook_name', 'function_name' );`
+`add_action( 'hook_name', 'function_name' )
+
+= Does this plugin allow to add PHP to events like in WP Crontrol plugin? =
+
+No. This is not safe. You can, however, copy the sample implementation and paste it into you own plugin or theme's function.php file.
 
 == Screenshots ==
 
