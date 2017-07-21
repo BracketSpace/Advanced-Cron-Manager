@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=conta
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,7 +84,7 @@ No. This is not safe. You can, however, copy the sample implementation and paste
 
 == Changelog ==
 
-= 2.1.1 =
+= 2.1.2 =
 * [Changed] Schedules can be registered in the system with 0s interval, thanks to @barryalbert
 
 = 2.1.1 =
