@@ -85,6 +85,9 @@ No. This is not safe. You can, however, copy the sample implementation and paste
 == Changelog ==
 
 = 2.1.1 =
+* [Changed] Schedules can be registered in the system with 0s interval, thanks to @barryalbert
+
+= 2.1.1 =
 * [Changed] Requirements lib has been moved to Composer
 
 = 2.1.0 =
