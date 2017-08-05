@@ -60,7 +60,8 @@ class Assets {
 				'executed_with_errors' => __( 'Event has been executed with errors', 'advanced-cron-manager' ),
 				'events'               => __( 'events', 'advanced-cron-manager' ),
 				'removing'             => __( 'Removing...', 'advanced-cron-manager' ),
-				'pausing'              => __( 'Pausing...', 'advanced-cron-manager' )
+				'pausing'              => __( 'Pausing...', 'advanced-cron-manager' ),
+				'saving'               => __( 'Saving...', 'advanced-cron-manager' )
 			)
 		) );
 

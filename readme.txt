@@ -81,11 +81,13 @@ No. This is not safe. You can, however, copy the sample implementation and paste
 3. Adding Event
 4. Event actions
 5. Search and bulk actions
+5. Server Scheduler section
 
 == Changelog ==
 
 = Next release =
 * [Changed] Updated composer libraries
+* [Added] Server Scheduler section with information about hooking the WP Cron to server scheduler
 
 = 2.1.2 =
 * [Changed] Schedules can be registered in the system with 0s interval, thanks to @barryalbert

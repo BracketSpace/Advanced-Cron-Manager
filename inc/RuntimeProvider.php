@@ -147,6 +147,19 @@ class RuntimeProvider extends tad_DI52_ServiceProvider {
 			'unpause'
 		) );
 
+		// Server scheduler
+		add_action( 'advanced-cron-manager/screen/sidebar', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\Server\Settings' ),
+			'load_settings_part'
+		), 10, 1 );
+
+		add_action( 'wp_ajax_acm/server/settings/save', $this->container->callback( 'underDEV\AdvancedCronManager\Server\Settings', 'save_settings' ) );
+
+		add_action( 'plugins_loaded', array(
+			$this->container->make( 'underDEV\AdvancedCronManager\Server\Processor' ),
+			'block_cron_executions'
+		), 10, 1 );
+
 	}
 
 }

@@ -33,3 +33,4 @@ foreach ( $paused_events as $event ) {
 
 delete_option( 'acm_paused_events' );
 delete_option( 'acm_schedules' );
+delete_option( 'acm_server_settings' );
