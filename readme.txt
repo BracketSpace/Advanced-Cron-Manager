@@ -84,6 +84,9 @@ No. This is not safe. You can, however, copy the sample implementation and paste
 
 == Changelog ==
 
+= Next release =
+* [Changed] Updated composer libraries
+
 = 2.1.2 =
 * [Changed] Schedules can be registered in the system with 0s interval, thanks to @barryalbert
 
