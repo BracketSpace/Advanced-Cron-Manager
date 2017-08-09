@@ -19,10 +19,9 @@ require_once( 'vendor/autoload.php' );
 
 // 1.
 
-$container = new tad_DI52_Container();
-$container->register( 'underDEV\AdvancedCronManager\RuntimeProvider' );
+$dice = new underDEV\Utils\Dice;
 
-$events_library = $container->make( 'underDEV\AdvancedCronManager\Cron\EventsLibrary' );
+$events_library = $dice->create( 'underDEV\AdvancedCronManager\Cron\EventsLibrary' );
 $paused_events  = $events_library->register_paused( array() );
 
 foreach ( $paused_events as $event ) {
