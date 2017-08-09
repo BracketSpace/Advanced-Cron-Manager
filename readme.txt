@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=conta
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 2.1.2
+Stable tag: 2.2.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,7 +90,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
-= Next release =
+= 2.2.0 =
 * [Changed] Updated composer libraries
 * [Changed] Changed DI52 Container to Dice in own namespace
 * [Added] Server Scheduler section with information about hooking the WP Cron to server scheduler
