@@ -90,6 +90,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
+= Next release =
+* [Fixed] Delete file where DI52 container was still used
+
 = 2.2.0 =
 * [Changed] Updated composer libraries
 * [Changed] Changed DI52 Container to Dice in own namespace
