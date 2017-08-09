@@ -11,8 +11,7 @@
     ],
     "require": {
         "underdev/utils": "*",
-        "underdev/requirements": "*",
-        "lucatume/di52": "*"
+        "underdev/requirements": "*"
     },
     "autoload": {
         "psr-4": {

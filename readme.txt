@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=conta
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 2.1.2
+Stable tag: 2.2.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,7 @@ With Advanced Cron Manager you can manage WP Cron events:
 * delete (unschedule) events
 * ready-to-copy-paste PHP implementation for each event
 * bulk actions on events
+* block WP Cron spawning and get instructions how to set Server Scheduler
 
 and schedules:
 
@@ -32,16 +33,16 @@ and schedules:
 
 Plugin use AJAX request so you'll need enabled Javascript in order to use it.
 
-**Advanced Cron Manager PRO**
-
-PRO version includes
-
-* Cron Logger - log cron's execution times easily
-* Error catcher - catch cron task's fatal errors and get them displayed in the log
-* Performance stats - see how much time and memory particular event took
-* Debug tool - log any useful informations from Cron callback
-
-[Buy now](https://www.wpart.co/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
+> **Advanced Cron Manager PRO**
+>
+> PRO version includes
+>
+> * Cron Logger - log cron's execution times easily
+> * Error catcher - catch cron task's fatal errors and get them displayed in the log
+> * Performance stats - see how much time and memory particular event took
+> * Debug tool - log any useful informations from Cron callback
+>
+> [Buy now](https://www.wpart.co/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
 
 **Informations about WP Cron**
 
@@ -68,11 +69,15 @@ When you pause an event it's really unscheduled and stored in the wp_option. If 
 = What is the Event hook? =
 
 It's used for action. For example if your hook is hook_name you'll need to add in PHP:
-`add_action( 'hook_name', 'function_name' )
+`add_action( 'hook_name', 'function_name' )`
 
 = Does this plugin allow to add PHP to events like in WP Crontrol plugin? =
 
 No. This is not safe. You can, however, copy the sample implementation and paste it into you own plugin or theme's function.php file.
+
+= Can this plugin block WP Cron and help hooking it into Server Cron like WP-Cron Control plugin? =
+
+Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Advanced Cron Manager can disable spawning WP Cron on site visit and will give you useful informations about added Server Cron task.
 
 == Screenshots ==
 
@@ -81,8 +86,14 @@ No. This is not safe. You can, however, copy the sample implementation and paste
 3. Adding Event
 4. Event actions
 5. Search and bulk actions
+6. Server Scheduler section
 
 == Changelog ==
+
+= 2.2.0 =
+* [Changed] Updated composer libraries
+* [Changed] Changed DI52 Container to Dice in own namespace
+* [Added] Server Scheduler section with information about hooking the WP Cron to server scheduler
 
 = 2.1.2 =
 * [Changed] Schedules can be registered in the system with 0s interval, thanks to @barryalbert
