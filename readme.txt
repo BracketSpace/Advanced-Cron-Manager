@@ -90,7 +90,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
-= Next release =
+= 2.2.1 =
 * [Fixed] Delete file where DI52 container was still used
 
 = 2.2.0 =
