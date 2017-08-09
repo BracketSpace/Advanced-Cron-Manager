@@ -22,16 +22,16 @@ class Assets {
 	public $files;
 
 	/**
-	 * Screen hook handle
-	 * @var string
+	 * ScreenRegisterer
+	 * @var object
 	 */
-	public $screen_hook;
+	public $screen;
 
-	public function __construct( $version, Utils\Files $files, $screen_hook ) {
+	public function __construct( $version, Utils\Files $files, ScreenRegisterer $screen ) {
 
 		$this->plugin_version = $version;
 		$this->files          = $files;
-		$this->screen_hook    = $screen_hook;
+		$this->screen         = $screen;
 
 	}
 
@@ -41,7 +41,7 @@ class Assets {
 	 */
 	public function enqueue_admin( $current_page_hook ) {
 
-		if ( $current_page_hook != $this->screen_hook ) {
+		if ( $current_page_hook != $this->screen->get_page_hook() ) {
 			return;
 		}
 

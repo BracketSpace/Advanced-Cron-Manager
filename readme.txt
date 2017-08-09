@@ -92,6 +92,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 = Next release =
 * [Changed] Updated composer libraries
+* [Changed] Changed DI52 Container to Dice in own namespace
 * [Added] Server Scheduler section with information about hooking the WP Cron to server scheduler
 
 = 2.1.2 =
