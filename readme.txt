@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 2.2.0
+Stable tag: 2.2.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.2.2 =
+* [Changed] Minimum PHP version to 5.6
 
 = 2.2.1 =
 * [Fixed] Delete file where DI52 container was still used
