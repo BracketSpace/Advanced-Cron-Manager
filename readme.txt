@@ -90,6 +90,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
+= Next release =
+* [Changed] Minimum PHP version to 5.6
+
 = 2.2.1 =
 * [Fixed] Delete file where DI52 container was still used
 
