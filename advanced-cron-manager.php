@@ -19,7 +19,7 @@ $namespace      = 'underDEV\\AdvancedCronManager\\';
 require_once( 'vendor/autoload.php' );
 
 $requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advanced-cron-manager' ), array(
-	'php'         => '5.6',
+	'php'         => '5.3',
 	'wp'          => '3.6',
 	'old_plugins' => array(
 		'advanced-cron-manager-pro/acm-pro.php' => array(
