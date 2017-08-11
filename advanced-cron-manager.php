@@ -2,14 +2,14 @@
 /**
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
- * Version: 2.2.2
+ * Version: 2.2.3
  * Author: underDEV
  * Author URI: https://underdev.it
  * License: GPL3
  * Text Domain: advanced-cron-manager
  */
 
-$plugin_version = '2.2.2';
+$plugin_version = '2.2.3';
 $plugin_file    = __FILE__;
 $namespace      = 'underDEV\\AdvancedCronManager\\';
 
@@ -19,7 +19,7 @@ $namespace      = 'underDEV\\AdvancedCronManager\\';
 require_once( 'vendor/autoload.php' );
 
 $requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advanced-cron-manager' ), array(
-	'php'         => '5.6',
+	'php'         => '5.3',
 	'wp'          => '3.6',
 	'old_plugins' => array(
 		'advanced-cron-manager-pro/acm-pro.php' => array(
@@ -64,29 +64,7 @@ if ( ! $requirements->satisfied() ) {
  * Fire up dependency injection container and bootstrap all the classes
  */
 
-$dice = new underDEV\Utils\Dice;
-
-/**
- * Rules
- */
-
-$dice->addRule( 'underDEV\Utils\Files', array(
-	'shared' => 'true',
-	'constructParams' => array( $plugin_file )
-) );
-
-$dice->addRule( $namespace . 'ScreenRegisterer', array(
-	'shared' => 'true',
-) );
-
-$dice->addRule( $namespace . 'Cron\SchedulesLibrary', array(
-	'shared' => 'true',
-) );
-
-$dice->addRule( $namespace . 'Assets', array(
-	'shared' => 'true',
-	'constructParams' => array( $plugin_version )
-) );
+$dice = require( 'container.php' );
 
 /**
  * Actions

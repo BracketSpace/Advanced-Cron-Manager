@@ -12,14 +12,21 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     die;
 }
 
+$plugin_version = 'x';
+$plugin_file    = dirname( __FILE__ ) . '/advanced-cron-manager.php';
+$namespace      = 'underDEV\\AdvancedCronManager\\';
+
 /**
  * Fire up Composer's autoloader
  */
 require_once( 'vendor/autoload.php' );
 
-// 1.
+/**
+ * Bootstrap DICE
+ */
+$dice = require( 'container.php' );
 
-$dice = new underDEV\Utils\Dice;
+// 1.
 
 $events_library = $dice->create( 'underDEV\AdvancedCronManager\Cron\EventsLibrary' );
 $paused_events  = $events_library->register_paused( array() );
