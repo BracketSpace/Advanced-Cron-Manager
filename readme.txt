@@ -93,6 +93,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 = Next release =
 * [Added] Compatibility with PHP 5.3 with Dice library
 * [Changed] PHP 5.6 requirement to PHP 5.3
+* [Changed] Moved Container to separate file
 
 = 2.2.2 =
 * [Changed] Minimum PHP version to 5.6
