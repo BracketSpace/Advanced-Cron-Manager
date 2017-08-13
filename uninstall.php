@@ -14,22 +14,35 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 $plugin_version = 'x';
 $plugin_file    = dirname( __FILE__ ) . '/advanced-cron-manager.php';
-$namespace      = 'underDEV\\AdvancedCronManager\\';
 
 /**
  * Fire up Composer's autoloader
  */
-require_once( 'vendor/autoload.php' );
+require_once( __DIR__ . '/vendor/autoload.php' );
 
 /**
- * Bootstrap DICE
+ * Bootstrap plugin
  */
-$dice = require( 'container.php' );
+
+$ajax = function() {
+	return new underDEV\Utils\Ajax;
+};
+
+$schedules_library = new underDEV\AdvancedCronManager\Cron\SchedulesLibrary( $ajax() );
+
+$schedules = function() use ( $schedules_library ) {
+	return new underDEV\AdvancedCronManager\Cron\Schedules( $schedules_library );
+};
+
+$events = function() use ( $schedules ) {
+	return new underDEV\AdvancedCronManager\Cron\Events( $schedules() );
+};
+
+$events_library = new underDEV\AdvancedCronManager\Cron\EventsLibrary( $schedules(), $events() );
 
 // 1.
 
-$events_library = $dice->create( 'underDEV\AdvancedCronManager\Cron\EventsLibrary' );
-$paused_events  = $events_library->register_paused( array() );
+$paused_events = $events_library->register_paused( array() );
 
 foreach ( $paused_events as $event ) {
 	$events_library->unpause( $event );
