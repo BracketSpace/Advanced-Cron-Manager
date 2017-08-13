@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "underdev/requirements",
-            "version": "1.2",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kubitomakita/Requirements.git",
-                "reference": "c47c93a48c8ea30040bcfee7afdb23701370f016"
+                "reference": "98fe018df4815a64c86b3db55dd72d0fe3ab736e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kubitomakita/Requirements/zipball/c47c93a48c8ea30040bcfee7afdb23701370f016",
-                "reference": "c47c93a48c8ea30040bcfee7afdb23701370f016",
+                "url": "https://api.github.com/repos/Kubitomakita/Requirements/zipball/98fe018df4815a64c86b3db55dd72d0fe3ab736e",
+                "reference": "98fe018df4815a64c86b3db55dd72d0fe3ab736e",
                 "shasum": ""
             },
             "type": "library",
@@ -34,20 +34,20 @@
                 }
             ],
             "description": "WordPress drop-in to check requirements",
-            "time": "2017-07-18T20:52:22+00:00"
+            "time": "2017-08-13T15:38:21+00:00"
         },
         {
             "name": "underdev/utils",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kubitomakita/Utils.git",
-                "reference": "a12b3d0f01b7d0e7983b5aca322d9f193cf62267"
+                "reference": "e1b34782ada7e43fc27dca1348b9ca373017bc20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kubitomakita/Utils/zipball/a12b3d0f01b7d0e7983b5aca322d9f193cf62267",
-                "reference": "a12b3d0f01b7d0e7983b5aca322d9f193cf62267",
+                "url": "https://api.github.com/repos/Kubitomakita/Utils/zipball/e1b34782ada7e43fc27dca1348b9ca373017bc20",
+                "reference": "e1b34782ada7e43fc27dca1348b9ca373017bc20",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
                 }
             ],
             "description": "WordPress utilities",
-            "time": "2017-08-11T09:59:19+00:00"
+            "time": "2017-08-13T15:34:00+00:00"
         }
     ],
     "packages-dev": [
