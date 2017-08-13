@@ -15,7 +15,7 @@ $plugin_file    = __FILE__;
 /**
  * Fire up Composer's autoloader
  */
-require_once( __DIR__ . 'vendor/autoload.php' );
+require_once( __DIR__ . '/vendor/autoload.php' );
 
 $requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advanced-cron-manager' ), array(
 	'php'         => '5.3',
