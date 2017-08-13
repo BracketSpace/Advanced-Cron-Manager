@@ -93,6 +93,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 = Next release =
 * [Changed] Proper compatibility with PHP 5.3
 * [Fixed] Problem with nested Composer environment, thanks to @v_decadence
+* [Fixed] Assets vendor directory
 
 = 2.2.3 =
 * [Added] Compatibility with PHP 5.3 with Dice library
