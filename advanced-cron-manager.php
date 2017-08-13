@@ -11,7 +11,6 @@
 
 $plugin_version = '2.2.3';
 $plugin_file    = __FILE__;
-$namespace      = 'underDEV\\AdvancedCronManager\\';
 
 /**
  * Fire up Composer's autoloader
@@ -39,7 +38,13 @@ function acm_check_old_plugins( $plugins, $r ) {
 
 	foreach ( $plugins as $plugin_file => $plugin_data ) {
 
-		$old_plugin_version = @get_file_data( WP_PLUGIN_DIR . '/' . $plugin_file , array( 'Version' ) )[0];
+		$plugin_api_data = @get_file_data( WP_PLUGIN_DIR . '/' . $plugin_file , array( 'Version' ) );
+
+		if ( ! isset( $plugin_api_data[0] ) ) {
+			continue;
+		}
+
+		$old_plugin_version = $plugin_api_data[0];
 
 		if ( ! empty( $old_plugin_version ) && version_compare( $old_plugin_version, $plugin_data['version'], '<' ) ) {
 			$r->add_error( sprintf( '%s plugin at least in version %s', $plugin_data['name'], $plugin_data['version'] ) );
@@ -61,59 +66,113 @@ if ( ! $requirements->satisfied() ) {
 }
 
 /**
- * Fire up dependency injection container and bootstrap all the classes
+ * Instances and Closures
  */
 
-$dice = require( 'container.php' );
+$files = new underDEV\Utils\Files( $plugin_file );
+
+$view = function() use ( $files ) {
+	return new underDEV\Utils\View( $files );
+};
+
+$ajax = function() {
+	return new underDEV\Utils\Ajax;
+};
+
+$server_settings  = function() use ( $view, $ajax ) {
+	return new underDEV\AdvancedCronManager\Server\Settings( $view(), $ajax() );
+};
+
+$server_processor = function() use ( $server_settings ) {
+	return new underDEV\AdvancedCronManager\Server\Processor( $server_settings() );
+};
+
+$schedules_library = new underDEV\AdvancedCronManager\Cron\SchedulesLibrary( $ajax() );
+
+$schedules = function() use ( $schedules_library ) {
+	return new underDEV\AdvancedCronManager\Cron\Schedules( $schedules_library );
+};
+
+$schedules_actions = function() use ( $ajax, $schedules_library ) {
+	return new underDEV\AdvancedCronManager\Cron\SchedulesActions( $ajax(), $schedules_library );
+};
+
+$events = function() use ( $schedules ) {
+	return new underDEV\AdvancedCronManager\Cron\Events( $schedules() );
+};
+
+$events_library = function() use ( $schedules, $events ) {
+	return new underDEV\AdvancedCronManager\Cron\EventsLibrary( $schedules(), $events() );
+};
+
+$events_actions = function() use ( $ajax, $events, $events_library, $schedules ) {
+	return new underDEV\AdvancedCronManager\Cron\EventsActions( $ajax(), $events(), $events_library(), $schedules() );
+};
+
+$internationalization = function() use ( $files ) {
+	return new underDEV\AdvancedCronManager\Internationalization( $files );
+};
+
+$admin_screen = function() use ( $view, $ajax, $schedules, $events ) {
+	return new underDEV\AdvancedCronManager\AdminScreen( $view(), $ajax(), $schedules(), $events() );
+};
+
+$screen_registerer = new underDEV\AdvancedCronManager\ScreenRegisterer( $admin_screen() );
+
+$assets = new underDEV\AdvancedCronManager\Assets( $plugin_version, $files, $screen_registerer );
+
+$form_provider = function () use ( $view, $ajax, $schedules_library, $schedules ) {
+	return new underDEV\AdvancedCronManager\FormProvider( $view(), $ajax(), $schedules_library, $schedules() );
+};
 
 /**
  * Actions
  */
 
 // Load textdomain
-add_action( 'plugins_loaded', array( $dice->create( $namespace . 'Internationalization' ), 'load_textdomain' ) );
+add_action( 'plugins_loaded', array( $internationalization(), 'load_textdomain' ) );
 
 // Add plugin's screen in the admin
-add_action( 'admin_menu', array( $dice->create( $namespace . 'ScreenRegisterer' ), 'register_screen' ) );
+add_action( 'admin_menu', array( $screen_registerer, 'register_screen' ) );
 
 // Add main section parts on the admin screen
-add_action( 'advanced-cron-manager/screen/main', array( $dice->create( $namespace . 'AdminScreen' ), 'load_searchbox_part' ), 10, 1 );
-add_action( 'advanced-cron-manager/screen/main', array( $dice->create( $namespace . 'AdminScreen' ), 'load_events_table_part' ), 20, 1 );
+add_action( 'advanced-cron-manager/screen/main', array( $admin_screen(), 'load_searchbox_part' ), 10, 1 );
+add_action( 'advanced-cron-manager/screen/main', array( $admin_screen(), 'load_events_table_part' ), 20, 1 );
 
 // Add sidebar section parts on the admin screen
-add_action( 'advanced-cron-manager/screen/sidebar', array( $dice->create( $namespace . 'AdminScreen' ), 'load_schedules_table_part' ), 10, 1 );
+add_action( 'advanced-cron-manager/screen/sidebar', array( $admin_screen(), 'load_schedules_table_part' ), 10, 1 );
 
 // Add general parts on the admin screen
-add_action( 'advanced-cron-manager/screen/wrap/after', array( $dice->create( $namespace . 'AdminScreen' ), 'load_slidebar_part' ), 10, 1 );
+add_action( 'advanced-cron-manager/screen/wrap/after', array( $admin_screen(), 'load_slidebar_part' ), 10, 1 );
 
 // Add tabs to event details
-add_filter( 'advanced-cron-manager/screen/event/details/tabs', array( $dice->create( $namespace . 'AdminScreen' ), 'add_default_event_details_tabs' ), 10, 1 );
+add_filter( 'advanced-cron-manager/screen/event/details/tabs', array( $admin_screen(), 'add_default_event_details_tabs' ), 10, 1 );
 
 // Enqueue assets
-add_action( 'admin_enqueue_scripts', array( $dice->create( $namespace . 'Assets' ), 'enqueue_admin' ), 10, 1 );
+add_action( 'admin_enqueue_scripts', array( $assets, 'enqueue_admin' ), 10, 1 );
 
 // Forms
-add_action( 'wp_ajax_acm/schedule/add/form', array( $dice->create( $namespace . 'FormProvider' ), 'add_schedule' ) );
-add_action( 'wp_ajax_acm/schedule/edit/form', array( $dice->create( $namespace . 'FormProvider' ), 'edit_schedule' ) );
-add_action( 'wp_ajax_acm/event/add/form', array( $dice->create( $namespace . 'FormProvider' ), 'add_event' ) );
+add_action( 'wp_ajax_acm/schedule/add/form', array( $form_provider(), 'add_schedule' ) );
+add_action( 'wp_ajax_acm/schedule/edit/form', array( $form_provider(), 'edit_schedule' ) );
+add_action( 'wp_ajax_acm/event/add/form', array( $form_provider(), 'add_event' ) );
 
 // Schedules
-add_filter( 'cron_schedules', array( $dice->create( $namespace . 'Cron\SchedulesLibrary' ), 'register' ), 10, 1 );
-add_action( 'wp_ajax_acm/rerender/schedules', array( $dice->create( $namespace . 'AdminScreen' ), 'ajax_rerender_schedules_table' ) );
-add_action( 'wp_ajax_acm/schedule/insert', array( $dice->create( $namespace . 'Cron\SchedulesActions' ), 'insert' ) );
-add_action( 'wp_ajax_acm/schedule/edit', array( $dice->create( $namespace . 'Cron\SchedulesActions' ), 'edit' ) );
-add_action( 'wp_ajax_acm/schedule/remove', array( $dice->create( $namespace . 'Cron\SchedulesActions' ), 'remove' ) );
+add_filter( 'cron_schedules', array( $schedules_library, 'register' ), 10, 1 );
+add_action( 'wp_ajax_acm/rerender/schedules', array( $admin_screen(), 'ajax_rerender_schedules_table' ) );
+add_action( 'wp_ajax_acm/schedule/insert', array(  $schedules_actions(), 'insert' ) );
+add_action( 'wp_ajax_acm/schedule/edit', array(  $schedules_actions(), 'edit' ) );
+add_action( 'wp_ajax_acm/schedule/remove', array(  $schedules_actions(), 'remove' ) );
 
 // Events
-add_filter( 'advanced-cron-manager/events/array', array( $dice->create( $namespace . 'Cron\EventsLibrary' ), 'register_paused' ), 10, 1 );
-add_action( 'wp_ajax_acm/rerender/events', array( $dice->create( $namespace . 'AdminScreen' ), 'ajax_rerender_events_table' ) );
-add_action( 'wp_ajax_acm/event/insert', array( $dice->create( $namespace . 'Cron\EventsActions' ), 'insert' ) );
-add_action( 'wp_ajax_acm/event/run', array( $dice->create( $namespace . 'Cron\EventsActions' ), 'run' ) );
-add_action( 'wp_ajax_acm/event/remove', array( $dice->create( $namespace . 'Cron\EventsActions' ), 'remove' ) );
-add_action( 'wp_ajax_acm/event/pause', array( $dice->create( $namespace . 'Cron\EventsActions' ), 'pause' ) );
-add_action( 'wp_ajax_acm/event/unpause', array( $dice->create( $namespace . 'Cron\EventsActions' ), 'unpause' ) );
+add_filter( 'advanced-cron-manager/events/array', array( $events_library(), 'register_paused' ), 10, 1 );
+add_action( 'wp_ajax_acm/rerender/events', array( $admin_screen(), 'ajax_rerender_events_table' ) );
+add_action( 'wp_ajax_acm/event/insert', array(  $events_actions(), 'insert' ) );
+add_action( 'wp_ajax_acm/event/run', array(  $events_actions(), 'run' ) );
+add_action( 'wp_ajax_acm/event/remove', array(  $events_actions(), 'remove' ) );
+add_action( 'wp_ajax_acm/event/pause', array(  $events_actions(), 'pause' ) );
+add_action( 'wp_ajax_acm/event/unpause', array(  $events_actions(), 'unpause' ) );
 
 // Server scheduler
-add_action( 'advanced-cron-manager/screen/sidebar', array( $dice->create( $namespace . 'Server\Settings' ), 'load_settings_part' ), 10, 1 );
-add_action( 'wp_ajax_acm/server/settings/save', array( $dice->create( $namespace . 'Server\Settings' ), 'save_settings' ) );
-add_action( 'plugins_loaded', array( $dice->create( $namespace . 'Server\Processor' ), 'block_cron_executions' ), 10, 1 );
+add_action( 'advanced-cron-manager/screen/sidebar', array( $server_settings(), 'load_settings_part' ), 10, 1 );
+add_action( 'wp_ajax_acm/server/settings/save', array( $server_settings(), 'save_settings' ) );
+add_action( 'plugins_loaded', array( $server_processor(), 'block_cron_executions' ), 10, 1 );
