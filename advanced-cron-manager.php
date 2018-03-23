@@ -2,9 +2,9 @@
 /**
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
- * Version: 2.3.0
- * Author: underDEV
- * Author URI: https://underdev.it
+ * Version: 2.3.1
+ * Author: BracketSpace
+ * Author URI: https://bracketspace.com
  * License: GPL3
  * Text Domain: advanced-cron-manager
  */
@@ -15,7 +15,7 @@ $plugin_file    = __FILE__;
 /**
  * Fire up Composer's autoloader
  */
-require_once( __DIR__ . 'vendor/autoload.php' );
+require_once( __DIR__ . '/vendor/autoload.php' );
 
 $requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advanced-cron-manager' ), array(
 	'php'         => '5.3',
@@ -37,6 +37,10 @@ $requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advance
 function acm_check_old_plugins( $plugins, $r ) {
 
 	foreach ( $plugins as $plugin_file => $plugin_data ) {
+
+		if ( ! file_exists( WP_PLUGIN_DIR . '/' . $plugin_file ) ) {
+			continue;
+		}
 
 		$plugin_api_data = @get_file_data( WP_PLUGIN_DIR . '/' . $plugin_file , array( 'Version' ) );
 
@@ -81,6 +85,10 @@ $ajax = function() {
 
 $server_settings  = function() use ( $view, $ajax ) {
 	return new underDEV\AdvancedCronManager\Server\Settings( $view(), $ajax() );
+};
+
+$misc  = function() use ( $view ) {
+	return new underDEV\AdvancedCronManager\Misc( $view() );
 };
 
 $server_processor = function() use ( $server_settings ) {
@@ -176,3 +184,10 @@ add_action( 'wp_ajax_acm/event/unpause', array(  $events_actions(), 'unpause' ) 
 add_action( 'advanced-cron-manager/screen/sidebar', array( $server_settings(), 'load_settings_part' ), 10, 1 );
 add_action( 'wp_ajax_acm/server/settings/save', array( $server_settings(), 'save_settings' ) );
 add_action( 'plugins_loaded', array( $server_processor(), 'block_cron_executions' ), 10, 1 );
+
+// Notification promo
+add_action( 'plugins_loaded', function() {
+	if ( ! function_exists( 'register_trigger' ) ) {
+		add_action( 'advanced-cron-manager/screen/sidebar', array( $misc(), 'load_notification_promo_part' ), 1000, 1 );
+	}
+}, 10, 1 );
