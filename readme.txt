@@ -90,6 +90,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Array to string conversion error fix for event arguments
+
 = 2.3.0 =
 * [Changed] Proper compatibility with PHP 5.3
 * [Changed] Updated composer libraries
