@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
- * Version: 2.3.0
+ * Version: 2.3.1
  * Author: underDEV
  * Author URI: https://underdev.it
  * License: GPL3
