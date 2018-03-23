@@ -15,13 +15,13 @@
 
 		<div class="tile-content">
 
-			<h3><?php esc_html_e( 'Notification - notification system for developers' ); ?></h3>
+			<h3><?php esc_html_e( 'Notification - notification system for developers', 'advanced-cron-manager' ); ?></h3>
 
-			<p><?php esc_html_e( 'Custom triggers, white label mode, powerful and intuitive API. Ready to be shipped as a part of your plugin or theme.' ); ?></p>
+			<p><?php esc_html_e( 'Custom triggers, white label mode, powerful and intuitive API. Ready to be shipped as a part of your plugin or theme.', 'advanced-cron-manager' ); ?></p>
 
 			<p>
 				<a href="https://wordpress.org/plugins/notification/" class="button button-secondary" target="_blank">
-					<?php esc_html_e( 'Download for free' ); ?>
+					<?php esc_html_e( 'Download for free', 'advanced-cron-manager' ); ?>
 				</a>
 			</p>
 

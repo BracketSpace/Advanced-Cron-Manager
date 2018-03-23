@@ -1,10 +1,10 @@
 === Advanced Cron Manager - debug & control ===
-Contributors: Kubitomakita
+Contributors: bracketspace, Kubitomakita
 Donate link: https://www.paypal.me/underDEV/
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 4.8
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,7 +90,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
-= [Next] =
+= 2.3.1 =
 * [Fixed] Array to string conversion error fix for event arguments
 * [Fixed] Missing old plugin file error fix
 * [Added] Notification plugin promo box
