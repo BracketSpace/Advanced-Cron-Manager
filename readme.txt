@@ -1,5 +1,5 @@
 === Advanced Cron Manager - debug & control ===
-Contributors: Kubitomakita
+Contributors: bracketspace, Kubitomakita
 Donate link: https://www.paypal.me/underDEV/
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
