@@ -87,6 +87,10 @@ $server_settings  = function() use ( $view, $ajax ) {
 	return new underDEV\AdvancedCronManager\Server\Settings( $view(), $ajax() );
 };
 
+$misc  = function() use ( $view ) {
+	return new underDEV\AdvancedCronManager\Misc( $view() );
+};
+
 $server_processor = function() use ( $server_settings ) {
 	return new underDEV\AdvancedCronManager\Server\Processor( $server_settings() );
 };
@@ -180,3 +184,10 @@ add_action( 'wp_ajax_acm/event/unpause', array(  $events_actions(), 'unpause' ) 
 add_action( 'advanced-cron-manager/screen/sidebar', array( $server_settings(), 'load_settings_part' ), 10, 1 );
 add_action( 'wp_ajax_acm/server/settings/save', array( $server_settings(), 'save_settings' ) );
 add_action( 'plugins_loaded', array( $server_processor(), 'block_cron_executions' ), 10, 1 );
+
+// Notification promo
+add_action( 'plugins_loaded', function() {
+	if ( ! function_exists( 'register_trigger' ) ) {
+		add_action( 'advanced-cron-manager/screen/sidebar', array( $misc(), 'load_notification_promo_part' ), 1000, 1 );
+	}
+}, 10, 1 );

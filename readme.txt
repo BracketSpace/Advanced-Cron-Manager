@@ -93,6 +93,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 = [Next] =
 * [Fixed] Array to string conversion error fix for event arguments
 * [Fixed] Missing old plugin file error fix
+* [Added] Notification plugin promo box
 
 = 2.3.0 =
 * [Changed] Proper compatibility with PHP 5.3
