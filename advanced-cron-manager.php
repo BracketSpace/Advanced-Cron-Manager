@@ -38,6 +38,10 @@ function acm_check_old_plugins( $plugins, $r ) {
 
 	foreach ( $plugins as $plugin_file => $plugin_data ) {
 
+		if ( ! file_exists( WP_PLUGIN_DIR . '/' . $plugin_file ) ) {
+			continue;
+		}
+
 		$plugin_api_data = @get_file_data( WP_PLUGIN_DIR . '/' . $plugin_file , array( 'Version' ) );
 
 		if ( ! isset( $plugin_api_data[0] ) ) {
