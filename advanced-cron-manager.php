@@ -83,11 +83,11 @@ $ajax = function() {
 	return new underDEV\Utils\Ajax;
 };
 
-$server_settings  = function() use ( $view, $ajax ) {
+$server_settings = function() use ( $view, $ajax ) {
 	return new underDEV\AdvancedCronManager\Server\Settings( $view(), $ajax() );
 };
 
-$misc  = function() use ( $view ) {
+$misc = function() use ( $view ) {
 	return new underDEV\AdvancedCronManager\Misc( $view() );
 };
 
@@ -186,7 +186,7 @@ add_action( 'wp_ajax_acm/server/settings/save', array( $server_settings(), 'save
 add_action( 'plugins_loaded', array( $server_processor(), 'block_cron_executions' ), 10, 1 );
 
 // Notification promo
-add_action( 'plugins_loaded', function() {
+add_action( 'plugins_loaded', function() use ( $misc ) {
 	if ( ! function_exists( 'register_trigger' ) ) {
 		add_action( 'advanced-cron-manager/screen/sidebar', array( $misc(), 'load_notification_promo_part' ), 1000, 1 );
 	}
