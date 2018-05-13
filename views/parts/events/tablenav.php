@@ -18,7 +18,7 @@
 		 */ ?>
 		<option value="remove"><?php esc_html_e( 'Remove', 'advanced-cron-manager' ); ?></option>
 	</select>
-	<input type="submit" class="button action" value="Apply">
+	<input type="submit" class="button action" value="<?php esc_html_e( 'Apply', 'advanced-cron-manager' ); ?>">
 </div>
 
 <div class="alignleft actions">
