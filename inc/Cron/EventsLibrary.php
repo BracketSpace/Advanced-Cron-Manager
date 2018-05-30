@@ -88,6 +88,8 @@ class EventsLibrary {
 			wp_schedule_event( $execution_timestamp, $schedule->slug, $hook, $args);
 		}
 
+		do_action( 'advanced-cron-manager/event/scheduled', $hook, $execution_timestamp, $schedule, $args );
+
 		return true;
 
 	}
@@ -109,9 +111,12 @@ class EventsLibrary {
 
 		if ( $event == false ) {
 			$errors[] = __( 'Event not found and cannot be unscheduled', 'advanced-cron-manager' );
+			return $errors;
 		}
 
 		wp_unschedule_event( $event->next_call, $event->hook, $event->args );
+
+		do_action( 'advanced-cron-manager/event/uncheduled', $event );
 
 		return true;
 
