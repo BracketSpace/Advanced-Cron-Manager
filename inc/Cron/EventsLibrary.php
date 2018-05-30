@@ -58,13 +58,14 @@ class EventsLibrary {
 
 	/**
 	 * Inserts new event
-	 * @param  string $hook                action hook name
-	 * @param  int    $execution_timestamp UTC timestamp for first execution
-	 * @param  string $schedule_slug       Schedule slug
-	 * @param  array  $args                arguments
-	 * @return mixed                       array with errors on error or true
+	 * @param  string  $hook                action hook name
+	 * @param  int     $execution_timestamp UTC timestamp for first execution
+	 * @param  string  $schedule_slug       Schedule slug
+	 * @param  array   $args                arguments
+	 * @param  boolean $new                 if event is new
+	 * @return mixed                        array with errors on error or true
 	 */
-	public function insert( $hook, $execution_timestamp, $schedule_slug, $args ) {
+	public function insert( $hook, $execution_timestamp, $schedule_slug, $args, $new = true ) {
 
 		$errors = array();
 
@@ -88,16 +89,21 @@ class EventsLibrary {
 			wp_schedule_event( $execution_timestamp, $schedule->slug, $hook, $args);
 		}
 
+		if ( $new ) {
+			do_action( 'advanced-cron-manager/event/scheduled', $hook, $execution_timestamp, $schedule, $args );
+		}
+
 		return true;
 
 	}
 
 	/**
 	 * Removes (unschedules) the event
-	 * @param  mixed $thing event hash or Event objecy
-	 * @return mixed        array with errors on error or true
+	 * @param  mixed   $thing event hash or Event object
+	 * @param  boolean $thing if unschedule is permanent
+	 * @return mixed          array with errors on error or true
 	 */
-	public function unschedule( $thing ) {
+	public function unschedule( $thing, $permanently = true ) {
 
 		$errors = array();
 
@@ -109,9 +115,14 @@ class EventsLibrary {
 
 		if ( $event == false ) {
 			$errors[] = __( 'Event not found and cannot be unscheduled', 'advanced-cron-manager' );
+			return $errors;
 		}
 
 		wp_unschedule_event( $event->next_call, $event->hook, $event->args );
+
+		if ( $permanently ) {
+			do_action( 'advanced-cron-manager/event/unscheduled', $event );
+		}
 
 		return true;
 
@@ -144,7 +155,7 @@ class EventsLibrary {
 		$this->add_to_paused( $event );
 
 		// unschedule
-		$this->unschedule( $event );
+		$this->unschedule( $event, false );
 
 		return true;
 
@@ -177,7 +188,7 @@ class EventsLibrary {
 		$this->remove_from_paused( $event );
 
 		// schedule
-		$result = $this->insert( $event->hook, $event->next_call, $event->schedule, $event->args );
+		$result = $this->insert( $event->hook, $event->next_call, $event->schedule, $event->args, false );
 
 		return $result;
 

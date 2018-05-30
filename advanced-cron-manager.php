@@ -2,14 +2,14 @@
 /**
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
- * Version: 2.3.1
+ * Version: 2.3.2
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
  * License: GPL3
  * Text Domain: advanced-cron-manager
  */
 
-$plugin_version = '2.3.0';
+$plugin_version = '2.3.2';
 $plugin_file    = __FILE__;
 
 /**
@@ -83,11 +83,11 @@ $ajax = function() {
 	return new underDEV\Utils\Ajax;
 };
 
-$server_settings  = function() use ( $view, $ajax ) {
+$server_settings = function() use ( $view, $ajax ) {
 	return new underDEV\AdvancedCronManager\Server\Settings( $view(), $ajax() );
 };
 
-$misc  = function() use ( $view ) {
+$misc = function() use ( $view ) {
 	return new underDEV\AdvancedCronManager\Misc( $view() );
 };
 
@@ -186,7 +186,7 @@ add_action( 'wp_ajax_acm/server/settings/save', array( $server_settings(), 'save
 add_action( 'plugins_loaded', array( $server_processor(), 'block_cron_executions' ), 10, 1 );
 
 // Notification promo
-add_action( 'plugins_loaded', function() {
+add_action( 'plugins_loaded', function() use ( $misc ) {
 	if ( ! function_exists( 'register_trigger' ) ) {
 		add_action( 'advanced-cron-manager/screen/sidebar', array( $misc(), 'load_notification_promo_part' ), 1000, 1 );
 	}
