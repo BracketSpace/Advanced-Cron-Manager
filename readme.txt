@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/underDEV/
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 4.9.4
-Stable tag: 2.3.1
+Stable tag: 2.3.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,7 +90,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
-= [Next] =
+= [2.3.2] =
 * [Fixed] i18n of Apply button
 * [Added] Scheduled and Uncheduled actions for events
 
