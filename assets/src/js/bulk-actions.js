@@ -74,9 +74,9 @@
 	} );
 
 	// clear all checkboxes on search
-	wp.hooks.addAction( 'advanced-cron-manager/events/search/triggered', clear_all_checkboxes );
+	wp.hooks.addAction( 'advanced-cron-manager.events.search.triggered', 'bracketspace/acm/events-search-triggered', clear_all_checkboxes );
 
 	// clear all checkboxes on filter
-	wp.hooks.addAction( 'advanced-cron-manager/events/filter/schedule', clear_all_checkboxes );
+	wp.hooks.addAction( 'advanced-cron-manager.events.filter.schedule', 'bracketspace/acm/events-filter-schedule', clear_all_checkboxes );
 
 } )( jQuery );

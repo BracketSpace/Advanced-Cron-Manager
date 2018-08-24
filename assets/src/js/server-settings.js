@@ -7,7 +7,7 @@
 	$( '#server-settings-form' ).on( 'submit', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/server/settings/action', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager.server.settings.action', $(this) );
 
 	} );
 
@@ -15,7 +15,7 @@
 	// Actions //
 	/////////////
 
-	wp.hooks.addAction( 'advanced-cron-manager/server/settings/action', function( $form ) {
+	wp.hooks.addAction( 'advanced-cron-manager.server.settings.action', 'bracketspace/acm/server-settings-action', function( $form ) {
 
 		var $button = $form.find( '.button-secondary' ).first();
 

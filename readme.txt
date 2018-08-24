@@ -90,6 +90,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
+= [Next]
+* [Changed] JavaScript hooks library which was conflicting with Gutenberg
+
 = [2.3.2] =
 * [Fixed] i18n of Apply button
 * [Added] Scheduled and Uncheduled actions for events

@@ -7,14 +7,14 @@
 	$( '.tools_page_advanced-cron-manager' ).on( 'click', '.add-schedule', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/schedule/add', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager.schedule.add', $(this) );
 
 	} );
 
 	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#schedules .single-schedule .actions .edit-schedule', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/schedule/edit', $(this).parents( '.single-schedule' ).first() );
+		wp.hooks.doAction( 'advanced-cron-manager.schedule.edit', $(this).parents( '.single-schedule' ).first() );
 
 	} );
 
@@ -25,21 +25,21 @@
 	$( '.slidebar' ).on( 'submit', '.schedule-add', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/schedule/add/process', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager.schedule.add.process', $(this) );
 
 	} );
 
 	$( '.slidebar' ).on( 'submit', '.schedule-edit', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/schedule/edit/process', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager.schedule.edit.process', $(this) );
 
 	} );
 
 	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#schedules .single-schedule .actions .remove-schedule', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/schedule/remove/process', $(this).parents( '.single-schedule' ).first() );
+		wp.hooks.doAction( 'advanced-cron-manager.schedule.remove.process', $(this).parents( '.single-schedule' ).first() );
 
 	} );
 
@@ -48,7 +48,7 @@
 	/////////////
 
 	// add schedule
-	wp.hooks.addAction( 'advanced-cron-manager/schedule/add', function( $button ) {
+	wp.hooks.addAction( 'advanced-cron-manager.schedule.add', 'bracketspace/acm/schedule-add', function( $button ) {
 
 		advanced_cron_manager.slidebar.open();
 		advanced_cron_manager.slidebar.wait();
@@ -64,7 +64,7 @@
 
 	} );
 
-	wp.hooks.addAction( 'advanced-cron-manager/schedule/add/process', function( $form ) {
+	wp.hooks.addAction( 'advanced-cron-manager.schedule.add.process', 'bracketspace/acm/schedule-add-process', function( $form ) {
 
 		advanced_cron_manager.slidebar.form_process_start();
 
@@ -79,7 +79,7 @@
 	    	advanced_cron_manager.ajax_messages( response );
 
 	        if ( response.success == true ) {
-	        	wp.hooks.doAction( 'advanced-cron-manager/schedule/added', $form.find( '#schedule-slug' ).val() );
+	        	wp.hooks.doAction( 'advanced-cron-manager.schedule.added', $form.find( '#schedule-slug' ).val() );
 	        } else {
 	        	advanced_cron_manager.slidebar.form_process_stop();
 	        }
@@ -89,7 +89,7 @@
 	} );
 
 	// edit schedule
-	wp.hooks.addAction( 'advanced-cron-manager/schedule/edit', function( $row ) {
+	wp.hooks.addAction( 'advanced-cron-manager.schedule.edit', 'bracketspace/acm/schedule-edit', function( $row ) {
 
 		event.preventDefault();
 
@@ -111,7 +111,7 @@
 
 	} );
 
-	wp.hooks.addAction( 'advanced-cron-manager/schedule/edit/process', function( $form ) {
+	wp.hooks.addAction( 'advanced-cron-manager.schedule.edit.process', 'bracketspace/acm/schedule-edit-process', function( $form ) {
 
 		advanced_cron_manager.slidebar.form_process_start();
 
@@ -126,7 +126,7 @@
 	    	advanced_cron_manager.ajax_messages( response );
 
 	        if ( response.success == true ) {
-	        	wp.hooks.doAction( 'advanced-cron-manager/schedule/edited', $form.find( '#schedule-slug' ).val() );
+	        	wp.hooks.doAction( 'advanced-cron-manager.schedule.edited', $form.find( '#schedule-slug' ).val() );
 	        } else {
 	        	advanced_cron_manager.slidebar.form_process_stop();
 	        }
@@ -136,7 +136,7 @@
 	} );
 
 	// remove schedule
-	wp.hooks.addAction( 'advanced-cron-manager/schedule/remove/process', function( $row ) {
+	wp.hooks.addAction( 'advanced-cron-manager.schedule.remove.process', 'bracketspace/acm/schedule-remove-process', function( $row ) {
 
 		var $button = $row.find( '.actions .remove-schedule' );
 
@@ -156,7 +156,7 @@
 
 	        if ( response.success == true ) {
 	        	$row.slideUp();
-	        	wp.hooks.doAction( 'advanced-cron-manager/schedule/removed', schedule_name );
+	        	wp.hooks.doAction( 'advanced-cron-manager.schedule.removed', schedule_name );
 	        } else {
 	        	$button.removeClass( 'working' );
 	        }
@@ -178,8 +178,8 @@
 
 	};
 
-	wp.hooks.addAction( 'advanced-cron-manager/schedule/added', schedules_table_rerender );
-	wp.hooks.addAction( 'advanced-cron-manager/schedule/edited', schedules_table_rerender );
+	wp.hooks.addAction( 'advanced-cron-manager.schedule.added', 'bracketspace/acm/schedule-added', schedules_table_rerender );
+	wp.hooks.addAction( 'advanced-cron-manager.schedule.edited', 'bracketspace/acm/schedule-edited', schedules_table_rerender );
 
 	/////////////
 	// Helpers //

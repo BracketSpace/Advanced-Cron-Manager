@@ -10,7 +10,7 @@
 		$row.toggleClass( 'unfolded' );
 
 		if ( $row.hasClass( 'unfolded' ) ) {
-			wp.hooks.doAction( 'advanced-cron-manager/event/details/unfolded', $row );
+			wp.hooks.doAction( 'advanced-cron-manager.event.details.unfolded', $row );
 		}
 
 	};
