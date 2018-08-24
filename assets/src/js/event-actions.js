@@ -7,7 +7,7 @@
 	$( '.tools_page_advanced-cron-manager' ).on( 'click', '.add-event', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/event/add', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager.event.add', $(this) );
 
 	} );
 
@@ -18,35 +18,35 @@
 	$( '.slidebar' ).on( 'submit', '.event-add', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/event/add/process', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager.event.add.process', $(this) );
 
 	} );
 
 	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .run-event', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/event/run/process', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager.event.run.process', $(this) );
 
 	} );
 
 	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .remove-event', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/event/remove/process', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager.event.remove.process', $(this) );
 
 	} );
 
 	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .pause-event', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/event/pause/process', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager.event.pause.process', $(this) );
 
 	} );
 
 	$( '.tools_page_advanced-cron-manager' ).on( 'click', '#events .unpause-event', function( event ) {
 
 		event.preventDefault();
-		wp.hooks.doAction( 'advanced-cron-manager/event/unpause/process', $(this) );
+		wp.hooks.doAction( 'advanced-cron-manager.event.unpause.process', $(this) );
 
 	} );
 
@@ -55,7 +55,7 @@
 	/////////////
 
 	// add
-	wp.hooks.addAction( 'advanced-cron-manager/event/add', function( $button ) {
+	wp.hooks.addAction( 'advanced-cron-manager.event.add', 'bracketspace/acm/event-add', function( $button ) {
 
 		advanced_cron_manager.slidebar.open();
 		advanced_cron_manager.slidebar.wait();
@@ -71,7 +71,7 @@
 
 	} );
 
-	wp.hooks.addAction( 'advanced-cron-manager/event/add/process', function( $form ) {
+	wp.hooks.addAction( 'advanced-cron-manager.event.add.process', 'bracketspace/acm/event-add-process', function( $form ) {
 
 		advanced_cron_manager.slidebar.form_process_start();
 
@@ -86,7 +86,7 @@
 	    	advanced_cron_manager.ajax_messages( response );
 
 	        if ( response.success == true ) {
-	        	wp.hooks.doAction( 'advanced-cron-manager/event/added', $form.find( '#event-hook' ).val() );
+	        	wp.hooks.doAction( 'advanced-cron-manager.event.added', $form.find( '#event-hook' ).val() );
 	        } else {
 	        	advanced_cron_manager.slidebar.form_process_stop();
 	        }
@@ -96,7 +96,7 @@
 	} );
 
 	// run
-	wp.hooks.addAction( 'advanced-cron-manager/event/run/process', function( $button ) {
+	wp.hooks.addAction( 'advanced-cron-manager.event.run.process', 'bracketspace/acm/event-run-process', function( $button ) {
 
 		if ( $button.hasClass( 'busy' ) ) {
 			return false;
@@ -118,7 +118,7 @@
 	    	advanced_cron_manager.ajax_messages( response );
 
 	        if ( response.success == true ) {
-        		wp.hooks.doAction( 'advanced-cron-manager/event/executed', $button.data( 'event' ), $event_row );
+        		wp.hooks.doAction( 'advanced-cron-manager.event.executed', $button.data( 'event' ), $event_row );
 	        }
 
 	        $event_row.removeClass( 'running' );
@@ -128,7 +128,7 @@
 
 	    	advanced_cron_manager.notify( advanced_cron_manager.i18n.executed_with_errors, 'warning' );
 
-	    	wp.hooks.doAction( 'advanced-cron-manager/event/executed', $button.data( 'event' ), $event_row );
+	    	wp.hooks.doAction( 'advanced-cron-manager.event.executed', $button.data( 'event' ), $event_row );
 
 	    	$event_row.removeClass( 'running' );
 	        $button.removeClass( 'busy' );
@@ -138,7 +138,7 @@
 	} );
 
 	// remove
-	wp.hooks.addAction( 'advanced-cron-manager/event/remove/process', function( $button ) {
+	wp.hooks.addAction( 'advanced-cron-manager.event.remove.process', 'bracketspace/acm/event-remove-process', function( $button ) {
 
 		var $event_row = $button.parents( '.single-event.row' ).first();
 		var event_hash = $button.data( 'event' );
@@ -159,7 +159,7 @@
 
 	        if ( response.success == true ) {
 	        	$event_row.slideUp();
-        		wp.hooks.doAction( 'advanced-cron-manager/event/removed', event_hash, $event_row );
+        		wp.hooks.doAction( 'advanced-cron-manager.event.removed', event_hash, $event_row );
 	        }
 
 	        $event_row.removeClass( 'removing' );
@@ -169,7 +169,7 @@
 	} );
 
 	// pause
-	wp.hooks.addAction( 'advanced-cron-manager/event/pause/process', function( $button ) {
+	wp.hooks.addAction( 'advanced-cron-manager.event.pause.process', 'bracketspace/acm/event-pause-process', function( $button ) {
 
 		var $event_row = $button.parents( '.single-event.row' ).first();
 		var event_hash = $button.data( 'event' );
@@ -189,7 +189,7 @@
 	    	advanced_cron_manager.ajax_messages( response );
 
 	        if ( response.success == true ) {
-        		wp.hooks.doAction( 'advanced-cron-manager/event/paused', event_hash, $event_row );
+        		wp.hooks.doAction( 'advanced-cron-manager.event.paused', event_hash, $event_row );
 	        }
 
 	        $event_row.removeClass( 'removing' );
@@ -199,7 +199,7 @@
 	} );
 
 	// unpause
-	wp.hooks.addAction( 'advanced-cron-manager/event/unpause/process', function( $button ) {
+	wp.hooks.addAction( 'advanced-cron-manager.event.unpause.process', 'bracketspace/acm/event-unpause-process', function( $button ) {
 
 		var $event_row = $button.parents( '.single-event.row' ).first();
 		var event_hash = $button.data( 'event' );
@@ -219,7 +219,7 @@
 	    	advanced_cron_manager.ajax_messages( response );
 
 	        if ( response.success == true ) {
-        		wp.hooks.doAction( 'advanced-cron-manager/event/unpaused', event_hash, $event_row );
+        		wp.hooks.doAction( 'advanced-cron-manager.event.unpaused', event_hash, $event_row );
 	        }
 
 	        $event_row.removeClass( 'removing' );
@@ -241,9 +241,9 @@
 
 	};
 
-	wp.hooks.addAction( 'advanced-cron-manager/event/added', events_table_rerender );
-	wp.hooks.addAction( 'advanced-cron-manager/event/paused', events_table_rerender );
-	wp.hooks.addAction( 'advanced-cron-manager/event/unpaused', events_table_rerender );
+	wp.hooks.addAction( 'advanced-cron-manager.event.added', 'bracketspace/acm/event-added', events_table_rerender );
+	wp.hooks.addAction( 'advanced-cron-manager.event.paused', 'bracketspace/acm/event-paused', events_table_rerender );
+	wp.hooks.addAction( 'advanced-cron-manager.event.unpaused', 'bracketspace/acm/event-unpaused', events_table_rerender );
 
 	/////////////
 	// Helpers //
@@ -276,7 +276,7 @@
 	} );
 
 	// add user timezone offset
-	wp.hooks.addAction( 'advanced-cron-manager/event/add/process', function( $form ) {
+	wp.hooks.addAction( 'advanced-cron-manager.event.add.process', 'bracketspace/acm/event-add-process', function( $form ) {
 		$form.find( '#event-offset' ).val( new Date().getTimezoneOffset() / 60 );
 	}, 5 );
 

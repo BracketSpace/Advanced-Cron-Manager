@@ -6,12 +6,12 @@
 	$( '#search' ).bind( 'input', function() {
 		window.clearTimeout( timer );
 		timer = window.setTimeout( function() {
-			wp.hooks.doAction( 'advanced-cron-manager/events/search/triggered', $( '#search' ).val() );
+			wp.hooks.doAction( 'advanced-cron-manager.events.search.triggered', $( '#search' ).val() );
 		}, search_input_delay );
 	} );
 
 	// filter the events list
-	wp.hooks.addAction( 'advanced-cron-manager/events/search/triggered', function( search_word ) {
+	wp.hooks.addAction( 'advanced-cron-manager.events.search.triggered', 'bracketspace/acm/events-search-triggered', function( search_word ) {
 
 		$( '#events .events .single-event.row' ).each( function() {
 
@@ -29,7 +29,7 @@
 	} );
 
 	// clear search input while using filters
-	wp.hooks.addAction( 'advanced-cron-manager/events/filter/schedule', function() {
+	wp.hooks.addAction( 'advanced-cron-manager.events.filter.schedule', 'bracketspace/acm/events-filter-schedule', function() {
 		$( '#search' ).val( '' );
 	} );
 

@@ -14,7 +14,7 @@
 		$details.find( '.content.active' ).removeClass( 'active' );
 		$details.find( '.content.' + target ).addClass( 'active' );
 
-		wp.hooks.doAction( 'advanced-cron-manager/event/details/tabs/changed', target );
+		wp.hooks.doAction( 'advanced-cron-manager.event.details.tabs.changed', target );
 
 	} );
 
