@@ -90,6 +90,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
+= [Next]
+* [Fixed] wp-hooks script handle, causing the page to not load plugin's JavaScript
+
 = 2.3.3
 * [Changed] JavaScript hooks library which was conflicting with Gutenberg
 

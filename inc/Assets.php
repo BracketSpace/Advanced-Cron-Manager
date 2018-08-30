@@ -48,7 +48,7 @@ class Assets {
 		wp_register_script( 'sprintf', $this->files->vendor_asset_url( 'sprintf', 'sprintf.min.js' ), array(), '1.1.1', true );
 
 		if ( ! wp_script_is( 'wp-hooks', 'registered' ) ) {
-			wp_register_script( 'event-manager', $this->files->vendor_asset_url( 'wp', 'hooks.js' ), array( 'jquery' ), $this->plugin_version, true );
+			wp_register_script( 'wp-hooks', $this->files->vendor_asset_url( 'wp', 'hooks.js' ), array( 'jquery' ), $this->plugin_version, true );
 		}
 
 		wp_register_script( 'materialize', $this->files->vendor_asset_url( 'materialize', 'js/materialize.min.js' ), array( 'jquery' ), '0.98.2', true );
