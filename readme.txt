@@ -3,8 +3,8 @@ Contributors: bracketspace, Kubitomakita
 Donate link: https://www.paypal.me/underDEV/
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
-Tested up to: 4.9.6
-Stable tag: 2.3.4
+Tested up to: 5.0.0
+Stable tag: 2.3.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,14 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.3.5 =
+* [Fixed] Fatal error when event argument was an object
+* [Fixed] Notices
+* [Fixed] Arguments list in the events table
+* [Changed] Composer libraries updated
+* [Changed] Node packages updated
+* [Added] Plugin action link on Plugins table
 
 = 2.3.4
 * [Fixed] wp-hooks script handle, causing the page to not load plugin's JavaScript

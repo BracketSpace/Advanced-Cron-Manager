@@ -116,7 +116,8 @@ class EventsActions {
 	 */
 	public function remove() {
 
-		$event = $this->events->get_event_by_hash( $_REQUEST['event'] );
+		$event  = $this->events->get_event_by_hash( $_REQUEST['event'] );
+		$errors = array();
 
 		$this->ajax->verify_nonce( 'acm/event/remove/' . $event->hash );
 
