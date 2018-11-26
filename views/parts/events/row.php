@@ -59,7 +59,15 @@ if ( $event->paused ) {
 		<div class="column schedule"><?php echo esc_html( $schedules->get_schedule( $event->schedule )->label ); ?></div>
 		<div class="column arguments">
 			<?php foreach ( $event->args as $arg ): ?>
-				<span><?php echo esc_html( is_array( $arg ) ? __( 'Array', 'advanced-cron-manager' ) : $arg ); ?></span>
+				<span>
+					<?php if ( is_array( $arg ) ) : ?>
+						<?php esc_html_e( 'Array', 'advanced-cron-manager' ); ?>
+					<?php elseif ( is_object( $arg ) ) : ?>
+						<?php echo esc_html( get_class( $arg ) ); ?>
+					<?php else : ?>
+						<?php echo esc_html( $arg ); ?>
+					<?php endif ?>
+				</span>
 			<?php endforeach ?>
 		</div>
 		<div class="column next-execution">
