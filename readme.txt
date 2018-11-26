@@ -96,6 +96,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 * [Fixed] Arguments list in the events table
 * [Changed] Composer libraries updated
 * [Changed] Node packages updated
+* [Added] Plugin action link on Plugins table
 
 = 2.3.4
 * [Fixed] wp-hooks script handle, causing the page to not load plugin's JavaScript
