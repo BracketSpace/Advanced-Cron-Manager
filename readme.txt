@@ -93,6 +93,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 = [Next] =
 * [Fixed] Fatal error when event argument was an object
 * [Fixed] Notices
+* [Changed] Composer libraries updated
 
 = 2.3.4
 * [Fixed] wp-hooks script handle, causing the page to not load plugin's JavaScript
