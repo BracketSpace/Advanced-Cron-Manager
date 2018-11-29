@@ -64,7 +64,7 @@ class Events {
 
 						$interval = isset( $event['interval'] ) ? $event['interval'] : 0;
 						$schedule = empty( $event['schedule'] ) ? $this->schedules->get_single_event_schedule()->slug : $event['schedule'];
-						$events_array[] = new Object\Event( $event_hook, $schedule, $interval, $event['args'], $timestamp, $protected );
+						$events_array[] = new Element\Event( $event_hook, $schedule, $interval, $event['args'], $timestamp, $protected );
 
 					}
 

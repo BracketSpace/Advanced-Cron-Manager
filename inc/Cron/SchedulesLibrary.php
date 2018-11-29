@@ -53,7 +53,7 @@ class SchedulesLibrary {
 			$schedules = get_option( $this->option_name, array() );
 
 			foreach ( $schedules as $schedule_slug => $params ) {
-				$this->schedules[ $schedule_slug ] = new Object\Schedule( $schedule_slug, $params['interval'], $params['display'], false );
+				$this->schedules[ $schedule_slug ] = new Element\Schedule( $schedule_slug, $params['interval'], $params['display'], false );
 			}
 
 		}
@@ -165,7 +165,7 @@ class SchedulesLibrary {
 
 		update_option( $this->option_name, $schedules );
 
-		$this->schedules[ $slug ] = new Object\Schedule( $slug, $interval, $name, false );
+		$this->schedules[ $slug ] = new Element\Schedule( $slug, $interval, $name, false );
 
 		return true;
 

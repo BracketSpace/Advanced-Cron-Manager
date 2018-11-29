@@ -4,7 +4,7 @@
  * Single instance of a schedule
  */
 
-namespace underDEV\AdvancedCronManager\Cron\Object;
+namespace underDEV\AdvancedCronManager\Cron\Element;
 
 class Schedule {
 
