@@ -4,7 +4,7 @@
  * Single instance of an event
  */
 
-namespace underDEV\AdvancedCronManager\Cron\Object;
+namespace underDEV\AdvancedCronManager\Cron\Element;
 
 class Event {
 

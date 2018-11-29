@@ -49,7 +49,7 @@ class EventsLibrary {
 		$paused_events = get_option( $this->paused_option_name, array() );
 
 		foreach ( $paused_events as $paused_event ) {
-			$events[] = new Object\Event( $paused_event['hook'], $paused_event['schedule_slug'], 0, $paused_event['args'], $paused_event['execution_timestamp'], $this->events->is_protected( $paused_event['hook'] ), true );
+			$events[] = new Element\Event( $paused_event['hook'], $paused_event['schedule_slug'], 0, $paused_event['args'], $paused_event['execution_timestamp'], $this->events->is_protected( $paused_event['hook'] ), true );
 		}
 
 		return $events;
