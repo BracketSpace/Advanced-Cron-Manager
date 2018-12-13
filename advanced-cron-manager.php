@@ -9,7 +9,7 @@
  * Text Domain: advanced-cron-manager
  */
 
-$plugin_version = '2.3.6';
+$plugin_version = '2.3.7';
 $plugin_file    = __FILE__;
 
 /**
