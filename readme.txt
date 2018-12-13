@@ -90,6 +90,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] WordPress <4.7 compatibility
+
 = 2.3.6 =
 * [Fixed] PHP 7.2 compatibility
 

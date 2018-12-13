@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "underdev/requirements",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kubitomakita/Requirements.git",
-                "reference": "1bb43675b68de26020448852e62c7267d2212c9f"
+                "reference": "f622e187ab830284d7731178487a71e835080110"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kubitomakita/Requirements/zipball/1bb43675b68de26020448852e62c7267d2212c9f",
-                "reference": "1bb43675b68de26020448852e62c7267d2212c9f",
+                "url": "https://api.github.com/repos/Kubitomakita/Requirements/zipball/f622e187ab830284d7731178487a71e835080110",
+                "reference": "f622e187ab830284d7731178487a71e835080110",
                 "shasum": ""
             },
             "type": "library",
@@ -34,7 +34,7 @@
                 }
             ],
             "description": "WordPress drop-in to check requirements",
-            "time": "2018-10-25T08:10:26+00:00"
+            "time": "2018-12-13T10:57:24+00:00"
         },
         {
             "name": "underdev/utils",
@@ -939,16 +939,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.4.4",
+            "version": "7.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b1be2c8530c4c29c3519a052c9fb6cee55053bbd"
+                "reference": "c23d78776ad415d5506e0679723cb461d71f488f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b1be2c8530c4c29c3519a052c9fb6cee55053bbd",
-                "reference": "b1be2c8530c4c29c3519a052c9fb6cee55053bbd",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c23d78776ad415d5506e0679723cb461d71f488f",
+                "reference": "c23d78776ad415d5506e0679723cb461d71f488f",
                 "shasum": ""
             },
             "require": {
@@ -969,7 +969,7 @@
                 "phpunit/php-timer": "^2.0",
                 "sebastian/comparator": "^3.0",
                 "sebastian/diff": "^3.0",
-                "sebastian/environment": "^3.1 || ^4.0",
+                "sebastian/environment": "^4.0",
                 "sebastian/exporter": "^3.1",
                 "sebastian/global-state": "^2.0",
                 "sebastian/object-enumerator": "^3.0.3",
@@ -993,7 +993,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "7.4-dev"
+                    "dev-master": "7.5-dev"
                 }
             },
             "autoload": {
@@ -1019,7 +1019,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-11-14T16:52:02+00:00"
+            "time": "2018-12-12T07:20:32+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
