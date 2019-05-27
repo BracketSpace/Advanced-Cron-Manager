@@ -1,10 +1,9 @@
 === Advanced Cron Manager - debug & control ===
 Contributors: bracketspace, Kubitomakita
-Donate link: https://www.paypal.me/underDEV/
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
-Tested up to: 5.0.0
-Stable tag: 2.3.7
+Tested up to: 5.2
+Stable tag: 2.3.8
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +88,10 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.3.8 =
+* [Fixed] Events table width
+* [Changed] ACF PRO download link
 
 = 2.3.7 =
 * [Fixed] WordPress <4.7 compatibility
