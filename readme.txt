@@ -89,6 +89,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
+= 2.3.8 =
+* [Changed] ACF PRO download link
+
 = 2.3.7 =
 * [Fixed] WordPress <4.7 compatibility
 
