@@ -2,8 +2,8 @@
 Contributors: bracketspace, Kubitomakita
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
-Tested up to: 5.0.0
-Stable tag: 2.3.7
+Tested up to: 5.2
+Stable tag: 2.3.8
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
