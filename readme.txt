@@ -90,6 +90,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 == Changelog ==
 
 = 2.3.8 =
+* [Fixed] Events table width
 * [Changed] ACF PRO download link
 
 = 2.3.7 =
