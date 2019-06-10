@@ -89,7 +89,7 @@ class Event {
 
     	$arguments = array();
     	foreach ( $this->args as $n => $arg ) {
-    		$arguments[] = '$arg' . ( $n + 1 );
+    		$arguments[] = '$arg' . (string) $n;
     	}
     	$arguments = empty( $arguments ) ? '' : ' ' . implode( ', ' , $arguments ) . ' ';
 
