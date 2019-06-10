@@ -89,6 +89,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] "non-numeric value encountered" error with event arguments
+
 = 2.3.8 =
 * [Fixed] Events table width
 * [Changed] ACF PRO download link
