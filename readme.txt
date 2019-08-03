@@ -41,7 +41,7 @@ Plugin use AJAX request so you'll need enabled Javascript in order to use it.
 > * Performance stats - see how much time and memory particular event took
 > * Debug tool - log any useful informations from Cron callback
 >
-> [Buy now](https://www.wpart.co/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
+> [Buy now](https://bracketspace.com/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
 
 **Informations about WP Cron**
 
