@@ -102,6 +102,10 @@ class EventsActions {
 
 		$acm_current_event = $event;
 
+		if ( ! defined( 'DOING_CRON' ) ) {
+			define( 'DOING_CRON', true );
+		}
+
 		do_action_ref_array( $event->hook, $event->args );
 
 		$success = sprintf( __( 'Event "%s" has been executed', 'advanced-cron-manager' ), $event->hook );

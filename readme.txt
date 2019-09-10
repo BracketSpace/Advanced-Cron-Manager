@@ -92,6 +92,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 = [Next] =
 * [Fixed] "non-numeric value encountered" error with event arguments
 * [Fixed] Fatal error when even argument was an object. Now, class name is displayed
+* [Changed] Now when event is executed manually, DOING_CRON constant is defined
 
 = 2.3.8 =
 * [Fixed] Events table width
