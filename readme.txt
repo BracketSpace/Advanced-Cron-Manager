@@ -3,7 +3,7 @@ Contributors: bracketspace, Kubitomakita
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 5.2
-Stable tag: 2.3.8
+Stable tag: 2.3.9
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,7 +41,7 @@ Plugin use AJAX request so you'll need enabled Javascript in order to use it.
 > * Performance stats - see how much time and memory particular event took
 > * Debug tool - log any useful informations from Cron callback
 >
-> [Buy now](https://www.wpart.co/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
+> [Buy now](https://bracketspace.com/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
 
 **Informations about WP Cron**
 
@@ -88,6 +88,11 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.3.9 =
+* [Fixed] "non-numeric value encountered" error with event arguments
+* [Fixed] Fatal error when even argument was an object. Now, class name is displayed
+* [Changed] Now when event is executed manually, DOING_CRON constant is defined
 
 = 2.3.8 =
 * [Fixed] Events table width
