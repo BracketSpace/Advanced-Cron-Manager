@@ -89,7 +89,7 @@ class EventsActions {
 	}
 
 	/**
-	 * Insert event
+	 * Run event
 	 * @return void
 	 */
 	public function run() {
@@ -97,6 +97,12 @@ class EventsActions {
 		global $acm_current_event;
 
 		$event = $this->events->get_event_by_hash( $_REQUEST['event'] );
+
+		if ( ! $event ) {
+			$this->ajax->response( false, array(
+				__( 'This event doesn\'t seem to exist anymore', 'advanced-cron-manager' )
+			) );
+		}
 
 		$this->ajax->verify_nonce( 'acm/event/run/' . $event->hash );
 

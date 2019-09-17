@@ -89,6 +89,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] A "Trying to get property 'hash' of non-object" warning fix when executed event doesn't exist anymore
+
 = 2.3.9 =
 * [Fixed] "non-numeric value encountered" error with event arguments
 * [Fixed] Fatal error when even argument was an object. Now, class name is displayed
