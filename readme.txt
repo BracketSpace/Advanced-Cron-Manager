@@ -91,6 +91,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 = [Next] =
 * [Fixed] A "Trying to get property 'hash' of non-object" warning fix when executed event doesn't exist anymore
+* [Added] Action for adding own event row actions
 
 = 2.3.9 =
 * [Fixed] "non-numeric value encountered" error with event arguments
