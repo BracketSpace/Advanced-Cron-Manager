@@ -37,6 +37,7 @@ Plugin use AJAX request so you'll need enabled Javascript in order to use it.
 > PRO version includes
 >
 > * Cron Logger - log cron's execution times easily
+> * Events rescheduling - change event next execution date to control server load
 > * Error catcher - catch cron task's fatal errors and get them displayed in the log
 > * Performance stats - see how much time and memory particular event took
 > * Debug tool - log any useful informations from Cron callback
