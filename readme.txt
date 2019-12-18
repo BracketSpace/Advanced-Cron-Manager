@@ -3,7 +3,7 @@ Contributors: bracketspace, Kubitomakita
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 5.3
-Stable tag: 2.3.9
+Stable tag: 2.3.10
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,7 +90,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
-= [Next] =
+= 2.3.10 =
 * [Fixed] A "Trying to get property 'hash' of non-object" warning fix when executed event doesn't exist anymore
 * [Added] Action for adding own event row actions
 
