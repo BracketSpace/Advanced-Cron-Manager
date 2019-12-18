@@ -47,6 +47,7 @@ if ( $event->paused ) {
 						<a href="#" data-nonce="<?php echo $event->nonce( 'pause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="pause-event"><?php esc_html_e( 'Pause', 'advanced-cron-manager' ); ?></a> |
 					<?php endif ?>
 				</span>
+				<?php do_action( 'advanced-cron-manager/screen/event/row/actions', $event, $this ); ?>
 				<span class="trash">
 					<?php if ( $event->protected ): ?>
 						<?php esc_html_e( 'Protected', 'advanced-cron-manager' ); ?>

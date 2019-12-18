@@ -2,8 +2,8 @@
 Contributors: bracketspace, Kubitomakita
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
-Tested up to: 5.2
-Stable tag: 2.3.9
+Tested up to: 5.3
+Stable tag: 2.3.10
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,6 +37,7 @@ Plugin use AJAX request so you'll need enabled Javascript in order to use it.
 > PRO version includes
 >
 > * Cron Logger - log cron's execution times easily
+> * Events rescheduling - change event next execution date to control server load
 > * Error catcher - catch cron task's fatal errors and get them displayed in the log
 > * Performance stats - see how much time and memory particular event took
 > * Debug tool - log any useful informations from Cron callback
@@ -88,6 +89,10 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.3.10 =
+* [Fixed] A "Trying to get property 'hash' of non-object" warning fix when executed event doesn't exist anymore
+* [Added] Action for adding own event row actions
 
 = 2.3.9 =
 * [Fixed] "non-numeric value encountered" error with event arguments

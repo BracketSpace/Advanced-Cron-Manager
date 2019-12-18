@@ -9,6 +9,7 @@
 <p><?php esc_html_e( 'These includes:', 'advanced-cron-manager' ); ?><p>
 <ul>
 	<li><?php esc_html_e( 'Logging executed tasks', 'advanced-cron-manager' ); ?></li>
+	<li><?php esc_html_e( 'Event rescheduling', 'advanced-cron-manager' ); ?></li>
 	<li><?php esc_html_e( 'Error catcher', 'advanced-cron-manager' ); ?></li>
 	<li><?php esc_html_e( 'Performance stats', 'advanced-cron-manager' ); ?></li>
 	<li><?php esc_html_e( 'Debugging tool', 'advanced-cron-manager' ); ?></li>
