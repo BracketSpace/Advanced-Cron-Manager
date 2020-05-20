@@ -1,14 +1,18 @@
 {
-    "name": "underdev/advanced-cron-manager",
+    "name": "bracketspace/advanced-cron-manager",
     "description": "Advanced Cron Manager WordPress plugin",
     "type": "wordpress-plugin",
     "license": "GPL-3.0",
     "authors": [
         {
             "name": "Kuba Mikita",
-            "email": "jakub@underdev.it"
+            "email": "jakub@bracketspace.com"
         }
     ],
+    "scripts": {
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf"
+    },
     "require": {
         "underdev/utils": "*",
         "underdev/requirements": "*"
