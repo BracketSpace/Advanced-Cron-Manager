@@ -2,38 +2,54 @@
 /**
  * Events class
  * Used to handle collection of events
+ *
+ * @package advanced-cron-manager
  */
 
 namespace underDEV\AdvancedCronManager\Cron;
 
+/**
+ * Events object
+ */
 class Events {
 
 	/**
 	 * Schedules class
+	 *
 	 * @var instance of underDEV\AdvancedCronManage\Cron\Schedules
 	 */
 	private $schedules;
 
 	/**
 	 * Registered events
+	 *
 	 * @var array
 	 */
 	private $events = array();
 
 	/**
 	 * Protected events slugs
+	 *
 	 * @var array
 	 */
 	private $protected_events = array();
 
+	/**
+	 * Constructor
+	 *
+	 * @param Schedules $schedules Schedules object.
+	 */
 	public function __construct( Schedules $schedules ) {
 
 		$this->schedules = $schedules;
 
-		// protected events registered by WordPress' core
+		// protected events registered by WordPress' core.
 		$this->protected_events = array(
-			'wp_version_check', 'wp_update_plugins', 'wp_update_themes',
-			'wp_scheduled_delete', 'wp_scheduled_auto_draft_delete'
+			'wp_version_check',
+			'wp_update_plugins',
+			'wp_update_themes',
+			'wp_scheduled_delete',
+			'wp_scheduled_auto_draft_delete',
 		);
 
 	}
@@ -41,7 +57,8 @@ class Events {
 	/**
 	 * Gets all registered events
 	 * Supports lazy loading
-	 * @param  boolean $force if refresh stored events
+	 *
+	 * @param  boolean $force if refresh stored events.
 	 * @return array          registered events
 	 */
 	public function get_events( $force = false ) {
@@ -62,25 +79,22 @@ class Events {
 
 					foreach ( $event_args as $event ) {
 
-						$interval = isset( $event['interval'] ) ? $event['interval'] : 0;
-						$schedule = empty( $event['schedule'] ) ? $this->schedules->get_single_event_schedule()->slug : $event['schedule'];
+						$interval       = isset( $event['interval'] ) ? $event['interval'] : 0;
+						$schedule       = empty( $event['schedule'] ) ? $this->schedules->get_single_event_schedule()->slug : $event['schedule'];
 						$events_array[] = new Element\Event( $event_hook, $schedule, $interval, $event['args'], $timestamp, $protected );
 
 					}
-
 				}
-
 			}
 
 			$events_array = apply_filters( 'advanced-cron-manager/events/array', $events_array );
 
 			usort( $events_array, array( $this, 'compare_event_next_calls' ) );
 
-			// add event's hashes to the array
+			// add event's hashes to the array.
 			foreach ( $events_array as $event ) {
 				$this->events[ $event->hash ] = $event;
 			}
-
 		}
 
 		return $this->events;
@@ -89,7 +103,8 @@ class Events {
 
 	/**
 	 * Gets event by it's hash
-	 * @param  string $hash hash
+	 *
+	 * @param  string $hash hash.
 	 * @return mixed        Event object or false
 	 */
 	public function get_event_by_hash( $hash ) {
@@ -101,15 +116,17 @@ class Events {
 
 	/**
 	 * Checks if event hook is default WP Hook, thus protected
-	 * @param  string  $event_hook hook slug
+	 *
+	 * @param  string $event_hook hook slug.
 	 * @return boolean             true if protected
 	 */
 	public function is_protected( $event_hook ) {
-		return in_array( $event_hook, $this->protected_events );
+		return in_array( $event_hook, $this->protected_events, true );
 	}
 
 	/**
 	 * Counts the total number of events
+	 *
 	 * @return int
 	 */
 	public function count() {
@@ -119,12 +136,14 @@ class Events {
 	/**
 	 * Compares the event's next execution times
 	 * Used by usort function
-	 * @param  object $e1 Event 1
-	 * @param  object $e2 Event 2
+	 *
+	 * @param  object $e1 Event 1.
+	 * @param  object $e2 Event 2.
 	 * @return int        -1 or 1 or 0, depends on the comparsion result
 	 */
 	public function compare_event_next_calls( $e1, $e2 ) {
 
+		// phpcs:ignore
 		if ( $e1->next_call == $e2->next_call ) {
 			return 0;
 		}

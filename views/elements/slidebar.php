@@ -1,7 +1,10 @@
 <?php
 /**
  * Slidebar
+ *
+ * @package advanced-cron-manager
  */
+
 ?>
 
 <div class="slidebar">
@@ -11,16 +14,16 @@
 	<div class="content loading">
 
 		<div class="form-placeholder">
-            <div class="header"></div>
-            <div class="input"></div>
-            <div class="input"></div>
-            <div class="input"></div>
-            <div class="input"></div>
-            <div class="input"></div>
-            <div class="send"></div>
-        </div>
+			<div class="header"></div>
+			<div class="input"></div>
+			<div class="input"></div>
+			<div class="input"></div>
+			<div class="input"></div>
+			<div class="input"></div>
+			<div class="send"></div>
+		</div>
 
-        <div class="form"></div>
+		<div class="form"></div>
 
 	</div>
 

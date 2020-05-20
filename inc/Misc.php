@@ -1,22 +1,30 @@
 <?php
 /**
  * Misc class
+ *
+ * @package advanced-cron-manager
  */
 
 namespace underDEV\AdvancedCronManager;
+
 use underDEV\Utils;
 
+/**
+ * Misc class.
+ */
 class Misc {
 
 	/**
 	 * View class
+	 *
 	 * @var object
 	 */
 	public $view;
 
 	/**
 	 * Constructor
-	 * @param object $view View class
+	 *
+	 * @param Utils\View $view View class.
 	 */
 	public function __construct( Utils\View $view ) {
 		$this->view = $view;
@@ -24,6 +32,7 @@ class Misc {
 
 	/**
 	 * Loads Notification plugin promo part
+	 *
 	 * @return void
 	 */
 	public function load_notification_promo_part() {
@@ -32,7 +41,8 @@ class Misc {
 
 	/**
 	 * Adds the plugin action link on Plugins table
-	 * @param array $links links array
+	 *
+	 * @param array $links links array.
 	 * @return array
 	 */
 	public function plugin_action_link( $links ) {

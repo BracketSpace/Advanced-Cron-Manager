@@ -2,7 +2,10 @@
 /**
  * Logs tab
  * View scope is the same as in the events/section view
+ *
+ * @package advanced-cron-manager
  */
+
 ?>
 
 <p><?php esc_html_e( 'Get insights from your Cron system with Advanced Cron Manager PRO!', 'advanced-cron-manager' ); ?><p>

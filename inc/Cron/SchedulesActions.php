@@ -2,43 +2,55 @@
 /**
  * Schedules Actions class
  * Handles actions on schedules
+ *
+ * @package advanced-cron-manager
  */
 
 namespace underDEV\AdvancedCronManager\Cron;
+
 use underDEV\Utils;
 
+/**
+ * SchedulesActions class
+ */
 class SchedulesActions {
 
 	/**
 	 * Ajax class
+	 *
 	 * @var instance of underDEV\AdvancedCronManage\Utils\Ajax
 	 */
 	private $ajax;
 
 	/**
 	 * SchedulesLibrary class
+	 *
 	 * @var instance of underDEV\AdvancedCronManage\Cron\SchedulesLibrary
 	 */
 	private $library;
 
 	/**
 	 * Constructor
+	 *
+	 * @since [Next]
+	 * @param Utils\Ajax       $ajax    Ajax object.
+	 * @param SchedulesLibrary $library SchedulesLibrary object.
 	 */
 	public function __construct( Utils\Ajax $ajax, SchedulesLibrary $library ) {
-
-		$this->ajax      = $ajax;
-		$this->library   = $library;
-
+		$this->ajax    = $ajax;
+		$this->library = $library;
 	}
 
 	/**
 	 * Insert schedule
+	 *
 	 * @return void
 	 */
 	public function insert() {
 
 		$this->ajax->verify_nonce( 'acm/schedule/insert' );
 
+		// phpcs:ignore
 		$data = wp_parse_args( $_REQUEST['data'], array() );
 
 		$slug = sanitize_title_with_dashes( $data['slug'], null, 'save' );
@@ -52,6 +64,7 @@ class SchedulesActions {
 			$errors = array();
 		}
 
+		// Translators: schedule slug.
 		$success = sprintf( __( 'Schedule "%s" has been added', 'advanced-cron-manager' ), $data['name'] );
 
 		$this->ajax->response( $success, $errors );
@@ -60,12 +73,14 @@ class SchedulesActions {
 
 	/**
 	 * Edit schedule
+	 *
 	 * @return void
 	 */
 	public function edit() {
 
 		$this->ajax->verify_nonce( 'acm/schedule/edit' );
 
+		// phpcs:ignore
 		$data = wp_parse_args( $_REQUEST['data'], array() );
 
 		$result = $this->library->insert( $data['slug'], $data['name'], $data['interval'], true );
@@ -76,6 +91,7 @@ class SchedulesActions {
 			$errors = array();
 		}
 
+		// Translators: schedule slug.
 		$success = sprintf( __( 'Schedule "%s" has been edited', 'advanced-cron-manager' ), $data['name'] );
 
 		$this->ajax->response( $success, $errors );
@@ -84,10 +100,12 @@ class SchedulesActions {
 
 	/**
 	 * Remove schedule
+	 *
 	 * @return void
 	 */
 	public function remove() {
 
+		// phpcs:ignore
 		$schedule_slug = $_REQUEST['schedule'];
 
 		$this->ajax->verify_nonce( 'acm/schedule/remove/' . $schedule_slug );
@@ -100,6 +118,7 @@ class SchedulesActions {
 			$errors = array();
 		}
 
+		// Translators: schedule slug.
 		$success = sprintf( __( 'Schedule "%s" has been removed', 'advanced-cron-manager' ), $schedule_slug );
 
 		$this->ajax->response( $success, $errors );

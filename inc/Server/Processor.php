@@ -2,21 +2,28 @@
 /**
  * Processor class
  * Blocks WP Cron execution
+ *
+ * @package advanced-cron-manager
  */
 
 namespace underDEV\AdvancedCronManager\Server;
 
+/**
+ * Processor class.
+ */
 class Processor {
 
 	/**
 	 * Settings class
+	 *
 	 * @var object
 	 */
 	public $settings;
 
 	/**
 	 * Constructor
-	 * @param object $settings Settings class
+	 *
+	 * @param Settings $settings Settings class.
 	 */
 	public function __construct( Settings $settings ) {
 		$this->settings = $settings;
@@ -37,7 +44,7 @@ class Processor {
 				define( 'DISABLE_WP_CRON', true );
 			}
 
-			// just in case the constant is already set to true
+			// Just in case the constant is already set to true.
 			remove_action( 'init', 'wp_cron' );
 
 		}

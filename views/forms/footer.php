@@ -1,7 +1,10 @@
 <?php
 /**
  * Forms footer
+ *
+ * @package advanced-cron-manager
  */
+
 ?>
 
 <div class="submit-row">
