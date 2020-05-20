@@ -7,6 +7,8 @@
  * Author URI: https://bracketspace.com
  * License: GPL3
  * Text Domain: advanced-cron-manager
+ *
+ * @package advanced-cron-manager
  */
 
 $plugin_version = '2.3.10';
@@ -15,23 +17,25 @@ $plugin_file    = __FILE__;
 /**
  * Fire up Composer's autoloader
  */
-require_once( __DIR__ . '/vendor/autoload.php' );
+require_once __DIR__ . '/vendor/autoload.php';
 
 $requirements = new underDEV_Requirements( __( 'Advanced Cron Manager', 'advanced-cron-manager' ), array(
 	'php'         => '5.3',
 	'wp'          => '3.6',
 	'old_plugins' => array(
 		'advanced-cron-manager-pro/acm-pro.php' => array(
-			'name' => 'Advanced Cron Manager PRO',
-			'version' => '2.0'
+			'name'    => 'Advanced Cron Manager PRO',
+			'version' => '2.0',
 		),
-	)
+	),
 ) );
 
 /**
  * Check if old plugins are active
- * @param  array $plugins array with plugins,
- *                        where key is the plugin file and value is the version
+ *
+ * @param  array  $plugins Array with plugins,
+ *                         where key is the plugin file and value is the version.
+ * @param  object $r       Requirements object.
  * @return void
  */
 function acm_check_old_plugins( $plugins, $r ) {
@@ -42,7 +46,8 @@ function acm_check_old_plugins( $plugins, $r ) {
 			continue;
 		}
 
-		$plugin_api_data = @get_file_data( WP_PLUGIN_DIR . '/' . $plugin_file , array( 'Version' ) );
+		// phpcs:ignore
+		$plugin_api_data = @get_file_data( WP_PLUGIN_DIR . '/' . $plugin_file, array( 'Version' ) );
 
 		if ( ! isset( $plugin_api_data[0] ) ) {
 			continue;
@@ -53,7 +58,6 @@ function acm_check_old_plugins( $plugins, $r ) {
 		if ( ! empty( $old_plugin_version ) && version_compare( $old_plugin_version, $plugin_data['version'], '<' ) ) {
 			$r->add_error( sprintf( '%s plugin at least in version %s', $plugin_data['name'], $plugin_data['version'] ) );
 		}
-
 	}
 
 }
@@ -80,7 +84,7 @@ $view = function() use ( $files ) {
 };
 
 $ajax = function() {
-	return new underDEV\Utils\Ajax;
+	return new underDEV\Utils\Ajax();
 };
 
 $server_settings = function() use ( $view, $ajax ) {
@@ -137,58 +141,58 @@ $form_provider = function () use ( $view, $ajax, $schedules_library, $schedules 
  * Actions
  */
 
-// Load textdomain
+// Load textdomain.
 add_action( 'plugins_loaded', array( $internationalization(), 'load_textdomain' ) );
 
-// Add plugin's screen in the admin
+// Add plugin's screen in the admin.
 add_action( 'admin_menu', array( $screen_registerer, 'register_screen' ) );
 
-// Add main section parts on the admin screen
+// Add main section parts on the admin screen.
 add_action( 'advanced-cron-manager/screen/main', array( $admin_screen(), 'load_searchbox_part' ), 10, 1 );
 add_action( 'advanced-cron-manager/screen/main', array( $admin_screen(), 'load_events_table_part' ), 20, 1 );
 
-// Add sidebar section parts on the admin screen
+// Add sidebar section parts on the admin screen.
 add_action( 'advanced-cron-manager/screen/sidebar', array( $admin_screen(), 'load_schedules_table_part' ), 10, 1 );
 
-// Add general parts on the admin screen
+// Add general parts on the admin screen.
 add_action( 'advanced-cron-manager/screen/wrap/after', array( $admin_screen(), 'load_slidebar_part' ), 10, 1 );
 
-// Add tabs to event details
+// Add tabs to event details.
 add_filter( 'advanced-cron-manager/screen/event/details/tabs', array( $admin_screen(), 'add_default_event_details_tabs' ), 10, 1 );
 
-// Enqueue assets
+// Enqueue assets.
 add_action( 'admin_enqueue_scripts', array( $assets, 'enqueue_admin' ), 10, 1 );
 
-// Forms
+// Forms.
 add_action( 'wp_ajax_acm/schedule/add/form', array( $form_provider(), 'add_schedule' ) );
 add_action( 'wp_ajax_acm/schedule/edit/form', array( $form_provider(), 'edit_schedule' ) );
 add_action( 'wp_ajax_acm/event/add/form', array( $form_provider(), 'add_event' ) );
 
-// Schedules
-add_filter( 'cron_schedules', array( $schedules_library, 'register' ), 10, 1 );
+// Schedules.
+add_filter( 'cron_schedules', array( $schedules_library, 'register' ), 10, 1 ); // phpcs:ignore
 add_action( 'wp_ajax_acm/rerender/schedules', array( $admin_screen(), 'ajax_rerender_schedules_table' ) );
-add_action( 'wp_ajax_acm/schedule/insert', array(  $schedules_actions(), 'insert' ) );
-add_action( 'wp_ajax_acm/schedule/edit', array(  $schedules_actions(), 'edit' ) );
-add_action( 'wp_ajax_acm/schedule/remove', array(  $schedules_actions(), 'remove' ) );
+add_action( 'wp_ajax_acm/schedule/insert', array( $schedules_actions(), 'insert' ) );
+add_action( 'wp_ajax_acm/schedule/edit', array( $schedules_actions(), 'edit' ) );
+add_action( 'wp_ajax_acm/schedule/remove', array( $schedules_actions(), 'remove' ) );
 
-// Events
+// Events.
 add_filter( 'advanced-cron-manager/events/array', array( $events_library(), 'register_paused' ), 10, 1 );
 add_action( 'wp_ajax_acm/rerender/events', array( $admin_screen(), 'ajax_rerender_events_table' ) );
-add_action( 'wp_ajax_acm/event/insert', array(  $events_actions(), 'insert' ) );
-add_action( 'wp_ajax_acm/event/run', array(  $events_actions(), 'run' ) );
-add_action( 'wp_ajax_acm/event/remove', array(  $events_actions(), 'remove' ) );
-add_action( 'wp_ajax_acm/event/pause', array(  $events_actions(), 'pause' ) );
-add_action( 'wp_ajax_acm/event/unpause', array(  $events_actions(), 'unpause' ) );
+add_action( 'wp_ajax_acm/event/insert', array( $events_actions(), 'insert' ) );
+add_action( 'wp_ajax_acm/event/run', array( $events_actions(), 'run' ) );
+add_action( 'wp_ajax_acm/event/remove', array( $events_actions(), 'remove' ) );
+add_action( 'wp_ajax_acm/event/pause', array( $events_actions(), 'pause' ) );
+add_action( 'wp_ajax_acm/event/unpause', array( $events_actions(), 'unpause' ) );
 
-// Server scheduler
+// Server scheduler.
 add_action( 'advanced-cron-manager/screen/sidebar', array( $server_settings(), 'load_settings_part' ), 10, 1 );
 add_action( 'wp_ajax_acm/server/settings/save', array( $server_settings(), 'save_settings' ) );
 add_action( 'plugins_loaded', array( $server_processor(), 'block_cron_executions' ), 10, 1 );
 
-// Plugin row actions
+// Plugin row actions.
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $misc(), 'plugin_action_link' ) );
 
-// Notification promo
+// Notification promo.
 add_action( 'plugins_loaded', function() use ( $misc ) {
 	if ( ! function_exists( 'register_trigger' ) ) {
 		add_action( 'advanced-cron-manager/screen/sidebar', array( $misc(), 'load_notification_promo_part' ), 1000, 1 );

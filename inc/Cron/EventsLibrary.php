@@ -2,33 +2,45 @@
 /**
  * Events Library class
  * Handles DB operations on events
+ *
+ * @package advanced-cron-manager
  */
 
 namespace underDEV\AdvancedCronManager\Cron;
+
 use underDEV\Utils;
 
+/**
+ * EventsLibrary class
+ */
 class EventsLibrary {
 
 	/**
 	 * Schedules class
+	 *
 	 * @var instance of underDEV\AdvancedCronManage\Cron\Schedules
 	 */
 	public $schedules;
 
 	/**
 	 * Events class
+	 *
 	 * @var instance of underDEV\AdvancedCronManage\Cron\Events
 	 */
 	private $events;
 
 	/**
 	 * Option name
+	 *
 	 * @var string
 	 */
 	private $paused_option_name;
 
 	/**
 	 * Constructor
+	 *
+	 * @param Schedules $schedules Schedules object.
+	 * @param Events    $events    Events object.
 	 */
 	public function __construct( Schedules $schedules, Events $events ) {
 
@@ -41,7 +53,8 @@ class EventsLibrary {
 
 	/**
 	 * Registers paused events
-	 * @param  array $events array of registered events
+	 *
+	 * @param  array $events array of registered events.
 	 * @return array         array of both registered and paused events
 	 */
 	public function register_paused( $events ) {
@@ -58,11 +71,12 @@ class EventsLibrary {
 
 	/**
 	 * Inserts new event
-	 * @param  string  $hook                action hook name
-	 * @param  int     $execution_timestamp UTC timestamp for first execution
-	 * @param  string  $schedule_slug       Schedule slug
-	 * @param  array   $args                arguments
-	 * @param  boolean $new                 if event is new
+	 *
+	 * @param  string  $hook                action hook name.
+	 * @param  int     $execution_timestamp UTC timestamp for first execution.
+	 * @param  string  $schedule_slug       Schedule slug.
+	 * @param  array   $args                arguments.
+	 * @param  boolean $new                 if event is new.
 	 * @return mixed                        array with errors on error or true
 	 */
 	public function insert( $hook, $execution_timestamp, $schedule_slug, $args, $new = true ) {
@@ -75,7 +89,8 @@ class EventsLibrary {
 
 		$schedule = $this->schedules->get_schedule( $schedule_slug );
 
-		if ( $schedule->slug != $schedule_slug ) {
+		if ( $schedule->slug !== $schedule_slug ) {
+			// Translators: schedule slug.
 			$errors[] = sprintf( __( 'Schedule "%s" cannot be found', 'advanced-cron-manager' ), $schedule_slug );
 		}
 
@@ -83,10 +98,10 @@ class EventsLibrary {
 			return $errors;
 		}
 
-		if ( $schedule->slug == $this->schedules->get_single_event_schedule()->slug ) {
+		if ( $schedule->slug === $this->schedules->get_single_event_schedule()->slug ) {
 			wp_schedule_single_event( $execution_timestamp, $hook, $args );
 		} else {
-			wp_schedule_event( $execution_timestamp, $schedule->slug, $hook, $args);
+			wp_schedule_event( $execution_timestamp, $schedule->slug, $hook, $args );
 		}
 
 		if ( $new ) {
@@ -99,9 +114,10 @@ class EventsLibrary {
 
 	/**
 	 * Removes (unschedules) the event
-	 * @param  mixed   $thing event hash or Event object
-	 * @param  boolean $thing if unschedule is permanent
-	 * @return mixed          array with errors on error or true
+	 *
+	 * @param  mixed   $thing       event hash or Event object.
+	 * @param  boolean $permanently if unschedule is permanent.
+	 * @return mixed                array with errors on error or true
 	 */
 	public function unschedule( $thing, $permanently = true ) {
 
@@ -113,7 +129,7 @@ class EventsLibrary {
 			$event = $thing;
 		}
 
-		if ( $event == false ) {
+		if ( false === $event ) {
 			$errors[] = __( 'Event not found and cannot be unscheduled', 'advanced-cron-manager' );
 			return $errors;
 		}
@@ -130,7 +146,8 @@ class EventsLibrary {
 
 	/**
 	 * Pauses the event
-	 * @param  mixed $thing event hash or Event objecy
+	 *
+	 * @param  mixed $thing event hash or Event object.
 	 * @return mixed        array with errors on error or true
 	 */
 	public function pause( $thing ) {
@@ -143,7 +160,7 @@ class EventsLibrary {
 			$event = $thing;
 		}
 
-		if ( $event == false ) {
+		if ( false === $event ) {
 			$errors[] = __( 'Event not found and cannot be paused', 'advanced-cron-manager' );
 		}
 
@@ -151,10 +168,10 @@ class EventsLibrary {
 			return $errors;
 		}
 
-		// add to paused option
+		// add to paused option.
 		$this->add_to_paused( $event );
 
-		// unschedule
+		// unschedule.
 		$this->unschedule( $event, false );
 
 		return true;
@@ -163,7 +180,8 @@ class EventsLibrary {
 
 	/**
 	 * Unpauses the event
-	 * @param  mixed $thing event hash or Event objecy
+	 *
+	 * @param  mixed $thing event hash or Event object.
 	 * @return mixed        array with errors on error or true
 	 */
 	public function unpause( $thing ) {
@@ -176,7 +194,7 @@ class EventsLibrary {
 			$event = $thing;
 		}
 
-		if ( $event == false ) {
+		if ( false === $event ) {
 			$errors[] = __( 'Event not found and cannot be unpaused', 'advanced-cron-manager' );
 		}
 
@@ -184,10 +202,10 @@ class EventsLibrary {
 			return $errors;
 		}
 
-		// remove from paused option
+		// remove from paused option.
 		$this->remove_from_paused( $event );
 
-		// schedule
+		// schedule.
 		$result = $this->insert( $event->hook, $event->next_call, $event->schedule, $event->args, false );
 
 		return $result;
@@ -196,7 +214,8 @@ class EventsLibrary {
 
 	/**
 	 * Adds an event to paused events option
-	 * @param object $event Event object
+	 *
+	 * @param object $event Event object.
 	 */
 	public function add_to_paused( $event ) {
 
@@ -206,7 +225,7 @@ class EventsLibrary {
 			'hook'                => $event->hook,
 			'execution_timestamp' => $event->next_call,
 			'schedule_slug'       => $event->schedule,
-			'args'                => $event->args
+			'args'                => $event->args,
 		);
 
 		update_option( $this->paused_option_name, $paused_events );
@@ -215,7 +234,8 @@ class EventsLibrary {
 
 	/**
 	 * Removes an event from paused events option
-	 * @param object $event Event object
+	 *
+	 * @param object $event Event object.
 	 */
 	public function remove_from_paused( $event ) {
 

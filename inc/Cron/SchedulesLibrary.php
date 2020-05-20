@@ -2,21 +2,29 @@
 /**
  * Schedules Library class
  * Handles DB operations on schedules
+ *
+ * @package advanced-cron-manager
  */
 
 namespace underDEV\AdvancedCronManager\Cron;
+
 use underDEV\Utils;
 
+/**
+ * Schedules Library class
+ */
 class SchedulesLibrary {
 
 	/**
 	 * Ajax class
+	 *
 	 * @var instance of underDEV\AdvancedCronManage\Utils\Ajax
 	 */
 	public $ajax;
 
 	/**
 	 * Option name
+	 *
 	 * @var string
 	 */
 	private $option_name;
@@ -24,12 +32,15 @@ class SchedulesLibrary {
 	/**
 	 * Saved schedules
 	 * Format: schedule_slug => array( 'interval' => $interval, 'display' => $display )
+	 *
 	 * @var array
 	 */
 	private $schedules = array();
 
 	/**
 	 * Constructor
+	 *
+	 * @param Utils\Ajax $ajax Ajax object.
 	 */
 	public function __construct( Utils\Ajax $ajax ) {
 
@@ -41,7 +52,8 @@ class SchedulesLibrary {
 	/**
 	 * Gets all saved schedules
 	 * Supports lazy loading
-	 * @param  boolean $force if refresh stored schedules
+	 *
+	 * @param  boolean $force if refresh stored schedules.
 	 * @return array          saved schedules
 	 */
 	public function get_schedules( $force = false ) {
@@ -55,7 +67,6 @@ class SchedulesLibrary {
 			foreach ( $schedules as $schedule_slug => $params ) {
 				$this->schedules[ $schedule_slug ] = new Element\Schedule( $schedule_slug, $params['interval'], $params['display'], false );
 			}
-
 		}
 
 		return $this->schedules;
@@ -64,7 +75,8 @@ class SchedulesLibrary {
 
 	/**
 	 * Gets single schedule
-	 * @param  string $slug Schedule slug
+	 *
+	 * @param  string $slug Schedule slug.
 	 * @return mixed        Schedule object on success or false
 	 */
 	public function get_schedule( $slug = '' ) {
@@ -81,7 +93,8 @@ class SchedulesLibrary {
 
 	/**
 	 * Check if schedule is saved by ACM
-	 * @param  string  $schedule_slug schedule slug
+	 *
+	 * @param  string $schedule_slug schedule slug.
 	 * @return boolean                true if yes
 	 */
 	public function has( $schedule_slug ) {
@@ -91,7 +104,8 @@ class SchedulesLibrary {
 
 	/**
 	 * Registers all schedules
-	 * @param  array $schedules Schedules already registered in WP
+	 *
+	 * @param  array $schedules Schedules already registered in WP.
 	 * @return array            all Schedules
 	 */
 	public function register( $schedules ) {
@@ -102,7 +116,7 @@ class SchedulesLibrary {
 
 			$schedules[ $schedule->slug ] = array(
 				'interval' => $schedule->interval,
-				'display'  => $schedule->label
+				'display'  => $schedule->label,
 			);
 
 		}
@@ -114,10 +128,11 @@ class SchedulesLibrary {
 	/**
 	 * Inserts new schedule in the database
 	 * It also refreshed the current schedules
-	 * @param  string $slug     Schedule slug
-	 * @param  string $name     Schedule name
-	 * @param  int    $interval Schedule interval in seconds
-	 * @param  bool   $edit     is this an edit action?
+	 *
+	 * @param  string $slug     Schedule slug.
+	 * @param  string $name     Schedule name.
+	 * @param  int    $interval Schedule interval in seconds.
+	 * @param  bool   $edit     if this an edit action.
 	 * @return mixed            true on success or array with errors
 	 */
 	public function insert( $slug, $name, $interval = 0, $edit = false ) {
@@ -137,19 +152,21 @@ class SchedulesLibrary {
 		}
 
 		if ( ! $edit && $this->has( $slug ) ) {
+			// Translators: schedule slug.
 			$errors[] = sprintf( __( 'Schedule with slug "%s" already exists', 'advanced-cron-manager' ), $slug );
 		}
 
 		if ( $edit ) {
 
 			if ( ! $this->has( $slug ) ) {
+				// Translators: schedule slug.
 				$errors[] = sprintf( __( 'Schedule with slug "%s" doesn\'t exists', 'advanced-cron-manager' ), $slug );
 			}
 
 			if ( $this->get_schedule( $slug )->protected ) {
+				// Translators: schedule slug.
 				$errors[] = sprintf( __( 'Schedule "%s" is protected and you cannot edit it', 'advanced-cron-manager' ), $slug );
 			}
-
 		}
 
 		if ( ! empty( $errors ) ) {
@@ -160,7 +177,7 @@ class SchedulesLibrary {
 
 		$schedules[ $slug ] = array(
 			'interval' => $interval,
-			'display' => $name
+			'display'  => $name,
 		);
 
 		update_option( $this->option_name, $schedules );
@@ -169,20 +186,21 @@ class SchedulesLibrary {
 
 		return true;
 
-
 	}
 
 	/**
 	 * Inserts new schedule in the database
 	 * It also refreshed the current schedules
-	 * @param  string $slug     Schedule slug
-	 * @return mixed            true on success or array with errors
+	 *
+	 * @param  string $slug Schedule slug.
+	 * @return mixed        true on success or array with errors
 	 */
 	public function remove( $slug ) {
 
 		$errors = array();
 
 		if ( ! $this->has( $slug ) ) {
+			// Translators: schedule slug.
 			$errors[] = sprintf( __( 'Schedule with slug "%s" cannot be removed because it doesn\'t exists', 'advanced-cron-manager' ), $slug );
 		}
 

@@ -2,29 +2,38 @@
 /**
  * Settings class
  * Server Scheduler settings
+ *
+ * @package advanced-cron-manager
  */
 
 namespace underDEV\AdvancedCronManager\Server;
+
 use underDEV\Utils;
 
+/**
+ * Settings class.
+ */
 class Settings {
 
 	/**
 	 * View class
+	 *
 	 * @var object
 	 */
 	public $view;
 
 	/**
 	 * Ajax class
+	 *
 	 * @var object
 	 */
 	private $ajax;
 
 	/**
 	 * Constructor
-	 * @param object $view View class
-	 * @param object $ajax Ajax class
+	 *
+	 * @param Utils\View $view View class.
+	 * @param Utils\Ajax $ajax Ajax class.
 	 */
 	public function __construct( Utils\View $view, Utils\Ajax $ajax ) {
 		$this->view = $view;
@@ -39,6 +48,7 @@ class Settings {
 
 	/**
 	 * Loads Server Scheduler settings part
+	 *
 	 * @return void
 	 */
 	public function load_settings_part() {
@@ -49,7 +59,8 @@ class Settings {
 	/**
 	 * Gets Settings
 	 * Supports lazy loading
-	 * @param  boolean $force if refresh stored events
+	 *
+	 * @param  boolean $force if refresh stored events.
 	 * @return array          saved settings
 	 */
 	public function get_settings( $force = false ) {
@@ -65,6 +76,7 @@ class Settings {
 	/**
 	 * Saves settings
 	 * Called by AJAX
+	 *
 	 * @return void
 	 */
 	public function save_settings() {
@@ -77,6 +89,7 @@ class Settings {
 			return 0;
 		}, $this->default );
 
+		// phpcs:ignore
 		$form_data = wp_parse_args( $_REQUEST['data'], $form_options );
 
 		update_option( $this->option_name, $form_data );
