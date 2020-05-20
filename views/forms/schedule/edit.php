@@ -1,10 +1,11 @@
 <?php
 /**
  * Edit schedule form
+ *
+ * @package advanced-cron-manager
  */
 
-$schedule = $this->get_var( 'schedule' );
-
+$schedule     = $this->get_var( 'schedule' );
 $interval_raw = $schedule->get_raw_human_interval();
 
 ?>
@@ -23,24 +24,24 @@ $interval_raw = $schedule->get_raw_human_interval();
 <label><?php esc_html_e( 'Interval', 'advanced-cron-manager' ); ?></label>
 <table>
 	<tr>
-		<td><?php _e( 'Days', 'advanced-cron-manager' ); ?>:</td>
+		<td><?php esc_html_e( 'Days', 'advanced-cron-manager' ); ?>:</td>
 		<td><input type="number" id="schedule-interval" min="0" value="<?php echo esc_attr( $interval_raw['days'] ); ?>" class="spinbox days"></td>
 	</tr>
 	<tr>
-		<td><?php _e( 'Hours', 'advanced-cron-manager' ); ?>:</td>
+		<td><?php esc_html_e( 'Hours', 'advanced-cron-manager' ); ?>:</td>
 		<td><input type="number" id="schedule-interval" min="0" max="24" value="<?php echo esc_attr( $interval_raw['hours'] ); ?>" class="spinbox hours"></td>
 	</tr>
 	<tr>
-		<td><?php _e( 'Minutes', 'advanced-cron-manager' ); ?>:</td>
+		<td><?php esc_html_e( 'Minutes', 'advanced-cron-manager' ); ?>:</td>
 		<td><input type="number" id="schedule-interval" min="0" max="60" value="<?php echo esc_attr( $interval_raw['minutes'] ); ?>" class="spinbox minutes"></td>
 	</tr>
 	<tr>
-		<td><?php _e( 'Seconds', 'advanced-cron-manager' ); ?>:</td>
+		<td><?php esc_html_e( 'Seconds', 'advanced-cron-manager' ); ?>:</td>
 		<td><input type="number" id="schedule-interval" min="0" max="60" value="<?php echo esc_attr( $interval_raw['seconds'] ); ?>" class="spinbox seconds"></td>
 	</tr>
 </table>
 
-<div class="total-seconds"><?php _e( 'Total seconds:', 'advanced-cron-manager' ); ?> <span><?php echo esc_html( $schedule->interval ); ?></span></div>
+<div class="total-seconds"><?php esc_html_e( 'Total seconds:', 'advanced-cron-manager' ); ?> <span><?php echo esc_html( $schedule->interval ); ?></span></div>
 <input type="hidden" name="interval" class="interval-input" value="<?php echo esc_attr( $schedule->interval ); ?>">
 
 <?php $this->get_view( 'forms/footer' ); ?>

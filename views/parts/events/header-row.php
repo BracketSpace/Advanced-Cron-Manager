@@ -1,7 +1,10 @@
 <?php
 /**
  * Header row of events
+ *
+ * @package advanced-cron-manager
  */
+
 ?>
 
 <div class="single-event header">

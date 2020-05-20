@@ -1,7 +1,10 @@
 <?php
 /**
  * Header row of schedules
+ *
+ * @package advanced-cron-manager
  */
+
 ?>
 
 <div class="single-schedule header">

@@ -2,10 +2,13 @@
 /**
  * Logs tab
  * View scope is the same as in the events/section view
+ *
+ * @package advanced-cron-manager
  */
+
 ?>
 
-<?php foreach ( $this->get_var( 'event' )->args as $arg ): ?>
+<?php foreach ( $this->get_var( 'event' )->args as $arg ) : ?>
 	<?php if ( is_array( $arg ) ) : ?>
 		<span><?php esc_html_e( 'Array', 'advanced-cron-manager' ); ?></span>
 	<?php elseif ( is_object( $arg ) ) : ?>

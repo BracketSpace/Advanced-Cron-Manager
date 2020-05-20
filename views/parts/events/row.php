@@ -2,6 +2,8 @@
 /**
  * Single row of event
  * Needs `event` var set which is instance of underDEV\AdvancedCronManager\Cron\Object\Event
+ *
+ * @package advanced-cron-manager
  */
 
 $event                 = $this->get_var( 'event' );
@@ -29,7 +31,7 @@ if ( $event->paused ) {
 		<div class="column event">
 			<a href="#" class="event-name">
 				<?php echo esc_html( $event->hook ); ?>
-				<?php if ( $event->paused ): ?>
+				<?php if ( $event->paused ) : ?>
 					<span class="dashicons dashicons-controls-pause"></span>
 				<?php endif ?>
 			</a>
@@ -38,30 +40,30 @@ if ( $event->paused ) {
 					<a href="#"><?php esc_html_e( 'Details', 'advanced-cron-manager' ); ?></a> |
 				</span>
 				<span class="run">
-					<a href="#" data-nonce="<?php echo $event->nonce( 'run' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="run-event"><?php esc_html_e( 'Execute now', 'advanced-cron-manager' ); ?></a> |
+					<a href="#" data-nonce="<?php echo esc_attr( $event->nonce( 'run' ) ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="run-event"><?php esc_html_e( 'Execute now', 'advanced-cron-manager' ); ?></a> |
 				</span>
 				<span class="pause">
 					<?php if ( !$event->protected ): ?>
-                        <?php if ( $event->paused ): ?>
-                            <a href="#" data-nonce="<?php echo $event->nonce( 'unpause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="unpause-event"><?php esc_html_e( 'Unpause', 'advanced-cron-manager' ); ?></a> |
-                        <?php else: ?>
-                            <a href="#" data-nonce="<?php echo $event->nonce( 'pause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="pause-event"><?php esc_html_e( 'Pause', 'advanced-cron-manager' ); ?></a> |
-                        <?php endif ?>
-                    <?php endif ?>
+						<?php if ( $event->paused ) : ?>
+							<a href="#" data-nonce="<?php echo esc_attr( $event->nonce( 'unpause' ) ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="unpause-event"><?php esc_html_e( 'Unpause', 'advanced-cron-manager' ); ?></a> |
+						<?php else : ?>
+							<a href="#" data-nonce="<?php echo esc_attr( $event->nonce( 'pause' ) ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="pause-event"><?php esc_html_e( 'Pause', 'advanced-cron-manager' ); ?></a> |
+						<?php endif ?>
+					<?php endif ?>
 				</span>
 				<?php do_action( 'advanced-cron-manager/screen/event/row/actions', $event, $this ); ?>
 				<span class="trash">
-					<?php if ( $event->protected ): ?>
+					<?php if ( $event->protected ) : ?>
 						<?php esc_html_e( 'Protected', 'advanced-cron-manager' ); ?>
-					<?php else: ?>
-						<a href="#" data-nonce="<?php echo $event->nonce( 'remove' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="remove-event"><?php esc_html_e( 'Remove', 'advanced-cron-manager' ); ?></a>
+					<?php else : ?>
+						<a href="#" data-nonce="<?php echo esc_attr( $event->nonce( 'remove' ) ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="remove-event"><?php esc_html_e( 'Remove', 'advanced-cron-manager' ); ?></a>
 					<?php endif ?>
 				</span>
 			</div>
 		</div>
 		<div class="column schedule"><?php echo esc_html( $schedules->get_schedule( $event->schedule )->label ); ?></div>
 		<div class="column arguments">
-			<?php foreach ( $event->args as $arg ): ?>
+			<?php foreach ( $event->args as $arg ) : ?>
 				<span>
 					<?php if ( is_array( $arg ) ) : ?>
 						<?php esc_html_e( 'Array', 'advanced-cron-manager' ); ?>
@@ -74,12 +76,16 @@ if ( $event->paused ) {
 			<?php endforeach ?>
 		</div>
 		<div class="column next-execution">
-			<?php if ( $event->next_call <= time() ): ?>
+			<?php if ( $event->next_call <= time() ) : ?>
 				<?php esc_html_e( 'In queue', 'advanced-cron-manager' ); ?>
-			<?php else: ?>
-				<?php echo esc_html( sprintf( __( 'In %s', 'advanced-cron-manager' ), human_time_diff( time(), $event->next_call ) ) ); ?><br>
+			<?php else : ?>
+				<?php
+				// Translators: human friendly diff time.
+				echo esc_html( sprintf( __( 'In %s', 'advanced-cron-manager' ), human_time_diff( time(), $event->next_call ) ) );
+				?>
+				<br>
 				<span title="<?php echo esc_attr( 'UTC: ' . date_i18n( $date_format . ' ' . $time_format, $event->next_call ) ); ?>">
-					<?php echo date_i18n( $date_format . ' ' . $time_format, $event->next_call + $time_offset ); ?>
+					<?php echo date_i18n( $date_format . ' ' . $time_format, $event->next_call + $time_offset ); // phpcs:ignore ?>
 				</span>
 			<?php endif ?>
 		</div>
@@ -87,16 +93,16 @@ if ( $event->paused ) {
 	<div class="details">
 		<ul class="tabs">
 			<?php $active = 'active'; ?>
-			<?php foreach ( $this->get_var( 'details_tabs' ) as $tab_slug => $tab_name ): ?>
-				<li class="<?php echo $active; ?> <?php echo esc_attr( $tab_slug ); ?>">
+			<?php foreach ( $this->get_var( 'details_tabs' ) as $tab_slug => $tab_name ) : ?>
+				<li class="<?php echo esc_attr( $active ); ?> <?php echo esc_attr( $tab_slug ); ?>">
 					<a href="#" data-section="<?php echo esc_attr( $tab_slug ); ?>"><?php echo esc_html( $tab_name ); ?></a>
 				</li>
 				<?php $active = ''; ?>
 			<?php endforeach ?>
 		</ul>
 		<?php $active = 'active'; ?>
-		<?php foreach ( $this->get_var( 'details_tabs' ) as $tab_slug => $tab_name ): ?>
-			<div class="content <?php echo esc_attr( $tab_slug ); ?> <?php echo $active; ?>">
+		<?php foreach ( $this->get_var( 'details_tabs' ) as $tab_slug => $tab_name ) : ?>
+			<div class="content <?php echo esc_attr( $tab_slug ); ?> <?php echo esc_attr( $active ); ?>">
 				<?php do_action( 'advanced-cron-manager/screen/event/details/tab/' . $tab_slug, $this ); ?>
 			</div>
 			<?php $active = ''; ?>
