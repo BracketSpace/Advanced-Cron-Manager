@@ -81,8 +81,7 @@ class EventsActions {
 			}
 		}
 
-		$hook = sanitize_title_with_dashes( $data['hook'], null, 'save' );
-		$hook = str_replace( '-', '_', $hook );
+		$hook = trim( strip_tags( $data['hook'] ) );
 
 		$result = $this->library->insert( $hook, $execution, $data['schedule'], $args );
 

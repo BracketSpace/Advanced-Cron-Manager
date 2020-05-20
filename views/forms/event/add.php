@@ -15,7 +15,7 @@ $single_schedule = $this->get_var( 'single_schedule' );
 <?php wp_nonce_field( 'acm/event/insert', 'nonce', false ); ?>
 
 <label for="event-hook"><?php esc_html_e( 'Hook', 'advanced-cron-manager' ); ?></label>
-<p class="description"><?php esc_html_e( 'Should contain only lowercase letters, numbers and _', 'advanced-cron-manager' ); ?></p>
+<p class="description"><?php esc_html_e( 'Should not contain HTML and PHP tags', 'advanced-cron-manager' ); ?></p>
 <input type="text" id="event-hook" name="hook" class="widefat">
 
 <label for="event-execution"><?php esc_html_e( 'First execution', 'advanced-cron-manager' ); ?></label>
