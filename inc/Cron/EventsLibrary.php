@@ -147,6 +147,10 @@ class EventsLibrary {
 			$errors[] = __( 'Event not found and cannot be paused', 'advanced-cron-manager' );
 		}
 
+        if ( $event->protected ) {
+            $errors[] = __( 'Event is protected and cannot be paused', 'advanced-cron-manager' );
+        }
+
 		if ( ! empty( $errors ) ) {
 			return $errors;
 		}

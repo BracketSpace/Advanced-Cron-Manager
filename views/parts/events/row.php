@@ -41,11 +41,13 @@ if ( $event->paused ) {
 					<a href="#" data-nonce="<?php echo $event->nonce( 'run' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="run-event"><?php esc_html_e( 'Execute now', 'advanced-cron-manager' ); ?></a> |
 				</span>
 				<span class="pause">
-					<?php if ( $event->paused ): ?>
-						<a href="#" data-nonce="<?php echo $event->nonce( 'unpause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="unpause-event"><?php esc_html_e( 'Unpause', 'advanced-cron-manager' ); ?></a> |
-					<?php else: ?>
-						<a href="#" data-nonce="<?php echo $event->nonce( 'pause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="pause-event"><?php esc_html_e( 'Pause', 'advanced-cron-manager' ); ?></a> |
-					<?php endif ?>
+					<?php if ( !$event->protected ): ?>
+                        <?php if ( $event->paused ): ?>
+                            <a href="#" data-nonce="<?php echo $event->nonce( 'unpause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="unpause-event"><?php esc_html_e( 'Unpause', 'advanced-cron-manager' ); ?></a> |
+                        <?php else: ?>
+                            <a href="#" data-nonce="<?php echo $event->nonce( 'pause' ); ?>" data-event="<?php echo esc_attr( $event->hash ); ?>" class="pause-event"><?php esc_html_e( 'Pause', 'advanced-cron-manager' ); ?></a> |
+                        <?php endif ?>
+                    <?php endif ?>
 				</span>
 				<?php do_action( 'advanced-cron-manager/screen/event/row/actions', $event, $this ); ?>
 				<span class="trash">
