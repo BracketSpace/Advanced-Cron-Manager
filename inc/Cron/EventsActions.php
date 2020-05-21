@@ -81,7 +81,7 @@ class EventsActions {
 			}
 		}
 
-		$hook = trim( strip_tags( $data['hook'] ) );
+		$hook = trim( wp_strip_all_tags( $data['hook'] ) );
 
 		$result = $this->library->insert( $hook, $execution, $data['schedule'], $args );
 
