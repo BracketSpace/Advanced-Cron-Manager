@@ -17,7 +17,7 @@
 
 		<?php $this->get_view( 'parts/events/header-row' ); ?>
 
-		<div class="event-rows">
+		<div class="event-rows-block">
 			<?php foreach ( $this->get_var( 'events' ) as $event ) : ?>
 				<?php $this->set_var( 'event', $event, true ); ?>
 				<?php $this->get_view( 'parts/events/row' ); ?>
