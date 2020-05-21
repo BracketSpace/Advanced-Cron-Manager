@@ -91,7 +91,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 == Changelog ==
 
 = [Next] =
-* 
+* [Added] Event columns sorting
 
 = 2.3.10 =
 * [Fixed] A "Trying to get property 'hash' of non-object" warning fix when executed event doesn't exist anymore
