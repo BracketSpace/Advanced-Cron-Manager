@@ -17,10 +17,12 @@
 
 		<?php $this->get_view( 'parts/events/header-row' ); ?>
 
-		<?php foreach ( $this->get_var( 'events' ) as $event ) : ?>
-			<?php $this->set_var( 'event', $event, true ); ?>
-			<?php $this->get_view( 'parts/events/row' ); ?>
-		<?php endforeach ?>
+		<div class="event-rows">
+			<?php foreach ( $this->get_var( 'events' ) as $event ) : ?>
+				<?php $this->set_var( 'event', $event, true ); ?>
+				<?php $this->get_view( 'parts/events/row' ); ?>
+			<?php endforeach ?>
+		</div>
 
 		<?php $this->remove_var( 'event' ); ?>
 
