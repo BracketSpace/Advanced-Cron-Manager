@@ -200,7 +200,7 @@ msgid "Hook"
 msgstr ""
 
 #: views/forms/event/add.php:16
-msgid "Should not contain HTML and PHP tags"
+msgid "Should not contain any HTML tags including script nor style"
 msgstr ""
 
 #: views/forms/event/add.php:19
