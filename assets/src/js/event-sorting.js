@@ -15,10 +15,10 @@
 			const event_rows_block = $( '.event-rows-block' );
 			const event_rows       = event_rows_block.children();
 			const column_name      = $( this ).data( 'name' );
-			const column_order     = $( this ).data( 'order' );
 
-			event_rows.sort( get_comparator( column_name, column_order ) );
-			reverse_order( $( this ) );
+			assign_order_class( $( this ) );
+
+			event_rows.sort( get_comparator( column_name, get_order( $( this ) ) ) );
 			event_rows_block.html( event_rows );
 		}
 	);
@@ -54,9 +54,22 @@
 		}
 	}
 
-	function reverse_order(column) {
-		var order = column.data( 'order' );
-		column.data( 'order', order * -1 );
+	function assign_order_class(column) {
+		if ( column.is( '.asc' ) || column.is( '.desc' ) ) {
+			column.toggleClass( 'asc desc' );
+		} else {
+			column.addClass( 'asc' );
+			column.siblings().removeClass( 'asc desc' );
+		}
+	}
+
+	function get_order(column) {
+		if ( column.is( '.asc' ) ) {
+			return 1;
+		} else if ( column.is( '.desc' ) ) {
+			return -1;
+		}
+		return 0;
 	}
 
 })( jQuery );
