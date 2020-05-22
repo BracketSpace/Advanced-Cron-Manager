@@ -240,9 +240,8 @@
 				$( '#events' ).replaceWith( response.data );
 				advanced_cron_manager.slidebar.form_process_stop();
 				advanced_cron_manager.slidebar.close();
-				events_table_preserved_sorting();
 			}
-		);
+		).done( events_table_preserved_sorting );
 	};
 
 	function events_table_preserved_sorting() {
@@ -250,19 +249,20 @@
 		var order_class = get_item_from_storage( 'events_sorting_order_class' );
 
 		if ( column_name && order_class ) {
-			order_class = order_class === 'asc' ? 'desc' : 'asc';
-			$( '.columns' ).find( "[data-name='" + column_name + "']" ).removeClass( 'asc' );
-			$( '.columns' ).find( "[data-name='" + column_name + "']" ).removeClass( 'desc' );
-			$( '.columns' ).find( "[data-name='" + column_name + "']" ).addClass( order_class );
-			$( '.columns' ).find( "[data-name='" + column_name + "']" ).trigger( 'click' );
+			order_class = order_class === 'desc' ? 'asc' : 'desc';
+			$( '.columns' ).find( "[data-name='" + column_name + "']" )
+				.removeClass( 'asc desc' )
+				.addClass( order_class )
+				.trigger( 'click' );
 		}
-	}
 
-	function get_item_from_storage( key ) {
-		if (typeof(Storage) !== "undefined") {
-			return localStorage.getItem( key );
-		} else {
-			return null;
+		function get_item_from_storage( key ) {
+			if (typeof(Storage) !== "undefined") {
+				return sessionStorage.getItem( key );
+			} else {
+				console.warn( "Web Storage is not supported." );
+				return null;
+			}
 		}
 	}
 

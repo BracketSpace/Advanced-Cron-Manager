@@ -68,7 +68,7 @@
 
 	function set_item_to_storage( key, value ) {
 		if (typeof(Storage) !== "undefined") {
-			return localStorage.setItem( key, value );
+			return sessionStorage.setItem( key, value );
 		} else {
 			console.warn( "Web Storage is not supported." );
 		}
