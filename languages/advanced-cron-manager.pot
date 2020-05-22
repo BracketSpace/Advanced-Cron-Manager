@@ -204,7 +204,7 @@ msgid "Hook"
 msgstr ""
 
 #: views/forms/event/add.php:16
-msgid "Should contain only lowercase letters, numbers and _"
+msgid "Should not contain any HTML tags including script nor style"
 msgstr ""
 
 #: views/forms/event/add.php:19

@@ -91,6 +91,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 == Changelog ==
 
 = [Next] =
+* [Fixed] Cron hook sanitizer doesn't allow usage of slashes
 * [Changed] Don't allow to pause protected events
 
 = 2.3.10 =
