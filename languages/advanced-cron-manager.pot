@@ -105,6 +105,10 @@ msgstr ""
 msgid "Event not found and cannot be paused"
 msgstr ""
 
+#: inc/Cron/EventsLibrary.php:136
+msgid "Event is protected and cannot be paused"
+msgstr ""
+
 #: inc/Cron/EventsLibrary.php:169
 msgid "Event not found and cannot be unpaused"
 msgstr ""
