@@ -244,6 +244,7 @@
 		).done( events_table_preserved_sorting );
 	};
 
+	// sort events table by last selected sorting.
 	function events_table_preserved_sorting() {
 		var column_name = get_item_from_storage( 'events_sorting_column_name' );
 		var order_class = get_item_from_storage( 'events_sorting_order_class' );
@@ -265,6 +266,9 @@
 			}
 		}
 	}
+
+	// sort events table by last selected sorting when window reloaded.
+	$( window ).ready( events_table_preserved_sorting );
 
 	wp.hooks.addAction( 'advanced-cron-manager.event.added', 'bracketspace/acm/event-added', events_table_rerender );
 	wp.hooks.addAction( 'advanced-cron-manager.event.paused', 'bracketspace/acm/event-paused', events_table_rerender );
