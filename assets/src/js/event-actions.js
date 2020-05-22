@@ -228,18 +228,43 @@
 
 	} );
 
-	// refresh table and close slidebar
-	var events_table_rerender = function() {
+	// refresh table and close slidebar.
+	var events_table_rerender = function () {
 
 		$( '#events' ).addClass( 'loading' );
 
-	    $.post( ajaxurl, { 'action': 'acm/rerender/events' }, function( response ) {
-	    	$( '#events' ).replaceWith( response.data );
-	    	advanced_cron_manager.slidebar.form_process_stop();
-			advanced_cron_manager.slidebar.close();
-	    } );
-
+		$.post(
+			ajaxurl,
+			{ 'action': 'acm/rerender/events' },
+			function ( response ) {
+				$( '#events' ).replaceWith( response.data );
+				advanced_cron_manager.slidebar.form_process_stop();
+				advanced_cron_manager.slidebar.close();
+				events_table_preserved_sorting();
+			}
+		);
 	};
+
+	function events_table_preserved_sorting() {
+		var column_name = get_item_from_storage( 'events_sorting_column_name' );
+		var order_class = get_item_from_storage( 'events_sorting_order_class' );
+
+		if ( column_name && order_class ) {
+			order_class = order_class === 'asc' ? 'desc' : 'asc';
+			$( '.columns' ).find( "[data-name='" + column_name + "']" ).removeClass( 'asc' );
+			$( '.columns' ).find( "[data-name='" + column_name + "']" ).removeClass( 'desc' );
+			$( '.columns' ).find( "[data-name='" + column_name + "']" ).addClass( order_class );
+			$( '.columns' ).find( "[data-name='" + column_name + "']" ).trigger( 'click' );
+		}
+	}
+
+	function get_item_from_storage( key ) {
+		if (typeof(Storage) !== "undefined") {
+			return localStorage.getItem( key );
+		} else {
+			return null;
+		}
+	}
 
 	wp.hooks.addAction( 'advanced-cron-manager.event.added', 'bracketspace/acm/event-added', events_table_rerender );
 	wp.hooks.addAction( 'advanced-cron-manager.event.paused', 'bracketspace/acm/event-paused', events_table_rerender );
