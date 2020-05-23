@@ -83,4 +83,16 @@
 		return 0;
 	}
 
+	// remove preserved events sorting when window is reloaded.
+	$( window ).ready(
+		function() {
+			if (typeof(Storage) !== "undefined") {
+				sessionStorage.removeItem( 'events_sorting_column_name' );
+				sessionStorage.removeItem( 'events_sorting_order_class' );
+			} else {
+				console.warn( "Web Storage is not supported." );
+			}
+		}
+	);
+
 })( jQuery );
