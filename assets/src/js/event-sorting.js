@@ -83,4 +83,33 @@
 		return 0;
 	}
 
+
+	// sort events table by last selected sorting.
+	function events_table_preserved_sort() {
+		var column_name = get_item_from_storage( 'events_sorting_column_name' );
+		var order_class = get_item_from_storage( 'events_sorting_order_class' );
+
+		if ( column_name && order_class ) {
+			order_class = order_class === 'desc' ? 'asc' : 'desc';
+			$( '.columns' ).find( "[data-name='" + column_name + "']" )
+				.removeClass( 'asc desc' )
+				.addClass( order_class )
+				.trigger( 'click' );
+		}
+
+		function get_item_from_storage( key ) {
+			if (typeof(Storage) !== "undefined") {
+				return sessionStorage.getItem( key );
+			} else {
+				console.warn( "Web Storage is not supported." );
+				return null;
+			}
+		}
+	}
+
+	// apply preserved sorting when window is reloaded.
+	$( window ).ready( events_table_preserved_sort );
+
+	wp.hooks.addAction( 'advanced-cron-manager.event.sort', 'bracketspace/acm', events_table_preserved_sort );
+
 })( jQuery );
