@@ -268,6 +268,9 @@
 		}
 	}
 
+	// apply preserved sorting when window is reloaded.
+	$( window ).ready( events_table_preserved_sort );
+
 	wp.hooks.addAction( 'advanced-cron-manager.event.added', 'bracketspace/acm/event-added', events_table_rerender );
 	wp.hooks.addAction( 'advanced-cron-manager.event.paused', 'bracketspace/acm/event-paused', events_table_rerender );
 	wp.hooks.addAction( 'advanced-cron-manager.event.unpaused', 'bracketspace/acm/event-unpaused', events_table_rerender );

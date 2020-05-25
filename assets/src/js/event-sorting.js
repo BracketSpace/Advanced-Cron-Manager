@@ -59,8 +59,8 @@
 			column.toggleClass( 'asc desc' );
 		} else {
 			column.addClass( 'asc' );
-			column.siblings().removeClass( 'asc desc' );
 		}
+		column.siblings().removeClass( 'asc desc' );
 
 		set_item_to_storage( 'events_sorting_column_name',  column.data( 'name' ) );
 		set_item_to_storage( 'events_sorting_order_class',  column.is( '.asc' ) ? 'acs' : 'desc' );
@@ -82,17 +82,5 @@
 		}
 		return 0;
 	}
-
-	// remove preserved events sorting when window is reloaded.
-	$( window ).ready(
-		function() {
-			if (typeof(Storage) !== "undefined") {
-				sessionStorage.removeItem( 'events_sorting_column_name' );
-				sessionStorage.removeItem( 'events_sorting_order_class' );
-			} else {
-				console.warn( "Web Storage is not supported." );
-			}
-		}
-	);
 
 })( jQuery );
