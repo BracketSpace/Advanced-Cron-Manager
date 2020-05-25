@@ -44,8 +44,8 @@
 		}
 
 		function compare_by_event_name(row1, row2) {
-			row1 = $( row1 ).find( '.event-name' ).prop( 'innerText' ).toLowerCase();
-			row2 = $( row2 ).find( '.event-name' ).prop( 'innerText' ).toLowerCase();
+			row1 = $( row1 ).find( '.event-name' ).text().toLowerCase();
+			row2 = $( row2 ).find( '.event-name' ).text().toLowerCase();
 			return row1.localeCompare( row2 ) * order;
 		}
 
