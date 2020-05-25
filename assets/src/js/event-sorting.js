@@ -7,7 +7,7 @@
 
 	$( '.tools_page_advanced-cron-manager' ).on(
 		'click',
-		'#events .header .event, #events .header .schedule, #events .header .next-execution',
+		'#events .header .is-sortable',
 		function (event) {
 
 			event.preventDefault();
