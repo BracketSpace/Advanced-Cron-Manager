@@ -15,16 +15,24 @@
 			var event_rows_block = $( '.event-rows-block' );
 			var event_rows       = event_rows_block.children();
 			var column_name      = $( this ).data( 'name' );
+			var column_headers   = $( '#events .header' ).find( "[data-name='" + column_name + "']" );
 
-			assign_order_class( $( this ) );
+			$.each(
+				column_headers,
+				function ( index, item ) {
+					assign_order_class( item );
+				}
+			);
+
+			preserve_sorting( $( this ) );
 
 			event_rows.sort( get_comparator( column_name, get_order_direction( $( this ) ) ) );
 			event_rows_block.html( event_rows );
 		}
 	);
 
-	function get_comparator ( name, order ) {
-		switch ( name ) {
+	function get_comparator ( column_name, order ) {
+		switch ( column_name ) {
 			case 'event':
 				return compare_by_event_name;
 			case 'schedule':
@@ -54,30 +62,28 @@
 		}
 	}
 
-	function assign_order_class( column ) {
-		if ( column.is( '.asc' ) || column.is( '.desc' ) ) {
-			column.toggleClass( 'asc desc' );
+	function assign_order_class( column_header ) {
+		if ( $( column_header ).is( '.asc' ) || $( column_header ).is( '.desc' ) ) {
+			$( column_header ).toggleClass( 'asc desc' );
 		} else {
-			column.addClass( 'asc' );
+			$( column_header ).addClass( 'asc' );
 		}
-		column.siblings().removeClass( 'asc desc' );
-
-		set_item_to_storage( 'events_sorting_column_name',  column.data( 'name' ) );
-		set_item_to_storage( 'events_sorting_order_class',  column.is( '.asc' ) ? 'acs' : 'desc' );
+		$( column_header ).siblings().removeClass( 'asc desc' );
 	}
 
-	function set_item_to_storage( key, value ) {
+	function preserve_sorting( column_header ) {
 		if (typeof(Storage) !== "undefined") {
-			return sessionStorage.setItem( key, value );
+			sessionStorage.setItem( 'events_sorting_column_name',  column_header.data( 'name' ) );
+			sessionStorage.setItem( 'events_sorting_order_class',  column_header.is( '.asc' ) ? 'asc' : 'desc' );
 		} else {
 			console.warn( "Web Storage is not supported." );
 		}
 	}
 
-	function get_order_direction( column ) {
-		if ( column.is( '.asc' ) ) {
+	function get_order_direction( column_header ) {
+		if ( column_header.is( '.asc' ) ) {
 			return 1;
-		} else if ( column.is( '.desc' ) ) {
+		} else if ( column_header.is( '.desc' ) ) {
 			return -1;
 		}
 		return 0;
@@ -94,6 +100,7 @@
 			$( '.columns' ).find( "[data-name='" + column_name + "']" )
 				.removeClass( 'asc desc' )
 				.addClass( order_class )
+				.first()
 				.trigger( 'click' );
 		}
 
