@@ -45,13 +45,17 @@ class Events {
 
 		// protected events registered by WordPress' core.
 		$this->protected_events = array(
+			'wp_privacy_delete_old_export_files',
 			'wp_version_check',
 			'wp_update_plugins',
 			'wp_update_themes',
+			'wp_site_health_scheduled_check',
+			'recovery_mode_clean_expired_keys',
 			'wp_scheduled_delete',
+			'delete_expired_transients',
 			'wp_scheduled_auto_draft_delete',
+			'recovery_mode_clean_expired_keys',
 		);
-
 	}
 
 	/**
