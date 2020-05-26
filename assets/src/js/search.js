@@ -33,4 +33,23 @@
 		$( '#search' ).val( '' );
 	} );
 
+	// preserve search value.
+	wp.hooks.addAction(
+		'advanced-cron-manager.events.search.triggered',
+		'bracketspace/acm',
+		function( value ) {
+			var url_params = new URLSearchParams( window.location.search );
+
+			if ( value !== "") {
+				url_params.set( 'event-search', value );
+			} else {
+				url_params.delete( 'event-search' );
+			}
+
+			var url = "?" + url_params.toString();
+			window.history.pushState( { 'event-search': value }, '', url );
+		}
+	);
+
+
 } )( jQuery );
