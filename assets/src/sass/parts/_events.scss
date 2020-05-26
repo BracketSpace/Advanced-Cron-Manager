@@ -47,8 +47,27 @@
 			    .columns {
 			    	border-bottom: none;
 			    	box-shadow: none;
-			    }
 
+					.column {
+
+						&.is-sortable {
+							cursor: pointer;
+						}
+
+						&.asc::after {
+							@include up-pointing-triangle;
+						}
+
+						&.desc::after {
+							@include down-pointing-triangle;
+						}
+
+						// select only sortable columns which are not sorted
+						&:not(.asc):not(.desc):not(.arguments):not(.cb):hover::after {
+							@include up-pointing-triangle;
+						}
+					}
+				}
 			}
 
 			&.unfolded {

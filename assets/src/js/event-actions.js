@@ -228,17 +228,21 @@
 
 	} );
 
-	// refresh table and close slidebar
-	var events_table_rerender = function() {
+	// refresh table and close slidebar.
+	var events_table_rerender = function () {
 
 		$( '#events' ).addClass( 'loading' );
 
-	    $.post( ajaxurl, { 'action': 'acm/rerender/events' }, function( response ) {
-	    	$( '#events' ).replaceWith( response.data );
-	    	advanced_cron_manager.slidebar.form_process_stop();
-			advanced_cron_manager.slidebar.close();
-	    } );
-
+		$.post(
+			ajaxurl,
+			{ 'action': 'acm/rerender/events' },
+			function ( response ) {
+				$( '#events' ).replaceWith( response.data );
+				advanced_cron_manager.slidebar.form_process_stop();
+				advanced_cron_manager.slidebar.close();
+				wp.hooks.doAction( 'advanced-cron-manager.event.sort' );
+			}
+		);
 	};
 
 	wp.hooks.addAction( 'advanced-cron-manager.event.added', 'bracketspace/acm/event-added', events_table_rerender );

@@ -61,7 +61,7 @@ if ( $event->paused ) {
 				</span>
 			</div>
 		</div>
-		<div class="column schedule"><?php echo esc_html( $schedules->get_schedule( $event->schedule )->label ); ?></div>
+		<div class="column schedule" data-interval="<?php echo esc_attr( $event->interval ); ?>"><?php echo esc_html( $schedules->get_schedule( $event->schedule )->label ); ?></div>
 		<div class="column arguments">
 			<?php foreach ( $event->args as $arg ) : ?>
 				<span>
@@ -75,7 +75,7 @@ if ( $event->paused ) {
 				</span>
 			<?php endforeach ?>
 		</div>
-		<div class="column next-execution">
+		<div class="column next-execution" data-time="<?php echo esc_attr( $event->next_call ); ?>">
 			<?php if ( $event->next_call <= time() ) : ?>
 				<?php esc_html_e( 'In queue', 'advanced-cron-manager' ); ?>
 			<?php else : ?>
