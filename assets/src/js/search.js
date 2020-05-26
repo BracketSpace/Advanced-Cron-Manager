@@ -51,5 +51,19 @@
 		}
 	);
 
+	// apply search to events table by last search value.
+	function events_table_preserved_search () {
+		var url_params   = new URLSearchParams( window.location.search );
+		var search_param = url_params.get( 'event-search' );
+
+		if ( search_param !== null && search_param !== "") {
+			$( '#search' ).val( search_param ).trigger( 'input' );
+		}
+	}
+
+	// apply preserved sorting when window is reloaded.
+	$( window ).ready( events_table_preserved_search );
+
+	wp.hooks.addAction( 'advanced-cron-manager.event.search.do-trigger', 'bracketspace/acm', events_table_preserved_search );
 
 } )( jQuery );

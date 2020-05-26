@@ -240,6 +240,7 @@
 				$( '#events' ).replaceWith( response.data );
 				advanced_cron_manager.slidebar.form_process_stop();
 				advanced_cron_manager.slidebar.close();
+				wp.hooks.doAction( 'advanced-cron-manager.event.search.do-trigger' );
 				wp.hooks.doAction( 'advanced-cron-manager.event.sort.do-trigger' );
 			}
 		);
