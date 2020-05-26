@@ -80,7 +80,7 @@
 			url_params.set( 'order',  order );
 			var url = "?" + url_params.toString();
 
-			window.history.pushState( { sort: sort, order: order }, '', url );
+			window.history.pushState( { 'sort': sort, 'order': order }, '', url );
 	}
 
 	function get_order_direction( column_header ) {
@@ -116,6 +116,6 @@
 	// apply preserved sorting when window is reloaded.
 	$( window ).ready( events_table_preserved_sort );
 
-	wp.hooks.addAction( 'advanced-cron-manager.event.sort', 'bracketspace/acm', events_table_preserved_sort );
+	wp.hooks.addAction( 'advanced-cron-manager.event.sort.do-trigger', 'bracketspace/acm', events_table_preserved_sort );
 
 })( jQuery );
