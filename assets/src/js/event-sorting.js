@@ -72,12 +72,15 @@
 	}
 
 	function preserve_sorting( column_header ) {
-		if (typeof(Storage) !== "undefined") {
-			sessionStorage.setItem( 'events_sorting_column_name',  column_header.data( 'name' ) );
-			sessionStorage.setItem( 'events_sorting_order_class',  column_header.is( '.asc' ) ? 'asc' : 'desc' );
-		} else {
-			console.warn( "Web Storage is not supported." );
-		}
+			var url_params = new URLSearchParams( window.location.search );
+			var sort       = column_header.data( 'name' );
+			var order      = column_header.is( '.asc' ) ? 'asc' : 'desc';
+
+			url_params.set( 'sort', sort );
+			url_params.set( 'order',  order );
+			var url = "?" + url_params.toString();
+
+			window.history.pushState( { sort: sort, order: order }, '', url );
 	}
 
 	function get_order_direction( column_header ) {
@@ -92,8 +95,8 @@
 
 	// sort events table by last selected sorting.
 	function events_table_preserved_sort() {
-		var column_name = get_item_from_storage( 'events_sorting_column_name' );
-		var order_class = get_item_from_storage( 'events_sorting_order_class' );
+		var column_name = get_param_from_url( 'sort' );
+		var order_class = get_param_from_url( 'order' );
 
 		if ( column_name && order_class ) {
 			order_class = order_class === 'desc' ? 'asc' : 'desc';
@@ -104,13 +107,9 @@
 				.trigger( 'click' );
 		}
 
-		function get_item_from_storage( key ) {
-			if (typeof(Storage) !== "undefined") {
-				return sessionStorage.getItem( key );
-			} else {
-				console.warn( "Web Storage is not supported." );
-				return null;
-			}
+		function get_param_from_url( key ) {
+			var url_params = new URLSearchParams( window.location.search );
+			return url_params.get( key );
 		}
 	}
 
