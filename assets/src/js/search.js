@@ -64,6 +64,6 @@
 	// apply preserved sorting when window is reloaded.
 	$( window ).ready( events_table_preserved_search );
 
-	wp.hooks.addAction( 'advanced-cron-manager.event.search.do-trigger', 'bracketspace/acm', events_table_preserved_search );
+	wp.hooks.addAction( 'advanced-cron-manager.event.search', 'bracketspace/acm', events_table_preserved_search );
 
 } )( jQuery );
