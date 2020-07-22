@@ -2,48 +2,62 @@
 /**
  * AdminScreen class
  * Displays admin screen
+ *
+ * @package advanced-cron-manager
  */
 
 namespace underDEV\AdvancedCronManager;
+
 use underDEV\Utils;
 use underDEV\AdvancedCronManager\Cron;
 
+/**
+ * Admin Screen class.
+ */
 class AdminScreen {
 
 	/**
 	 * View class
+	 *
 	 * @var instance of underDEV\AdvancedCronManage\Utils\View
 	 */
 	public $view;
 
 	/**
 	 * Ajax class
+	 *
 	 * @var instance of underDEV\AdvancedCronManage\Utils\Ajax
 	 */
 	public $ajax;
 
 	/**
 	 * Schedules class
+	 *
 	 * @var instance of underDEV\AdvancedCronManage\Cron\Schedules
 	 */
 	public $schedules;
 
 	/**
 	 * Events class
+	 *
 	 * @var instance of underDEV\AdvancedCronManage\Cron\Events
 	 */
 	public $events;
 
 	/**
 	 * Default tab names for events
+	 *
 	 * @var array
 	 */
 	protected $default_event_details_tabs;
 
 	/**
 	 * Contructor
-	 * @param View      $view      View class
-	 * @param Schedules $schedules Schedules class
+	 *
+	 * @param Utils\View     $view      View class.
+	 * @param Utils\Ajax     $ajax      Ajax class.
+	 * @param Cron\Schedules $schedules Schedules class.
+	 * @param Cron\Events    $events    Events class.
 	 */
 	public function __construct( Utils\View $view, Utils\Ajax $ajax, Cron\Schedules $schedules, Cron\Events $events ) {
 
@@ -61,6 +75,13 @@ class AdminScreen {
 
 	}
 
+	/**
+	 * Call method
+	 *
+	 * @param  string $method Called method.
+	 * @param  array  $args   Arguments.
+	 * @return mixed
+	 */
 	public function __call( $method, $args ) {
 
 		if ( strpos( $method, 'ajax_rerender_' ) !== false ) {
@@ -83,6 +104,7 @@ class AdminScreen {
 
 	/**
 	 * Loads the page screen
+	 *
 	 * @return void
 	 */
 	public function load_page_wrapper() {
@@ -93,7 +115,8 @@ class AdminScreen {
 	 * Loads searchbox
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
-	 * @param  object $view instance of parent view
+	 *
+	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
 	public function load_searchbox_part( $view ) {
@@ -104,7 +127,8 @@ class AdminScreen {
 	 * Loads events table
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
-	 * @param  object $view instance of parent view
+	 *
+	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
 	public function load_events_table_part( $view ) {
@@ -126,7 +150,8 @@ class AdminScreen {
 	 * Loads schedules table
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
-	 * @param  object $view instance of parent view
+	 *
+	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
 	public function load_schedules_table_part( $view ) {
@@ -141,7 +166,8 @@ class AdminScreen {
 	 * Loads slidebar template
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
-	 * @param  object $view instance of parent view
+	 *
+	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
 	public function load_slidebar_part( $view ) {
@@ -151,7 +177,8 @@ class AdminScreen {
 	/**
 	 * Adds default event details tabs
 	 * It also registers the actions for the content
-	 * @param array $tabs filtered tabs
+	 *
+	 * @param array $tabs filtered tabs.
 	 */
 	public function add_default_event_details_tabs( $tabs ) {
 
@@ -167,7 +194,8 @@ class AdminScreen {
 	/**
 	 * Loads Logs tab content for event details
 	 * Scope for $view is the same as in events/section view
-	 * @param  object $view local View instance
+	 *
+	 * @param  object $view local View instance.
 	 * @return void
 	 */
 	public function load_event_tab_logs( $view ) {
@@ -179,7 +207,8 @@ class AdminScreen {
 	/**
 	 * Loads Arguments tab content for event details
 	 * Scope for $view is the same as in events/section view
-	 * @param  object $view local View instance
+	 *
+	 * @param  object $view local View instance.
 	 * @return void
 	 */
 	public function load_event_tab_arguments( $view ) {
@@ -191,7 +220,8 @@ class AdminScreen {
 	/**
 	 * Loads Schedule tab content for event details
 	 * Scope for $view is the same as in events/section view
-	 * @param  object $view local View instance
+	 *
+	 * @param  object $view local View instance.
 	 * @return void
 	 */
 	public function load_event_tab_schedule( $view ) {
@@ -203,7 +233,8 @@ class AdminScreen {
 	/**
 	 * Loads Implementation tab content for event details
 	 * Scope for $view is the same as in events/section view
-	 * @param  object $view local View instance
+	 *
+	 * @param  object $view local View instance.
 	 * @return void
 	 */
 	public function load_event_tab_implementation( $view ) {

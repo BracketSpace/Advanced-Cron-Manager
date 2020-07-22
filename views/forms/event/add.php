@@ -1,9 +1,11 @@
 <?php
 /**
  * Add event form
+ *
+ * @package advanced-cron-manager
  */
 
-$schedules = $this->get_var( 'schedules' );
+$schedules       = $this->get_var( 'schedules' );
 $single_schedule = $this->get_var( 'single_schedule' );
 
 ?>
@@ -13,7 +15,7 @@ $single_schedule = $this->get_var( 'single_schedule' );
 <?php wp_nonce_field( 'acm/event/insert', 'nonce', false ); ?>
 
 <label for="event-hook"><?php esc_html_e( 'Hook', 'advanced-cron-manager' ); ?></label>
-<p class="description"><?php esc_html_e( 'Should contain only lowercase letters, numbers and _', 'advanced-cron-manager' ); ?></p>
+<p class="description"><?php esc_html_e( 'Should not contain any HTML tags including script nor style', 'advanced-cron-manager' ); ?></p>
 <input type="text" id="event-hook" name="hook" class="widefat">
 
 <label for="event-execution"><?php esc_html_e( 'First execution', 'advanced-cron-manager' ); ?></label>
@@ -25,9 +27,12 @@ $single_schedule = $this->get_var( 'single_schedule' );
 <p class="description"><?php esc_html_e( 'After first execution repeat:', 'advanced-cron-manager' ); ?></p>
 <select id="event-schedule" class="widefat" name="schedule">
 	<option value="<?php echo esc_attr( $single_schedule->slug ); ?>">
-		<?php echo esc_html( sprintf( __( 'Don\'t repeat (%s)', 'advanced-cron-manager' ), $single_schedule->label ) ); ?>
+		<?php
+		// Translators: schedule label.
+		echo esc_html( sprintf( __( 'Don\'t repeat (%s)', 'advanced-cron-manager' ), $single_schedule->label ) );
+		?>
 	</option>
-	<?php foreach ( $schedules as $schedule ): ?>
+	<?php foreach ( $schedules as $schedule ) : ?>
 		<option value="<?php echo esc_attr( $schedule->slug ); ?>"><?php echo esc_html( $schedule->label ); ?> (<?php echo esc_html( $schedule->slug ); ?>)</option>
 	<?php endforeach ?>
 </select>

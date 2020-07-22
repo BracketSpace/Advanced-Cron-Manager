@@ -1,6 +1,8 @@
 <?php
 /**
  * Notification promo part
+ *
+ * @package advanced-cron-manager
  */
 
 ?>

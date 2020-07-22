@@ -2,24 +2,36 @@
 /**
  * Schedules class
  * Used to handle collection of schedules
+ *
+ * @package advanced-cron-manager
  */
 
 namespace underDEV\AdvancedCronManager\Cron;
 
+/**
+ * Schedules class
+ */
 class Schedules {
 
 	/**
 	 * Registered schedules
+	 *
 	 * @var array
 	 */
 	private $schedules = array();
 
 	/**
 	 * Schedules library
+	 *
 	 * @var object
 	 */
 	private $library = array();
 
+	/**
+	 * Constructor
+	 *
+	 * @param SchedulesLibrary $library SchedulesLibrary object.
+	 */
 	public function __construct( SchedulesLibrary $library ) {
 
 		$this->library = $library;
@@ -29,7 +41,8 @@ class Schedules {
 	/**
 	 * Gets all registered schedules
 	 * Supports lazy loading
-	 * @param  boolean $force if refresh stored schedules
+	 *
+	 * @param  boolean $force if refresh stored schedules.
 	 * @return array          registered schedules
 	 */
 	public function get_schedules( $force = false ) {
@@ -53,7 +66,6 @@ class Schedules {
 				$this->schedules[ $slug ] = new Element\Schedule( $slug, $params['interval'], $params['display'], $protected );
 
 			}
-
 		}
 
 		return $this->schedules;
@@ -62,6 +74,7 @@ class Schedules {
 
 	/**
 	 * Counts the total number of schedules
+	 *
 	 * @return int
 	 */
 	public function count() {
@@ -70,7 +83,8 @@ class Schedules {
 
 	/**
 	 * Gets single schedule object
-	 * @param  string $slug schedule slug name
+	 *
+	 * @param  string $slug schedule slug name.
 	 * @return mixed        schedule object or null
 	 */
 	public function get_schedule( $slug ) {
@@ -83,6 +97,7 @@ class Schedules {
 
 	/**
 	 * Gets single event fake schedule
+	 *
 	 * @return object
 	 */
 	public function get_single_event_schedule() {

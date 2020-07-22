@@ -6,10 +6,12 @@
  * Tasks:
  * 1. reschedules paused events
  * 2. removes acm_* options from wp_options
+ *
+ * @package advanced-cron-manager
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-    die;
+	die;
 }
 
 $plugin_version = 'x';
@@ -18,14 +20,14 @@ $plugin_file    = dirname( __FILE__ ) . '/advanced-cron-manager.php';
 /**
  * Fire up Composer's autoloader
  */
-require_once( __DIR__ . '/vendor/autoload.php' );
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Bootstrap plugin
  */
 
 $ajax = function() {
-	return new underDEV\Utils\Ajax;
+	return new underDEV\Utils\Ajax();
 };
 
 $schedules_library = new underDEV\AdvancedCronManager\Cron\SchedulesLibrary( $ajax() );

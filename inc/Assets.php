@@ -2,31 +2,47 @@
 /**
  * Assets class
  * Loads plugin assets
+ *
+ * @package advanced-cron-manager
  */
 
 namespace underDEV\AdvancedCronManager;
+
 use underDEV\Utils;
 
+/**
+ * Assets class
+ */
 class Assets {
 
 	/**
 	 * Current plugin version
+	 *
 	 * @var string
 	 */
 	public $plugin_version;
 
 	/**
 	 * Files class
+	 *
 	 * @var object
 	 */
 	public $files;
 
 	/**
 	 * ScreenRegisterer
+	 *
 	 * @var object
 	 */
 	public $screen;
 
+	/**
+	 * Constructor
+	 *
+	 * @param string           $version Plugin version.
+	 * @param Utils\Files      $files   Files object.
+	 * @param ScreenRegisterer $screen  ScreenRegisterer object.
+	 */
 	public function __construct( $version, Utils\Files $files, ScreenRegisterer $screen ) {
 
 		$this->plugin_version = $version;
@@ -37,11 +53,13 @@ class Assets {
 
 	/**
 	 * Enqueue admin scripts
+	 *
+	 * @param string $current_page_hook Page hook name.
 	 * @return void
 	 */
 	public function enqueue_admin( $current_page_hook ) {
 
-		if ( $current_page_hook != $this->screen->get_page_hook() ) {
+		if ( $current_page_hook !== $this->screen->get_page_hook() ) {
 			return;
 		}
 
@@ -63,8 +81,8 @@ class Assets {
 				'events'               => __( 'events', 'advanced-cron-manager' ),
 				'removing'             => __( 'Removing...', 'advanced-cron-manager' ),
 				'pausing'              => __( 'Pausing...', 'advanced-cron-manager' ),
-				'saving'               => __( 'Saving...', 'advanced-cron-manager' )
-			)
+				'saving'               => __( 'Saving...', 'advanced-cron-manager' ),
+			),
 		) );
 
 		do_action( 'advanced-cron-manager/screen/enqueue', $current_page_hook );

@@ -1,7 +1,10 @@
 <?php
 /**
  * Events section part
+ *
+ * @package advanced-cron-manager
  */
+
 ?>
 
 <div id="events">
@@ -14,10 +17,12 @@
 
 		<?php $this->get_view( 'parts/events/header-row' ); ?>
 
-		<?php foreach ( $this->get_var( 'events' ) as $event ): ?>
-			<?php $this->set_var( 'event', $event, true ); ?>
-			<?php $this->get_view( 'parts/events/row' ); ?>
-		<?php endforeach ?>
+		<div class="event-rows-block">
+			<?php foreach ( $this->get_var( 'events' ) as $event ) : ?>
+				<?php $this->set_var( 'event', $event, true ); ?>
+				<?php $this->get_view( 'parts/events/row' ); ?>
+			<?php endforeach ?>
+		</div>
 
 		<?php $this->remove_var( 'event' ); ?>
 

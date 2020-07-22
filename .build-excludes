@@ -1,7 +1,13 @@
-.build-excludes
+.actionspanel
 .git
-.gitignore
-.travis.yml
+.github
+.wordpress-org
+bin
+build
+node_modules
+assets/src
+tests
+vendor/typisttech
 composer.json
 composer.lock
 gruntfile.js
@@ -11,8 +17,3 @@ package-lock.json
 yarn.lock
 phpcs.ruleset.xml
 phpunit.xml.dist
-node_modules
-builds
-tests
-assets/src
-bin
