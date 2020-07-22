@@ -44,7 +44,7 @@ class Schedule {
 	/**
 	 * Constructor
 	 *
-	 * @since [Next]
+	 * @since 2.4.0
 	 * @param string  $slug      Slug.
 	 * @param integer $interval  Interval.
 	 * @param string  $label     Label.
