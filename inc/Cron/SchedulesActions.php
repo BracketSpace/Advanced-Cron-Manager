@@ -32,7 +32,7 @@ class SchedulesActions {
 	/**
 	 * Constructor
 	 *
-	 * @since [Next]
+	 * @since 2.4.0
 	 * @param Utils\Ajax       $ajax    Ajax object.
 	 * @param SchedulesLibrary $library SchedulesLibrary object.
 	 */

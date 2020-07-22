@@ -65,7 +65,7 @@ class Event {
 	/**
 	 * Constructor
 	 *
-	 * @since [Next]
+	 * @since 2.4.0
 	 * @param string  $hook      Hook name.
 	 * @param string  $schedule  Schedule name.
 	 * @param integer $interval  Interval.
