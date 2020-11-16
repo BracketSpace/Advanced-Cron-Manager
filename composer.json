@@ -14,7 +14,7 @@
         "phpcbf": "phpcbf"
     },
     "require": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
         "phpcompatibility/php-compatibility": "^9.1",
         "underdev/utils": "*",
         "underdev/requirements": "*",
@@ -26,6 +26,6 @@
         }
     },
     "require-dev": {
-        "10up/wp_mock": "dev-dev"
+        "10up/wp_mock": "dev-trunk"
     }
 }

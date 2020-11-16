@@ -40,7 +40,7 @@ jobs:
     - name: Install Composer dependencies
       run: composer install -o --no-dev --no-progress
     - name: Build static assets
-      run: gulp
+      run: yarn build
     - name: Create build dir
       run: mkdir build
     - name: Copy files
