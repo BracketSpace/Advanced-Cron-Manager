@@ -90,6 +90,10 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Composer dev dependencies are now not bundled in the production package
+* [Changed] Updated composer dependencies
+
 = 2.4.0 =
 * [Added] Event columns sorting
 * [Fixed] Cron hook sanitizer doesn't allow usage of slashes
