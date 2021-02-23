@@ -92,6 +92,7 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 
 = [Next] =
 * [Fixed] Composer dev dependencies are now not bundled in the production package
+* [Fixed] "nul" typo causing fatal errors on newer PHP versions
 * [Changed] Updated composer dependencies
 
 = 2.4.0 =
