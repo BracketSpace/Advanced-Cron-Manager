@@ -2,8 +2,8 @@
 Contributors: bracketspace, Kubitomakita
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
-Tested up to: 5.4
-Stable tag: 2.4.0
+Tested up to: 5.6
+Stable tag: 2.4.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,11 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.4.1 =
+* [Fixed] Composer dev dependencies are now not bundled in the production package
+* [Fixed] "nul" typo causing fatal errors on newer PHP versions
+* [Changed] Updated composer dependencies
 
 = 2.4.0 =
 * [Added] Event columns sorting

@@ -69,7 +69,7 @@ class FormProvider {
 	 */
 	public function get_form( $form_name = null, $form_title = '', $cta = '' ) {
 
-		if ( nul === $form_name ) {
+		if ( null === $form_name ) {
 			trigger_error( 'Form name cannot be empty' );
 		}
 
