@@ -98,6 +98,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Link to server scheduler documentation
+
 = 2.4.1 =
 * [Fixed] Composer dev dependencies are now not bundled in the production package
 * [Fixed] "nul" typo causing fatal errors on newer PHP versions
