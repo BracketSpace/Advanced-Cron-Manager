@@ -77,7 +77,7 @@ It's used for action. For example if your hook is hook_name you'll need to add i
 
 = Does this plugin allow to add PHP to events like in WP Crontrol plugin? =
 
-No. This is not safe. You can, however, copy the sample implementation and paste it into you own plugin or theme's function.php file.
+No. This is not safe. You can, however, copy the sample implementation and paste it into your own plugin or theme's function.php file.
 
 = Can this plugin block WP Cron and help hooking it into Server Cron like WP-Cron Control plugin? =
 
