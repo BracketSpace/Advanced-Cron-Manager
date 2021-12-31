@@ -24,6 +24,8 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
+        with:
+          composer-options: "--no-dev"
       - name: Build static assets
         run: yarn build
       - name: Create build dir
