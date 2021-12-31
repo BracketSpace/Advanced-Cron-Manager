@@ -100,6 +100,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Fixed] Link to server scheduler documentation
+* [Fixed] Unauthorized actions. Now all the plugin actions are checking if the user is allowed to run them.
 
 = 2.4.1 =
 * [Fixed] Composer dev dependencies are now not bundled in the production package
@@ -240,6 +241,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * Plugin relase
 
 == Upgrade Notice ==
+
+= [Next] =
+Security release.
 
 = 2.0.0 =
 * Plugin has been rebuilt from a scratch.
