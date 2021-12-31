@@ -7,9 +7,11 @@ jobs:
     name: WordPress Coding Standards
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Install dependencies
-      run: composer install --no-progress
-    - name: Coding Standards
-      run: composer phpcs
+      - name: Set PHP version
+        run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install PHP Dependencies
+        uses: "ramsey/composer-install@v2"
+      - name: Coding Standards
+        run: composer phpcs

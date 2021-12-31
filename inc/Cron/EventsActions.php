@@ -69,6 +69,12 @@ class EventsActions {
 
 		$this->ajax->verify_nonce( 'acm/event/insert' );
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->ajax->response( false, array(
+				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+			) );
+		}
+
 		// phpcs:ignore
 		$data = wp_parse_args( $_REQUEST['data'], array() );
 
@@ -125,6 +131,12 @@ class EventsActions {
 
 		$this->ajax->verify_nonce( 'acm/event/run/' . $event->hash );
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->ajax->response( false, array(
+				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+			) );
+		}
+
 		$acm_current_event = $event;
 
 		if ( ! defined( 'DOING_CRON' ) ) {
@@ -153,6 +165,12 @@ class EventsActions {
 
 		$this->ajax->verify_nonce( 'acm/event/remove/' . $event->hash );
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->ajax->response( false, array(
+				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+			) );
+		}
+
 		if ( $event->protected ) {
 			// Translators: event hook.
 			$errors = array( sprintf( __( 'Event "%s" is protected and you cannot remove it', 'advanced-cron-manager' ), $event->hook ) );
@@ -180,6 +198,12 @@ class EventsActions {
 
 		$this->ajax->verify_nonce( 'acm/event/pause/' . $event->hash );
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->ajax->response( false, array(
+				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+			) );
+		}
+
 		$result = $this->library->pause( $event );
 
 		if ( is_array( $result ) ) {
@@ -206,6 +230,12 @@ class EventsActions {
 		$event = $this->events->get_event_by_hash( $_REQUEST['event'] );
 
 		$this->ajax->verify_nonce( 'acm/event/unpause/' . $event->hash );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->ajax->response( false, array(
+				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+			) );
+		}
 
 		$result = $this->library->unpause( $event );
 

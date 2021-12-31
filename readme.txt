@@ -2,8 +2,8 @@
 Contributors: bracketspace, Kubitomakita
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
-Tested up to: 5.6
-Stable tag: 2.4.1
+Tested up to: 5.9
+Stable tag: 2.4.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,23 +32,27 @@ and schedules:
 
 Plugin use AJAX request so you'll need enabled Javascript in order to use it.
 
-> **Advanced Cron Manager PRO**
->
-> PRO version includes
->
-> * Cron Logger - log cron's execution times easily
-> * Events rescheduling - change event next execution date to control server load
-> * Error catcher - catch cron task's fatal errors and get them displayed in the log
-> * Performance stats - see how much time and memory particular event took
-> * Debug tool - log any useful informations from Cron callback
->
-> [Buy now](https://bracketspace.com/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
+= Advanced Cron Manager PRO =
 
-**Informations about WP Cron**
+PRO version includes
+
+* Cron Logger - log cron's execution times easily
+* Events rescheduling - change event next execution date to control server load
+* Error catcher - catch cron task's fatal errors and get them displayed in the log
+* Performance stats - see how much time and memory particular event took
+* Debug tool - log any useful informations from Cron callback
+
+[Buy now](https://bracketspace.com/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
+
+= Information about WP Cron =
 
 Please remember - after deactivation of this plugin added Schedules will be not available. Added Events will still work.
 
 Important - WordPress Cron is depended on the User. WP Cron fires only on the page visit so it can be inaccurate.
+
+= Custom Development =
+
+BracketSpace - the company behind this plugin provides [custom WordPress plugin development services](https://bracketspace.com/custom-development/). We can create any custom plugin for you.
 
 == Installation ==
 
@@ -73,11 +77,15 @@ It's used for action. For example if your hook is hook_name you'll need to add i
 
 = Does this plugin allow to add PHP to events like in WP Crontrol plugin? =
 
-No. This is not safe. You can, however, copy the sample implementation and paste it into you own plugin or theme's function.php file.
+No. This is not safe. You can, however, copy the sample implementation and paste it into your own plugin or theme's function.php file.
 
 = Can this plugin block WP Cron and help hooking it into Server Cron like WP-Cron Control plugin? =
 
 Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Advanced Cron Manager can disable spawning WP Cron on site visit and will give you useful informations about added Server Cron task.
+
+= Can you create a plugin for me? =
+
+Yes! We're offering a [custom plugin development](https://bracketspace.com/custom-development/) services. Feel free to contact us to find out how we can help you.
 
 == Screenshots ==
 
@@ -89,6 +97,10 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.4.2 =
+* [Fixed] Link to server scheduler documentation
+* [Fixed] Unauthorized actions. Now all the plugin actions are checking if the user is allowed to run them.
 
 = 2.4.1 =
 * [Fixed] Composer dev dependencies are now not bundled in the production package
@@ -229,6 +241,9 @@ Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Ad
 * Plugin relase
 
 == Upgrade Notice ==
+
+= 2.4.2 =
+Security release.
 
 = 2.0.0 =
 * Plugin has been rebuilt from a scratch.

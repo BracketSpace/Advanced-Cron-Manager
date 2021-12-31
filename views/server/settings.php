@@ -32,7 +32,7 @@ if ( ! empty( $settings['server_enable'] ) ) {
 				</label>
 
 				<div class="dependants" <?php echo esc_attr( $display_dependants ); ?>>
-					<p><?php _e( 'Check <a href="https://www.google.com/search?q=how+to+setup+cron+job" target="_blank">how to setup the Cron job</a> or read more about <a href="https://developer.wordpress.org/plugins/cron/hooking-into-the-system-task-scheduler/" target="_blank">Hooking WP-Cron Into the System Task Scheduler</a>', 'advanced-cron-manager' ); // phpcs:ignore ?>.</p>
+					<p><?php _e( 'Check <a href="https://www.google.com/search?q=how+to+setup+cron+job" target="_blank">how to setup the Cron job</a> or read more about <a href="https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/" target="_blank">Hooking WP-Cron Into the System Task Scheduler</a>', 'advanced-cron-manager' ); // phpcs:ignore ?>.</p>
 					<p>
 						<?php esc_html_e( 'The command you want to use is:', 'advanced-cron-manager' ); ?>
 						<code>wget -qO- <?php echo site_url( '/wp-cron.php' ); // phpcs:ignore ?> &> /dev/null</code>

@@ -50,6 +50,12 @@ class SchedulesActions {
 
 		$this->ajax->verify_nonce( 'acm/schedule/insert' );
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->ajax->response( false, array(
+				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+			) );
+		}
+
 		// phpcs:ignore
 		$data = wp_parse_args( $_REQUEST['data'], array() );
 
@@ -80,6 +86,12 @@ class SchedulesActions {
 
 		$this->ajax->verify_nonce( 'acm/schedule/edit' );
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->ajax->response( false, array(
+				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+			) );
+		}
+
 		// phpcs:ignore
 		$data = wp_parse_args( $_REQUEST['data'], array() );
 
@@ -109,6 +121,12 @@ class SchedulesActions {
 		$schedule_slug = $_REQUEST['schedule'];
 
 		$this->ajax->verify_nonce( 'acm/schedule/remove/' . $schedule_slug );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->ajax->response( false, array(
+				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+			) );
+		}
 
 		$result = $this->library->remove( $schedule_slug );
 
