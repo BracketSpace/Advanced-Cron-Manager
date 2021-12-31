@@ -3,7 +3,7 @@ Contributors: bracketspace, Kubitomakita
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 5.9
-Stable tag: 2.4.1
+Stable tag: 2.4.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,7 +98,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 2.4.2 =
 * [Fixed] Link to server scheduler documentation
 * [Fixed] Unauthorized actions. Now all the plugin actions are checking if the user is allowed to run them.
 
@@ -242,7 +242,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Upgrade Notice ==
 
-= [Next] =
+= 2.4.2 =
 Security release.
 
 = 2.0.0 =
