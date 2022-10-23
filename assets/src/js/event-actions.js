@@ -1,5 +1,15 @@
 ( function( $ ) {
 
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '.argument-preview', function( event ) {
+		const data = event.currentTarget.dataset.args;
+
+		if ( data ) {
+			const parsedData = jQuery.parseJSON(data);
+			advanced_cron_manager.previewModal.open();
+			advanced_cron_manager.previewModal.fulfill(parsedData);
+		}
+	} );
+
 	///////////////////
 	// Form requests //
 	///////////////////

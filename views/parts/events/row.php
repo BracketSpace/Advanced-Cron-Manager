@@ -14,6 +14,12 @@ $time_offset = get_option( 'gmt_offset' ) * 3600;
 $date_format = get_option( 'date_format' );
 $time_format = get_option( 'time_format' );
 
+$args_length = 0;
+
+foreach ($event->args as $arg)  {
+	$args_length += strlen($arg);
+}
+
 $css_class = '';
 
 if ( $event->paused ) {
@@ -63,17 +69,23 @@ if ( $event->paused ) {
 		</div>
 		<div class="column schedule" data-interval="<?php echo esc_attr( $event->interval ); ?>"><?php echo esc_html( $schedules->get_schedule( $event->schedule )->label ); ?></div>
 		<div class="column arguments">
-			<?php foreach ( $event->args as $arg ) : ?>
-				<span>
-					<?php if ( is_array( $arg ) ) : ?>
-						<?php esc_html_e( 'Array', 'advanced-cron-manager' ); ?>
-					<?php elseif ( is_object( $arg ) ) : ?>
-						<?php echo esc_html( get_class( $arg ) ); ?>
-					<?php else : ?>
-						<?php echo esc_html( $arg ); ?>
-					<?php endif ?>
-				</span>
-			<?php endforeach ?>
+			<?php if ( $args_length > 150 ) : ?>
+				<a class="button button-small button-secondary argument-preview" data-args="<?php echo esc_attr( json_encode( (array) $event->args) ) ?>">
+					Preview
+				</a>
+			<?php else : ?>
+				<?php foreach ( $event->args as $arg ) : ?>
+						<span>
+							<?php if ( is_array( $arg ) ) : ?>
+								<?php esc_html_e( 'Array', 'advanced-cron-manager' ); ?>
+							<?php elseif ( is_object( $arg ) ) : ?>
+								<?php echo esc_html( get_class( $arg ) ); ?>
+							<?php else : ?>
+								<?php echo esc_html( $arg ); ?>
+							<?php endif ?>
+						</span>
+				<?php endforeach ?>
+			<?php endif ?>
 		</div>
 		<div class="column next-execution" data-time="<?php echo esc_attr( $event->next_call ); ?>">
 			<?php if ( $event->next_call <= time() ) : ?>

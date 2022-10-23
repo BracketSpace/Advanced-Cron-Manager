@@ -175,6 +175,18 @@ class AdminScreen {
 	}
 
 	/**
+	 * Loads slidebar template
+	 * There are used $this->view instead of passed instance
+	 * because we want to separate scopes
+	 *
+	 * @param  object $view instance of parent view.
+	 * @return void
+	 */
+	public function load_preview_modal_part( $view ) {
+		$this->view->get_view( 'elements/preview-modal' );
+	}
+
+	/**
 	 * Adds default event details tabs
 	 * It also registers the actions for the content
 	 *
