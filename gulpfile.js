@@ -1,25 +1,28 @@
 ///////////////
 // Variables //
 ///////////////
-var gulp         = require( 'gulp' ),
-	sass         = require( 'gulp-sass' ),
-	sourcemaps   = require( 'gulp-sourcemaps' ),
-	autoprefixer = require( 'gulp-autoprefixer' ),
-	uglify       = require( 'gulp-uglify' ),
-	concat       = require( 'gulp-concat' ),
-	imagemin     = require( 'gulp-imagemin' ),
-	order        = require( 'gulp-order' );
+import gulp from 'gulp';
+import gulpSass from 'gulp-sass';
+import dartSass from 'sass';
+import sourcemaps from 'gulp-sourcemaps';
+import autoprefixer from 'gulp-autoprefixer';
+import uglify from 'gulp-uglify';
+import concat from 'gulp-concat';
+import imagemin from 'gulp-imagemin';
+import order from 'gulp-order';
 
-var style_sources = 'assets/src/sass/**/*.scss',
-	style_target  = 'assets/dist/css';
+const sass = gulpSass( dartSass );
 
-var script_sources = 'assets/src/js/**/*.js';
-	script_target = 'assets/dist/js';
+const style_sources = 'assets/src/sass/**/*.scss';
+const style_target  = 'assets/dist/css';
+
+const script_sources = 'assets/src/js/**/*.js';
+const script_target = 'assets/dist/js';
 
 ///////////
 // Tasks //
 ///////////
-gulp.task( 'css', function() {
+gulp.task( 'css', async function() {
 	gulp.src( style_sources )
 		.pipe( sourcemaps.init() )
 		.pipe( sass( { outputStyle: 'compressed' } ).on( 'error', sass.logError ) )
@@ -28,7 +31,7 @@ gulp.task( 'css', function() {
 		.pipe( gulp.dest( style_target ) );
 } );
 
-gulp.task( 'js', function() {
+gulp.task( 'js', async function() {
 	gulp.src( script_sources )
 		.pipe( sourcemaps.init() )
 		.pipe( concat( 'scripts.min.js' ) )
@@ -40,7 +43,7 @@ gulp.task( 'js', function() {
 //////////////////////
 // Default - Build //
 /////////////////////
-gulp.task( 'default', [ 'css', 'js' ] );
+gulp.task( 'default', gulp.series('css', 'js'));
 
 ///////////
 // Watch //
