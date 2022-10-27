@@ -98,6 +98,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Updated dependencies (Node >= 12)
+
 = 2.4.2 =
 * [Fixed] Link to server scheduler documentation
 * [Fixed] Unauthorized actions. Now all the plugin actions are checking if the user is allowed to run them.
