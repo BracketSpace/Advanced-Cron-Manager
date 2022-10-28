@@ -1,33 +1,37 @@
 {
-  "name": "advanced-cron-manager",
-  "version": "1.0.0",
-  "description": "Advanced Cron Manager WordPress plugin",
-  "main": "index.js",
-  "scripts": {
-    "build": "gulp"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Kubitomakita/Advanced-Cron-Manager.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Kubitomakita/Advanced-Cron-Manager/issues"
-  },
-  "homepage": "https://github.com/Kubitomakita/Advanced-Cron-Manager#readme",
-  "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-compress": "^1.4.1",
-    "grunt-wp-i18n": "^1.0.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-imagemin": "^3.1.1",
-    "gulp-order": "^1.1.1",
-    "gulp-sass": "^4.0.0",
-    "gulp-sourcemaps": "^2.4.1",
-    "gulp-uglify": "^2.0.1"
-  }
+	"name": "advanced-cron-manager",
+	"version": "1.0.0",
+	"description": "Advanced Cron Manager WordPress plugin",
+	"main": "index.js",
+	"scripts": {
+		"build": "gulp"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Kubitomakita/Advanced-Cron-Manager.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Kubitomakita/Advanced-Cron-Manager/issues"
+	},
+  "type" : "module",
+	"homepage": "https://github.com/Kubitomakita/Advanced-Cron-Manager#readme",
+	"devDependencies": {
+		"grunt": "^1.5.3",
+		"grunt-cli": "^1.4.3",
+		"grunt-contrib-compress": "^2.0.0",
+		"grunt-wp-i18n": "^1.0.0",
+		"gulp": "^4.0.0",
+		"gulp-autoprefixer": "^8.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-imagemin": "^8.0.0",
+		"gulp-order": "^1.1.1",
+		"gulp-sass": "^5.0.0",
+		"gulp-sourcemaps": "^3.0.0",
+		"gulp-uglify": "^3.0.1"
+	},
+	"dependencies": {
+		"sass": "^1.55.0"
+	}
 }
