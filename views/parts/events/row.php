@@ -14,20 +14,20 @@ $time_offset = get_option( 'gmt_offset' ) * 3600;
 $date_format = get_option( 'date_format' );
 $time_format = get_option( 'time_format' );
 
-$args_length = 0;
-$parsed_args = [];
+$args_length       = 0;
+$parsed_args       = [];
 $show_args_preview = false;
 
-foreach ($event->args as $arg)  {
+foreach ( $event->args as $arg ) {
 	$parsed_args[] = [
-		'type' => gettype($arg),
-		'msg' => ( is_array($arg) || is_bool($arg) || is_object($arg) ) ? json_encode($arg) : $arg,
+		'type' => gettype( $arg ),
+		'msg'  => ( is_array( $arg ) || is_bool( $arg ) || is_object( $arg ) ) ? json_encode( $arg ) : $arg,
 	];
 
-	$show_args_preview = is_array($arg) || is_object($arg);
+	$show_args_preview = is_array( $arg ) || is_object( $arg );
 }
 
-$args_length = array_sum( array_map( fn( $ar ) => strlen( $ar[ 'msg' ] ), $parsed_args ) );
+$args_length = array_sum( array_map( fn( $ar ) => strlen( $ar['msg'] ), $parsed_args ) );
 
 $css_class = '';
 
@@ -81,7 +81,7 @@ if ( $event->paused ) {
 			<?php if ( $args_length > 10 || $show_args_preview ) : ?>
 				<a href="#" class="argument-preview" data-args="
 					<?php
-						echo esc_attr( json_encode( $parsed_args) );
+						echo esc_attr( json_encode( $parsed_args ) );
 					?>"
 				>
 					Preview
