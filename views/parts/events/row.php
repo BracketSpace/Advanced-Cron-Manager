@@ -15,20 +15,20 @@ $date_format = get_option( 'date_format' );
 $time_format = get_option( 'time_format' );
 
 $args_length       = 0;
-$parsed_args       = [];
+$parsed_args       = array();
 $show_args_preview = false;
 
 foreach ( $event->args as $arg ) {
 	if ( is_array( $arg ) || is_bool( $arg ) || is_object( $arg ) ) {
-		$parsed_args[] = [
+		$parsed_args[] = array(
 			'type' => gettype( $arg ),
 			'msg'  => wp_json_encode( $arg ),
-		];
+		);
 	} else {
-		$parsed_args[] = [
+		$parsed_args[] = array(
 			'type' => gettype( $arg ),
 			'msg'  => $arg,
-		];
+		);
 	}
 
 
