@@ -19,15 +19,25 @@ $parsed_args       = [];
 $show_args_preview = false;
 
 foreach ( $event->args as $arg ) {
-	$parsed_args[] = [
-		'type' => gettype( $arg ),
-		'msg'  => ( is_array( $arg ) || is_bool( $arg ) || is_object( $arg ) ) ? json_encode( $arg ) : $arg,
-	];
+	if ( is_array( $arg ) || is_bool( $arg ) || is_object( $arg ) ) {
+		$parsed_args[] = [
+			'type' => gettype( $arg ),
+			'msg'  => wp_json_encode( $arg ),
+		];
+	} else {
+		$parsed_args[] = [
+			'type' => gettype( $arg ),
+			'msg'  => $arg,
+		];
+	}
+
 
 	$show_args_preview = is_array( $arg ) || is_object( $arg );
 }
 
-$args_length = array_sum( array_map( fn( $ar ) => strlen( $ar['msg'] ), $parsed_args ) );
+$args_length = array_sum( array_map( function( $ar ) {
+	return strlen( $ar['msg'] );
+}, $parsed_args ) );
 
 $css_class = '';
 
@@ -81,8 +91,9 @@ if ( $event->paused ) {
 			<?php if ( $args_length > 10 || $show_args_preview ) : ?>
 				<a href="#" class="argument-preview" data-args="
 					<?php
-						echo esc_attr( json_encode( $parsed_args ) );
-					?>"
+						echo esc_attr( wp_json_encode( $parsed_args ) );
+					?>
+					"
 				>
 					Preview
 				</a>
@@ -90,7 +101,7 @@ if ( $event->paused ) {
 				<?php foreach ( $event->args as $arg ) : ?>
 						<span>
 							<?php if ( is_bool( $arg ) ) : ?>
-								<?php echo esc_html( json_encode( $arg ) ); ?>
+								<?php echo esc_html( wp_json_encode( $arg ) ); ?>
 							<?php else : ?>
 								<?php echo esc_html( $arg ); ?>
 							<?php endif ?>
