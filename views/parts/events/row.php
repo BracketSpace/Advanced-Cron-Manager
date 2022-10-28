@@ -15,10 +15,19 @@ $date_format = get_option( 'date_format' );
 $time_format = get_option( 'time_format' );
 
 $args_length = 0;
+$parsed_args = [];
+$show_args_preview = false;
 
 foreach ($event->args as $arg)  {
-	$args_length += strlen($arg);
+	$parsed_args[] = [
+		'type' => gettype($arg),
+		'msg' => ( is_array($arg) || is_bool($arg) || is_object($arg) ) ? json_encode($arg) : $arg,
+	];
+
+	$show_args_preview = is_array($arg) || is_object($arg);
 }
+
+$args_length = array_sum( array_map( fn( $ar ) => strlen( $ar[ 'msg' ] ), $parsed_args ) );
 
 $css_class = '';
 
@@ -69,17 +78,19 @@ if ( $event->paused ) {
 		</div>
 		<div class="column schedule" data-interval="<?php echo esc_attr( $event->interval ); ?>"><?php echo esc_html( $schedules->get_schedule( $event->schedule )->label ); ?></div>
 		<div class="column arguments">
-			<?php if ( $args_length > 150 ) : ?>
-				<a class="button button-small button-secondary argument-preview" data-args="<?php echo esc_attr( json_encode( (array) $event->args) ) ?>">
+			<?php if ( $args_length > 10 || $show_args_preview ) : ?>
+				<a href="#" class="argument-preview" data-args="
+					<?php
+						echo esc_attr( json_encode( $parsed_args) );
+					?>"
+				>
 					Preview
 				</a>
 			<?php else : ?>
 				<?php foreach ( $event->args as $arg ) : ?>
 						<span>
-							<?php if ( is_array( $arg ) ) : ?>
-								<?php esc_html_e( 'Array', 'advanced-cron-manager' ); ?>
-							<?php elseif ( is_object( $arg ) ) : ?>
-								<?php echo esc_html( get_class( $arg ) ); ?>
+							<?php if ( is_bool( $arg ) ) : ?>
+								<?php echo esc_html( json_encode( $arg ) ); ?>
 							<?php else : ?>
 								<?php echo esc_html( $arg ); ?>
 							<?php endif ?>
