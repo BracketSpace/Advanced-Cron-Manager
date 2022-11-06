@@ -254,30 +254,17 @@
 	// Helpers //
 	/////////////
 
-	$( '.slidebar' ).on( 'blur', '.event-arguments .event-argument', function() {
-
-		var $input = $( this );
-
+	$( '.slidebar' ).on( 'click', '.add-argument', function( event ) {
 		// add new arg
-		if ( $input.next( '.event-argument' ).length == 0 && $input.val().length > 0 ) {
-			$( '.slidebar .event-arguments' ).append( '<input type="text" name="arguments[]" class="event-argument widefat">' );
-		}
-
-		// remove empty arg
-		if ( $input.val().length == 0 && $( '.slidebar .event-arguments .event-argument' ).length > 1 ) {
-			$input.remove();
-		}
+		$( '.slidebar .event-arguments' ).append( '<div class="event-argument-wrapper"><input type="text" name="arguments[]" class="event-argument widefat"><span class="dashicons dashicons-no-alt close remove-argument"></span></div>' );
 
 	} );
 
-	$( '.slidebar' ).on( 'keyup', '.event-arguments .event-argument', function( event ) {
-
-		var $input = $( this );
-
-		if ( event.keyCode == 8 && $input.val().length == 0 && $( '.slidebar .event-arguments .event-argument' ).length > 1  ) {
-			$input.blur();
-		}
-
+	$( '.slidebar' ).on( 'click', '.remove-argument', function( ) {
+		// remove arg
+		var input = this.previousElementSibling;
+		$(input).remove();
+		$(this).remove();
 	} );
 
 	// add user timezone offset

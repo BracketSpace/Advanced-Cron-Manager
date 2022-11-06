@@ -60,20 +60,33 @@
 			}
 
 			.submit-row {
-				float: right;
+				display: flex;
 
 				.button {
-					float: right;
 					margin-bottom: 20px;
+				  	margin-right: 10px;
 				}
 
 				.spinner {
 					margin-top: 10px;
-					float: left;
 				}
 
 			}
 
+		}
+
+	  	.event-argument-wrapper {
+		    display: flex;
+
+		    .remove-argument {
+			    margin: auto;
+			    cursor: pointer;
+		    }
+
+			.dashicons {
+			  width:30px;
+			  height: 30px;
+			}
 		}
 
 		@mixin placeholder-animation() {

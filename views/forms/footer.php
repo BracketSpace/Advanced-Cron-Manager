@@ -8,8 +8,9 @@
 ?>
 
 <div class="submit-row">
+	<button type="submit" class="button button-primary send-form"><?php echo esc_attr( $this->get_var( 'cta' ) ); ?></button>
+	<a href="#" class="button button-secondary add-argument">Add argument</a>
 	<span class="spinner"></span>
-	<input type="submit" class="button button-primary send-form" value="<?php echo esc_attr( $this->get_var( 'cta' ) ); ?>">
 </div>
 
 </form>

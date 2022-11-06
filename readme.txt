@@ -100,6 +100,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Changed] Updated dependencies (Node >= 12)
+* [Changed] Add and remove arguments input in add action panel
 
 = 2.4.2 =
 * [Fixed] Link to server scheduler documentation
