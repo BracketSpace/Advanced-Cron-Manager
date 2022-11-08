@@ -100,7 +100,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Changed] Updated dependencies (Node >= 12)
-* [Changed] Add and remove arguments input in add action panel
+* [Changed] Adding a new event form now has more user-friendly argument management.
 
 = 2.4.2 =
 * [Fixed] Link to server scheduler documentation
