@@ -100,7 +100,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Changed] Updated dependencies (Node >= 12)
-* [Added] Preview modal for arguments that contain objects, arrays or are longer than 10 characters.
+* [Added] Event argument preview - arguments that contain objects, arrays, or are longer than 10 characters are now nicely formatted inside a modal.
 
 = 2.4.2 =
 * [Fixed] Link to server scheduler documentation
