@@ -175,7 +175,7 @@ class AdminScreen {
 	}
 
 	/**
-	 * Loads slidebar template
+	 * Loads preview modal template
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
