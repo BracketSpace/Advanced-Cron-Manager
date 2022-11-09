@@ -100,6 +100,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Changed] Updated dependencies (Node >= 12)
+* [Changed] Adding a new event form now has more user-friendly argument management.
 * [Added] Listeners tab feature
 
 = 2.4.2 =
