@@ -14,30 +14,7 @@ $time_offset = get_option( 'gmt_offset' ) * 3600;
 $date_format = get_option( 'date_format' );
 $time_format = get_option( 'time_format' );
 
-$args_length       = 0;
-$parsed_args       = array();
-$show_args_preview = false;
-
-foreach ( $event->args as $arg ) {
-	if ( is_array( $arg ) || is_bool( $arg ) || is_object( $arg ) ) {
-		$parsed_args[] = array(
-			'type' => gettype( $arg ),
-			'msg'  => wp_json_encode( $arg ),
-		);
-	} else {
-		$parsed_args[] = array(
-			'type' => gettype( $arg ),
-			'msg'  => $arg,
-		);
-	}
-
-
-	$show_args_preview = is_array( $arg ) || is_object( $arg );
-}
-
-$args_length = array_sum( array_map( function( $ar ) {
-	return strlen( $ar['msg'] );
-}, $parsed_args ) );
+$event_arguments = \underDEV\AdvancedCronManager\AdminScreen::prepare_event_arguments( $event );
 
 $css_class = '';
 
@@ -88,10 +65,10 @@ if ( $event->paused ) {
 		</div>
 		<div class="column schedule" data-interval="<?php echo esc_attr( $event->interval ); ?>"><?php echo esc_html( $schedules->get_schedule( $event->schedule )->label ); ?></div>
 		<div class="column arguments">
-			<?php if ( $args_length > 10 || $show_args_preview ) : ?>
+			<?php if ( $event_arguments['args_length'] > 10 || $event_arguments['show_args_preview'] ) : ?>
 				<a href="#" class="argument-preview" data-args="
 					<?php
-						echo esc_attr( wp_json_encode( $parsed_args ) );
+						echo esc_attr( wp_json_encode( $event_arguments['parsed_args'] ) );
 					?>
 					"
 				>
