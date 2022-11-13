@@ -22,6 +22,27 @@ advanced_cron_manager.ajax_messages = function( response ) {
 
 };
 
+function ACM_Preview_Modal() {
+	this.container = jQuery('.preview-modal');
+	this.close_button = jQuery('.preview-modal .close');
+
+	this.close_button.click( { previewModal: this }, function ( event ) {
+		event.data.previewModal.close();
+	} );
+
+	this.close = function () {
+		this.container.css( 'visibility', 'hidden' );
+	};
+
+	this.open = function () {
+		this.container.css( 'visibility', 'visible' );
+	};
+
+	this.fulfill = function( html ) {
+		this.container.find( '.content' ).html( html );
+	};
+};
+
 function ACM_Slidebar() {
 	this.container    = jQuery( '.slidebar' );
 	this.overlay      = jQuery( '.slidebar-overlay' );
@@ -81,3 +102,4 @@ function ACM_Slidebar() {
 };
 
 advanced_cron_manager.slidebar = new ACM_Slidebar;
+advanced_cron_manager.previewModal = new ACM_Preview_Modal;

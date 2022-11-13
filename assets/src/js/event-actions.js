@@ -1,5 +1,42 @@
 ( function( $ ) {
 
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '.argument-preview', function( event ) {
+		const data = event.currentTarget.dataset.args;
+
+		if ( !data ) {
+			return;
+		}
+
+		const parsedData = JSON.parse(data);
+		let arr = [];
+
+		for ( let data of parsedData ) {
+			//Check whether type is array or object if true parse it and add tabs.
+			if ( data.type === 'array' || data.type === 'object' ) {
+				let formatedData =  `(${data.type}) ` + JSON.stringify(JSON.parse(data.msg), null, 2);
+				// if data is type of array, we send it as JSON anyway,
+				// change characters to make it look like associative array
+				 if ( data.type === 'array' ) {
+					 formatedData = formatedData
+						 .replace(/\{/g, '[')
+						 .replace(/}/g, ']')
+						 .replace(/:/g, ' =>')
+				 }
+				arr.push(formatedData);
+
+			} else {
+				arr.push( `(${data.type}) ${data.msg}` );
+			}
+		}
+
+		arr.forEach( (element, index) => {
+			arr[index] = "<pre>" + element + "</pre>";
+		} );
+
+		advanced_cron_manager.previewModal.open();
+		advanced_cron_manager.previewModal.fulfill( arr.join('\n') );
+	} );
+
 	///////////////////
 	// Form requests //
 	///////////////////
