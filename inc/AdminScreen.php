@@ -72,6 +72,7 @@ class AdminScreen {
 			'arguments'      => __( 'Arguments', 'advanced-cron-manager' ),
 			'schedule'       => __( 'Schedule', 'advanced-cron-manager' ),
 			'implementation' => __( 'Implementation', 'advanced-cron-manager' ),
+			'listeners'      => __( 'Listeners', 'advanced-cron-manager' ),
 		);
 
 	}
@@ -214,6 +215,19 @@ class AdminScreen {
 	public function load_event_tab_logs( $view ) {
 		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/logs/display', true ) ) {
 			$view->get_view( 'parts/events/tabs/logs' );
+		}
+	}
+
+	/**
+	 * Loads Listeners tab content for event details
+	 * Scope for $view is the same as in events/section view
+	 *
+	 * @param  object $view local View instance.
+	 * @return void
+	 */
+	public function load_event_tab_listeners( $view ) {
+		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/listeners/display', true ) ) {
+			$view->get_view( 'parts/events/tabs/listeners' );
 		}
 	}
 
