@@ -281,10 +281,16 @@ class AdminScreen {
 		$show_args_preview = false;
 
 		foreach ( $event->args as $arg ) {
-			if ( is_array( $arg ) || is_bool( $arg ) || is_object( $arg ) ) {
+			if ( is_array( $arg ) || is_bool( $arg ) ) {
 				$parsed_args[] = array(
 					'type' => gettype( $arg ),
 					'msg'  => wp_json_encode( $arg ),
+				);
+			} elseif ( is_object( $arg ) ) {
+				$parsed_args[] = array(
+					'type'      => gettype( $arg ),
+					'msg'       => wp_json_encode( $arg ),
+					'className' => get_class( $arg ),
 				);
 			} else {
 				$parsed_args[] = array(

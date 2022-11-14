@@ -13,11 +13,17 @@
 		for ( let data of parsedData ) {
 			//Check whether type is array or object if true parse it and add tabs.
 			if ( data.type === 'array' || data.type === 'object' ) {
-				let formatedData =  `(${data.type}) ` + JSON.stringify(JSON.parse(data.msg), null, 2);
+				let formatedData = '';
+
+				// if data type is object we add class name to it
+				if (data.type === 'object' ) {
+					formatedData =  `(${data.type}) ${data.className} ` + JSON.stringify(JSON.parse(data.msg), null, 2);
+				}
+
 				// if data is type of array, we send it as JSON anyway,
 				// change characters to make it look like associative array
 				 if ( data.type === 'array' ) {
-					 formatedData = formatedData
+					 formatedData = `(${data.type}) ` + JSON.stringify(JSON.parse(data.msg), null, 2)
 						 .replace(/\{/g, '[')
 						 .replace(/}/g, ']')
 						 .replace(/:/g, ' =>')
