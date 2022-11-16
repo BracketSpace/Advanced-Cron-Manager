@@ -100,7 +100,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Changed] Updated dependencies (Node >= 12)
-* [Added] Listeners tab feature
+* [Changed] Adding a new event form now has more user-friendly argument management.
+* [Added] Listeners - with PRO version you can now see all the methods hooked into the particular event.
+* [Added] Event argument preview - arguments that contain objects, arrays, or are longer than 10 characters are now nicely formatted inside a modal.
 
 = 2.4.2 =
 * [Fixed] Link to server scheduler documentation

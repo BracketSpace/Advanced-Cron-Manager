@@ -8,6 +8,7 @@
 
 namespace underDEV\AdvancedCronManager;
 
+use underDEV\AdvancedCronManager\Cron\Element\Event;
 use underDEV\Utils;
 use underDEV\AdvancedCronManager\Cron;
 
@@ -176,6 +177,18 @@ class AdminScreen {
 	}
 
 	/**
+	 * Loads preview modal template
+	 * There are used $this->view instead of passed instance
+	 * because we want to separate scopes
+	 *
+	 * @param  object $view instance of parent view.
+	 * @return void
+	 */
+	public function load_preview_modal_part( $view ) {
+		$this->view->get_view( 'elements/preview-modal' );
+	}
+
+	/**
 	 * Adds default event details tabs
 	 * It also registers the actions for the content
 	 *
@@ -255,6 +268,43 @@ class AdminScreen {
 		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/implementation/display', true ) ) {
 			$view->get_view( 'parts/events/tabs/implementation' );
 		}
+	}
+
+	/**
+	 * Prepare event arguments for row
+	 *
+	 * @param  Event $event Event object.
+	 * @return array<mixed>
+	 */
+	public static function prepare_event_arguments( $event ) {
+		$parsed_args       = array();
+		$show_args_preview = false;
+
+		foreach ( $event->args as $arg ) {
+			if ( is_array( $arg ) || is_bool( $arg ) || is_object( $arg ) ) {
+				$parsed_args[] = array(
+					'type' => gettype( $arg ),
+					'msg'  => wp_json_encode( $arg ),
+				);
+			} else {
+				$parsed_args[] = array(
+					'type' => gettype( $arg ),
+					'msg'  => $arg,
+				);
+			}
+
+			$show_args_preview = is_array( $arg ) || is_object( $arg );
+		}
+
+		$args_length = array_sum( array_map( function( $ar ) {
+			return strlen( $ar['msg'] );
+		}, $parsed_args ) );
+
+		return array(
+			'args_length'       => $args_length,
+			'parsed_args'       => $parsed_args,
+			'show_args_preview' => $show_args_preview,
+		);
 	}
 
 }
