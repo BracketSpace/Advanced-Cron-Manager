@@ -47,6 +47,6 @@ $single_schedule = $this->get_var( 'single_schedule' );
 </div>
 
 <?php
-	$this->set_var('is_add_event', true);
+	$this->set_var( 'is_add_event', true );
 	$this->get_view( 'forms/footer' );
 ?>
