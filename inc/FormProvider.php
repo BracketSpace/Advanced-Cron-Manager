@@ -127,7 +127,7 @@ class FormProvider {
 		$this->view->set_var( 'schedules', $this->schedules->get_schedules() );
 		$this->view->set_var( 'single_schedule', $this->schedules->get_single_event_schedule() );
 
-		$this->get_form( 'event/add', __( 'New event', 'advanced-cron-manager' ), __( 'Add event', 'advanced-cron-manager' ) );
+		$this->get_form( 'event/add', __( 'New event', 'advanced-cron-manager' ), __( 'Schedule event', 'advanced-cron-manager' ) );
 
 	}
 
