@@ -39,10 +39,7 @@ $single_schedule = $this->get_var( 'single_schedule' );
 
 <label><?php esc_html_e( 'Arguments', 'advanced-cron-manager' ); ?></label>
 <div class="event-arguments">
-	<div class="event-argument-wrapper">
-		<input type="text" name="arguments[]" class="event-argument widefat">
-		<span class="dashicons dashicons-no-alt close remove-argument"></span>
-	</div>
+	<p class="no-arguments">No arguments</p>
 </div>
 
 <?php
