@@ -59,15 +59,21 @@
 
 			}
 
+		  	.event-arguments {
+				p {
+					font-size: 12px;
+					color: grey;
+			  	}
+			}
+
 			.submit-row {
 				display: flex;
 				margin-top: 15px;
 				justify-content: space-between;
-				width: 95%;
+				width: 100%;
 
 				.button {
 					margin-bottom: 20px;
-				  	margin-right: 10px;
 				}
 
 				.spinner {

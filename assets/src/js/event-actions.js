@@ -297,17 +297,27 @@
 	// Helpers //
 	/////////////
 
-	$( '.slidebar' ).on( 'click', '.add-argument', function( event ) {
+	$( '.slidebar' ).on( 'click', '.add-argument', function() {
 		// add new arg
-		$( '.slidebar .event-arguments' ).append( '<div class="event-argument-wrapper"><input type="text" name="arguments[]" class="event-argument widefat"><span class="dashicons dashicons-no-alt close remove-argument"></span></div>' );
+		const eventArgumentDiv = $('.slidebar .event-arguments');
+		if (eventArgumentDiv.children('p')) {
+			eventArgumentDiv.children('p').remove();
+		}
 
+		eventArgumentDiv.append( '<div class="event-argument-wrapper"><input type="text" name="arguments[]" class="event-argument widefat"><span class="dashicons dashicons-no-alt close remove-argument"></span></div>' );
 	} );
 
-	$( '.slidebar' ).on( 'click', '.remove-argument', function( ) {
+	$( '.slidebar' ).on( 'click', '.remove-argument', function() {
 		// remove arg
 		var input = this.previousElementSibling;
-		$(input).remove();
-		$(this).remove();
+		$(input).parent().remove();
+
+		const eventArgumentDiv = $('.slidebar .event-arguments');
+
+		if (eventArgumentDiv.children().length < 1) {
+			eventArgumentDiv.append('<p class="no-arguments">No arguments</p>');
+		}
+
 	} );
 
 	// add user timezone offset
