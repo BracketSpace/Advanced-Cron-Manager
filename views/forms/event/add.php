@@ -39,10 +39,13 @@ $single_schedule = $this->get_var( 'single_schedule' );
 
 <label><?php esc_html_e( 'Arguments', 'advanced-cron-manager' ); ?></label>
 <div class="event-arguments">
-	<p class="no-arguments">No arguments</p>
+	<p class="no-arguments"><?php esc_html_e( 'No arguments', 'advanced-cron-manager' ); ?></p>
 </div>
 
-<?php
-	$this->set_var( 'is_add_event', true );
-	$this->get_view( 'forms/footer' );
-?>
+<div class="submit-row">
+	<a href="#" class="button button-secondary add-argument"><?php esc_html_e( 'Add argument', 'advanced-cron-manager' ); ?></a>
+	<button type="submit" class="button button-primary send-form"><?php echo esc_attr( $this->get_var( 'cta' ) ); ?></button>
+</div>
+<span class="spinner"></span>
+
+<?php $this->get_view( 'forms/footer' ); ?>
