@@ -40,4 +40,9 @@
 <div class="total-seconds"><?php esc_html_e( 'Total seconds:', 'advanced-cron-manager' ); ?> <span>0</span></div>
 <input type="hidden" name="interval" class="interval-input" value="0">
 
+<div class="submit-row">
+	<button type="submit" class="button button-primary send-form"><?php echo esc_attr( $this->get_var( 'cta' ) ); ?></button>
+</div>
+<span class="spinner"></span>
+
 <?php $this->get_view( 'forms/footer' ); ?>
