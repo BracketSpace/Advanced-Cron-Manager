@@ -51,4 +51,5 @@ do_action( 'advanced-cron-manager/screen/wrap/before', $this );
 /**
  * $this in this context is an instance of View class
  */
-do_action( 'advanced-cron-manager/screen/wrap/after', $this ); ?>
+do_action( 'advanced-cron-manager/screen/wrap/after', $this );
+?>

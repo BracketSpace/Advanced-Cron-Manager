@@ -8,6 +8,7 @@
 
 namespace underDEV\AdvancedCronManager;
 
+use underDEV\AdvancedCronManager\Cron\Element\Event;
 use underDEV\Utils;
 use underDEV\AdvancedCronManager\Cron;
 
@@ -71,6 +72,7 @@ class AdminScreen {
 			'arguments'      => __( 'Arguments', 'advanced-cron-manager' ),
 			'schedule'       => __( 'Schedule', 'advanced-cron-manager' ),
 			'implementation' => __( 'Implementation', 'advanced-cron-manager' ),
+			'listeners'      => __( 'Listeners', 'advanced-cron-manager' ),
 		);
 
 	}
@@ -175,6 +177,18 @@ class AdminScreen {
 	}
 
 	/**
+	 * Loads preview modal template
+	 * There are used $this->view instead of passed instance
+	 * because we want to separate scopes
+	 *
+	 * @param  object $view instance of parent view.
+	 * @return void
+	 */
+	public function load_preview_modal_part( $view ) {
+		$this->view->get_view( 'elements/preview-modal' );
+	}
+
+	/**
 	 * Adds default event details tabs
 	 * It also registers the actions for the content
 	 *
@@ -201,6 +215,19 @@ class AdminScreen {
 	public function load_event_tab_logs( $view ) {
 		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/logs/display', true ) ) {
 			$view->get_view( 'parts/events/tabs/logs' );
+		}
+	}
+
+	/**
+	 * Loads Listeners tab content for event details
+	 * Scope for $view is the same as in events/section view
+	 *
+	 * @param  object $view local View instance.
+	 * @return void
+	 */
+	public function load_event_tab_listeners( $view ) {
+		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/listeners/display', true ) ) {
+			$view->get_view( 'parts/events/tabs/listeners' );
 		}
 	}
 
@@ -241,6 +268,49 @@ class AdminScreen {
 		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/implementation/display', true ) ) {
 			$view->get_view( 'parts/events/tabs/implementation' );
 		}
+	}
+
+	/**
+	 * Prepare event arguments for row
+	 *
+	 * @param  Event $event Event object.
+	 * @return array<mixed>
+	 */
+	public static function prepare_event_arguments( $event ) {
+		$parsed_args       = array();
+		$show_args_preview = false;
+
+		foreach ( $event->args as $arg ) {
+			if ( is_array( $arg ) || is_bool( $arg ) ) {
+				$parsed_args[] = array(
+					'type' => gettype( $arg ),
+					'msg'  => wp_json_encode( $arg ),
+				);
+			} elseif ( is_object( $arg ) ) {
+				$parsed_args[] = array(
+					'type'      => gettype( $arg ),
+					'msg'       => wp_json_encode( $arg ),
+					'className' => get_class( $arg ),
+				);
+			} else {
+				$parsed_args[] = array(
+					'type' => gettype( $arg ),
+					'msg'  => $arg,
+				);
+			}
+
+			$show_args_preview = is_array( $arg ) || is_object( $arg );
+		}
+
+		$args_length = array_sum( array_map( function( $ar ) {
+			return strlen( $ar['msg'] );
+		}, $parsed_args ) );
+
+		return array(
+			'args_length'       => $args_length,
+			'parsed_args'       => $parsed_args,
+			'show_args_preview' => $show_args_preview,
+		);
 	}
 
 }

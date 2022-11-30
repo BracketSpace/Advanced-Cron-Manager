@@ -38,9 +38,14 @@ $single_schedule = $this->get_var( 'single_schedule' );
 </select>
 
 <label><?php esc_html_e( 'Arguments', 'advanced-cron-manager' ); ?></label>
-<p class="description"><?php esc_html_e( 'New inputs will be added automatically when you type', 'advanced-cron-manager' ); ?></p>
 <div class="event-arguments">
-	<input type="text" name="arguments[]" class="event-argument widefat">
+	<p class="no-arguments"><?php esc_html_e( 'No arguments', 'advanced-cron-manager' ); ?></p>
 </div>
+
+<div class="submit-row">
+	<a href="#" class="button button-secondary add-argument"><?php esc_html_e( 'Add argument', 'advanced-cron-manager' ); ?></a>
+	<button type="submit" class="button button-primary send-form"><?php echo esc_attr( $this->get_var( 'cta' ) ); ?></button>
+</div>
+<span class="spinner"></span>
 
 <?php $this->get_view( 'forms/footer' ); ?>

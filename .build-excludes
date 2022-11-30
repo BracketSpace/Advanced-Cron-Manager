@@ -1,5 +1,7 @@
-.actionspanel
+.build-excludes
+.editorconfig
 .git
+.gitignore
 .github
 .wordpress-org
 bin
@@ -15,5 +17,5 @@ gulpfile.js
 package.json
 package-lock.json
 yarn.lock
-phpcs.ruleset.xml
+phpcs.xml
 phpunit.xml.dist

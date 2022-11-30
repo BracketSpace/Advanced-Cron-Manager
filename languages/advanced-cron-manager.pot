@@ -225,10 +225,6 @@ msgstr ""
 msgid "Don't repeat (%s)"
 msgstr ""
 
-#: views/forms/event/add.php:36
-msgid "New inputs will be added automatically when you type"
-msgstr ""
-
 #: views/forms/schedule/add.php:11 views/forms/schedule/edit.php:16
 msgid "Display name"
 msgstr ""

@@ -1,5 +1,48 @@
 ( function( $ ) {
 
+	$( '.tools_page_advanced-cron-manager' ).on( 'click', '.argument-preview', function( event ) {
+		const data = event.currentTarget.dataset.args;
+
+		if ( !data ) {
+			return;
+		}
+
+		const parsedData = JSON.parse(data);
+		let arr = [];
+
+		for ( let data of parsedData ) {
+			//Check whether type is array or object if true parse it and add tabs.
+			if ( data.type === 'array' || data.type === 'object' ) {
+				let formatedData = '';
+
+				// if data type is object we add class name to it
+				if (data.type === 'object' ) {
+					formatedData =  `(${data.type}) ${data.className} ` + JSON.stringify(JSON.parse(data.msg), null, 2);
+				}
+
+				// if data is type of array, we send it as JSON anyway,
+				// change characters to make it look like associative array
+				 if ( data.type === 'array' ) {
+					 formatedData = `(${data.type}) ` + JSON.stringify(JSON.parse(data.msg), null, 2)
+						 .replace(/\{/g, '[')
+						 .replace(/}/g, ']')
+						 .replace(/:/g, ' =>')
+				 }
+				arr.push(formatedData);
+
+			} else {
+				arr.push( `(${data.type}) ${data.msg}` );
+			}
+		}
+
+		arr.forEach( (element, index) => {
+			arr[index] = "<pre>" + element + "</pre>";
+		} );
+
+		advanced_cron_manager.previewModal.open();
+		advanced_cron_manager.previewModal.fulfill( arr.join('\n') );
+	} );
+
 	///////////////////
 	// Form requests //
 	///////////////////
@@ -254,28 +297,25 @@
 	// Helpers //
 	/////////////
 
-	$( '.slidebar' ).on( 'blur', '.event-arguments .event-argument', function() {
-
-		var $input = $( this );
-
+	$( '.slidebar' ).on( 'click', '.add-argument', function() {
 		// add new arg
-		if ( $input.next( '.event-argument' ).length == 0 && $input.val().length > 0 ) {
-			$( '.slidebar .event-arguments' ).append( '<input type="text" name="arguments[]" class="event-argument widefat">' );
+		const eventArgumentDiv = $('.slidebar .event-arguments');
+		if (eventArgumentDiv.children('p')) {
+			eventArgumentDiv.children('p').remove();
 		}
 
-		// remove empty arg
-		if ( $input.val().length == 0 && $( '.slidebar .event-arguments .event-argument' ).length > 1 ) {
-			$input.remove();
-		}
-
+		eventArgumentDiv.append( '<div class="event-argument-wrapper"><input type="text" name="arguments[]" class="event-argument widefat"><span class="dashicons dashicons-no-alt close remove-argument"></span></div>' );
 	} );
 
-	$( '.slidebar' ).on( 'keyup', '.event-arguments .event-argument', function( event ) {
+	$( '.slidebar' ).on( 'click', '.remove-argument', function() {
+		// remove arg
+		var input = this.previousElementSibling;
+		$(input).parent().remove();
 
-		var $input = $( this );
+		const eventArgumentDiv = $('.slidebar .event-arguments');
 
-		if ( event.keyCode == 8 && $input.val().length == 0 && $( '.slidebar .event-arguments .event-argument' ).length > 1  ) {
-			$input.blur();
+		if (eventArgumentDiv.children().length < 1) {
+			eventArgumentDiv.append('<p class="no-arguments">No arguments</p>');
 		}
 
 	} );

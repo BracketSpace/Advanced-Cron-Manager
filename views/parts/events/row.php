@@ -14,6 +14,8 @@ $time_offset = get_option( 'gmt_offset' ) * 3600;
 $date_format = get_option( 'date_format' );
 $time_format = get_option( 'time_format' );
 
+$event_arguments = \underDEV\AdvancedCronManager\AdminScreen::prepare_event_arguments( $event );
+
 $css_class = '';
 
 if ( $event->paused ) {
@@ -63,17 +65,26 @@ if ( $event->paused ) {
 		</div>
 		<div class="column schedule" data-interval="<?php echo esc_attr( $event->interval ); ?>"><?php echo esc_html( $schedules->get_schedule( $event->schedule )->label ); ?></div>
 		<div class="column arguments">
-			<?php foreach ( $event->args as $arg ) : ?>
-				<span>
-					<?php if ( is_array( $arg ) ) : ?>
-						<?php esc_html_e( 'Array', 'advanced-cron-manager' ); ?>
-					<?php elseif ( is_object( $arg ) ) : ?>
-						<?php echo esc_html( get_class( $arg ) ); ?>
-					<?php else : ?>
-						<?php echo esc_html( $arg ); ?>
-					<?php endif ?>
-				</span>
-			<?php endforeach ?>
+			<?php if ( $event_arguments['args_length'] > 10 || $event_arguments['show_args_preview'] ) : ?>
+				<a href="#" class="argument-preview" data-args="
+					<?php
+						echo esc_attr( wp_json_encode( $event_arguments['parsed_args'] ) );
+					?>
+					"
+				>
+					Preview
+				</a>
+			<?php else : ?>
+				<?php foreach ( $event->args as $arg ) : ?>
+						<span>
+							<?php if ( is_bool( $arg ) ) : ?>
+								<?php echo esc_html( wp_json_encode( $arg ) ); ?>
+							<?php else : ?>
+								<?php echo esc_html( $arg ); ?>
+							<?php endif ?>
+						</span>
+				<?php endforeach ?>
+			<?php endif ?>
 		</div>
 		<div class="column next-execution" data-time="<?php echo esc_attr( $event->next_call ); ?>">
 			<?php if ( $event->next_call <= time() ) : ?>
