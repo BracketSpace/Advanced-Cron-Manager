@@ -14,7 +14,7 @@ View, pause, remove, edit and add WP Cron events and schedules.
 
 With Advanced Cron Manager you can manage WP Cron events:
 
-* view all registered events
+* view all registered events and their arguments nicely formatted
 * *search* events
 * execute manually any event
 * add new events
@@ -39,6 +39,7 @@ PRO version includes
 
 * Cron Logger - log cron's execution times easily
 * Events rescheduling - change event next execution date to control server load
+* Event listeners - you can see what functions or methods are listening for a particular event
 * Error catcher - catch cron task's fatal errors and get them displayed in the log
 * Performance stats - see how much time and memory particular event took
 * Debug tool - log any useful information from Cron callback
