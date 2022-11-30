@@ -3,7 +3,7 @@ Contributors: bracketspace, Kubitomakita
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Tested up to: 6.0
-Stable tag: 2.4.2
+Stable tag: 2.5.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,7 +98,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 2.5.0 =
 * [Changed] Updated dependencies (Node >= 12)
 * [Changed] Adding a new event form now has more user-friendly argument management.
 * [Added] Listeners - with PRO version you can now see all the methods hooked into the particular event.
