@@ -81,9 +81,12 @@ class EventsActions {
 		$execution = strtotime( $data['execution'] ) ? strtotime( $data['execution'] ) + ( HOUR_IN_SECONDS * $data['execution_offset'] ) : time() + ( HOUR_IN_SECONDS * $data['execution_offset'] );
 
 		$args = array();
-		foreach ( $data['arguments'] as $arg_raw ) {
-			if ( ! empty( $arg_raw ) ) {
-				$args[] = $arg_raw;
+
+		if ( $data['arguments'] ) {
+			foreach ( $data['arguments'] as $arg_raw ) {
+				if ( ! empty( $arg_raw ) ) {
+					$args[] = $arg_raw;
+				}
 			}
 		}
 
