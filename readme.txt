@@ -2,6 +2,7 @@
 Contributors: bracketspace, Kubitomakita
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
+Requires PHP: 5.3
 Tested up to: 6.0
 Stable tag: 2.5.0
 License: GPLv2
