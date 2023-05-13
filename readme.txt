@@ -264,3 +264,5 @@ Fixed Schedules list from other plugins
 
 = 1.0 =
 Plugin relase
+
+<!-- vim: syntax=Markdown -->
