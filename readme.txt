@@ -1,11 +1,12 @@
 === Advanced Cron Manager - debug & control ===
-Contributors: bracketspace, Kubitomakita
-Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
-Requires at least: 3.6
-Tested up to: 6.0
-Stable tag: 2.5.0
-License: GPLv2
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Contributors: bracketspace, Kubitomakita  
+Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol  
+Requires at least: 3.6  
+Tested up to: 6.0  
+Stable tag: 2.5.0  
+License: GPLv2  
+License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
 View, pause, remove, edit and add WP Cron events and schedules.
 
