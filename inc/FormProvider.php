@@ -45,7 +45,7 @@ class FormProvider {
 	public $schedules;
 
 	/**
-	 * Contructor
+	 * Constructor
 	 *
 	 * @param Utils\View            $view              View class.
 	 * @param Utils\Ajax            $ajax              Ajax class.
