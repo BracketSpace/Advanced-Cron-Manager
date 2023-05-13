@@ -40,7 +40,7 @@ PRO version includes
 * Events rescheduling - change event next execution date to control server load
 * Error catcher - catch cron task's fatal errors and get them displayed in the log
 * Performance stats - see how much time and memory particular event took
-* Debug tool - log any useful informations from Cron callback
+* Debug tool - log any useful information from Cron callback
 
 [Buy now](https://bracketspace.com/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
 
@@ -81,7 +81,7 @@ No. This is not safe. You can, however, copy the sample implementation and paste
 
 = Can this plugin block WP Cron and help hooking it into Server Cron like WP-Cron Control plugin? =
 
-Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Advanced Cron Manager can disable spawning WP Cron on site visit and will give you useful informations about added Server Cron task.
+Yes, but WP-Cron Control is quite old and it's tactics is not needed anymore. Advanced Cron Manager can disable spawning WP Cron on site visit and will give you useful information about added Server Cron task.
 
 = Can you create a plugin for me? =
 
@@ -244,7 +244,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * Fixed Schedules list from other plugins
 
 = 1.0 =
-* Plugin relase
+* Plugin release
 
 == Upgrade Notice ==
 
@@ -263,4 +263,4 @@ Removed debug alert and added execution button
 Fixed Schedules list from other plugins
 
 = 1.0 =
-Plugin relase
+Plugin release

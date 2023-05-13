@@ -143,7 +143,7 @@ class Events {
 	 *
 	 * @param  object $e1 Event 1.
 	 * @param  object $e2 Event 2.
-	 * @return int        -1 or 1 or 0, depends on the comparsion result
+	 * @return int        -1 or 1 or 0, depends on the comparison result
 	 */
 	public function compare_event_next_calls( $e1, $e2 ) {
 

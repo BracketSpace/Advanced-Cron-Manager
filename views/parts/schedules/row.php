@@ -14,7 +14,7 @@ $schedule = $this->get_var( 'schedule' );
 	<div class="column label"><?php echo esc_html( $schedule->label ); ?></div>
 	<div class="column slug"><?php echo esc_html( $schedule->slug ); ?></div>
 	<div class="column interval">
-		<?php // Translators: numer of seconds. ?>
+		<?php // Translators: number of seconds. ?>
 		<span title="<?php printf( esc_attr( _n( '%d second', '%d seconds', $schedule->interval, 'advanced-cron-manager' ) ), intval( $schedule->interval ) ); ?>">
 			<?php echo esc_html( $schedule->get_human_interval() ); ?>
 		</span>
