@@ -30,14 +30,18 @@ class Settings {
 	private $ajax;
 
 	/**
+	 * Option name
+	 *
 	 * @var string
 	 */
-	private string $option_name;
+	private $option_name;
 
 	/**
+	 * Defaults
+	 *
 	 * @var array|int[]
 	 */
-	private array $default;
+	private $default;
 
 	/**
 	 * Constructor
