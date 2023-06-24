@@ -101,6 +101,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 == Changelog ==
 
 = [Next] =
+* [Fixed] Dynamic property notices.
 * [Changed] Fixed typos.
 
 = 2.5.0 =
