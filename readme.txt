@@ -98,6 +98,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Fixed typos.
+
 = 2.5.0 =
 * [Changed] Updated dependencies (Node >= 12)
 * [Changed] Adding a new event form now has more user-friendly argument management.
