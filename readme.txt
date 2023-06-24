@@ -102,6 +102,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Fixed] Dynamic property notices.
+* [Fixed] Notice when adding event without arguments.
 * [Changed] Fixed typos.
 
 = 2.5.0 =
