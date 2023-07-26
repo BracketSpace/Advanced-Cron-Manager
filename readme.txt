@@ -103,6 +103,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 = [Next] =
 * [Fixed] Dynamic property notices.
 * [Fixed] Notice when adding event without arguments.
+* [Fixed] Server scheduler conditional display logic.
 * [Changed] Fixed typos.
 * [Added] New WordPress protected events.
 

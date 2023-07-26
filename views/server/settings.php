@@ -10,7 +10,7 @@ $settings = $this->get_var( 'settings' );
 if ( ! empty( $settings['server_enable'] ) ) {
 	$display_dependants = '';
 } else {
-	$display_dependants = 'style="display: none;"';
+	$display_dependants = 'display: none;';
 }
 
 ?>
@@ -31,7 +31,7 @@ if ( ! empty( $settings['server_enable'] ) ) {
 					<p class="description"><?php esc_html_e( 'When enabled WordPress will not spawn Cron anymore. You have to set the Cron on your server', 'advanced-cron-manager' ); ?></p>
 				</label>
 
-				<div class="dependants" <?php echo esc_attr( $display_dependants ); ?>>
+				<div class="dependants" style="<?php echo esc_attr( $display_dependants ); ?>">
 					<p><?php _e( 'Check <a href="https://www.google.com/search?q=how+to+setup+cron+job" target="_blank">how to setup the Cron job</a> or read more about <a href="https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/" target="_blank">Hooking WP-Cron Into the System Task Scheduler</a>', 'advanced-cron-manager' ); // phpcs:ignore ?>.</p>
 					<p>
 						<?php esc_html_e( 'The command you want to use is:', 'advanced-cron-manager' ); ?>
