@@ -165,7 +165,7 @@ class EventsActions {
 		// phpcs:ignore
 		$event  = $this->events->get_event_by_hash( $_REQUEST['event'] );
 
-		if ( $event === false ) {
+		if ( false === $event ) {
 			$this->ajax->response( false, array(
 				__( "This event doesn't exist anymore.", 'advanced-cron-manager' ),
 			) );
