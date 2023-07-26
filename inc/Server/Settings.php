@@ -44,6 +44,13 @@ class Settings {
 	private $default;
 
 	/**
+	 * Settings
+	 *
+	 * @var array
+	 */
+	private $settings;
+
+	/**
 	 * Constructor
 	 *
 	 * @param Utils\View $view View class.

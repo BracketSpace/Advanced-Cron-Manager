@@ -35,6 +35,13 @@ class Event {
 	private $schedule;
 
 	/**
+	 * Event's hash
+	 *
+	 * @var string
+	 */
+	private $hash;
+
+	/**
 	 * Event's arguments
 	 *
 	 * @var array
