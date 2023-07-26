@@ -104,6 +104,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Fixed] Dynamic property notices.
 * [Fixed] Notice when adding event without arguments.
 * [Changed] Fixed typos.
+* [Added] New WordPress protected events.
 
 = 2.5.0 =
 * [Changed] Updated dependencies (Node >= 12)
