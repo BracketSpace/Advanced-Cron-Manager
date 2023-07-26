@@ -30,6 +30,27 @@ class Settings {
 	private $ajax;
 
 	/**
+	 * Option name
+	 *
+	 * @var string
+	 */
+	private $option_name;
+
+	/**
+	 * Defaults
+	 *
+	 * @var array|int[]
+	 */
+	private $default;
+
+	/**
+	 * Settings
+	 *
+	 * @var array
+	 */
+	private $settings;
+
+	/**
 	 * Constructor
 	 *
 	 * @param Utils\View $view View class.

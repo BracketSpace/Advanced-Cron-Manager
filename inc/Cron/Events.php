@@ -45,16 +45,19 @@ class Events {
 
 		// protected events registered by WordPress' core.
 		$this->protected_events = array(
+			'delete_expired_transients',
+			'recovery_mode_clean_expired_keys',
+			'recovery_mode_clean_expired_keys',
+			'recovery_mode_clean_expired_keys',
+			'wp_https_detection',
 			'wp_privacy_delete_old_export_files',
-			'wp_version_check',
+			'wp_scheduled_auto_draft_delete',
+			'wp_scheduled_delete',
+			'wp_site_health_scheduled_check',
 			'wp_update_plugins',
 			'wp_update_themes',
-			'wp_site_health_scheduled_check',
-			'recovery_mode_clean_expired_keys',
-			'wp_scheduled_delete',
-			'delete_expired_transients',
-			'wp_scheduled_auto_draft_delete',
-			'recovery_mode_clean_expired_keys',
+			'wp_update_user_counts',
+			'wp_version_check',
 		);
 	}
 
@@ -143,7 +146,7 @@ class Events {
 	 *
 	 * @param  object $e1 Event 1.
 	 * @param  object $e2 Event 2.
-	 * @return int        -1 or 1 or 0, depends on the comparsion result
+	 * @return int        -1 or 1 or 0, depends on the comparison result
 	 */
 	public function compare_event_next_calls( $e1, $e2 ) {
 

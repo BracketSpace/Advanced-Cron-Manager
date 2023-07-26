@@ -53,7 +53,7 @@ class AdminScreen {
 	protected $default_event_details_tabs;
 
 	/**
-	 * Contructor
+	 * Constructor
 	 *
 	 * @param Utils\View     $view      View class.
 	 * @param Utils\Ajax     $ajax      Ajax class.
