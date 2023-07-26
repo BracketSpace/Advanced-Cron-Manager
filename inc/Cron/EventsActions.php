@@ -82,7 +82,7 @@ class EventsActions {
 
 		$args = array();
 
-		if ( $data['arguments'] ) {
+		if ( ! empty( $data['arguments'] ) ) {
 			foreach ( $data['arguments'] as $arg_raw ) {
 				if ( ! empty( $arg_raw ) ) {
 					$args[] = $arg_raw;

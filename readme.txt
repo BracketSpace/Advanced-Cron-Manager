@@ -100,6 +100,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Warning while adding new event.
+
 = 2.5.1 =
 * [Fixed] Dynamic property notices.
 * [Fixed] Notice when adding event without arguments.
