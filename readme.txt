@@ -102,6 +102,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Fixed] Warning while adding new event.
+* [Changed] Adding a proper message when you try to delete non-existing event.
 
 = 2.5.1 =
 * [Fixed] Dynamic property notices.
