@@ -3,8 +3,8 @@ Contributors: bracketspace, Kubitomakita
 Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Requires PHP: 5.3
-Tested up to: 6.3
-Stable tag: 2.5.2
+Tested up to: 6.4
+Stable tag: 2.5.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,6 +99,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.5.3 =
+* [Security] Some input fields were not sanitized properly.
 
 = 2.5.2 =
 * [Fixed] Warning while adding new event.
