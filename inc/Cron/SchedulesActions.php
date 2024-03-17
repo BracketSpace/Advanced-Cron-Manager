@@ -62,7 +62,7 @@ class SchedulesActions {
 		$slug = sanitize_title_with_dashes( $data['slug'], null, 'save' );
 		$slug = str_replace( '-', '_', $slug );
 
-		$result = $this->library->insert( $slug, $data['name'], $data['interval'] );
+		$result = $this->library->insert( $slug, sanitize_text_field( $data['name'] ), $data['interval'] );
 
 		if ( is_array( $result ) ) {
 			$errors = $result;
@@ -95,7 +95,10 @@ class SchedulesActions {
 		// phpcs:ignore
 		$data = wp_parse_args( $_REQUEST['data'], array() );
 
-		$result = $this->library->insert( $data['slug'], $data['name'], $data['interval'], true );
+		$slug = sanitize_title_with_dashes( $data['slug'], null, 'save' );
+		$slug = str_replace( '-', '_', $slug );
+
+		$result = $this->library->insert( $slug, sanitize_text_field( $data['name'] ), $data['interval'], true );
 
 		if ( is_array( $result ) ) {
 			$errors = $result;

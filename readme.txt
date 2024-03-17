@@ -100,6 +100,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Security] Some input fields were not sanitized properly.
+
 = 2.5.2 =
 * [Fixed] Warning while adding new event.
 * [Changed] Adding a proper message when you try to delete non-existing event.

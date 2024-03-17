@@ -78,14 +78,16 @@ class EventsActions {
 		// phpcs:ignore
 		$data = wp_parse_args( $_REQUEST['data'], array() );
 
-		$execution = strtotime( $data['execution'] ) ? strtotime( $data['execution'] ) + ( HOUR_IN_SECONDS * $data['execution_offset'] ) : time() + ( HOUR_IN_SECONDS * $data['execution_offset'] );
+		$execution = strtotime( $data['execution'] )
+			? strtotime( $data['execution'] ) + ( HOUR_IN_SECONDS * $data['execution_offset'] )
+			: time() + ( HOUR_IN_SECONDS * $data['execution_offset'] );
 
 		$args = array();
 
 		if ( ! empty( $data['arguments'] ) ) {
 			foreach ( $data['arguments'] as $arg_raw ) {
 				if ( ! empty( $arg_raw ) ) {
-					$args[] = $arg_raw;
+					$args[] = sanitize_text_field( $arg_raw );
 				}
 			}
 		}
