@@ -21,9 +21,9 @@
 
 			<?php foreach ( $this->get_var( 'schedules' ) as $schedule ) : ?>
 				<?php
-					if ( ! apply_filters( 'advanced-cron-manager/screen/sidebar/shedules/display', true, $schedule ) ) {
-						continue;
-					}
+				if ( ! apply_filters( 'advanced-cron-manager/screen/sidebar/shedules/display', true, $schedule ) ) {
+					continue;
+				}
 				?>
 				<?php $this->set_var( 'schedule', $schedule, true ); ?>
 				<?php $this->get_view( 'parts/schedules/row' ); ?>
