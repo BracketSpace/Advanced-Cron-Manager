@@ -4,7 +4,7 @@ Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
 Requires at least: 3.6
 Requires PHP: 5.3
 Tested up to: 6.4
-Stable tag: 2.5.3
+Stable tag: 2.5.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,7 +100,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 2.5.4 =
 * [Added] Code filters and actions. Required by Advanced Cron Manager PRO v2.7.
 
 = 2.5.3 =
