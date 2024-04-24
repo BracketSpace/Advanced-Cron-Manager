@@ -75,7 +75,7 @@ class Schedules {
 			}
 		}
 
-		return $this->schedules;
+		return apply_filters( 'advanced-cron-manager/schedules', $this->schedules );
 
 	}
 
