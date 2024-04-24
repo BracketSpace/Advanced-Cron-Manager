@@ -15,14 +15,19 @@
 
 		<div class="tile-content">
 
+			<?php do_action( 'advanced-cron-manager/screen/sidebar/shedules/before', $this ); ?>
+
 			<?php $this->get_view( 'parts/schedules/header-row' ); ?>
 
 			<?php foreach ( $this->get_var( 'schedules' ) as $schedule ) : ?>
+				<?php if ( ! apply_filters( 'advanced-cron-manager/screen/sidebar/shedules/display', true, $schedule ) ) continue; ?>
 				<?php $this->set_var( 'schedule', $schedule, true ); ?>
 				<?php $this->get_view( 'parts/schedules/row' ); ?>
 			<?php endforeach ?>
 
 			<?php $this->remove_var( 'schedule' ); ?>
+
+			<?php do_action( 'advanced-cron-manager/screen/sidebar/shedules/after', $this ); ?>
 
 		</div>
 

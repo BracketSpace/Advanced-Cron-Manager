@@ -35,6 +35,7 @@ $single_schedule = $this->get_var( 'single_schedule' );
 	<?php foreach ( $schedules as $schedule ) : ?>
 		<option value="<?php echo esc_attr( $schedule->slug ); ?>"><?php echo esc_html( $schedule->label ); ?> (<?php echo esc_html( $schedule->slug ); ?>)</option>
 	<?php endforeach ?>
+	<?php do_action( 'advanced-cron-manager/screen/form/event/add/schedules', $this ); ?>
 </select>
 
 <label><?php esc_html_e( 'Arguments', 'advanced-cron-manager' ); ?></label>

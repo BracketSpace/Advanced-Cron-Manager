@@ -64,6 +64,8 @@ function ACM_Slidebar() {
 
 		this.overlay.fadeIn( 400 );
 
+		wp.hooks.doAction( 'advanced-cron-manager.slidebar.opened', this );
+
 	};
 
 	this.close = function() {
@@ -78,6 +80,8 @@ function ACM_Slidebar() {
 
 		this.overlay.fadeOut( 400 );
 
+		wp.hooks.doAction( 'advanced-cron-manager.slidebar.closed', this );
+
 	};
 
 	this.wait = function() {
@@ -87,16 +91,22 @@ function ACM_Slidebar() {
 	this.fulfill = function( html ) {
 		this.container.find( '.content .form' ).html( html );
 		this.container.find( '.content' ).removeClass( 'loading' );
+
+		wp.hooks.doAction( 'advanced-cron-manager.slidebar.fulfilled', this );
 	};
 
 	this.form_process_start = function( html ) {
 		this.container.find( '.content .send-form' ).attr( 'disabled', true );
 		this.container.find( '.content .spinner' ).css( 'visibility', 'visible' );
+
+		wp.hooks.doAction( 'advanced-cron-manager.slidebar.proces.started', this );
 	};
 
 	this.form_process_stop = function( html ) {
 		this.container.find( '.content .send-form' ).attr( 'disabled', false );
 		this.container.find( '.content .spinner' ).css( 'visibility', 'hidden' );
+
+		wp.hooks.doAction( 'advanced-cron-manager.slidebar.proces.stopped', this );
 	};
 
 };

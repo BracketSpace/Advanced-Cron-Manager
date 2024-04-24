@@ -100,6 +100,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Added] Code filters and actions. Required by Advanced Cron Manager PRO v2.7.
+
 = 2.5.3 =
 * [Security] Some input fields were not sanitized properly.
 
