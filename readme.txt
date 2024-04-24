@@ -1,6 +1,6 @@
 === Advanced Cron Manager - debug & control ===
 Contributors: bracketspace, Kubitomakita
-Tags: cron, wp cron, cron jobs, manager, cron manager, crontrol
+Tags: cron, wpcron, tool, manager, crontrol
 Requires at least: 3.6
 Requires PHP: 5.3
 Tested up to: 6.4
