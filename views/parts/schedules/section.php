@@ -39,12 +39,13 @@
 
 	<?php $this->get_view( 'elements/add-schedule-button' ); ?>
 
-	<?php if ( ! class_exists( 'underDEV\AdvancedCronManagerPRO\Updater' ) ): ?>
+	<?php if ( ! class_exists( 'underDEV\AdvancedCronManagerPRO\Updater' ) ) : ?>
 		<p class="pro-schedule-upsell">
 			<?php
 			// phpcs:ignore
 			printf(
-				// Translators: Link to ACM PRO
+				// Translators: Link to ACM PRO.
+				// phpcs:ignore
 				__( "Add a custom schedule that will fire your events at a specific time, ie. at noon on the last day of the month, or only Fridays. Now it's super easy with %s.", 'advanced-cron-manager' ),
 				'<a href="https://bracketspace.com/downloads/advanced-cron-manager-pro/?utm_source=wp&utm_medium=sidebar&utm_campaign=admin-upsell" target="_blank">Advanced Cron Manager PRO</a>'
 			);
