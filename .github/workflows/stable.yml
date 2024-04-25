@@ -146,7 +146,7 @@ jobs:
           name: ${{ steps.vars.outputs.package-name }}
           path: .
       - name: Deploy to WordPress repository
-        uses: 10up/action-wordpress-plugin-deploy@1.4.0
+        uses: 10up/action-wordpress-plugin-deploy@2.2.2
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
