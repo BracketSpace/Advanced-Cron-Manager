@@ -37,6 +37,7 @@ Plugin use AJAX request so you'll need enabled Javascript in order to use it.
 
 PRO version includes
 
+* Better event planning - You can add a custom schedule that will fire your events at a specific time, ie. at noon on the last day of the month, or only Fridays
 * Cron Logger - log cron's execution times easily
 * Events rescheduling - change event next execution date to control server load
 * Event listeners - you can see what functions or methods are listening for a particular event
@@ -44,7 +45,7 @@ PRO version includes
 * Performance stats - see how much time and memory particular event took
 * Debug tool - log any useful information from Cron callback
 
-[Buy now](https://bracketspace.com/downloads/advanced-cron-manager-pro/ "Advanced Cron Manager PRO")
+[Buy now](https://bracketspace.com/downloads/advanced-cron-manager-pro/?utm_source=wporg&utm_medium=readme&utm_campaign=readme "Advanced Cron Manager PRO")
 
 = Information about WP Cron =
 
@@ -99,6 +100,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 6. Server Scheduler section
 
 == Changelog ==
+
+= [Next] =
+* [Added] Custom schedules availability info.
 
 = 2.5.4 =
 * [Added] Code filters and actions. Required by Advanced Cron Manager PRO v2.7.
