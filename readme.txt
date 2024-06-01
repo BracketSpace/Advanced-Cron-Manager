@@ -101,6 +101,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Plugin package.
+
 = 2.5.6 =
 * [Fixed] Security vulnerability.
 
