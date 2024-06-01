@@ -101,6 +101,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Security vulnerability.
+
 = 2.5.5 =
 * [Added] Custom schedules availability info.
 
