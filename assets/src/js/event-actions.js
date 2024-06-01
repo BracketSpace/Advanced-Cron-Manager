@@ -22,12 +22,13 @@
 
 				// if data is type of array, we send it as JSON anyway,
 				// change characters to make it look like associative array
-				 if ( data.type === 'array' ) {
-					 formattedData = `(${data.type}) ` + JSON.stringify(JSON.parse(data.msg), null, 2)
-						 .replace(/\{/g, '[')
-						 .replace(/}/g, ']')
-						 .replace(/:/g, ' =>')
-				 }
+				if ( data.type === 'array' ) {
+					formattedData = `(${data.type}) ` + JSON.stringify(JSON.parse(data.msg), null, 2)
+						.replace(/\{/g, '[')
+						.replace(/}/g, ']')
+						.replace(/:/g, ' =>')
+				}
+
 				arr.push(formattedData);
 
 			} else {

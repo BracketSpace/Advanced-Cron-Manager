@@ -87,7 +87,7 @@ class EventsActions {
 		if ( ! empty( $data['arguments'] ) ) {
 			foreach ( $data['arguments'] as $arg_raw ) {
 				if ( ! empty( $arg_raw ) ) {
-					$args[] = sanitize_text_field( $arg_raw );
+					$args[] = wp_filter_nohtml_kses( sanitize_text_field( html_entity_decode( $arg_raw ) ) );
 				}
 			}
 		}
