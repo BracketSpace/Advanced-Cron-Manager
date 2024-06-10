@@ -101,6 +101,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Missing plugin assets in package.
+
 = 2.5.8 =
 * [Fixed] Undefined variable typo.
 
