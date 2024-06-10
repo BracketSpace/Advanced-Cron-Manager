@@ -4,7 +4,7 @@ Tags: cron, wpcron, tool, manager, crontrol
 Requires at least: 3.6
 Requires PHP: 5.3
 Tested up to: 6.5
-Stable tag: 2.5.8
+Stable tag: 2.5.9
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.5.9 =
+* [Fixed] Missing plugin assets in package.
 
 = 2.5.8 =
 * [Fixed] Undefined variable typo.

@@ -155,6 +155,8 @@ jobs:
           composer-options: "--no-dev"
       - name: Create .distignore file
         run: cp .build-excludes .distignore
+      - name: Remove obsolete files
+        run: rm -rf .build-excludes .gitignore
       - name: Deploy to WordPress repository
         uses: 10up/action-wordpress-plugin-deploy@2.2.2
         env:
