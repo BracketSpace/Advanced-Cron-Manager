@@ -88,6 +88,12 @@ class AdminScreen {
 
 		if ( strpos( $method, 'ajax_rerender_' ) !== false ) {
 
+			if ( ! current_user_can( 'manage_options' ) ) {
+				$this->ajax->error( array(
+					__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+				) );
+			}
+
 			/**
 			 * From: ajax_rerender_schedules_table
 			 * To:   load_schedules_table_part
