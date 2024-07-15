@@ -102,7 +102,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 == Changelog ==
 
 = [Next] =
-* [Fixed] Fixed security issue when subscribers could see the schedules or events.
+* [Fixed] Fixed security issue causing subscribers could see the schedules or events.
 
 = 2.5.9 =
 * [Fixed] Missing plugin assets in package.
