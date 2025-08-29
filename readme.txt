@@ -101,6 +101,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Changed] Removed textdomain loading to fix WordPress 6.7+ localization warnings - translations now load automatically from GlotPress.
+
 = 2.5.10 =
 * [Fixed] Fixed security issue causing subscribers could see the schedules or events.
 
