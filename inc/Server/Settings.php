@@ -74,6 +74,7 @@ class Settings {
 	 */
 	public function load_settings_part() {
 		$this->view->set_var( 'settings', $this->get_settings() );
+		$this->view->set_var( 'disable_wp_cron_defined', $this->is_disable_wp_cron_defined() );
 		$this->view->get_view( 'server/settings' );
 	}
 
@@ -92,6 +93,15 @@ class Settings {
 
 		return $this->settings;
 
+	}
+
+	/**
+	 * Checks if DISABLE_WP_CRON constant is defined
+	 *
+	 * @return boolean
+	 */
+	public function is_disable_wp_cron_defined() {
+		return defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON;
 	}
 
 	/**

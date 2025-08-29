@@ -103,6 +103,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Changed] Removed textdomain loading to fix WordPress 6.7+ localization warnings - translations now load automatically from GlotPress.
+* [Changed] Server Scheduler section now detects when DISABLE_WP_CRON constant is defined in wp-config.php.
 
 = 2.5.10 =
 * [Fixed] Fixed security issue causing subscribers could see the schedules or events.
