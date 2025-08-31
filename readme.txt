@@ -101,6 +101,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= 2.6.2 =
+* [Fixed] Fixed stable package creation issues - moved package exclusions to .distignore and ensured vendor and assets directories are included.
+
 = 2.6.1 =
 * [Changed] Exclude Claude configuration files from plugin distribution exports.
 * [Changed] Add composer and yarn build steps to stable release workflow.
