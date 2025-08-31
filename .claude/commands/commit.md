@@ -15,15 +15,15 @@ git status --porcelain
 echo -e "\n=== Staged Changes ==="
 git diff --cached --stat
 if [ $(git diff --cached --name-only | wc -l) -gt 0 ]; then
-    echo -e "\nDetailed staged changes:"
-    git diff --cached
+	echo -e "\nDetailed staged changes:"
+	git diff --cached
 fi
 
 echo -e "\n=== Unstaged Changes ==="
 git diff --stat
 if [ $(git diff --name-only | wc -l) -gt 0 ]; then
-    echo -e "\nDetailed unstaged changes:"
-    git diff
+	echo -e "\nDetailed unstaged changes:"
+	git diff
 fi
 
 echo -e "\n=== Untracked Files ==="
@@ -42,7 +42,7 @@ Based on my analysis, I'll propose one or more commits with:
 - Clear, descriptive commit messages
 - Logical grouping of related changes
 - Optional ClickUp task ID integration (if provided as $1) - automatically prefixed with `CU-` if not already present
-- **No Claude copyrights or AI attribution** - commits should be clean and professional
+- **No Claude copyrights or AI attribution or co-authoring** - commits should be clean and professional
 
 Let me analyze the changes and propose the commit structure. I'll ask for your approval before making any commits.
 
