@@ -4,7 +4,7 @@ Tags: cron, wpcron, tool, manager, crontrol
 Requires at least: 3.6
 Requires PHP: 5.3
 Tested up to: 6.8
-Stable tag: 2.6.0
+Stable tag: 2.6.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,7 +101,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 2.6.1 =
 * [Changed] Exclude Claude configuration files from plugin distribution exports.
 * [Changed] Add composer and yarn build steps to stable release workflow.
 
