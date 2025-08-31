@@ -2,9 +2,13 @@
 - After editing files, make sure they follow the coding standards.
 - After editing JS or CSS files, always run `yarn build` command.
 
+## Environment
+
+The plugin is running in Docker container with Lando configuration. All composer or environment related stuff should be run through `lando` command.
+
 ## Coding standards
 
-- For PHP, we use WordPress Coding Standards, which can be verified using `composer phpcs` or fixed using `composer phpcbf`
+- For PHP, we use WordPress Coding Standards, which can be verified using `lando composer phpcs` or fixed using ` lando composer phpcbf`
 - For JS, we should adhere to [WordPress Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/javascript/)
 - For CSS , we should adhere to [WordPress Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/css/)
 

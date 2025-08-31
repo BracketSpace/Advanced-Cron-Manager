@@ -1,5 +1,6 @@
 # Line ending normalization
 * text=auto
+*.php text eol=lf
 
 # Binary files
 *.png binary
