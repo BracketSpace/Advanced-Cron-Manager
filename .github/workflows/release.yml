@@ -55,7 +55,7 @@ jobs:
           replace: "plugin_version = '${{ github.event.inputs.new_version }}'"
           include: "${{ secrets.SLUG }}.php"
       - name: Commit version bump
-        run: git commit -am "Version bump"
+        run: git commit --allow-empty -am "Version bump"
       - name: Finish release
         run: git flow release finish ${{ github.event.inputs.new_version }} -m "v${{ github.event.inputs.new_version }}"
       - name: Push develop and tags
