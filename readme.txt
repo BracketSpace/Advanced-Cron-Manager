@@ -3,8 +3,8 @@ Contributors: bracketspace, Kubitomakita
 Tags: cron, wpcron, tool, manager, crontrol
 Requires at least: 3.6
 Requires PHP: 5.3
-Tested up to: 6.5
-Stable tag: 2.5.10
+Tested up to: 6.8
+Stable tag: 2.6.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,11 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.6.0 =
+* [Changed] Removed textdomain loading to fix WordPress 6.7+ localization warnings - translations now load automatically from GlotPress.
+* [Changed] Server Scheduler section now detects when DISABLE_WP_CRON constant is defined in wp-config.php.
+* [Changed] Updated GitHub Actions stable workflow to use latest action versions and simplified deployment process.
 
 = 2.5.10 =
 * [Fixed] Fixed security issue causing subscribers could see the schedules or events.

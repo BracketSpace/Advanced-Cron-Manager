@@ -7,6 +7,7 @@
 bin
 build
 node_modules
+.yarn
 assets/src
 tests
 vendor/typisttech
@@ -19,3 +20,4 @@ package-lock.json
 yarn.lock
 phpcs.xml
 phpunit.xml.dist
+.yarnrc.tml

@@ -15,7 +15,7 @@
 	"bugs": {
 		"url": "https://github.com/Kubitomakita/Advanced-Cron-Manager/issues"
 	},
-  "type" : "module",
+	"type": "module",
 	"homepage": "https://github.com/Kubitomakita/Advanced-Cron-Manager#readme",
 	"devDependencies": {
 		"grunt": "^1.5.3",
