@@ -12,7 +12,7 @@
 
 ###  Guiding Principles
 
-- Unreleased version should be groupped in section called `[Next]`, if there's no changelog for `[Next]`, just start it and insert the first item.
+- Unreleased version should be groupped in section called `2.6.0`, if there's no changelog for `2.6.0`, just start it and insert the first item.
 - Changelogs are for humans, not machines.
 - The same types of changes should be grouped.
 - There should be an entry for every single version.
