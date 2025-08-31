@@ -1,0 +1,15 @@
+/.git
+/.gitignore
+/.gitattributes
+/.github
+/.claude
+/node_modules
+/.log
+/composer.json
+/composer.lock
+/package.json
+/yarn.lock
+/.yarnrc.yml
+/phpcs.xml
+/changelog.md
+/CLAUDE.md
