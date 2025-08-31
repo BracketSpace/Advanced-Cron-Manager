@@ -25,6 +25,22 @@ jobs:
           
           # Remove last newline to clean up output
           truncate -s-1 changelog.md 2>/dev/null || true
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          tools: composer
+      - name: Install PHP dependencies
+        run: composer install --no-dev --optimize-autoloader
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+      - name: Install JS dependencies and build
+        run: |
+          yarn install
+          yarn build
       - name: WordPress Plugin Deploy
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
