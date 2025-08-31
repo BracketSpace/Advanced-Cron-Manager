@@ -4,7 +4,7 @@ Tags: cron, wpcron, tool, manager, crontrol
 Requires at least: 3.6
 Requires PHP: 5.3
 Tested up to: 6.8
-Stable tag: 2.6.1
+Stable tag: 2.6.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
