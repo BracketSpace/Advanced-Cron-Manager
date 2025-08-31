@@ -41,7 +41,7 @@ Based on my analysis, I'll propose one or more commits with:
 - Appropriate conventional commit types
 - Clear, descriptive commit messages
 - Logical grouping of related changes
-- Optional ClickUp task ID integration (if provided as $1)
+- Optional ClickUp task ID integration (if provided as $1) - automatically prefixed with `CU-` if not already present
 - **No Claude copyrights or AI attribution** - commits should be clean and professional
 
 Let me analyze the changes and propose the commit structure. I'll ask for your approval before making any commits.
