@@ -5,7 +5,7 @@
  * @package advanced-cron-manager
  */
 
-$settings = $this->get_var( 'settings' );
+$settings                = $this->get_var( 'settings' );
 $disable_wp_cron_defined = $this->get_var( 'disable_wp_cron_defined' );
 
 if ( ! empty( $settings['server_enable'] ) || $disable_wp_cron_defined ) {
