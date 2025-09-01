@@ -13,3 +13,9 @@
 /phpcs.xml
 /changelog.md
 /CLAUDE.md
+/.distignore
+/.editorconfig
+/.yarn
+/CONTRIBUTING.md
+gruntfile.js*
+gulpfile.js*

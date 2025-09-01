@@ -46,6 +46,13 @@ class AdminScreen {
 	public $events;
 
 	/**
+	 * Admin page hook
+	 *
+	 * @var string
+	 */
+	private $page_hook;
+
+	/**
 	 * Default tab names for events
 	 *
 	 * @var array
@@ -67,14 +74,25 @@ class AdminScreen {
 		$this->schedules = $schedules;
 		$this->events    = $events;
 
-		$this->default_event_details_tabs = array(
-			'logs'           => __( 'Logs', 'advanced-cron-manager' ),
-			'arguments'      => __( 'Arguments', 'advanced-cron-manager' ),
-			'schedule'       => __( 'Schedule', 'advanced-cron-manager' ),
-			'implementation' => __( 'Implementation', 'advanced-cron-manager' ),
-			'listeners'      => __( 'Listeners', 'advanced-cron-manager' ),
-		);
+	}
 
+	/**
+	 * Get default event details tabs with translated labels
+	 *
+	 * @return array
+	 */
+	protected function get_default_event_details_tabs() {
+		if ( null === $this->default_event_details_tabs ) {
+			$this->default_event_details_tabs = array(
+				'logs'           => __( 'Logs', 'advanced-cron-manager' ),
+				'arguments'      => __( 'Arguments', 'advanced-cron-manager' ),
+				'schedule'       => __( 'Schedule', 'advanced-cron-manager' ),
+				'implementation' => __( 'Implementation', 'advanced-cron-manager' ),
+				'listeners'      => __( 'Listeners', 'advanced-cron-manager' ),
+			);
+		}
+
+		return $this->default_event_details_tabs;
 	}
 
 	/**
@@ -164,7 +182,7 @@ class AdminScreen {
 	 */
 	public function load_schedules_table_part( $view ) {
 
-		$this->view->set_var( 'schedules', $this->schedules->get_schedules() );
+		$this->view->set_var( 'schedules', $this->schedules->get_schedules(), true );
 
 		$this->view->get_view( 'parts/schedules/section' );
 
@@ -202,7 +220,7 @@ class AdminScreen {
 	 */
 	public function add_default_event_details_tabs( $tabs ) {
 
-		foreach ( $this->default_event_details_tabs as $tab_slug => $tab_name ) {
+		foreach ( $this->get_default_event_details_tabs() as $tab_slug => $tab_name ) {
 			$tabs[ $tab_slug ] = $tab_name;
 			add_action( 'advanced-cron-manager/screen/event/details/tab/' . $tab_slug, array( $this, 'load_event_tab_' . $tab_slug ), 10, 1 );
 		}
@@ -274,6 +292,32 @@ class AdminScreen {
 		if ( apply_filters( 'advanced-cron-manager/screen/event/details/tabs/implementation/display', true ) ) {
 			$view->get_view( 'parts/events/tabs/implementation' );
 		}
+	}
+
+	/**
+	 * Registers the plugin page under Tools in WP Admin
+	 *
+	 * @return void
+	 */
+	public function register_screen() {
+
+		$this->page_hook = add_management_page(
+			__( 'Advanced Cron Manager', 'advanced-cron-manager' ),
+			__( 'Cron Manager', 'advanced-cron-manager' ),
+			'manage_options',
+			'advanced-cron-manager',
+			array( $this, 'load_page_wrapper' )
+		);
+
+	}
+
+	/**
+	 * Gets the page hook
+	 *
+	 * @return string
+	 */
+	public function get_page_hook() {
+		return $this->page_hook;
 	}
 
 	/**

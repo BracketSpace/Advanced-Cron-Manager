@@ -6,7 +6,9 @@
       "Bash(git commit:*)",
       "Bash(composer phpcs:*)",
       "Bash(composer phpcbf:*)",
-      "Bash(yarn build)"
+      "Bash(yarn build)",
+      "Bash(lando:*)",
+      "Bash(php:*)"
     ],
     "deny": [],
     "ask": []

@@ -30,7 +30,7 @@ class Assets {
 	public $files;
 
 	/**
-	 * ScreenRegisterer
+	 * AdminScreen
 	 *
 	 * @var object
 	 */
@@ -39,11 +39,11 @@ class Assets {
 	/**
 	 * Constructor
 	 *
-	 * @param string           $version Plugin version.
-	 * @param Utils\Files      $files   Files object.
-	 * @param ScreenRegisterer $screen  ScreenRegisterer object.
+	 * @param string      $version Plugin version.
+	 * @param Utils\Files $files   Files object.
+	 * @param AdminScreen $screen  AdminScreen object.
 	 */
-	public function __construct( $version, Utils\Files $files, ScreenRegisterer $screen ) {
+	public function __construct( $version, Utils\Files $files, AdminScreen $screen ) {
 
 		$this->plugin_version = $version;
 		$this->files          = $files;
