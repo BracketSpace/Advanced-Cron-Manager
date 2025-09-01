@@ -4,7 +4,7 @@ Tags: cron, wpcron, tool, manager, crontrol
 Requires at least: 3.6
 Requires PHP: 5.3
 Tested up to: 6.8
-Stable tag: 2.6.2
+Stable tag: 2.6.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,7 +101,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 2.6.3 =
 * [Fixed] Fixed translation loading issue that was triggered too early in AdminScreen constructor.
 * [Fixed] Fixed AdminScreen instance inconsistency that prevented CSS and JS assets from loading on plugin page.
 * [Fixed] Fixed schedules variable conflict that prevented schedules table from displaying properly.
