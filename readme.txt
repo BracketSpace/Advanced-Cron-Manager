@@ -101,6 +101,12 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Fixed translation loading issue that was triggered too early in AdminScreen constructor.
+* [Fixed] Fixed AdminScreen instance inconsistency that prevented CSS and JS assets from loading on plugin page.
+* [Fixed] Fixed schedules variable conflict that prevented schedules table from displaying properly.
+* [Changed] Merged ScreenRegisterer class with AdminScreen class for better code organization.
+
 = 2.6.2 =
 * [Fixed] Fixed stable package creation issues - moved package exclusions to .distignore and ensured vendor and assets directories are included.
 
