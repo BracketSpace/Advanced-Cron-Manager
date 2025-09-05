@@ -48,7 +48,6 @@ class EventsLibrary {
 		$this->events    = $events;
 
 		$this->paused_option_name = 'acm_paused_events';
-
 	}
 
 	/**
@@ -66,7 +65,6 @@ class EventsLibrary {
 		}
 
 		return $events;
-
 	}
 
 	/**
@@ -109,7 +107,6 @@ class EventsLibrary {
 		}
 
 		return true;
-
 	}
 
 	/**
@@ -141,7 +138,6 @@ class EventsLibrary {
 		}
 
 		return true;
-
 	}
 
 	/**
@@ -179,7 +175,6 @@ class EventsLibrary {
 		$this->unschedule( $event, false );
 
 		return true;
-
 	}
 
 	/**
@@ -213,7 +208,6 @@ class EventsLibrary {
 		$result = $this->insert( $event->hook, $event->next_call, $event->schedule, $event->args, false );
 
 		return $result;
-
 	}
 
 	/**
@@ -234,7 +228,6 @@ class EventsLibrary {
 		);
 
 		update_option( $this->paused_option_name, $paused_events );
-
 	}
 
 	/**
@@ -252,7 +245,5 @@ class EventsLibrary {
 			update_option( $this->paused_option_name, $paused_events );
 
 		}
-
 	}
-
 }

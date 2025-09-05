@@ -48,7 +48,5 @@ class Processor {
 			remove_action( 'init', 'wp_cron' );
 
 		}
-
 	}
-
 }

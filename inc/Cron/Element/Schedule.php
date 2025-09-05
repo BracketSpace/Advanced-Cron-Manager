@@ -60,7 +60,6 @@ class Schedule {
 		$this->interval  = $interval;
 		$this->label     = $label;
 		$this->protected = $protected;
-
 	}
 
 	/**
@@ -102,7 +101,6 @@ class Schedule {
 		$interval['seconds'] = ceil( $remaining_seconds );
 
 		return $interval;
-
 	}
 
 	/**
@@ -137,7 +135,6 @@ class Schedule {
 		}
 
 		return trim( $human_time );
-
 	}
 
 	/**
@@ -149,5 +146,4 @@ class Schedule {
 	public function nonce( $action = '' ) {
 		return esc_attr( wp_create_nonce( 'acm/schedule/' . $action . '/' . $this->slug ) );
 	}
-
 }

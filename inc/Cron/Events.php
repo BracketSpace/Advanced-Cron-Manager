@@ -105,7 +105,6 @@ class Events {
 		}
 
 		return $this->events;
-
 	}
 
 	/**
@@ -118,7 +117,6 @@ class Events {
 
 		$events = $this->get_events();
 		return isset( $events[ $hash ] ) ? $events[ $hash ] : false;
-
 	}
 
 	/**
@@ -156,7 +154,5 @@ class Events {
 		}
 
 		return ( $e1->next_call < $e2->next_call ) ? -1 : 1;
-
 	}
-
 }

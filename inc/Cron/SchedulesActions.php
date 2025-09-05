@@ -82,7 +82,6 @@ class SchedulesActions {
 		$success = sprintf( __( 'Schedule "%s" has been added', 'advanced-cron-manager' ), $data['name'] );
 
 		$this->ajax->response( $success, $errors );
-
 	}
 
 	/**
@@ -126,7 +125,6 @@ class SchedulesActions {
 		$success = sprintf( __( 'Schedule "%s" has been edited', 'advanced-cron-manager' ), $data['name'] );
 
 		$this->ajax->response( $success, $errors );
-
 	}
 
 	/**
@@ -165,7 +163,5 @@ class SchedulesActions {
 		$success = sprintf( __( 'Schedule "%s" has been removed', 'advanced-cron-manager' ), $schedule_slug );
 
 		$this->ajax->response( $success, $errors );
-
 	}
-
 }

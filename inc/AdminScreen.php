@@ -73,7 +73,6 @@ class AdminScreen {
 		$this->ajax      = $ajax;
 		$this->schedules = $schedules;
 		$this->events    = $events;
-
 	}
 
 	/**
@@ -125,7 +124,6 @@ class AdminScreen {
 			$this->ajax->success( ob_get_clean() );
 
 		}
-
 	}
 
 	/**
@@ -173,7 +171,6 @@ class AdminScreen {
 		$this->view->set_var( 'details_tabs', apply_filters( 'advanced-cron-manager/screen/event/details/tabs', array() ) );
 
 		$this->view->get_view( 'parts/events/section' );
-
 	}
 
 	/**
@@ -193,7 +190,6 @@ class AdminScreen {
 		$this->view->set_var( 'schedules', $this->schedules->get_schedules(), true );
 
 		$this->view->get_view( 'parts/schedules/section' );
-
 	}
 
 	/**
@@ -234,7 +230,6 @@ class AdminScreen {
 		}
 
 		return $tabs;
-
 	}
 
 	/**
@@ -316,7 +311,6 @@ class AdminScreen {
 			'advanced-cron-manager',
 			array( $this, 'load_page_wrapper' )
 		);
-
 	}
 
 	/**
@@ -362,7 +356,7 @@ class AdminScreen {
 			$show_args_preview = is_array( $arg ) || is_object( $arg );
 		}
 
-		$args_length = array_sum( array_map( function( $ar ) {
+		$args_length = array_sum( array_map( function ( $ar ) {
 			return strlen( $ar['msg'] );
 		}, $parsed_args ) );
 
@@ -372,5 +366,4 @@ class AdminScreen {
 			'show_args_preview' => $show_args_preview,
 		);
 	}
-
 }

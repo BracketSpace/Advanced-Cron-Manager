@@ -92,7 +92,6 @@ class Settings {
 		}
 
 		return $this->settings;
-
 	}
 
 	/**
@@ -122,7 +121,7 @@ class Settings {
 
 		$errors = array();
 
-		$form_options = array_map( function( $val ) {
+		$form_options = array_map( function ( $val ) {
 			return 0;
 		}, $this->default );
 
@@ -143,7 +142,5 @@ class Settings {
 		update_option( $this->option_name, $sanitized_data );
 
 		$this->ajax->response( __( 'Settings has been saved', 'advanced-cron-manager' ), $errors );
-
 	}
-
 }

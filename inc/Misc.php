@@ -49,5 +49,4 @@ class Misc {
 		$links[] = '<a href="' . esc_url( get_admin_url( null, 'tools.php?page=advanced-cron-manager' ) ) . '">' . esc_html__( 'Cron Manager' ) . '</a>';
 		return $links;
 	}
-
 }

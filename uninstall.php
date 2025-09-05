@@ -15,7 +15,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 $plugin_version = 'x';
-$plugin_file    = dirname( __FILE__ ) . '/advanced-cron-manager.php';
+$plugin_file    = __DIR__ . '/advanced-cron-manager.php';
 
 /**
  * Fire up Composer's autoloader
@@ -26,17 +26,17 @@ require_once __DIR__ . '/vendor/autoload.php';
  * Bootstrap plugin
  */
 
-$ajax = function() {
+$ajax = function () {
 	return new underDEV\Utils\Ajax();
 };
 
 $schedules_library = new underDEV\AdvancedCronManager\Cron\SchedulesLibrary( $ajax() );
 
-$schedules = function() use ( $schedules_library ) {
+$schedules = function () use ( $schedules_library ) {
 	return new underDEV\AdvancedCronManager\Cron\Schedules( $schedules_library );
 };
 
-$events = function() use ( $schedules ) {
+$events = function () use ( $schedules ) {
 	return new underDEV\AdvancedCronManager\Cron\Events( $schedules() );
 };
 

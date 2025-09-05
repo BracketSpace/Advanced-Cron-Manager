@@ -57,7 +57,6 @@ class EventsActions {
 		$this->events    = $events;
 		$this->library   = $library;
 		$this->schedules = $schedules;
-
 	}
 
 	/**
@@ -121,7 +120,6 @@ class EventsActions {
 		);
 
 		$this->ajax->response( $success, $errors );
-
 	}
 
 	/**
@@ -162,7 +160,6 @@ class EventsActions {
 		$success = sprintf( __( 'Event "%s" has been executed', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, array() );
-
 	}
 
 	/**
@@ -201,7 +198,6 @@ class EventsActions {
 		$success = sprintf( __( 'Event "%s" has been removed', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, $errors );
-
 	}
 
 	/**
@@ -240,7 +236,6 @@ class EventsActions {
 		$success = sprintf( __( 'Event "%s" has been paused', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, $errors );
-
 	}
 
 	/**
@@ -279,7 +274,5 @@ class EventsActions {
 		$success = sprintf( __( 'Event "%s" has been unpaused', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, $errors );
-
 	}
-
 }

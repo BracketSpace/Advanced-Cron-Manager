@@ -84,7 +84,6 @@ class FormProvider {
 		$form_html = ob_get_clean();
 
 		$this->ajax->response( $form_html );
-
 	}
 
 	/**
@@ -95,7 +94,6 @@ class FormProvider {
 		$this->ajax->verify_nonce( 'acm/schedule/add' );
 
 		$this->get_form( 'schedule/add', __( 'New schedule', 'advanced-cron-manager' ), __( 'Add schedule', 'advanced-cron-manager' ) );
-
 	}
 
 	/**
@@ -120,7 +118,6 @@ class FormProvider {
 
 		// Translators: schedule slug.
 		$this->get_form( 'schedule/edit', sprintf( __( 'Edit "%s" schedule', 'advanced-cron-manager' ), $schedule->slug ), __( 'Edit schedule', 'advanced-cron-manager' ) );
-
 	}
 
 	/**
@@ -134,7 +131,5 @@ class FormProvider {
 		$this->view->set_var( 'single_schedule', $this->schedules->get_single_event_schedule() );
 
 		$this->get_form( 'event/add', __( 'New event', 'advanced-cron-manager' ), __( 'Schedule event', 'advanced-cron-manager' ) );
-
 	}
-
 }
