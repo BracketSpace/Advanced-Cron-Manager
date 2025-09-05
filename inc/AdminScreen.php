@@ -159,6 +159,10 @@ class AdminScreen {
 	 */
 	public function load_events_table_part( $view ) {
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
 		$this->view->set_var( 'events', $this->events->get_events() );
 		$this->view->set_var( 'events_count', $this->events->count() );
 		$this->view->set_var( 'schedules', $this->schedules );
@@ -181,6 +185,10 @@ class AdminScreen {
 	 * @return void
 	 */
 	public function load_schedules_table_part( $view ) {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
 
 		$this->view->set_var( 'schedules', $this->schedules->get_schedules(), true );
 

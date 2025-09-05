@@ -101,6 +101,15 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= 2.6.4 =
+* [Security] Improved event hook sanitization using sanitize_text_field() to prevent XSS while allowing valid hook characters
+* [Security] Added validation for schedule intervals to prevent invalid values
+* [Security] Strengthened authorization checks in admin screen methods
+* [Security] Enhanced output escaping in event row view template
+* [Security] Standardized nonce verification in AJAX handlers with better input validation
+* [Security] Added proper validation and sanitization for server settings
+* [Security] Fixed unsanitized input in FormProvider.php schedule slug handling
+
 = 2.6.3 =
 * [Fixed] Fixed translation loading issue that was triggered too early in AdminScreen constructor.
 * [Fixed] Fixed AdminScreen instance inconsistency that prevented CSS and JS assets from loading on plugin page.

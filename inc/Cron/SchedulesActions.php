@@ -62,7 +62,15 @@ class SchedulesActions {
 		$slug = sanitize_title_with_dashes( $data['slug'], null, 'save' );
 		$slug = str_replace( '-', '_', $slug );
 
-		$result = $this->library->insert( $slug, sanitize_text_field( $data['name'] ), $data['interval'] );
+		// Validate interval - must be between 60 seconds and 1 year.
+		$interval = absint( $data['interval'] );
+		if ( $interval < 60 || $interval > YEAR_IN_SECONDS ) {
+			$this->ajax->response( false, array(
+				__( 'Interval must be between 60 seconds and 1 year.', 'advanced-cron-manager' ),
+			) );
+		}
+
+		$result = $this->library->insert( $slug, sanitize_text_field( $data['name'] ), $interval );
 
 		if ( is_array( $result ) ) {
 			$errors = $result;
@@ -98,7 +106,15 @@ class SchedulesActions {
 		$slug = sanitize_title_with_dashes( $data['slug'], null, 'save' );
 		$slug = str_replace( '-', '_', $slug );
 
-		$result = $this->library->insert( $slug, sanitize_text_field( $data['name'] ), $data['interval'], true );
+		// Validate interval - must be between 60 seconds and 1 year.
+		$interval = absint( $data['interval'] );
+		if ( $interval < 60 || $interval > YEAR_IN_SECONDS ) {
+			$this->ajax->response( false, array(
+				__( 'Interval must be between 60 seconds and 1 year.', 'advanced-cron-manager' ),
+			) );
+		}
+
+		$result = $this->library->insert( $slug, sanitize_text_field( $data['name'] ), $interval, true );
 
 		if ( is_array( $result ) ) {
 			$errors = $result;
@@ -120,8 +136,14 @@ class SchedulesActions {
 	 */
 	public function remove() {
 
-		// phpcs:ignore
-		$schedule_slug = $_REQUEST['schedule'];
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Need schedule slug for nonce string.
+		$schedule_slug = sanitize_key( isset( $_REQUEST['schedule'] ) ? $_REQUEST['schedule'] : '' );
+
+		if ( empty( $schedule_slug ) ) {
+			$this->ajax->response( false, array(
+				__( 'Invalid schedule slug.', 'advanced-cron-manager' ),
+			) );
+		}
 
 		$this->ajax->verify_nonce( 'acm/schedule/remove/' . $schedule_slug );
 
