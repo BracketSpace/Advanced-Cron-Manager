@@ -4,7 +4,7 @@ Tags: cron, wpcron, tool, manager, crontrol
 Requires at least: 3.6
 Requires PHP: 5.3
 Tested up to: 6.8
-Stable tag: 2.6.3
+Stable tag: 2.6.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,7 +101,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= [Next] =
+= 2.6.4 =
 * [Security] Improved event hook sanitization using sanitize_text_field() to prevent XSS while allowing valid hook characters
 * [Security] Added validation for schedule intervals to prevent invalid values
 * [Security] Strengthened authorization checks in admin screen methods
