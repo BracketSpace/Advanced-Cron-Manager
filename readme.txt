@@ -111,6 +111,8 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Security] Fixed unsanitized input in FormProvider.php schedule slug handling
 * [Fixed] Fixed PHP 8.4 deprecation warning with trigger_error() by replacing with exception
 * [Fixed] Fixed TypeError on PHP 8.3+ where count() was called on non-countable value in Event implementation
+* [Changed] Updated WordPress Coding Standards to version 3.2 and resolved all coding standard warnings
+* [Changed] Renamed reserved keyword parameters for better PHP compatibility ($protected to $is_protected, $new to $new_event)
 
 = 2.6.3 =
 * [Fixed] Fixed translation loading issue that was triggered too early in AdminScreen constructor.

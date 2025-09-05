@@ -48,9 +48,9 @@ class Schedule {
 	 * @param string  $slug      Slug.
 	 * @param integer $interval  Interval.
 	 * @param string  $label     Label.
-	 * @param boolean $protected If protected.
+	 * @param boolean $is_protected If protected.
 	 */
-	public function __construct( $slug = null, $interval = 0, $label = null, $protected = false ) {
+	public function __construct( $slug = null, $interval = 0, $label = null, $is_protected = false ) {
 
 		if ( empty( $label ) ) {
 			$label = $slug;
@@ -59,7 +59,7 @@ class Schedule {
 		$this->slug      = $slug;
 		$this->interval  = $interval;
 		$this->label     = $label;
-		$this->protected = $protected;
+		$this->protected = $is_protected;
 	}
 
 	/**

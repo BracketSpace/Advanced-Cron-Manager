@@ -121,7 +121,7 @@ class Settings {
 
 		$errors = array();
 
-		$form_options = array_map( function ( $val ) {
+		$form_options = array_map( function () {
 			return 0;
 		}, $this->default );
 

@@ -78,11 +78,11 @@ class Event {
 	 * @param integer $interval  Interval.
 	 * @param array   $args      Arguments.
 	 * @param integer $next_call Next call timestamp.
-	 * @param boolean $protected If protected.
+	 * @param boolean $is_protected If protected.
 	 * @param boolean $paused    If paused.
 	 * @throws \InvalidArgumentException When hook is empty.
 	 */
-	public function __construct( $hook = null, $schedule = '', $interval = 0, $args = array(), $next_call = 0, $protected = false, $paused = false ) {
+	public function __construct( $hook = null, $schedule = '', $interval = 0, $args = array(), $next_call = 0, $is_protected = false, $paused = false ) {
 
 		if ( empty( $hook ) ) {
 			throw new \InvalidArgumentException( 'Hook cannot be empty' );
@@ -93,7 +93,7 @@ class Event {
 		$this->interval  = $interval;
 		$this->args      = $args;
 		$this->next_call = $next_call;
-		$this->protected = $protected;
+		$this->protected = $is_protected;
 		$this->paused    = $paused;
 
 		// phpcs:ignore
@@ -127,12 +127,12 @@ class Event {
 
 		$imp = '';
 
-		$imp .= 'function ' . $function_name . '(' . $arguments . ') {<br>';
-		$imp .= '&nbsp;&nbsp;&nbsp;&nbsp;// do stuff<br>';
-		$imp .= '}<br>';
-		$imp .= '<br>';
+		$imp       .= 'function ' . $function_name . '(' . $arguments . ') {<br>';
+		$imp       .= '&nbsp;&nbsp;&nbsp;&nbsp;// do stuff<br>';
+		$imp       .= '}<br>';
+		$imp       .= '<br>';
 		$args_count = is_array( $this->args ) ? count( $this->args ) : 0;
-		$imp .= "add_action( '" . $this->hook . "',  '" . $function_name . "', 10, " . $args_count . ' );';
+		$imp       .= "add_action( '" . $this->hook . "',  '" . $function_name . "', 10, " . $args_count . ' );';
 
 		return $imp;
 	}

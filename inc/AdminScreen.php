@@ -140,10 +140,9 @@ class AdminScreen {
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
-	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
-	public function load_searchbox_part( $view ) {
+	public function load_searchbox_part() {
 		$this->view->get_view( 'parts/searchbox' );
 	}
 
@@ -152,10 +151,9 @@ class AdminScreen {
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
-	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
-	public function load_events_table_part( $view ) {
+	public function load_events_table_part() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
@@ -178,10 +176,9 @@ class AdminScreen {
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
-	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
-	public function load_schedules_table_part( $view ) {
+	public function load_schedules_table_part() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
@@ -197,10 +194,9 @@ class AdminScreen {
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
-	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
-	public function load_slidebar_part( $view ) {
+	public function load_slidebar_part() {
 		$this->view->get_view( 'elements/slidebar' );
 	}
 
@@ -209,10 +205,9 @@ class AdminScreen {
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
-	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
-	public function load_preview_modal_part( $view ) {
+	public function load_preview_modal_part() {
 		$this->view->get_view( 'elements/preview-modal' );
 	}
 
