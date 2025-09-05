@@ -11,8 +11,6 @@
 /yarn.lock
 /.yarnrc.yml
 /phpcs.xml
-/.phplint.yml
-/.phplint-cache
 /changelog.md
 /CLAUDE.md
 /.distignore

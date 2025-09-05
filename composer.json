@@ -11,8 +11,7 @@
     ],
     "scripts": {
         "phpcs": "phpcs",
-        "phpcbf": "phpcbf",
-        "lint": "phplint"
+        "phpcbf": "phpcbf"
     },
     "require": {
         "underdev/utils": "*",
@@ -26,7 +25,6 @@
     "require-dev": {
         "10up/wp_mock": "dev-trunk",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-        "overtrue/phplint": "^9.0",
         "phpcompatibility/php-compatibility": "^9.1",
         "wp-coding-standards/wpcs": "^2.0"
     },

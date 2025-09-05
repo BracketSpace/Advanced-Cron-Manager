@@ -21,7 +21,7 @@ jobs:
         run: composer phpcs
 
   phplint:
-    name: PHP Lint
+    name: PHP Syntax Check
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -30,19 +30,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup PHP 8.2 for Composer
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
-      - name: Install PHP Dependencies
-        uses: "ramsey/composer-install@v2"
       - name: Setup PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
-      - name: PHP Lint
-        run: composer lint
+      - name: PHP Syntax Check
+        run: |
+          find . -name "*.php" -not -path "./vendor/*" -not -path "./node_modules/*" -not -path "./assets/*" -exec php -l {} \; | (! grep -v "No syntax errors")

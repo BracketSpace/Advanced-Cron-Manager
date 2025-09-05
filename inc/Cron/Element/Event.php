@@ -84,7 +84,7 @@ class Event {
 	public function __construct( $hook = null, $schedule = '', $interval = 0, $args = array(), $next_call = 0, $protected = false, $paused = false ) {
 
 		if ( empty( $hook ) ) {
-			trigger_error( 'Hook cannot be empty', E_USER_ERROR );
+			throw new \InvalidArgumentException( 'Hook cannot be empty' );
 		}
 
 		$this->hook      = $hook;
