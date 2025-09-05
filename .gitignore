@@ -3,3 +3,4 @@ node_modules
 .log
 /assets/dist/**
 .phplint-cache
+.phplint.cache/
