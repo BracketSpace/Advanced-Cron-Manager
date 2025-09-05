@@ -1,0 +1,12 @@
+path: .
+jobs: 10
+cache: .phplint-cache
+exclude:
+  - assets
+  - vendor
+  - node_modules
+  - .git
+  - .github
+  - .yarn
+extensions:
+  - php
