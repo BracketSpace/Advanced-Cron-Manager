@@ -101,7 +101,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
-= 2.6.4 =
+= [Next] =
 * [Security] Improved event hook sanitization using sanitize_text_field() to prevent XSS while allowing valid hook characters
 * [Security] Added validation for schedule intervals to prevent invalid values
 * [Security] Strengthened authorization checks in admin screen methods
@@ -109,6 +109,8 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 * [Security] Standardized nonce verification in AJAX handlers with better input validation
 * [Security] Added proper validation and sanitization for server settings
 * [Security] Fixed unsanitized input in FormProvider.php schedule slug handling
+* [Fixed] Fixed PHP 8.4 deprecation warning with trigger_error() by replacing with exception
+* [Fixed] Fixed TypeError on PHP 8.3+ where count() was called on non-countable value in Event implementation
 
 = 2.6.3 =
 * [Fixed] Fixed translation loading issue that was triggered too early in AdminScreen constructor.

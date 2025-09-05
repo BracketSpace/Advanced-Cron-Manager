@@ -131,7 +131,8 @@ class Event {
 		$imp .= '&nbsp;&nbsp;&nbsp;&nbsp;// do stuff<br>';
 		$imp .= '}<br>';
 		$imp .= '<br>';
-		$imp .= "add_action( '" . $this->hook . "',  '" . $function_name . "', 10, " . count( $this->args ) . ' );';
+		$args_count = is_array( $this->args ) ? count( $this->args ) : 0;
+		$imp .= "add_action( '" . $this->hook . "',  '" . $function_name . "', 10, " . $args_count . ' );';
 
 		return $imp;
 	}
