@@ -84,7 +84,6 @@ class FormProvider {
 		$form_html = ob_get_clean();
 
 		$this->ajax->response( $form_html );
-
 	}
 
 	/**
@@ -95,7 +94,6 @@ class FormProvider {
 		$this->ajax->verify_nonce( 'acm/schedule/add' );
 
 		$this->get_form( 'schedule/add', __( 'New schedule', 'advanced-cron-manager' ), __( 'Add schedule', 'advanced-cron-manager' ) );
-
 	}
 
 	/**
@@ -103,8 +101,14 @@ class FormProvider {
 	 */
 	public function edit_schedule() {
 
-		// phpcs:ignore
-		$schedule_slug = $_REQUEST['schedule'];
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Need schedule slug for nonce string.
+		$schedule_slug = sanitize_key( isset( $_REQUEST['schedule'] ) ? $_REQUEST['schedule'] : '' );
+
+		if ( empty( $schedule_slug ) ) {
+			$this->ajax->response( false, array(
+				__( 'Invalid schedule slug.', 'advanced-cron-manager' ),
+			) );
+		}
 
 		$this->ajax->verify_nonce( 'acm/schedule/edit/' . $schedule_slug );
 
@@ -114,7 +118,6 @@ class FormProvider {
 
 		// Translators: schedule slug.
 		$this->get_form( 'schedule/edit', sprintf( __( 'Edit "%s" schedule', 'advanced-cron-manager' ), $schedule->slug ), __( 'Edit schedule', 'advanced-cron-manager' ) );
-
 	}
 
 	/**
@@ -128,7 +131,5 @@ class FormProvider {
 		$this->view->set_var( 'single_schedule', $this->schedules->get_single_event_schedule() );
 
 		$this->get_form( 'event/add', __( 'New event', 'advanced-cron-manager' ), __( 'Schedule event', 'advanced-cron-manager' ) );
-
 	}
-
 }

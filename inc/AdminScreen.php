@@ -73,7 +73,6 @@ class AdminScreen {
 		$this->ajax      = $ajax;
 		$this->schedules = $schedules;
 		$this->events    = $events;
-
 	}
 
 	/**
@@ -125,7 +124,6 @@ class AdminScreen {
 			$this->ajax->success( ob_get_clean() );
 
 		}
-
 	}
 
 	/**
@@ -142,10 +140,9 @@ class AdminScreen {
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
-	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
-	public function load_searchbox_part( $view ) {
+	public function load_searchbox_part() {
 		$this->view->get_view( 'parts/searchbox' );
 	}
 
@@ -154,10 +151,13 @@ class AdminScreen {
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
-	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
-	public function load_events_table_part( $view ) {
+	public function load_events_table_part() {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
 
 		$this->view->set_var( 'events', $this->events->get_events() );
 		$this->view->set_var( 'events_count', $this->events->count() );
@@ -169,7 +169,6 @@ class AdminScreen {
 		$this->view->set_var( 'details_tabs', apply_filters( 'advanced-cron-manager/screen/event/details/tabs', array() ) );
 
 		$this->view->get_view( 'parts/events/section' );
-
 	}
 
 	/**
@@ -177,15 +176,17 @@ class AdminScreen {
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
-	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
-	public function load_schedules_table_part( $view ) {
+	public function load_schedules_table_part() {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
 
 		$this->view->set_var( 'schedules', $this->schedules->get_schedules(), true );
 
 		$this->view->get_view( 'parts/schedules/section' );
-
 	}
 
 	/**
@@ -193,10 +194,9 @@ class AdminScreen {
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
-	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
-	public function load_slidebar_part( $view ) {
+	public function load_slidebar_part() {
 		$this->view->get_view( 'elements/slidebar' );
 	}
 
@@ -205,10 +205,9 @@ class AdminScreen {
 	 * There are used $this->view instead of passed instance
 	 * because we want to separate scopes
 	 *
-	 * @param  object $view instance of parent view.
 	 * @return void
 	 */
-	public function load_preview_modal_part( $view ) {
+	public function load_preview_modal_part() {
 		$this->view->get_view( 'elements/preview-modal' );
 	}
 
@@ -226,7 +225,6 @@ class AdminScreen {
 		}
 
 		return $tabs;
-
 	}
 
 	/**
@@ -308,7 +306,6 @@ class AdminScreen {
 			'advanced-cron-manager',
 			array( $this, 'load_page_wrapper' )
 		);
-
 	}
 
 	/**
@@ -354,7 +351,7 @@ class AdminScreen {
 			$show_args_preview = is_array( $arg ) || is_object( $arg );
 		}
 
-		$args_length = array_sum( array_map( function( $ar ) {
+		$args_length = array_sum( array_map( function ( $ar ) {
 			return strlen( $ar['msg'] );
 		}, $parsed_args ) );
 
@@ -364,5 +361,4 @@ class AdminScreen {
 			'show_args_preview' => $show_args_preview,
 		);
 	}
-
 }

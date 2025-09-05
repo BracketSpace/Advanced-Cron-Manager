@@ -48,7 +48,6 @@ class EventsLibrary {
 		$this->events    = $events;
 
 		$this->paused_option_name = 'acm_paused_events';
-
 	}
 
 	/**
@@ -66,7 +65,6 @@ class EventsLibrary {
 		}
 
 		return $events;
-
 	}
 
 	/**
@@ -76,10 +74,10 @@ class EventsLibrary {
 	 * @param  int     $execution_timestamp UTC timestamp for first execution.
 	 * @param  string  $schedule_slug       Schedule slug.
 	 * @param  array   $args                arguments.
-	 * @param  boolean $new                 if event is new.
+	 * @param  boolean $new_event           if event is new.
 	 * @return mixed                        array with errors on error or true
 	 */
-	public function insert( $hook, $execution_timestamp, $schedule_slug, $args, $new = true ) {
+	public function insert( $hook, $execution_timestamp, $schedule_slug, $args, $new_event = true ) {
 
 		$errors = array();
 
@@ -104,12 +102,11 @@ class EventsLibrary {
 			wp_schedule_event( $execution_timestamp, $schedule->slug, $hook, $args );
 		}
 
-		if ( $new ) {
+		if ( $new_event ) {
 			do_action( 'advanced-cron-manager/event/scheduled', $hook, $execution_timestamp, $schedule, $args );
 		}
 
 		return true;
-
 	}
 
 	/**
@@ -141,7 +138,6 @@ class EventsLibrary {
 		}
 
 		return true;
-
 	}
 
 	/**
@@ -179,7 +175,6 @@ class EventsLibrary {
 		$this->unschedule( $event, false );
 
 		return true;
-
 	}
 
 	/**
@@ -213,7 +208,6 @@ class EventsLibrary {
 		$result = $this->insert( $event->hook, $event->next_call, $event->schedule, $event->args, false );
 
 		return $result;
-
 	}
 
 	/**
@@ -234,7 +228,6 @@ class EventsLibrary {
 		);
 
 		update_option( $this->paused_option_name, $paused_events );
-
 	}
 
 	/**
@@ -252,7 +245,5 @@ class EventsLibrary {
 			update_option( $this->paused_option_name, $paused_events );
 
 		}
-
 	}
-
 }

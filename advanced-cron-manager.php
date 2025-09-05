@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
- * Version: 2.6.3
+ * Version: 2.6.4
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
  * License: GPL3
@@ -11,7 +11,7 @@
  * @package advanced-cron-manager
  */
 
-$plugin_version = '2.6.3';
+$plugin_version = '2.6.4';
 $plugin_file    = __FILE__;
 
 /**
@@ -59,7 +59,6 @@ function acm_check_old_plugins( $plugins, $r ) {
 			$r->add_error( sprintf( '%s plugin at least in version %s', $plugin_data['name'], $plugin_data['version'] ) );
 		}
 	}
-
 }
 
 if ( method_exists( $requirements, 'add_check' ) ) {
@@ -79,45 +78,45 @@ if ( ! $requirements->satisfied() ) {
 
 $files = new underDEV\Utils\Files( $plugin_file );
 
-$view = function() use ( $files ) {
+$view = function () use ( $files ) {
 	return new underDEV\Utils\View( $files );
 };
 
-$ajax = function() {
+$ajax = function () {
 	return new underDEV\Utils\Ajax();
 };
 
-$server_settings = function() use ( $view, $ajax ) {
+$server_settings = function () use ( $view, $ajax ) {
 	return new underDEV\AdvancedCronManager\Server\Settings( $view(), $ajax() );
 };
 
-$misc = function() use ( $view ) {
+$misc = function () use ( $view ) {
 	return new underDEV\AdvancedCronManager\Misc( $view() );
 };
 
-$server_processor = function() use ( $server_settings ) {
+$server_processor = function () use ( $server_settings ) {
 	return new underDEV\AdvancedCronManager\Server\Processor( $server_settings() );
 };
 
 $schedules_library = new underDEV\AdvancedCronManager\Cron\SchedulesLibrary( $ajax() );
 
-$schedules = function() use ( $schedules_library ) {
+$schedules = function () use ( $schedules_library ) {
 	return new underDEV\AdvancedCronManager\Cron\Schedules( $schedules_library );
 };
 
-$schedules_actions = function() use ( $ajax, $schedules_library ) {
+$schedules_actions = function () use ( $ajax, $schedules_library ) {
 	return new underDEV\AdvancedCronManager\Cron\SchedulesActions( $ajax(), $schedules_library );
 };
 
-$events = function() use ( $schedules ) {
+$events = function () use ( $schedules ) {
 	return new underDEV\AdvancedCronManager\Cron\Events( $schedules() );
 };
 
-$events_library = function() use ( $schedules, $events ) {
+$events_library = function () use ( $schedules, $events ) {
 	return new underDEV\AdvancedCronManager\Cron\EventsLibrary( $schedules(), $events() );
 };
 
-$events_actions = function() use ( $ajax, $events, $events_library, $schedules ) {
+$events_actions = function () use ( $ajax, $events, $events_library, $schedules ) {
 	return new underDEV\AdvancedCronManager\Cron\EventsActions( $ajax(), $events(), $events_library(), $schedules() );
 };
 
@@ -183,7 +182,7 @@ add_action( 'plugins_loaded', array( $server_processor(), 'block_cron_executions
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $misc(), 'plugin_action_link' ) );
 
 // Notification promo.
-add_action( 'plugins_loaded', function() use ( $misc ) {
+add_action( 'plugins_loaded', function () use ( $misc ) {
 	if ( ! function_exists( 'register_trigger' ) ) {
 		add_action( 'advanced-cron-manager/screen/sidebar', array( $misc(), 'load_notification_promo_part' ), 1000, 1 );
 	}

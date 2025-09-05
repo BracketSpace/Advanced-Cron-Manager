@@ -57,7 +57,6 @@ class EventsActions {
 		$this->events    = $events;
 		$this->library   = $library;
 		$this->schedules = $schedules;
-
 	}
 
 	/**
@@ -94,7 +93,13 @@ class EventsActions {
 			}
 		}
 
-		$hook = trim( wp_strip_all_tags( $data['hook'] ) );
+		$hook = sanitize_text_field( trim( $data['hook'] ) );
+
+		if ( empty( $hook ) ) {
+			$this->ajax->response( false, array(
+				__( 'Hook name is required.', 'advanced-cron-manager' ),
+			) );
+		}
 
 		$result = $this->library->insert( $hook, $execution, $data['schedule'], $args );
 
@@ -115,7 +120,6 @@ class EventsActions {
 		);
 
 		$this->ajax->response( $success, $errors );
-
 	}
 
 	/**
@@ -127,8 +131,8 @@ class EventsActions {
 
 		global $acm_current_event;
 
-		// phpcs:ignore
-		$event = $this->events->get_event_by_hash( $_REQUEST['event'] );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Need event hash for nonce string.
+		$event = $this->events->get_event_by_hash( sanitize_text_field( wp_unslash( isset( $_REQUEST['event'] ) ? $_REQUEST['event'] : '' ) ) );
 
 		if ( ! $event ) {
 			$this->ajax->response( false, array(
@@ -156,7 +160,6 @@ class EventsActions {
 		$success = sprintf( __( 'Event "%s" has been executed', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, array() );
-
 	}
 
 	/**
@@ -166,16 +169,14 @@ class EventsActions {
 	 */
 	public function remove() {
 
-		// phpcs:ignore
-		$event  = $this->events->get_event_by_hash( $_REQUEST['event'] );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Need event hash for nonce string.
+		$event = $this->events->get_event_by_hash( sanitize_text_field( wp_unslash( isset( $_REQUEST['event'] ) ? $_REQUEST['event'] : '' ) ) );
 
 		if ( false === $event ) {
 			$this->ajax->response( false, array(
 				__( "This event doesn't exist anymore.", 'advanced-cron-manager' ),
 			) );
 		}
-
-		$errors = array();
 
 		$this->ajax->verify_nonce( 'acm/event/remove/' . $event->hash );
 
@@ -197,7 +198,6 @@ class EventsActions {
 		$success = sprintf( __( 'Event "%s" has been removed', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, $errors );
-
 	}
 
 	/**
@@ -207,8 +207,14 @@ class EventsActions {
 	 */
 	public function pause() {
 
-		// phpcs:ignore
-		$event = $this->events->get_event_by_hash( $_REQUEST['event'] );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Need event hash for nonce string.
+		$event = $this->events->get_event_by_hash( sanitize_text_field( wp_unslash( isset( $_REQUEST['event'] ) ? $_REQUEST['event'] : '' ) ) );
+
+		if ( ! $event ) {
+			$this->ajax->response( false, array(
+				__( 'This event doesn\'t seem to exist anymore', 'advanced-cron-manager' ),
+			) );
+		}
 
 		$this->ajax->verify_nonce( 'acm/event/pause/' . $event->hash );
 
@@ -230,7 +236,6 @@ class EventsActions {
 		$success = sprintf( __( 'Event "%s" has been paused', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, $errors );
-
 	}
 
 	/**
@@ -240,8 +245,14 @@ class EventsActions {
 	 */
 	public function unpause() {
 
-		// phpcs:ignore
-		$event = $this->events->get_event_by_hash( $_REQUEST['event'] );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Need event hash for nonce string.
+		$event = $this->events->get_event_by_hash( sanitize_text_field( wp_unslash( isset( $_REQUEST['event'] ) ? $_REQUEST['event'] : '' ) ) );
+
+		if ( ! $event ) {
+			$this->ajax->response( false, array(
+				__( 'This event doesn\'t seem to exist anymore', 'advanced-cron-manager' ),
+			) );
+		}
 
 		$this->ajax->verify_nonce( 'acm/event/unpause/' . $event->hash );
 
@@ -263,7 +274,5 @@ class EventsActions {
 		$success = sprintf( __( 'Event "%s" has been unpaused', 'advanced-cron-manager' ), $event->hook );
 
 		$this->ajax->response( $success, $errors );
-
 	}
-
 }

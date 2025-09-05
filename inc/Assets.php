@@ -48,7 +48,6 @@ class Assets {
 		$this->plugin_version = $version;
 		$this->files          = $files;
 		$this->screen         = $screen;
-
 	}
 
 	/**
@@ -86,7 +85,5 @@ class Assets {
 		) );
 
 		do_action( 'advanced-cron-manager/screen/enqueue', $current_page_hook );
-
 	}
-
 }

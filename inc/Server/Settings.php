@@ -92,7 +92,6 @@ class Settings {
 		}
 
 		return $this->settings;
-
 	}
 
 	/**
@@ -114,19 +113,34 @@ class Settings {
 
 		$this->ajax->verify_nonce( 'acm/server/settings/save' );
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->ajax->response( false, array(
+				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+			) );
+		}
+
 		$errors = array();
 
-		$form_options = array_map( function( $val ) {
+		$form_options = array_map( function () {
 			return 0;
 		}, $this->default );
 
 		// phpcs:ignore
 		$form_data = wp_parse_args( $_REQUEST['data'], $form_options );
 
-		update_option( $this->option_name, $form_data );
+		// Validate and sanitize settings.
+		$sanitized_data = array();
+		foreach ( $form_data as $key => $value ) {
+			if ( ! array_key_exists( $key, $this->default ) ) {
+				continue; // Skip unknown settings.
+			}
+
+			// All current settings are boolean (0 or 1).
+			$sanitized_data[ $key ] = absint( $value ) === 1 ? 1 : 0;
+		}
+
+		update_option( $this->option_name, $sanitized_data );
 
 		$this->ajax->response( __( 'Settings has been saved', 'advanced-cron-manager' ), $errors );
-
 	}
-
 }

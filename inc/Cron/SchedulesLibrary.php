@@ -46,7 +46,6 @@ class SchedulesLibrary {
 
 		$this->ajax        = $ajax;
 		$this->option_name = 'acm_schedules';
-
 	}
 
 	/**
@@ -70,7 +69,6 @@ class SchedulesLibrary {
 		}
 
 		return $this->schedules;
-
 	}
 
 	/**
@@ -88,7 +86,6 @@ class SchedulesLibrary {
 		$schedules = $this->get_schedules();
 
 		return isset( $schedules[ $slug ] ) ? $schedules[ $slug ] : false;
-
 	}
 
 	/**
@@ -122,7 +119,6 @@ class SchedulesLibrary {
 		}
 
 		return $schedules;
-
 	}
 
 	/**
@@ -185,7 +181,6 @@ class SchedulesLibrary {
 		$this->schedules[ $slug ] = new Element\Schedule( $slug, $interval, $name, false );
 
 		return true;
-
 	}
 
 	/**
@@ -215,7 +210,5 @@ class SchedulesLibrary {
 		unset( $this->schedules[ $slug ] );
 
 		return true;
-
 	}
-
 }

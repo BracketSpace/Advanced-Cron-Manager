@@ -42,7 +42,6 @@ class Schedules {
 	public function __construct( SchedulesLibrary $library ) {
 
 		$this->library = $library;
-
 	}
 
 	/**
@@ -76,7 +75,6 @@ class Schedules {
 		}
 
 		return apply_filters( 'advanced-cron-manager/schedules', $this->schedules );
-
 	}
 
 	/**
@@ -99,7 +97,6 @@ class Schedules {
 		$schedules = $this->get_schedules();
 
 		return isset( $schedules[ $slug ] ) ? $schedules[ $slug ] : $this->get_single_event_schedule();
-
 	}
 
 	/**
@@ -114,7 +111,5 @@ class Schedules {
 		}
 
 		return $this->single_event_schedule;
-
 	}
-
 }

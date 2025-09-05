@@ -96,7 +96,7 @@ if ( $event->paused ) {
 				?>
 				<br>
 				<span title="<?php echo esc_attr( 'UTC: ' . date_i18n( $date_format . ' ' . $time_format, $event->next_call ) ); ?>">
-					<?php echo date_i18n( $date_format . ' ' . $time_format, $event->next_call + $time_offset ); // phpcs:ignore ?>
+					<?php echo esc_html( date_i18n( $date_format . ' ' . $time_format, $event->next_call + $time_offset ) ); ?>
 				</span>
 			<?php endif ?>
 		</div>

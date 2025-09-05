@@ -4,7 +4,7 @@ Tags: cron, wpcron, tool, manager, crontrol
 Requires at least: 3.6
 Requires PHP: 5.3
 Tested up to: 6.8
-Stable tag: 2.6.3
+Stable tag: 2.6.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,19 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.6.4 =
+* [Security] Improved event hook sanitization using sanitize_text_field() to prevent XSS while allowing valid hook characters
+* [Security] Added validation for schedule intervals to prevent invalid values
+* [Security] Strengthened authorization checks in admin screen methods
+* [Security] Enhanced output escaping in event row view template
+* [Security] Standardized nonce verification in AJAX handlers with better input validation
+* [Security] Added proper validation and sanitization for server settings
+* [Security] Fixed unsanitized input in FormProvider.php schedule slug handling
+* [Fixed] Fixed PHP 8.4 deprecation warning with trigger_error() by replacing with exception
+* [Fixed] Fixed TypeError on PHP 8.3+ where count() was called on non-countable value in Event implementation
+* [Changed] Updated WordPress Coding Standards to version 3.2 and resolved all coding standard warnings
+* [Changed] Renamed reserved keyword parameters for better PHP compatibility ($protected to $is_protected, $new to $new_event)
 
 = 2.6.3 =
 * [Fixed] Fixed translation loading issue that was triggered too early in AdminScreen constructor.
