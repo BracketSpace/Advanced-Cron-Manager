@@ -102,6 +102,7 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 == Changelog ==
 
 = [Next] =
+* [Fixed] Bulk actions (remove, pause, unpause) failing due to parallel AJAX race conditions
 * [Fixed] Undefined $errors variable when removing non-protected events
 * [Security] Added nonce verification to rerender AJAX endpoints to prevent CSRF
 * [Security] Added capability check to form provider endpoints

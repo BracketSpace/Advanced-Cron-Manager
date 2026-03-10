@@ -12,27 +12,89 @@
 		var $select_input = $( this ).prev( 'select' );
 		var action        = $select_input.val();
 
-		if ( action != '-1' ) {
+		if ( action === '-1' ) {
+			return;
+		}
 
-			$apply_button.attr( 'disabled', true );
+		$apply_button.prop( 'disabled', true );
 
-			get_all_checkboxes( true ).each( function() {
+		// Collect all items upfront before modifying the DOM.
+		var items = [];
 
-				var $checkbox      = $( this );
-				var $action_button = $checkbox.parents( '.single-event.row' ).first().find( 'a.' + action + '-event' );
+		get_all_checkboxes( true ).each( function() {
+			var $checkbox      = $( this );
+			var $row           = $checkbox.parents( '.single-event.row' ).first();
+			var $action_button = $row.find( 'a.' + action + '-event' );
 
-				if ( $action_button ) {
-					$action_button.trigger( 'click' );
+			if ( $action_button.length ) {
+				items.push( {
+					nonce: $action_button.data( 'nonce' ),
+					event: $action_button.data( 'event' ),
+					$row:  $row
+				} );
+			}
+
+			$checkbox.prop( 'checked', false );
+		} );
+
+		if ( ! items.length ) {
+			$apply_button.prop( 'disabled', false );
+			$select_input.val( '-1' );
+			return;
+		}
+
+		// Process items sequentially to avoid race conditions on the cron option.
+		function processNext( index ) {
+
+			if ( index >= items.length ) {
+				$apply_button.prop( 'disabled', false );
+				$select_input.val( '-1' );
+
+				// Rerender the events table after destructive actions.
+				if ( action !== 'run' ) {
+					$( '#events' ).addClass( 'loading' );
+
+					$.post(
+						ajaxurl,
+						{ 'action': 'acm/rerender/events', 'nonce': advanced_cron_manager.rerender_nonce },
+						function( response ) {
+							$( '#events' ).replaceWith( response.data );
+							wp.hooks.doAction( 'advanced-cron-manager.event.search' );
+							wp.hooks.doAction( 'advanced-cron-manager.event.sort' );
+						}
+					);
 				}
 
-				$checkbox.attr( 'checked', false );
+				return;
+			}
 
+			var item = items[ index ];
+
+			var data = {
+				'action': 'acm/event/' + action,
+				'nonce':  item.nonce,
+				'event':  item.event
+			};
+
+			item.$row.addClass( 'removing' );
+
+			$.post( ajaxurl, data, function( response ) {
+
+				advanced_cron_manager.ajax_messages( response );
+
+				if ( response.success === true && action !== 'run' ) {
+					item.$row.slideUp();
+				}
+
+				item.$row.removeClass( 'removing' );
+
+			} ).always( function() {
+				processNext( index + 1 );
 			} );
 
-			$apply_button.attr( 'disabled', false );
-			$select_input.val( '-1' );
-
 		}
+
+		processNext( 0 );
 
 	} );
 
