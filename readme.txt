@@ -103,6 +103,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 = [Next] =
 * [Fixed] Undefined $errors variable when removing non-protected events
+* [Security] Added nonce verification to rerender AJAX endpoints to prevent CSRF
+* [Security] Added capability check to form provider endpoints
+* [Security] Improved output escaping in implementation code and view templates
 
 = 2.6.4 =
 * [Security] Improved event hook sanitization using sanitize_text_field() to prevent XSS while allowing valid hook characters
