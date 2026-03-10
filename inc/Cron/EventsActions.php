@@ -186,6 +186,8 @@ class EventsActions {
 			) );
 		}
 
+		$errors = array();
+
 		if ( $event->protected ) {
 			// Translators: event hook.
 			$errors = array( sprintf( __( 'Event "%s" is protected and you cannot remove it', 'advanced-cron-manager' ), $event->hook ) );

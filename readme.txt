@@ -101,6 +101,9 @@ Yes! We're offering a [custom plugin development](https://bracketspace.com/custo
 
 == Changelog ==
 
+= [Next] =
+* [Fixed] Undefined $errors variable when removing non-protected events
+
 = 2.6.4 =
 * [Security] Improved event hook sanitization using sanitize_text_field() to prevent XSS while allowing valid hook characters
 * [Security] Added validation for schedule intervals to prevent invalid values
