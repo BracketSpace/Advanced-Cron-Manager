@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **Git flow**: Branch from `develop`, feature branches as `feature/Name`. Main branch is `develop`.
 - **Conventional commits**: Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) spec.
-- **Changelog**: BEFORE committing, document changes in `readme.txt`. Use format `= X.Y.Z =` with `* [Added/Changed/Fixed] Description`. For unreleased changes, use `[Next]` as the version header (e.g., `= [Next] =`). Keep entries meaningful — don't bloat with granular changes. Group entries by type: Added first, then Changed, then Fixed.
+- **Changelog**: BEFORE committing, document changes in `readme.txt`. Use format `= X.Y.Z =` with `* [Added/Changed/Fixed] Description`. For unreleased changes, use `2.7.0` as the version header (e.g., `= 2.7.0 =`). Keep entries meaningful — don't bloat with granular changes. Group entries by type: Added first, then Changed, then Fixed.
 - **Text domain**: `advanced-cron-manager`
 - **Version**: Appears in two places in `advanced-cron-manager.php`: plugin header `Version:` and `$plugin_version` variable.
 

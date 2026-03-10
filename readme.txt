@@ -4,7 +4,7 @@ Tags: cron, wpcron, cron manager, manager, crontrol
 Requires at least: 5.0
 Requires PHP: 5.3
 Tested up to: 6.9
-Stable tag: 2.6.4
+Stable tag: 2.7.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,7 +124,7 @@ If you only need a simple health check for WP-Cron, WP Cron Status Checker does 
 
 == Changelog ==
 
-= [Next] =
+= 2.7.0 =
 * [Changed] Event hash no longer includes next execution timestamp, making it stable across reschedulings
 * [Fixed] "In queue" cron events failing to delete, run, or pause with "wrong_nonce" error
 * [Fixed] Bulk actions (remove, pause, unpause) failing due to parallel AJAX race conditions
