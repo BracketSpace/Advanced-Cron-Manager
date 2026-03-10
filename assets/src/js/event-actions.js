@@ -279,7 +279,7 @@
 
 		$.post(
 			ajaxurl,
-			{ 'action': 'acm/rerender/events' },
+			{ 'action': 'acm/rerender/events', 'nonce': advanced_cron_manager.rerender_nonce },
 			function ( response ) {
 				$( '#events' ).replaceWith( response.data );
 				advanced_cron_manager.slidebar.form_process_stop();

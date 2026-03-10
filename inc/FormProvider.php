@@ -69,6 +69,12 @@ class FormProvider {
 	 */
 	public function get_form( $form_name = null, $form_title = '', $cta = '' ) {
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$this->ajax->error( array(
+				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
+			) );
+		}
+
 		if ( null === $form_name ) {
 			trigger_error( 'Form name cannot be empty' );
 		}

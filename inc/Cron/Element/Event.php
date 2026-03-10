@@ -97,7 +97,7 @@ class Event {
 		$this->paused    = $paused;
 
 		// phpcs:ignore
-		$this->hash = substr( md5( $this->hook . $this->schedule . $this->next_call . serialize( $this->args ) ), 0, 8 );
+		$this->hash = substr( md5( $this->hook . $this->schedule . serialize( $this->args ) ), 0, 8 );
 	}
 
 	/**
@@ -123,16 +123,18 @@ class Event {
 		}
 		$arguments = empty( $arguments ) ? '' : ' ' . implode( ', ', $arguments ) . ' ';
 
-		$function_name = 'cron_' . $this->hook . '_' . $this->hash;
+		$hook_escaped      = esc_html( $this->hook );
+		$function_name     = esc_html( 'cron_' . $this->hook . '_' . $this->hash );
+		$arguments_escaped = esc_html( $arguments );
 
 		$imp = '';
 
-		$imp       .= 'function ' . $function_name . '(' . $arguments . ') {<br>';
+		$imp       .= 'function ' . $function_name . '(' . $arguments_escaped . ') {<br>';
 		$imp       .= '&nbsp;&nbsp;&nbsp;&nbsp;// do stuff<br>';
 		$imp       .= '}<br>';
 		$imp       .= '<br>';
 		$args_count = is_array( $this->args ) ? count( $this->args ) : 0;
-		$imp       .= "add_action( '" . $this->hook . "',  '" . $function_name . "', 10, " . $args_count . ' );';
+		$imp       .= "add_action( '" . $hook_escaped . "',  '" . $function_name . "', 10, " . $args_count . ' );';
 
 		return $imp;
 	}

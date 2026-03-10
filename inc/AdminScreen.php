@@ -105,6 +105,8 @@ class AdminScreen {
 
 		if ( strpos( $method, 'ajax_rerender_' ) !== false ) {
 
+			$this->ajax->verify_nonce( 'acm/rerender' );
+
 			if ( ! current_user_can( 'manage_options' ) ) {
 				$this->ajax->error( array(
 					__( "You're not allowed to do that.", 'advanced-cron-manager' ),
