@@ -170,7 +170,7 @@
 
 		$( '#schedules' ).addClass( 'loading' );
 
-	    $.post( ajaxurl, { 'action': 'acm/rerender/schedules' }, function( response ) {
+	    $.post( ajaxurl, { 'action': 'acm/rerender/schedules', 'nonce': advanced_cron_manager.rerender_nonce }, function( response ) {
 	    	$( '#schedules' ).replaceWith( response.data );
 	    	advanced_cron_manager.slidebar.form_process_stop();
 			advanced_cron_manager.slidebar.close();
