@@ -31,11 +31,12 @@ jobs:
         run: git flow init -d
       - name: Start release
         run: git flow release start ${{ github.event.inputs.new_version }}
-      - name: Replace 2.4.2 tags with new version number
+      - name: Replace [Next] tag with new version number
         uses: jacobtomlinson/gha-find-replace@master
         with:
           find: "(?i)\\[Next\\]"
           replace: "${{ github.event.inputs.new_version }}"
+          exclude: ".git/**,.github/**,CLAUDE.md"
       - name: Replace stable tag in readme
         uses: jacobtomlinson/gha-find-replace@master
         with:
