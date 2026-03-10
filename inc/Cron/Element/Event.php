@@ -97,7 +97,7 @@ class Event {
 		$this->paused    = $paused;
 
 		// phpcs:ignore
-		$this->hash = substr( md5( $this->hook . $this->schedule . $this->next_call . serialize( $this->args ) ), 0, 8 );
+		$this->hash = substr( md5( $this->hook . $this->schedule . serialize( $this->args ) ), 0, 8 );
 	}
 
 	/**

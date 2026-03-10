@@ -240,10 +240,19 @@ class EventsLibrary {
 		$paused_events = get_option( $this->paused_option_name, array() );
 
 		if ( isset( $paused_events[ $event->hash ] ) ) {
-
 			unset( $paused_events[ $event->hash ] );
 			update_option( $this->paused_option_name, $paused_events );
+			return;
+		}
 
+		// Fallback: match by hook and args for backward compatibility
+		// after hash formula change.
+		foreach ( $paused_events as $key => $paused_event ) {
+			if ( $paused_event['hook'] === $event->hook && $paused_event['args'] === $event->args ) {
+				unset( $paused_events[ $key ] );
+				update_option( $this->paused_option_name, $paused_events );
+				return;
+			}
 		}
 	}
 }

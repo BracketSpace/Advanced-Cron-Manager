@@ -138,6 +138,7 @@ class EventsActions {
 			$this->ajax->response( false, array(
 				__( 'This event doesn\'t seem to exist anymore', 'advanced-cron-manager' ),
 			) );
+			return;
 		}
 
 		$this->ajax->verify_nonce( 'acm/event/run/' . $event->hash );
@@ -146,6 +147,7 @@ class EventsActions {
 			$this->ajax->response( false, array(
 				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
 			) );
+			return;
 		}
 
 		$acm_current_event = $event;
@@ -176,6 +178,7 @@ class EventsActions {
 			$this->ajax->response( false, array(
 				__( "This event doesn't exist anymore.", 'advanced-cron-manager' ),
 			) );
+			return;
 		}
 
 		$this->ajax->verify_nonce( 'acm/event/remove/' . $event->hash );
@@ -184,6 +187,7 @@ class EventsActions {
 			$this->ajax->response( false, array(
 				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
 			) );
+			return;
 		}
 
 		$errors = array();
@@ -216,6 +220,7 @@ class EventsActions {
 			$this->ajax->response( false, array(
 				__( 'This event doesn\'t seem to exist anymore', 'advanced-cron-manager' ),
 			) );
+			return;
 		}
 
 		$this->ajax->verify_nonce( 'acm/event/pause/' . $event->hash );
@@ -224,6 +229,7 @@ class EventsActions {
 			$this->ajax->response( false, array(
 				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
 			) );
+			return;
 		}
 
 		$result = $this->library->pause( $event );
@@ -254,6 +260,7 @@ class EventsActions {
 			$this->ajax->response( false, array(
 				__( 'This event doesn\'t seem to exist anymore', 'advanced-cron-manager' ),
 			) );
+			return;
 		}
 
 		$this->ajax->verify_nonce( 'acm/event/unpause/' . $event->hash );
@@ -262,6 +269,7 @@ class EventsActions {
 			$this->ajax->response( false, array(
 				__( "You're not allowed to do that.", 'advanced-cron-manager' ),
 			) );
+			return;
 		}
 
 		$result = $this->library->unpause( $event );
