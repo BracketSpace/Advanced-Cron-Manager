@@ -5,9 +5,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 - **Build frontend assets** (after editing JS/CSS): `yarn build` (runs Gulp: compiles SCSS → CSS, concatenates/minifies JS)
-- **PHP lint**: `lando composer phpcs`
-- **PHP autofix**: `lando composer phpcbf`
-- **All composer/PHP commands** must run through `lando` (Docker environment, PHP 8.2)
+- **PHP lint**: `herd composer phpcs`
+- **PHP autofix**: `herd composer phpcbf`
+- **Local environment**: Laravel Herd (PHP runs natively, no Docker wrapper needed)
 
 ## Workflow & Conventions
 
