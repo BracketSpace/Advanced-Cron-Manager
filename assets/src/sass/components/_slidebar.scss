@@ -3,17 +3,17 @@
 	position: fixed;
 	height: 100%;
 	height: 100vh;
-	right: 0;
+	inset-inline-end: 0;
 	top: 0;
 	background: #f7f7f7;
-	border-left: 1px solid #d2d2d2;
+	border-inline-start: 1px solid #d2d2d2;
 	box-shadow: 0 -3px 9px #cacaca;
 	width: 380px;
 	z-index: 9999;
 	padding: 20px 30px;
 	margin-top: 32px;
 	overflow: auto;
-	margin-right: -385px;
+	margin-inline-end: -385px;
 	max-width: 95%;
 
 	@include media( '<=small' ) {
@@ -22,8 +22,9 @@
 	}
 
 	.close {
-	    float: right;
-	    margin: 0 0 16px 16px;
+	    float: inline-end;
+	    margin: 0 0 16px;
+	    margin-inline-start: 16px;
 	    cursor: pointer;
 	    font-size: 1.8rem;
 	}
@@ -48,7 +49,7 @@
 
 				&.spinbox {
 					margin-bottom: 5px;
-					float: right;
+					float: inline-end;
 					width: 60px;
 					display: inline-block;
 				}
@@ -127,7 +128,7 @@
 				@include placeholder-animation();
 				height: 30px;
 				width: 30%;
-				float: right;
+				float: inline-end;
 			}
 
 		}

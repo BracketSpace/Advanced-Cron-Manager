@@ -56,11 +56,18 @@ function ACM_Slidebar() {
 		event.data.slidebar.close();
 	} );
 
+	// The slidebar is anchored to the inline end of the screen, so it slides
+	// in from the left in RTL languages.
+	this.margin_property = function() {
+		return jQuery( 'body' ).hasClass( 'rtl' ) ? 'margin-left' : 'margin-right';
+	};
+
 	this.open = function() {
 
-		this.container.animate( {
-			'margin-right': 0
-		}, 400, 'easeInOutSine' );
+		var properties = {};
+		properties[ this.margin_property() ] = 0;
+
+		this.container.animate( properties, 400, 'easeInOutSine' );
 
 		this.overlay.fadeIn( 400 );
 
@@ -71,10 +78,10 @@ function ACM_Slidebar() {
 	this.close = function() {
 
 		var $form = this.container.find( '.content .form' );
+		var properties = {};
+		properties[ this.margin_property() ] = '-' + ( this.container.outerWidth() + 5 );
 
-		this.container.animate( {
-			'margin-right': '-' + ( this.container.outerWidth() + 5 )
-		}, 400, 'easeInOutSine', function () {
+		this.container.animate( properties, 400, 'easeInOutSine', function () {
 			$form.html( '' );
 		} );
 

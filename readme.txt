@@ -130,6 +130,7 @@ If you only need a simple health check for WP-Cron, WP Cron Status Checker does 
 * [Fixed] Deprecated jQuery methods that relied on jQuery Migrate
 * [Fixed] PHP warnings and errors with events having null or object arguments, schedules registered without a display name, and an empty timezone offset
 * [Fixed] PHP warnings when AJAX requests or stored options are missing expected data
+* [Fixed] Admin screen layout in RTL languages
 
 = 2.7.0 =
 * [Changed] Event hash no longer includes next execution timestamp, making it stable across reschedulings

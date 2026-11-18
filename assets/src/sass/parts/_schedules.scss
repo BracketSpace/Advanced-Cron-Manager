@@ -41,7 +41,7 @@
 
 				&.actions {
 					width: 15%;
-					text-align: right;
+					text-align: end;
 
 					.dashicons {
 
@@ -89,7 +89,7 @@
 
 	.page-title-action {
 		top: 15px;
-		margin-left: 0;
+		margin-inline-start: 0;
 		margin-bottom: 15px;
 	}
 
