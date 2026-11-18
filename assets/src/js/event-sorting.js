@@ -114,7 +114,7 @@
 	}
 
 	// apply preserved sorting when window is reloaded.
-	$( window ).ready( events_table_preserved_sort );
+	$( events_table_preserved_sort );
 
 	wp.hooks.addAction( 'advanced-cron-manager.event.sort', 'bracketspace/acm', events_table_preserved_sort );
 

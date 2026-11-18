@@ -91,8 +91,6 @@
 	// edit schedule
 	wp.hooks.addAction( 'advanced-cron-manager.schedule.edit', 'bracketspace/acm/schedule-edit', function( $row ) {
 
-		event.preventDefault();
-
 		var $button = $row.find( '.actions .edit-schedule' );
 		var schedule_name = $button.data( 'schedule' );
 

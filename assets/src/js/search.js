@@ -3,7 +3,7 @@
 	var search_input_delay = 400,
 		timer;
 
-	$( '#search' ).bind( 'input', function() {
+	$( '#search' ).on( 'input', function() {
 		window.clearTimeout( timer );
 		timer = window.setTimeout( function() {
 			wp.hooks.doAction( 'advanced-cron-manager.events.search.triggered', $( '#search' ).val() );
@@ -62,7 +62,7 @@
 	}
 
 	// apply preserved sorting when window is reloaded.
-	$( window ).ready( events_table_preserved_search );
+	$( events_table_preserved_search );
 
 	wp.hooks.addAction( 'advanced-cron-manager.event.search', 'bracketspace/acm', events_table_preserved_search );
 

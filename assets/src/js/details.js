@@ -4,8 +4,8 @@
 
 		event.preventDefault();
 
-		$link = $( this );
-		$row  = $link.parents( '.single-event' ).first();
+		var $link = $( this );
+		var $row  = $link.parents( '.single-event' ).first();
 
 		$row.toggleClass( 'unfolded' );
 

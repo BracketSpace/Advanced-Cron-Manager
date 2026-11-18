@@ -26,7 +26,7 @@ function ACM_Preview_Modal() {
 	this.container = jQuery('.preview-modal');
 	this.close_button = jQuery('.preview-modal .close');
 
-	this.close_button.click( { previewModal: this }, function ( event ) {
+	this.close_button.on( 'click', { previewModal: this }, function ( event ) {
 		event.data.previewModal.close();
 	} );
 
@@ -48,11 +48,11 @@ function ACM_Slidebar() {
 	this.overlay      = jQuery( '.slidebar-overlay' );
 	this.close_button = jQuery( '.slidebar .close' );
 
-	this.close_button.click( { slidebar: this }, function( event ) {
+	this.close_button.on( 'click', { slidebar: this }, function( event ) {
 		event.data.slidebar.close();
 	} );
 
-	this.overlay.click( { slidebar: this }, function( event ) {
+	this.overlay.on( 'click', { slidebar: this }, function( event ) {
 		event.data.slidebar.close();
 	} );
 
@@ -96,14 +96,14 @@ function ACM_Slidebar() {
 	};
 
 	this.form_process_start = function( html ) {
-		this.container.find( '.content .send-form' ).attr( 'disabled', true );
+		this.container.find( '.content .send-form' ).prop( 'disabled', true );
 		this.container.find( '.content .spinner' ).css( 'visibility', 'visible' );
 
 		wp.hooks.doAction( 'advanced-cron-manager.slidebar.proces.started', this );
 	};
 
 	this.form_process_stop = function( html ) {
-		this.container.find( '.content .send-form' ).attr( 'disabled', false );
+		this.container.find( '.content .send-form' ).prop( 'disabled', false );
 		this.container.find( '.content .spinner' ).css( 'visibility', 'hidden' );
 
 		wp.hooks.doAction( 'advanced-cron-manager.slidebar.proces.stopped', this );
