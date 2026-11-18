@@ -1,10 +1,10 @@
 === Advanced Cron Manager - debug & control ===
 Contributors: bracketspace, Kubitomakita
 Tags: cron, wpcron, cron manager, manager, crontrol
-Requires at least: 5.0
-Requires PHP: 5.3
-Tested up to: 6.9
-Stable tag: 2.7.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Tested up to: 7.2
+Stable tag: 2.8.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,16 @@ If you only need a simple health check for WP-Cron, WP Cron Status Checker does 
 6. Server Scheduler section
 
 == Changelog ==
+
+= 2.8.0 =
+* [Added] Option to keep plugin data in the database when the plugin is uninstalled
+* [Changed] Minimum requirements are now PHP 7.4 and WordPress 6.0
+* [Changed] Tested with WordPress 7.2 and PHP 8.5
+* [Fixed] Deprecated jQuery methods that relied on jQuery Migrate
+* [Fixed] PHP warnings and errors with events having null or object arguments, schedules registered without a display name, and an empty timezone offset
+* [Fixed] PHP warnings when AJAX requests or stored options are missing expected data
+* [Fixed] Admin screen layout in RTL languages
+* [Fixed] Paused events using custom schedules not being restored on uninstall
 
 = 2.7.0 =
 * [Changed] Event hash no longer includes next execution timestamp, making it stable across reschedulings

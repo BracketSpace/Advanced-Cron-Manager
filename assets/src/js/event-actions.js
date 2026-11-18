@@ -168,7 +168,7 @@
 	        $event_row.removeClass( 'running' );
 	        $button.removeClass( 'busy' );
 
-	    } ).error( function() {
+	    } ).fail( function() {
 
 	    	advanced_cron_manager.notify( advanced_cron_manager.i18n.executed_with_errors, 'warning' );
 

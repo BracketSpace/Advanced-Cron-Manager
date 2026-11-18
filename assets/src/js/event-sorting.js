@@ -26,7 +26,7 @@
 
 			preserve_sorting( $( this ) );
 
-			event_rows.sort( get_comparator( column_name, get_order_direction( $( this ) ) ) );
+			event_rows = $( event_rows.get().sort( get_comparator( column_name, get_order_direction( $( this ) ) ) ) );
 			event_rows_block.html( event_rows );
 		}
 	);
@@ -114,7 +114,7 @@
 	}
 
 	// apply preserved sorting when window is reloaded.
-	$( window ).ready( events_table_preserved_sort );
+	$( events_table_preserved_sort );
 
 	wp.hooks.addAction( 'advanced-cron-manager.event.sort', 'bracketspace/acm', events_table_preserved_sort );
 

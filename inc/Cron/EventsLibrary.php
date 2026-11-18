@@ -60,8 +60,28 @@ class EventsLibrary {
 
 		$paused_events = get_option( $this->paused_option_name, array() );
 
+		if ( ! is_array( $paused_events ) ) {
+			return $events;
+		}
+
 		foreach ( $paused_events as $paused_event ) {
-			$events[] = new Element\Event( $paused_event['hook'], $paused_event['schedule_slug'], $paused_event['interval'], $paused_event['args'], $paused_event['execution_timestamp'], $this->events->is_protected( $paused_event['hook'] ), true );
+			if ( ! is_array( $paused_event ) || ! isset( $paused_event['hook'] ) ) {
+				continue;
+			}
+
+			try {
+				$events[] = new Element\Event(
+					$paused_event['hook'],
+					isset( $paused_event['schedule_slug'] ) ? $paused_event['schedule_slug'] : '',
+					isset( $paused_event['interval'] ) ? $paused_event['interval'] : 0,
+					isset( $paused_event['args'] ) ? $paused_event['args'] : array(),
+					isset( $paused_event['execution_timestamp'] ) ? $paused_event['execution_timestamp'] : 0,
+					$this->events->is_protected( $paused_event['hook'] ),
+					true
+				);
+			} catch ( \InvalidArgumentException $e ) {
+				continue;
+			}
 		}
 
 		return $events;
@@ -160,7 +180,7 @@ class EventsLibrary {
 			$errors[] = __( 'Event not found and cannot be paused', 'advanced-cron-manager' );
 		}
 
-		if ( $event->protected ) {
+		if ( false !== $event && $event->protected ) {
 			$errors[] = __( 'Event is protected and cannot be paused', 'advanced-cron-manager' );
 		}
 

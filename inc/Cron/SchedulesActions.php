@@ -57,7 +57,15 @@ class SchedulesActions {
 		}
 
 		// phpcs:ignore
-		$data = wp_parse_args( $_REQUEST['data'], array() );
+		$raw_data = isset( $_REQUEST['data'] ) ? $_REQUEST['data'] : array();
+		$data     = wp_parse_args(
+			$raw_data,
+			array(
+				'slug'     => '',
+				'interval' => 0,
+				'name'     => '',
+			)
+		);
 
 		$slug = sanitize_title_with_dashes( $data['slug'], null, 'save' );
 		$slug = str_replace( '-', '_', $slug );
@@ -100,7 +108,15 @@ class SchedulesActions {
 		}
 
 		// phpcs:ignore
-		$data = wp_parse_args( $_REQUEST['data'], array() );
+		$raw_data = isset( $_REQUEST['data'] ) ? $_REQUEST['data'] : array();
+		$data     = wp_parse_args(
+			$raw_data,
+			array(
+				'slug'     => '',
+				'interval' => 0,
+				'name'     => '',
+			)
+		);
 
 		$slug = sanitize_title_with_dashes( $data['slug'], null, 'save' );
 		$slug = str_replace( '-', '_', $slug );

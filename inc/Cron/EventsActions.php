@@ -75,25 +75,38 @@ class EventsActions {
 		}
 
 		// phpcs:ignore
-		$data = wp_parse_args( $_REQUEST['data'], array() );
+		$raw_data = isset( $_REQUEST['data'] ) ? $_REQUEST['data'] : array();
+		$data     = wp_parse_args(
+			$raw_data,
+			array(
+				'hook'             => '',
+				'schedule'         => '',
+				'execution'        => '',
+				'execution_offset' => 0,
+				'arguments'        => array(),
+			)
+		);
+
+		$execution_offset = (float) $data['execution_offset'];
 
 		$execution = strtotime( $data['execution'] )
-			? strtotime( $data['execution'] ) + ( HOUR_IN_SECONDS * $data['execution_offset'] )
-			: time() + ( HOUR_IN_SECONDS * $data['execution_offset'] );
+			? strtotime( $data['execution'] ) + ( HOUR_IN_SECONDS * $execution_offset )
+			: time() + ( HOUR_IN_SECONDS * $execution_offset );
+		$execution = (int) round( $execution );
 
 		$args = array();
 
-		if ( ! empty( $data['arguments'] ) ) {
+		if ( ! empty( $data['arguments'] ) && is_array( $data['arguments'] ) ) {
 			foreach ( $data['arguments'] as $arg_raw ) {
-				if ( ! empty( $arg_raw ) ) {
+				if ( ! empty( $arg_raw ) && is_scalar( $arg_raw ) ) {
 					$args[] = wp_filter_nohtml_kses( sanitize_text_field(
-						html_entity_decode( $arg_raw, ENT_QUOTES, 'UTF-8' )
+						html_entity_decode( (string) $arg_raw, ENT_QUOTES, 'UTF-8' )
 					) );
 				}
 			}
 		}
 
-		$hook = sanitize_text_field( trim( $data['hook'] ) );
+		$hook = sanitize_text_field( trim( (string) $data['hook'] ) );
 
 		if ( empty( $hook ) ) {
 			$this->ajax->response( false, array(
@@ -116,7 +129,7 @@ class EventsActions {
 		$success = sprintf(
 			// Translators: event hook name, # of args, schedule name.
 			esc_html( _n( 'Event "%1$s" with %2$d argument has been scheduled (%3$s)', 'Event "%1$s" with %2$d arguments has been scheduled (%3$s)', $arg_num, 'advanced-cron-manager' ) ),
-			$hook, $arg_num, $schedule->label
+			$hook, $arg_num, $schedule ? $schedule->label : $data['schedule']
 		);
 
 		$this->ajax->response( $success, $errors );

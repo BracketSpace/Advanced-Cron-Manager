@@ -2,7 +2,9 @@
 /**
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
- * Version: 2.7.0
+ * Version: 2.8.0
+ * Requires at least: 6.0
+ * Requires PHP: 7.4
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
  * License: GPL3
@@ -11,7 +13,7 @@
  * @package advanced-cron-manager
  */
 
-$plugin_version = '2.7.0';
+$plugin_version = '2.8.0';
 $plugin_file    = __FILE__;
 
 /**
@@ -20,8 +22,8 @@ $plugin_file    = __FILE__;
 require_once __DIR__ . '/vendor/autoload.php';
 
 $requirements = new underDEV_Requirements( 'Advanced Cron Manager', array(
-	'php'         => '5.3',
-	'wp'          => '3.6',
+	'php'         => '7.4',
+	'wp'          => '6.0',
 	'old_plugins' => array(
 		'advanced-cron-manager-pro/acm-pro.php' => array(
 			'name'    => 'Advanced Cron Manager PRO',
@@ -88,6 +90,10 @@ $ajax = function () {
 
 $server_settings = function () use ( $view, $ajax ) {
 	return new underDEV\AdvancedCronManager\Server\Settings( $view(), $ajax() );
+};
+
+$settings = function () use ( $view, $ajax ) {
+	return new underDEV\AdvancedCronManager\Settings( $view(), $ajax() );
 };
 
 $misc = function () use ( $view ) {
@@ -177,6 +183,10 @@ add_action( 'wp_ajax_acm/event/unpause', array( $events_actions(), 'unpause' ) )
 add_action( 'advanced-cron-manager/screen/sidebar', array( $server_settings(), 'load_settings_part' ), 10, 1 );
 add_action( 'wp_ajax_acm/server/settings/save', array( $server_settings(), 'save_settings' ) );
 add_action( 'plugins_loaded', array( $server_processor(), 'block_cron_executions' ), 10, 1 );
+
+// Plugin settings.
+add_action( 'advanced-cron-manager/screen/sidebar', array( $settings(), 'load_settings_part' ), 900, 1 );
+add_action( 'wp_ajax_acm/settings/save', array( $settings(), 'save_settings' ) );
 
 // Plugin row actions.
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $misc(), 'plugin_action_link' ) );

@@ -120,6 +120,12 @@ class FormProvider {
 
 		$schedule = $this->schedules_library->get_schedule( $schedule_slug );
 
+		if ( false === $schedule ) {
+			$this->ajax->response( false, array(
+				__( 'Invalid schedule slug.', 'advanced-cron-manager' ),
+			) );
+		}
+
 		$this->view->set_var( 'schedule', $schedule );
 
 		// Translators: schedule slug.

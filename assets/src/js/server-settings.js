@@ -28,14 +28,14 @@
 	    var button_label = $button.val();
 
 	    $button.val( advanced_cron_manager.i18n.saving );
-	    $button.attr( 'disabled', true );
+	    $button.prop( 'disabled', true );
 
 	    $.post( ajaxurl, data, function( response ) {
 
 	        advanced_cron_manager.ajax_messages( response );
 
 	        $button.val( button_label );
-		    $button.attr( 'disabled', false );
+		    $button.prop( 'disabled', false );
 
 	    } );
 

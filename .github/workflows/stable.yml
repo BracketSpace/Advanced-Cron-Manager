@@ -13,18 +13,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Parse changelog
-        id: changelog
         run: |
           VERSION=${GITHUB_REF#refs/tags/}
-          START="= ${VERSION} ="
-          END="= [0-9]+\.[0-9]+\.[0-9]+ =|==|\$"
-          
-          # Extract changelog for this version and convert to markdown
-          grep -oPz "(?s)${START}.*?\n\K.*?(?=${END})" readme.txt | \
-          sed 's/^\* \[\([^]]*\)\]/- **\1**:/g' > changelog.md
-          
-          # Remove last newline to clean up output
-          truncate -s-1 changelog.md 2>/dev/null || true
+          awk -v ver="$VERSION" '
+          /^= / {
+            if ($0 ~ "= " ver " =") {
+              found=1;
+              next
+            }
+            else if (found && /^= [0-9]/) {
+              exit
+            }
+          }
+          found && /^\*/ { print }
+          ' readme.txt > changelog.txt
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -53,5 +55,5 @@ jobs:
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          body_path: changelog.md
+          body_path: changelog.txt
           files: ${{github.workspace}}/${{ secrets.SLUG }}.zip

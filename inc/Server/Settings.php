@@ -126,7 +126,7 @@ class Settings {
 		}, $this->default );
 
 		// phpcs:ignore
-		$form_data = wp_parse_args( $_REQUEST['data'], $form_options );
+		$form_data = wp_parse_args( isset( $_REQUEST['data'] ) ? $_REQUEST['data'] : array(), $form_options );
 
 		// Validate and sanitize settings.
 		$sanitized_data = array();

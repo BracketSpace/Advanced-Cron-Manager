@@ -86,10 +86,15 @@ class Events {
 
 					foreach ( $event_args as $event ) {
 
-						$interval       = isset( $event['interval'] ) ? $event['interval'] : 0;
-						$schedule       = empty( $event['schedule'] ) ? $this->schedules->get_single_event_schedule()->slug : $event['schedule'];
-						$events_array[] = new Element\Event( $event_hook, $schedule, $interval, $event['args'], $timestamp, $protected );
+						$interval     = isset( $event['interval'] ) ? $event['interval'] : 0;
+						$schedule     = empty( $event['schedule'] ) ? $this->schedules->get_single_event_schedule()->slug : $event['schedule'];
+						$event_params = isset( $event['args'] ) ? $event['args'] : array();
 
+						try {
+							$events_array[] = new Element\Event( $event_hook, $schedule, $interval, $event_params, $timestamp, $protected );
+						} catch ( \InvalidArgumentException $e ) {
+							continue;
+						}
 					}
 				}
 			}

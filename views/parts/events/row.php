@@ -10,7 +10,7 @@ $event                 = $this->get_var( 'event' );
 $schedules             = $this->get_var( 'schedules' );
 $single_event_schedule = $schedules->get_single_event_schedule();
 
-$time_offset = get_option( 'gmt_offset' ) * 3600;
+$time_offset = (float) get_option( 'gmt_offset' ) * 3600;
 $date_format = get_option( 'date_format' );
 $time_format = get_option( 'time_format' );
 
@@ -80,7 +80,7 @@ if ( $event->paused ) {
 							<?php if ( is_bool( $arg ) ) : ?>
 								<?php echo esc_html( wp_json_encode( $arg ) ); ?>
 							<?php else : ?>
-								<?php echo esc_html( $arg ); ?>
+								<?php echo esc_html( is_scalar( $arg ) ? $arg : '' ); ?>
 							<?php endif ?>
 						</span>
 				<?php endforeach ?>
