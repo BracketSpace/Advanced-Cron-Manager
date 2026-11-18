@@ -345,12 +345,14 @@ class AdminScreen {
 				$parsed_args[] = array(
 					'type' => gettype( $arg ),
 					'msg'  => wp_filter_nohtml_kses( sanitize_text_field(
-						html_entity_decode( $arg, ENT_QUOTES, 'UTF-8' )
+						html_entity_decode( (string) $arg, ENT_QUOTES, 'UTF-8' )
 					) ),
 				);
 			}
 
-			$show_args_preview = is_array( $arg ) || is_object( $arg );
+			if ( is_array( $arg ) || is_object( $arg ) ) {
+				$show_args_preview = true;
+			}
 		}
 
 		$args_length = array_sum( array_map( function ( $ar ) {

@@ -27,7 +27,7 @@ if ( ! empty( $settings['server_enable'] ) || $disable_wp_cron_defined ) {
 			<form id="server-settings-form">
 
 				<label class="master-setting">
-					<input type="checkbox" name="server_enable" value="1" <?php checked( $settings['server_enable'] || $disable_wp_cron_defined, 1 ); ?> <?php disabled( $disable_wp_cron_defined, true ); ?>>
+					<input type="checkbox" name="server_enable" value="1" <?php checked( ! empty( $settings['server_enable'] ) || $disable_wp_cron_defined, 1 ); ?> <?php disabled( $disable_wp_cron_defined, true ); ?>>
 					<?php esc_html_e( 'Enable Server Scheduler', 'advanced-cron-manager' ); ?>
 					<p class="description"><?php esc_html_e( 'When enabled WordPress will not spawn Cron anymore. You have to set the Cron on your server', 'advanced-cron-manager' ); ?></p>
 				</label>

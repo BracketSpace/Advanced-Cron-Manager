@@ -86,10 +86,11 @@ class Schedule {
 		$seconds_in_day    = 24 * $seconds_in_hour;
 
 		// extract days.
-		$interval['days'] = floor( $this->interval / $seconds_in_day );
+		$total_seconds    = (int) $this->interval;
+		$interval['days'] = floor( $total_seconds / $seconds_in_day );
 
 		// extract hours.
-		$hour_seconds      = $this->interval % $seconds_in_day;
+		$hour_seconds      = $total_seconds % $seconds_in_day;
 		$interval['hours'] = floor( $hour_seconds / $seconds_in_hour );
 
 		// extract minutes.

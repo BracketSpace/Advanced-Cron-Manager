@@ -63,8 +63,21 @@ class SchedulesLibrary {
 
 			$schedules = get_option( $this->option_name, array() );
 
+			if ( ! is_array( $schedules ) ) {
+				$schedules = array();
+			}
+
 			foreach ( $schedules as $schedule_slug => $params ) {
-				$this->schedules[ $schedule_slug ] = new Element\Schedule( $schedule_slug, $params['interval'], $params['display'], false );
+				if ( ! is_array( $params ) ) {
+					continue;
+				}
+
+				$this->schedules[ $schedule_slug ] = new Element\Schedule(
+					$schedule_slug,
+					isset( $params['interval'] ) ? $params['interval'] : 0,
+					isset( $params['display'] ) ? $params['display'] : $schedule_slug,
+					false
+				);
 			}
 		}
 
@@ -159,7 +172,9 @@ class SchedulesLibrary {
 				$errors[] = sprintf( __( 'Schedule with slug "%s" doesn\'t exists', 'advanced-cron-manager' ), $slug );
 			}
 
-			if ( $this->get_schedule( $slug )->protected ) {
+			$existing_schedule = $this->get_schedule( $slug );
+
+			if ( false !== $existing_schedule && $existing_schedule->protected ) {
 				// Translators: schedule slug.
 				$errors[] = sprintf( __( 'Schedule "%s" is protected and you cannot edit it', 'advanced-cron-manager' ), $slug );
 			}

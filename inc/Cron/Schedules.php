@@ -69,7 +69,12 @@ class Schedules {
 					$protected = true;
 				}
 
-				$this->schedules[ $slug ] = new Element\Schedule( $slug, $params['interval'], $params['display'], $protected );
+				$this->schedules[ $slug ] = new Element\Schedule(
+					$slug,
+					isset( $params['interval'] ) ? $params['interval'] : 0,
+					isset( $params['display'] ) ? $params['display'] : $slug,
+					$protected
+				);
 
 			}
 		}
