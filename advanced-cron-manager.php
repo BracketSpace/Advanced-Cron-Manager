@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
- * Version: 2.7.0
+ * Version: 2.8.0
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: BracketSpace
@@ -13,7 +13,7 @@
  * @package advanced-cron-manager
  */
 
-$plugin_version = '2.7.0';
+$plugin_version = '2.8.0';
 $plugin_file    = __FILE__;
 
 /**
