@@ -92,6 +92,10 @@ $server_settings = function () use ( $view, $ajax ) {
 	return new underDEV\AdvancedCronManager\Server\Settings( $view(), $ajax() );
 };
 
+$settings = function () use ( $view, $ajax ) {
+	return new underDEV\AdvancedCronManager\Settings( $view(), $ajax() );
+};
+
 $misc = function () use ( $view ) {
 	return new underDEV\AdvancedCronManager\Misc( $view() );
 };
@@ -179,6 +183,10 @@ add_action( 'wp_ajax_acm/event/unpause', array( $events_actions(), 'unpause' ) )
 add_action( 'advanced-cron-manager/screen/sidebar', array( $server_settings(), 'load_settings_part' ), 10, 1 );
 add_action( 'wp_ajax_acm/server/settings/save', array( $server_settings(), 'save_settings' ) );
 add_action( 'plugins_loaded', array( $server_processor(), 'block_cron_executions' ), 10, 1 );
+
+// Plugin settings.
+add_action( 'advanced-cron-manager/screen/sidebar', array( $settings(), 'load_settings_part' ), 900, 1 );
+add_action( 'wp_ajax_acm/settings/save', array( $settings(), 'save_settings' ) );
 
 // Plugin row actions.
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $misc(), 'plugin_action_link' ) );

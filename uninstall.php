@@ -3,6 +3,9 @@
  * Uninstall file
  * Called when plugin is uninstalled
  *
+ * Does nothing when the "Remove plugin data on uninstall" setting is disabled,
+ * so the data stays in the database for a reinstall.
+ *
  * Tasks:
  * 1. reschedules paused events
  * 2. removes acm_* options from wp_options
@@ -12,6 +15,12 @@
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	die;
+}
+
+$acm_settings = get_option( 'acm_settings', array() );
+
+if ( is_array( $acm_settings ) && isset( $acm_settings['uninstall_cleanup'] ) && ! $acm_settings['uninstall_cleanup'] ) {
+	return;
 }
 
 $plugin_version = 'x';
@@ -31,6 +40,10 @@ $ajax = function () {
 };
 
 $schedules_library = new underDEV\AdvancedCronManager\Cron\SchedulesLibrary( $ajax() );
+
+// The plugin is not loaded during uninstall, so the custom schedules have to be
+// registered manually. Otherwise paused events using them cannot be rescheduled.
+add_filter( 'cron_schedules', array( $schedules_library, 'register' ), 10, 1 ); // phpcs:ignore
 
 $schedules = function () use ( $schedules_library ) {
 	return new underDEV\AdvancedCronManager\Cron\Schedules( $schedules_library );
@@ -54,4 +67,5 @@ foreach ( $paused_events as $event ) {
 
 delete_option( 'acm_paused_events' );
 delete_option( 'acm_schedules' );
+delete_option( 'acm_settings' );
 delete_option( 'acm_server_settings' );

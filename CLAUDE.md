@@ -49,6 +49,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Settings.php** — settings UI and save handler for disabling WP-Cron spawning
 - **Processor.php** — conditionally blocks WP-Cron execution based on saved settings
 
+### Plugin Settings
+
+- **Settings.php** (`inc/`) — "Plugin data" sidebar tile and save handler for the `acm_settings` option (`uninstall_cleanup`: remove plugin data on uninstall, enabled by default; read by `uninstall.php`)
+
 ### Frontend Assets
 
 - **Source**: `assets/src/js/` (individual JS modules) and `assets/src/sass/` (SCSS with components/mixins/parts)
