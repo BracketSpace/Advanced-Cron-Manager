@@ -31,7 +31,7 @@ jobs:
         run: git flow init -d
       - name: Start release
         run: git flow release start ${{ github.event.inputs.new_version }}
-      - name: Replace [Next] tag with new version number
+      - name: Replace 2.8.0 tag with new version number
         uses: jacobtomlinson/gha-find-replace@master
         with:
           find: "(?i)\\[Next\\]"
