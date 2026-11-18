@@ -26,7 +26,7 @@
 
 			preserve_sorting( $( this ) );
 
-			event_rows.sort( get_comparator( column_name, get_order_direction( $( this ) ) ) );
+			event_rows = $( event_rows.get().sort( get_comparator( column_name, get_order_direction( $( this ) ) ) ) );
 			event_rows_block.html( event_rows );
 		}
 	);
