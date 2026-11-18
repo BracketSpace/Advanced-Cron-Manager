@@ -3,6 +3,8 @@
  * Plugin Name: Advanced Cron Manager
  * Description: View, pause, remove, edit and add WP Cron events.
  * Version: 2.7.0
+ * Requires at least: 6.0
+ * Requires PHP: 7.4
  * Author: BracketSpace
  * Author URI: https://bracketspace.com
  * License: GPL3
@@ -20,8 +22,8 @@ $plugin_file    = __FILE__;
 require_once __DIR__ . '/vendor/autoload.php';
 
 $requirements = new underDEV_Requirements( 'Advanced Cron Manager', array(
-	'php'         => '5.3',
-	'wp'          => '3.6',
+	'php'         => '7.4',
+	'wp'          => '6.0',
 	'old_plugins' => array(
 		'advanced-cron-manager-pro/acm-pro.php' => array(
 			'name'    => 'Advanced Cron Manager PRO',

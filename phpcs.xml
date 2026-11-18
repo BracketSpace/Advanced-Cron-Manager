@@ -30,8 +30,8 @@
 	</rule>
 
 	<!-- PHPCompatibility -->
-	<rule ref="PHPCompatibility" />
-	<config name="testVersion" value="5.3-" />
+	<rule ref="PHPCompatibilityWP" />
+	<config name="testVersion" value="7.4-" />
 
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php"/>
